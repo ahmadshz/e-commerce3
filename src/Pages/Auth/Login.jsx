@@ -11,17 +11,15 @@ const Login = () => {
         setShow(!show)
     }
 
-    const goBcak = () => {
-        window.history.back()
-    }
-
     return (
-        <div className='h-screen fixed inset-0 bg-[rgba(77,76,76,0.1)] backdrop-blur-sm flex justify-center items-center '>
-            <div className='container'>
-                <div className=' w-full  sm:w-3/4 md:w-2/4  flex flex-col gap-4 border-2 border-primary rounded-lg bg-white'>
+        <div className='h-screen fixed inset-0 bg-[rgba(77,76,76,0.1)] backdrop-blur-sm  '>
+            <div className='container h-full flex items-center justify-center'>
+                <div className=' w-full    sm:w-3/4 md:w-2/4 xl:1/4  flex flex-col gap-4 border-2 border-primary rounded-lg bg-white'>
                     <div className=' bg-primary flex justify-between items-center text-white text-2xl font-medium p-5' >
                         <h1>تسجيل الدخول</h1>
-                        <IoArrowBackCircleOutline onClick={goBcak} size={30} />
+                        <Link to={'/'}>
+                            <IoArrowBackCircleOutline size={30} />
+                        </Link>
                     </div>
                     <form className='flex flex-col gap-4 p-4 '>
                         <input className='border-2 border-gray-200 focus:outline-none focus:border-primary rounded-md p-2' type="text" placeholder=' ادخل البريد الإلكتروني هنا' />

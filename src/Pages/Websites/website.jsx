@@ -1,11 +1,11 @@
 import React from 'react'
-import Navbar from '../../Components/Websites/Navbar'
+import Header from '../../Components/Websites/Header/Header'
 import Home from './Home'
 
 const website = () => {
     return (
         <div>
-            <Navbar />
+            <Header />
             <Home />
         </div>
     )

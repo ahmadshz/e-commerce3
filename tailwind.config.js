@@ -7,6 +7,7 @@ module.exports = {
     extend: {
       colors: {
         primary: "#ff2b2bf6",
+        secondary: "#FF0005",
       },
       container: {
         center: true, 
