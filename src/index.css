@@ -2,8 +2,50 @@
 @tailwind components;
 @tailwind utilities;
 
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
+@font-face {
+  font-family: 'Cairo';
+  src: url('./assets//Font/Cairo\ Bold\ 700.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Cairo';
+  src: url('./assets//Font/Cairo\ SemiBold\ 600.ttf') format('truetype');
+  font-weight: 600; /* SemiBold */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Cairo';
+  src: url('./assets/Font/Cairo\ Regular\ 400.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Cairo', Arial, Helvetica, sans-serif;
+}
+
+/* Custom Scrollbar Styles */
+.custom-scrollbar::-webkit-scrollbar {
+  height: 10px; /* Smaller scrollbar height */
+  width: 6px; /* Smaller scrollbar width */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Light gray track */
+  border-radius: 10px; /* Rounded corners for track */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #d3d3d3; /* Scrollbar thumb color */
+  border-radius: 10px; /* Rounded corners for thumb */
+}
+
