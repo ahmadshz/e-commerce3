@@ -1,5 +1,5 @@
 import car from '../assets/Carandothers/car1.svg'
-import carcolor from '../assets/Carandothers/car-1.svg'
+import carcolor from '../assets/Carandothers/car.svg'
 import motor from '../assets/Carandothers/motor.svg'
 import motorcolor from '../assets/Carandothers/motor-1.svg'
 import howses from '../assets/Carandothers/houses-1.svg'

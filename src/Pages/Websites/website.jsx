@@ -6,10 +6,10 @@ import SubNavbar from '../../Components/Websites/Header/SubNavbar'
 
 const website = () => {
     return (
-        <div className='flex flex-col gap-7'>
+        <div className='flex flex-col gap-[10px] md:gap-5 xl:gap-7'>
             <MainHeader />
             <SubNavbar />
-            <CategoryNavbar />
+            <CategoryNavbar/>
             <Home />
         </div>
     )

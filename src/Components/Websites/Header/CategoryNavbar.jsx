@@ -17,12 +17,12 @@ const CategoryNavbar = () => {
     return (
         <div className="container">
             {/* Scrollable Container for Categories */}
-            <div className="flex justify-between gap-x-5 overflow-x-auto overflow-y-hidden scroll-smooth custom-scrollbar pb-[10px]">
+            <div className="flex justify-between lg:gap-x-0 xl:gap-x-5 overflow-x-auto overflow-y-hidden scroll-smooth custom-scrollbar pb-[10px]">
                 {data.map((category, index) => (
                     <div
                         key={index}
                         onClick={() => handleCategoryClick(index)}
-                        className={` flex flex-col items-center justify-center gap-2 px-4 py-5 cursor-pointer  transition-transform transform ${selectedCategory === index
+                        className={` flex flex-col items-center justify-center md:px-4 py-0 lg:py-2 xl:py-5 cursor-pointer  transition-transform transform ${selectedCategory === index
                             ? 'bg-border rounded-10px duration-300'
                             : ''
                             }`}
@@ -30,16 +30,16 @@ const CategoryNavbar = () => {
                         <img
                             src={ category.icon}
                             alt={category.title}
-                            className={`w-16 object-cover ${selectedCategory === index ? 'hidden' : 'block'}`}
+                            className={` w-10 lg:w-12 xl:w-16 object-cover ${selectedCategory === index ? 'hidden' : 'block'}`}
                         />
                         <img
                             src={ category.iconcolor }
                             alt={category.title}
-                            className={`w-16 object-cover  ${selectedCategory === index ? 'block' : 'hidden'}`}
+                            className={`w-10 lg:w-12 xl:w-16 object-cover  ${selectedCategory === index ? 'block' : 'hidden'}`}
                         />
                         
                         <div
-                            className={`text-center w-[140px] text-sm md:text-[17px] font-bold ${selectedCategory === index ? 'text-primary' : 'text-placeholder'
+                            className={`text-center w-[100px] lg:w-[123px] xl:w-[140px] text-[10px] md:text-[12px] lg:text-[15px] font-bold ${selectedCategory === index ? 'text-primary' : 'text-placeholder'
                                 }`}
                         >
                             {category.title}
@@ -50,17 +50,16 @@ const CategoryNavbar = () => {
 
             {/* Brands Section */}
             {selectedCategory !== null && data[selectedCategory].brands && data[selectedCategory].brands.length > 0 && (
-                <div className="mt-5 md:mt-[20px]">
-                    <div className="flex overflow-x-auto pb-[10px] gap-4 custom-scrollbar">
+                <div className="mt-[10px] md:mt-[20px]">
+                    <div className="flex overflow-x-auto pb-[10px] gap-2 md:gap-4 custom-scrollbar">
                         {data[selectedCategory].brands.map((brand, index) => (
                             <div
                                 key={index}
-                                onClick={() => handleBrandClick(index)} // Set the selected brand when clicked
-                                className={`border rounded-10px p-4 w-fit bg-white text-center cursor-pointer ${selectedBrand === index ? 'text-primary' : 'text-placeholder'
-                                    }`} // Change text color to primary if selected
+                                onClick={() => handleBrandClick(index)} 
+                                className={`border rounded-10px px-2 py-1 md:p-4 w-fit bg-white text-center  cursor-pointer ${selectedBrand === index ? 'text-primary' : 'text-placeholder'
+                                    }`} 
                             >
-                                {/* Only show Arabic if available, otherwise show English */}
-                                <p className="text-sm md:text-[17px] font-semibold truncate">
+                                <p className="text-[10px] md:text-[12px] lg:text-[15px] font-semibold truncate">
                                     {brand.arabic ? brand.arabic : brand}
                                 </p>
                             </div>
