@@ -15,8 +15,8 @@ const MainHeader = () => {
       <div className='container flex justify-between items-center'>
         <img className='w-12 md:w-12 lg:w-16 xl:w-20' src={Logo} alt='' />
         <div className='text-white flex gap-4'>
-          <button onClick={toggleSidebar}>
-            {isSidebarOpen ? <RiCloseLine size={23} /> : <RiMenu2Line size={23} />}
+          <button  className='lg:hidden' onClick={toggleSidebar}>
+            {isSidebarOpen ? <RiCloseLine size={25} /> : <RiMenu2Line size={23} />}
           </button>
           <Link to='/login' className='border-2 hidden lg:block border-white rounded-md p-1 px-2 font-medium'>
             الدخول
@@ -36,7 +36,7 @@ const MainHeader = () => {
       >
         <div className='p-4 relative'>
           <button className='absolute top-4 left-4 text-gray-800' onClick={toggleSidebar}>
-            <RiCloseLine size={23} />
+            <RiCloseLine size={25} />
           </button>
           <h2 className='text-xl font-bold mb-4'>القائمة</h2>
           <ul className='space-y-4'>
