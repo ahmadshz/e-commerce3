@@ -72,8 +72,8 @@ const SubNavbar = () => {
                     
                 </div>
 
-                <Link className='flex items-center  w-2/4 lg:w-[170px] xl:w-[220px] h-[35px] md:h-[45px] xl:h-[53px]  text-[13px] md:text-[15px] lg:text-[17px]  bg-primary rounded-md md:rounded-10px' to={"/addPost"}>
-                    <div className='  text-white w-[75%] md:w-[85%] lg:w-[80%] text-center '>
+                <Link to={'/addpost'} className='flex items-center  w-2/4 lg:w-[170px] xl:w-[220px] h-[35px] md:h-[45px] xl:h-[53px]  text-[13px] md:text-[15px] lg:text-[17px]  bg-primary rounded-md md:rounded-10px'>
+                    <div className='text-white w-[75%] md:w-[85%] lg:w-[80%] text-center '>
                         أضــف اعــلان
                     </div>
                     <div className=' w-[25%] md:w-[15%] lg:w-[20%] bg-placeholder h-full rounded-md md:rounded-10px flex items-center justify-center'>

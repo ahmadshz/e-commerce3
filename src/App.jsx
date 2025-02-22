@@ -8,6 +8,8 @@ import Dashboard from "./Pages/Dashboard/Dashboard";
 import User from "./Pages/Dashboard/User/User";
 import ShowUser from "./Pages/Dashboard/User/ShowUser";
 import DetailsAccount from "./Components/Websites/page/DetailsAccount";
+import PostId from "./Components/Websites/page/PostId";
+import AddPost from "./Components/Websites/page/AddPost";
 
 function App() {
   return (
@@ -25,6 +27,9 @@ function App() {
           <Route path="users/:id" element={<ShowUser />} />
         </Route>
 
+
+        <Route path="/addpost" element={<AddPost />} />
+        <Route path="/post/id" element={<PostId />} />
         <Route path="/myaccount" element={<DetailsAccount />} />
 
       </Routes>

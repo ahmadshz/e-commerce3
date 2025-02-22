@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import img from '../../../assets/download.jpeg'
 import price from '../../../assets/iconpost/1.svg'
 import pricesy from '../../../assets/iconpost/3.svg'
@@ -8,8 +9,8 @@ const Posts = () => {
     return (
         <div className='bg-[#FAFAFA] w-full h-[110px] md:h-[140px] lg:h-[160px] flex  '>
             <div className=' w-2/4 xl:w-3/5 flex flex-col justify-between md:py-2 pr-2  md:pr-[10px] xl:pr-[20px]'>
-                <h1 className=' text-[17px] md:text-[21px] xl:text-[25px] font-semibold'>كورولا 2013 تجديد وكالة </h1>
-                <h1 className='text-[13px] md:text-[15px] xl:text-[21px] font-normal text-placeholder'>دمشق</h1>
+                <Link to={'/post/id'} className=' text-[14px] md:text-[21px] xl:text-[25px] font-semibold'>كورولا 2013 تجديد وكالة </Link>
+                <h1 className='text-[13px] md:text-[15px] xl:text-[17px] font-normal text-placeholder'>دمشق</h1>
             </div>
             <div className=' w-2/4 xl:w-2/5  flex '>
                 <div className='w-3/5 md:py-2  flex flex-col md:justify-between text-placeholder text-[10px] md:text-[17px] xl:text-[21px] font-semibold'>
@@ -30,7 +31,7 @@ const Posts = () => {
                         <div className='py-0'>أبو خالد</div>
                     </div>
                 </div>
-                <div className=' w-2/5 '>
+                <div className=' w-2/4 '>
                     <img className='h-full' src={img} alt='' />
                 </div>
             </div>
