@@ -2,9 +2,9 @@ import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom'; // Use useLocation and useNavigate
 
 const Intermediate = () => {
-    const location = useLocation(); // Access the location state
-    const navigate = useNavigate(); // Hook for programmatic navigation
-    const targetPath = location.state?.targetPath || '/'; // Get the target path from state
+    const location = useLocation(); 
+    const navigate = useNavigate(); 
+    const targetPath = location.state?.targetPath || '/'; 
 
     const rules = [
         {
@@ -38,7 +38,7 @@ const Intermediate = () => {
 
     // Handle accepting the terms
     const handleAccept = () => {
-        navigate(targetPath); 
+        navigate(targetPath);
     };
 
     return (

@@ -32,7 +32,7 @@ const Posts = () => {
                     </div>
                 </div>
                 <div className=' w-2/4 '>
-                    <img className='h-full' src={img} alt='' />
+                    <img className='h-full object-cover' src={img} alt='' />
                 </div>
             </div>
         </div>
