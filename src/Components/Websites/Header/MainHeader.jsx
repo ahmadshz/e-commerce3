@@ -21,18 +21,18 @@ const MainHeader = () => {
           <Link to='/login' className='border-2 hidden lg:block border-white rounded-md p-1 px-2 font-medium'>
             الدخول
           </Link>
-          <Link to='/register' className='border-2 hidden md:block font-medium text-lg border-white rounded-md px-4 py-1'>
+          <Link to='/register' className='border-2 hidden lg:block font-medium text-lg border-white rounded-md px-4 py-1'>
             انشاء حساب
           </Link>
         </div>
       </div>
 
       {isSidebarOpen && (
-        <div className='fixed inset-0 bg-black bg-opacity-50 z-50' onClick={toggleSidebar}></div>
+        <div className='fixed inset-0 bg-black bg-opacity-50 z-50 lg:hidden' onClick={toggleSidebar}></div>
       )}
 
       <div
-        className={`fixed top-0 left-0 h-full w-64 bg-white shadow-lg z-50 transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300`}
+        className={`fixed lg:hidden top-0 left-0 h-full  w-64 bg-white shadow-lg z-50 transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300`}
       >
         <div className='p-4 relative'>
           <button className='absolute top-4 left-4 text-gray-800' onClick={toggleSidebar}>

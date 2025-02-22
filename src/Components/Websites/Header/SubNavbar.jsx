@@ -16,9 +16,9 @@ const SubNavbar = () => {
     };
 
     return (
-        <div className='container flex flex-wrap md:flex-nowrap justify-between items-center  gap-[10px] md:gap-5'>
+        <div className='container flex flex-wrap lg:flex-nowrap justify-between items-center  gap-2'>
             {/* Search Input */}
-            <div className='h-[35px] md:h-[45px] xl:h-[53px] w-full md:w-3/4 lg:w-1/2 ring-2 ring-border relative rounded-md md:rounded-10px'>
+            <div className='h-[35px] md:h-[45px] xl:h-[53px] w-full  lg:w-1/2 ring-2 ring-border relative rounded-md md:rounded-10px'>
                 <input
                     type='search' 
                     className='h-full w-full font-normal   text-[13px] md:text-[15px] lg:text-[17px] rounded-md md:rounded-10px pr-2  md:pr-[10px] xl:pr-[20px] focus:outline-none'
@@ -32,16 +32,16 @@ const SubNavbar = () => {
             </div>
 
             {/* Location Dropdown */}
-            <div className=' md:flex justify-between items-center w-2/4 md:1/4 lg:w-2/4'>
-                <div className=" w ring-2 ring-border rounded-md md:rounded-10px w-full lg:w-[170px] xl:w-[220px] relative  text-placeholder">
+            <div className=' flex justify-between items-center gap-4  w-full lg:w-2/4'>
+                <div className=" w-2/4 lg:w-[170px] xl:w-[220px] ring-2 ring-border rounded-md md:rounded-10px relative text-placeholder">
                     {/* Button */}
                     <button
                         onClick={toggleDropdown}
                         className="w-full h-[35px] md:h-[45px] xl:h-[53px]  flex items-center justify-between  "
                     >
-                        <span className="w-[75%] md:w-[80%] text-center text-[13px] md:text-[15px] lg:text-[17px] ">{selectedLocation}</span>
+                        <span className="w-[75%] md:w-[85%] lg:w-[80%] text-center text-[13px] md:text-[15px] lg:text-[17px] ">{selectedLocation}</span>
                         <MdOutlineKeyboardArrowDown
-                            className="  w-[22%] md:w-[20%] h-[35px] md:h-[45px] xl:h-[53px] ring-2 ring-border rounded-md md:rounded-10px"
+                            className="  w-[25%] md:w-[15%] lg:w-[20%]  h-[35px] md:h-[45px] xl:h-[53px] ring-2 ring-border rounded-md md:rounded-10px"
                         />
                     </button>
 
@@ -72,12 +72,12 @@ const SubNavbar = () => {
                     
                 </div>
 
-                <Link className=' hidden lg:flex lg:w-[170px] xl:w-[210px] lg:h-[45px] xl:h-[53px]  md:text-[14px] lg:text-[17px]  bg-primary   items-center  rounded-md md:rounded-10px' to={"/addPost"}>
-                    <div className='  text-white w-[160px] text-center '>
+                <Link className='flex items-center  w-2/4 lg:w-[170px] xl:w-[220px] h-[35px] md:h-[45px] xl:h-[53px]  text-[13px] md:text-[15px] lg:text-[17px]  bg-primary rounded-md md:rounded-10px' to={"/addPost"}>
+                    <div className='  text-white w-[75%] md:w-[85%] lg:w-[80%] text-center '>
                         أضــف اعــلان
                     </div>
-                    <div className='bg-placeholder h-full rounded-md md:rounded-10px flex items-center justify-center md:w-[50px]'>
-                        <img className=' md:w-7 xl:w-9' src={add} alt='' />
+                    <div className=' w-[25%] md:w-[15%] lg:w-[20%] bg-placeholder h-full rounded-md md:rounded-10px flex items-center justify-center'>
+                        <img className='w-8 ' src={add} alt='' />
                     </div>
                 </Link>
             </div>

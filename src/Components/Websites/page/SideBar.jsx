@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ShowAllPosts = () => {
+const SideBar = () => {
   return (
     <div>
     
@@ -8,4 +8,4 @@ const ShowAllPosts = () => {
   )
 }
 
-export default ShowAllPosts
+export default SideBar

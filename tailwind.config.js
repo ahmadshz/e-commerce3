@@ -10,6 +10,8 @@ module.exports = {
         secondary: "#FF0005",
         text: "#000000",
         border: "#d3d3d3",
+        background: "#FAFAFA",
+        bgsecondary: "#E7E7E7",
         placeholder: "#8a8a8a",
       },
       borderRadius: {

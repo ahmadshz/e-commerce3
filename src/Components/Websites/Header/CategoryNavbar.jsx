@@ -17,7 +17,7 @@ const CategoryNavbar = () => {
     return (
         <div className="container">
             {/* Scrollable Container for Categories */}
-            <div className="flex justify-between lg:gap-x-0 xl:gap-x-5 overflow-x-auto overflow-y-hidden scroll-smooth custom-scrollbar pb-[10px]">
+            <div className="flex justify-between lg:gap-x-0 xl:gap-x-5 overflow-x-auto overflow-y-hidden scroll-smooth custom-scrollbar pb-[5px] md:pb-[10px]">
                 {data.map((category, index) => (
                     <div
                         key={index}
@@ -50,8 +50,8 @@ const CategoryNavbar = () => {
 
             {/* Brands Section */}
             {selectedCategory !== null && data[selectedCategory].brands && data[selectedCategory].brands.length > 0 && (
-                <div className="mt-[10px] md:mt-[20px]">
-                    <div className="flex overflow-x-auto pb-[10px] gap-2 md:gap-4 custom-scrollbar">
+                <div className="mt-[5px] md:mt-[20px]">
+                    <div className="flex overflow-x-auto pb-[5px] md:pb-[10px] gap-2 md:gap-4 custom-scrollbar">
                         {data[selectedCategory].brands.map((brand, index) => (
                             <div
                                 key={index}
@@ -59,7 +59,7 @@ const CategoryNavbar = () => {
                                 className={`border rounded-10px px-2 py-1 md:p-4 w-fit bg-white text-center  cursor-pointer ${selectedBrand === index ? 'text-primary' : 'text-placeholder'
                                     }`} 
                             >
-                                <p className="text-[10px] md:text-[12px] lg:text-[15px] font-semibold truncate">
+                                <p className="text-[10px] md:text-[12px] lg:text-[15px] font-bold truncate">
                                     {brand.arabic ? brand.arabic : brand}
                                 </p>
                             </div>
