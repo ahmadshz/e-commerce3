@@ -10,6 +10,8 @@ import ShowUser from "./Pages/Dashboard/User/ShowUser";
 import DetailsAccount from "./Components/Websites/page/DetailsAccount";
 import PostId from "./Components/Websites/page/PostId";
 import AddPost from "./Components/Websites/page/AddPost";
+import Intermediate from "./Components/Websites/page/Intermadiate";
+
 
 function App() {
   return (
@@ -31,6 +33,7 @@ function App() {
         <Route path="/addpost" element={<AddPost />} />
         <Route path="/post/id" element={<PostId />} />
         <Route path="/myaccount" element={<DetailsAccount />} />
+        <Route path="intermediate" element={<Intermediate />} />
 
       </Routes>
     </div>
