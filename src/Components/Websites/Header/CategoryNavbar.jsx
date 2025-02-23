@@ -39,7 +39,7 @@ const CategoryNavbar = () => {
                         />
                         
                         <div
-                            className={`text-center w-[100px] lg:w-[123px] xl:w-[140px] text-[10px] md:text-[12px] lg:text-[15px] font-bold ${selectedCategory === index ? 'text-primary' : 'text-placeholder'
+                            className={`text-center w-[100px] lg:w-[123px] xl:w-[140px] text-[10px] md:text-[13px] lg:text-[17px] font-semibold ${selectedCategory === index ? 'text-primary' : 'text-placeholder'
                                 }`}
                         >
                             {category.title}
@@ -59,7 +59,7 @@ const CategoryNavbar = () => {
                                 className={`border rounded-10px px-2 py-1 md:p-4 w-fit bg-white text-center  cursor-pointer ${selectedBrand === index ? 'text-primary' : 'text-placeholder'
                                     }`} 
                             >
-                                <p className="text-[10px] md:text-[12px] lg:text-[15px] font-bold truncate">
+                                <p className="text-[10px] md:text-[12px] lg:text-[16px] font-bold truncate">
                                     {brand.arabic ? brand.arabic : brand}
                                 </p>
                             </div>

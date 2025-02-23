@@ -12,7 +12,7 @@ const AddPost = () => {
                     key={index}
                     className='w-full relative h-[140px] md:h-[160px] lg:h-[200px] rounded-10px bg-background flex justify-between px-2 md:px-7 items-center gap-2 cursor-pointer'
                 >
-                    <div className='text-[20px] lg:text-[25px] font-bold text-primary'>
+                    <div className='text-[13px]  md:text-[17px] lg:text-[25px] font-bold text-primary'>
                         {item.add}
                     </div>
                     <img

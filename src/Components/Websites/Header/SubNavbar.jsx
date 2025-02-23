@@ -18,22 +18,22 @@ const SubNavbar = () => {
     return (
         <div className='container flex flex-wrap lg:flex-nowrap justify-between items-center  gap-2'>
             {/* Search Input */}
-            <div className='h-[35px] md:h-[45px] xl:h-[53px] w-full  lg:w-1/2 ring-2 ring-border relative rounded-md md:rounded-10px'>
+            <div className='h-[35px] md:h-[45px] xl:h-[53px] w-full  lg:w-1/2 ring-2 ring-border relative rounded-10px'>
                 <input
                     type='search' 
-                    className='h-full w-full font-normal   text-[13px] md:text-[15px] lg:text-[17px] rounded-md md:rounded-10px pr-2  md:pr-[10px] xl:pr-[20px] focus:outline-none'
+                    className='h-full w-full font-normal   text-[13px] md:text-[15px] lg:text-[17px] rrounded-10px pr-2  md:pr-[10px] xl:pr-[20px] focus:outline-none'
                     placeholder='ابحث عن أي عقار أو سلعة أو خدمة في سوريا...'
                 />
                 <img
                     src={searchIcon}
                     alt=''
-                    className='bg-primary h-full md:h-[45px] xl:h-[53px] absolute left-0 top-0 p-1 md:p-2 rounded-l-[6px] md:rounded-l-10px'
+                    className='bg-primary h-full md:h-[45px] xl:h-[53px] w-[40px]  lg:w-[54px] absolute left-0 top-0 p-1 md:p-2 rounded-l-10px'
                 />
             </div>
 
             {/* Location Dropdown */}
             <div className=' flex justify-between items-center gap-4  w-full lg:w-2/4'>
-                <div className=" w-2/4 lg:w-[170px] xl:w-[220px] ring-2 ring-border rounded-md md:rounded-10px relative text-placeholder">
+                <div className=" w-2/4 lg:w-[160px] xl:w-[210px] ring-2 ring-border rounded-10px relative text-placeholder">
                     {/* Button */}
                     <button
                         onClick={toggleDropdown}
@@ -41,14 +41,14 @@ const SubNavbar = () => {
                     >
                         <span className="w-[75%] md:w-[85%] lg:w-[80%] text-center text-[13px] md:text-[15px] lg:text-[17px] ">{selectedLocation}</span>
                         <MdOutlineKeyboardArrowDown
-                            className="  w-[25%] md:w-[15%] lg:w-[20%]  h-[35px] md:h-[45px] xl:h-[53px] ring-2 ring-border rounded-md md:rounded-10px"
+                            className="  w-[40px]  lg:w-[54px]  h-[35px] md:h-[45px] xl:h-[53px] ring-2 ring-border rounded-10px"
                         />
                     </button>
 
                     {/* Dropdown */}
                     {isOpen && (
                         <div
-                            className="absolute w-full lg:w-[170px] xl:w-[220px] max-h-[300px] overflow-y-auto border border-gray-300 rounded-md md:rounded-10px mt-1 bg-white z-10"
+                            className="absolute w-full lg:w-[160px] xl:w-[210px] max-h-[300px] overflow-y-auto border border-gray-300 rounded-10px mt-1 bg-white z-10"
                             style={{ scrollbarWidth: 'thin', scrollbarColor: '#ccc transparent' }}
                         >
                             <div
@@ -76,7 +76,7 @@ const SubNavbar = () => {
                     <div className='text-white w-[75%] md:w-[85%] lg:w-[80%] text-center '>
                         أضــف اعــلان
                     </div>
-                    <div className=' w-[25%] md:w-[15%] lg:w-[20%] bg-placeholder h-full rounded-md md:rounded-10px flex items-center justify-center'>
+                    <div className=' w-[40px]  lg:w-[54px] bg-placeholder h-full rounded-md md:rounded-10px flex items-center justify-center'>
                         <img className='w-8 ' src={add} alt='' />
                     </div>
                 </Link>
