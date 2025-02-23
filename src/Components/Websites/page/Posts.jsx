@@ -9,11 +9,11 @@ const Posts = () => {
     return (
         <div className='bg-[#FAFAFA] w-full h-[110px] md:h-[140px] lg:h-[160px] flex  '>
             <div className=' w-2/4 xl:w-3/5 flex flex-col justify-between md:py-2 pr-2  md:pr-[10px] xl:pr-[20px]'>
-                <Link to={'/post/id'} className=' text-[14px] md:text-[21px] xl:text-[25px] font-semibold'>كورولا 2013 تجديد وكالة </Link>
+                <Link to={'/post/id'} className=' text-[14px] md:text-[19px] lg:text-[24px] font-semibold'>كورولا 2013 تجديد وكالة </Link>
                 <h1 className='text-[13px]  lg:text-[17px] font-normal text-placeholder'>دمشق</h1>
             </div>
             <div className=' w-2/4 xl:w-2/5  flex '>
-                <div className='w-3/5 md:py-2  flex flex-col md:justify-between text-placeholder  text-[16px] lg:text-[20px] font-semibold'>
+                <div className='w-3/5 md:py-2  flex flex-col md:justify-between text-placeholder  text-[13px] lg:text-[17px]'>
                     <div className='flex  gap-1 md:gap-2 items-center'>
                         <img className='w-4 md:w-5 lg:w-6' src={price} alt='' />
                         <div className='py-0' >20,000</div>
