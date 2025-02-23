@@ -44,7 +44,7 @@ const Intermediate = () => {
     return (
         <div className="min-h-screen flex justify-center md:items-center container bg-white p-6 rounded-10px">
             <div className="container h-auto bg-background py-[20px]">
-                <h1 className="xl:text-[25px] md:text-[21px] text-[17px] text-primary font-semibold my-[10px] xl:my-5 ">
+                <h1 className="text-[20px] lg:text-[25px] text-primary font-semibold my-[10px] xl:my-5 ">
                     بإضافة إعلانك على موقع دلال، فإنك توافق على الالتزام بشروط هذه الاتفاقية :
                 </h1>
                 <div className="grid lg:grid-cols-2 my-[10px] xl:my-5 gap-5 xl:gap-8">
