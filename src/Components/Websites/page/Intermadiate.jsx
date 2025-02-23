@@ -70,7 +70,7 @@ const Intermediate = () => {
                 </div>
                 <div
                     onClick={handleAccept}
-                    className="bg-primary flex justify-center items-center rounded-10px h-[60px] md:h-[76px] md:w-[180px] xl:w-[211px] text-white text-[15px] md:text-[17px] xl:text-[20px] xl:my-5  cursor-pointer"
+                    className="bg-primary flex justify-center items-center rounded-10px h-[60px] md:h-[76px]  w-full md:w-[180px] xl:w-[211px] text-white text-[15px] md:text-[17px] xl:text-[20px] xl:my-5  cursor-pointer"
                 >
                     موافق
                 </div>
