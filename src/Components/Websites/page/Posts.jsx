@@ -13,13 +13,13 @@ const Posts = () => {
                 <h1 className='text-[13px]  lg:text-[17px] font-normal text-placeholder'>دمشق</h1>
             </div>
             <div className=' w-2/4 xl:w-2/5  flex '>
-                <div className='w-3/5 md:py-2  flex flex-col md:justify-between text-placeholder  text-[13px] lg:text-[17px]'>
+                <div className='w-3/5 md:py-2  flex flex-col md:justify-between text-placeholder  text-[10px] md:text-[13px] lg:text-[17px]'>
                     <div className='flex  gap-1 md:gap-2 items-center'>
                         <img className='w-4 md:w-5 lg:w-6' src={price} alt='' />
                         <div className='py-0' >20,000</div>
                     </div>
                     <div className='flex gap-1 md:gap-2 items-center'>
-                        <img className='w-3 md:w-5 lg:w-6' src={pricesy} alt='' />
+                        <img className='w-4 md:w-5 lg:w-6' src={pricesy} alt='' />
                         <div className='py-0' >260,040,000</div>
                     </div>
                     <div className='flex gap-1 md:gap-2 items-center'>
