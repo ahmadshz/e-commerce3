@@ -11,6 +11,7 @@ import DetailsAccount from "./Components/Websites/page/DetailsAccount";
 import PostId from "./Components/Websites/page/PostId";
 import AddPost from "./Components/Websites/page/AddPost";
 import Intermediate from "./Components/Websites/page/Intermadiate";
+import AddPostCar from "./Components/Websites/page/AddPostCar";
 
 
 function App() {
@@ -18,22 +19,28 @@ function App() {
     <div dir="rtl" className="font-medium text-lg tracking-wider">
       <Routes>
         <Route path="/" element={<Website />} />
-
+        {/*Auth */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/verification" element={<Verification />} />
         <Route path="/successVerification" element={<SuccessVerification />} />
+        {/*Account login by id */}
+        <Route path="/myaccount" element={<DetailsAccount />} />
 
+
+        {/*Dashboard */}
         <Route path="/dashboard" element={<Dashboard />}>
           <Route path="users" element={<User />} />
           <Route path="users/:id" element={<ShowUser />} />
         </Route>
 
-
+        {/*Start to Add Post */}
         <Route path="/addpost" element={<AddPost />} />
-        <Route path="/post/id" element={<PostId />} />
-        <Route path="/myaccount" element={<DetailsAccount />} />
         <Route path="intermediate" element={<Intermediate />} />
+        {/* Get Single Post */}
+        <Route path="/post/id" element={<PostId />} />
+        {/*Add Posts */}
+        <Route path="/addPostCar" element={<AddPostCar />} />
 
       </Routes>
     </div>
