@@ -13,9 +13,13 @@ const Landing = () => {
                     <Posts />
                     <Posts />
                     <Posts />
-                    <div className='text-center  my-[15px] ring-2 ring-border w-fit md:my-[30px] text-[16px] lg:text-[20px] font-semibold text-placeholder'>مشاهدة المزيد...</div>
+
                 </div>
                 <div className='hidden lg:block bg-bgsecondary w-1/3 '></div>
+            </div>
+
+            <div className='text-center  mt-[15px] w-full  md:mt-[30px]'>
+                <div className=' ring-2 ring-border   text-[13px] lg:text-[17px] mx-auto h-[60px] lg:h-[76px] w-[150px]  lg:w-[250px] rounded-10px  flex justify-center items-center  font-semibold text-placeholder'>مشاهدة المزيد ...</div>
             </div>
         </div>
     )
