@@ -12,6 +12,16 @@ import PostId from "./Components/Websites/page/PostId";
 import AddPost from "./Components/Websites/page/AddPost";
 import Intermediate from "./Components/Websites/page/Intermadiate";
 import AddPostCar from "./Components/Websites/page/AddPostCar";
+import AddPostMotor from "./Components/Websites/page/AddPostMotor";
+import AddPostEstate from "./Components/Websites/page/AddPostEstate";
+import AddPostDevices from "./Components/Websites/page/AddPostDevices";
+import AddPostFurniture from "./Components/Websites/page/AddPostFurniture";
+import AddPostServices from "./Components/Websites/page/AddPostServices";
+import AddPostAnimals from "./Components/Websites/page/AddPostAnimals";
+import AddPostJobs from "./Components/Websites/page/AddPostJobs";
+import AddPostEducation from "./Components/Websites/page/AddPostEducation";
+import AddPostParty from "./Components/Websites/page/AddPostParty";
+import AddPostOther from "./Components/Websites/page/AddPostOther";
 
 
 function App() {
@@ -41,6 +51,16 @@ function App() {
         <Route path="/post/id" element={<PostId />} />
         {/*Add Posts */}
         <Route path="/addPostCar" element={<AddPostCar />} />
+        <Route path="/addPostMotor" element={<AddPostMotor />} />
+        <Route path="/addPostEstate" element={<AddPostEstate />} />
+        <Route path="/addPostDevices" element={<AddPostDevices />} />
+        <Route path="/addPostFurniture" element={<AddPostFurniture />} />
+        <Route path="/addPostForServises" element={<AddPostServices />} />
+        <Route path="/addPostAnimals" element={<AddPostAnimals />} />
+        <Route path="/addPostForJob" element={<AddPostJobs />} />
+        <Route path="/addPostForEducation" element={<AddPostEducation />} />
+        <Route path="/addPostParty" element={<AddPostParty />} />
+        <Route path="/addPostAboutOthers" element={<AddPostOther />} />
 
       </Routes>
     </div>

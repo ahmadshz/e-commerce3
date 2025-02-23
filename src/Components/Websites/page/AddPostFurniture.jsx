@@ -1,32 +1,33 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { data, location } from '../../../utils/data';
 import { IoIosCamera } from 'react-icons/io';
 import Dropdown from '../UI/Dropdowns';
 import RadioButton from '../UI/RadioButton';
-import img from '../../../assets/Carandothers/car.svg'
+import { useState } from 'react';
+import img from '../../../assets/Carandothers/furniture.svg';
 
-const AddPostCar = () => {
+const AddPostFurniture = () => {
     const [selectedLocation, setSelectedLocation] = useState('اختر عنوان الاعلان');
-    const [selectedBrand, setSelectedBrand] = useState('اختر الماركة');
+    const [selectedBrand, setSelectedBrand] = useState('نوع الاثاث : ');
     const [status, setStatus] = useState('used');
-    const [gear, setGear] = useState('normal');
 
     return (
         <div className='min-h-screen py-[50px] md:py-[100px] container flex items-center relative'>
             <img
-                className=' w-[70px] lg:w-[110px] absolute top-2 -left-3 lg:-left-5 -rotate-[90deg]'
+                className='w-[60px] lg:w-[100px] absolute top-2 left-2'
                 src={img}
                 alt='Rotating'
             />
+
             <form className='flex flex-col gap-5 md:gap-7 w-full px-4 md:px-0'>
                 {/* Title and Location Dropdown */}
                 <div className='flex flex-col md:flex-row gap-5 w-full'>
-                    <div className='flex flex-col gap-5 w-full md:w-[867px]'>
+                    <div className='flex flex-col gap-5 w-full md:w-3/6 lg:w-[867px]'>
                         <label className='text-primary text-[20px] lg:text-[25px] font-bold'>عنوان الاعلان :</label>
                         <input
                             type='text'
                             className='w-full h-[60px] md:h-[76px] text-placeholder block ring-2 ring-border rounded-10px text-[16px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none focus:ring-primary duration-200'
-                            placeholder='مثال : سيارة تويوتا يارس موديل 2024 فل كامل'
+                            placeholder='مثال : ايفون 13 برو ماكس بالكرتونة'
                         />
                     </div>
 
@@ -36,14 +37,14 @@ const AddPostCar = () => {
                         options={location}
                         selected={selectedLocation}
                         onSelect={setSelectedLocation}
-                        className='w-full md:w-[560px]'
+                        className='w-full md:w-3/6 lg:w-[560px]'
                     />
                 </div>
 
                 {/* Image Upload and Condition (Used/New) */}
                 <div className='flex flex-col md:flex-row gap-5 w-full'>
                     {/* Image Upload Section */}
-                    <div className='flex flex-col gap-5 w-full md:w-[395px] lg:w-[532px] xl:w-[668px] 2xl:w-[867px]'>
+                    <div className='flex flex-col gap-5 w-full md:w-[325px] lg:w-[532px] xl:w-[668px] 2xl:w-[867px]'>
                         <label className='text-primary text-[20px] lg:text-[25px] font-bold'>الصور :</label>
                         <div className='relative'>
                             <input
@@ -56,72 +57,49 @@ const AddPostCar = () => {
                     </div>
 
                     {/* Condition (Used/New) Section */}
-                    <div className='flex flex-col gap-5 w-full md:w-1/3 lg:w-[340px] xl:w-[432px] 2xl:w-[560px] '>
+                    <div className='flex flex-col gap-5 w-full md:w-1/2 lg:w-[340px] xl:w-[432px] 2xl:w-[560px]'>
                         <label className='text-primary text-[20px] lg:text-[25px] font-bold'>الحالة :</label>
                         <div className='flex gap-5'>
                             <div className='w-full md:w-[560px] h-[60px] md:h-[76px] flex gap-5'>
-                                <RadioButton
-                                    label='مستعمل'
-                                    value='used'
-                                    name='status'
-                                    onChange={() => setStatus('used')}
-                                    className='w-1/2 md:w-[118px]'
-
-                                />
                                 <RadioButton
                                     label='جديد'
                                     value='new'
                                     name='status'
                                     onChange={() => setStatus('new')}
-                                    className='w-1/2 md:w-[118px]'
-
+                                    className='w-1/2'
+                                />
+                                <RadioButton
+                                    label='مستعمل'
+                                    value='used'
+                                    name='status'
+                                    onChange={() => setStatus('used')}
+                                    className='w-1/2'
                                 />
                             </div>
                         </div>
                     </div>
                 </div>
 
-                {/* Brands Dropdown and Gear */}
+                {/* Brands Dropdown and Tabo */}
                 <div className='flex flex-col md:flex-row gap-5 w-full'>
                     <Dropdown
-                        label='الماركة :'
-                        options={data[0].brands.map((brand) => (
-                            <div><span>{brand.arabic} </span> <span>({brand.english})</span></div>
-                        ))}
-                        selected={selectedBrand}
+                        label='نوع الاثاث :'
+                        options={data[4].brands.map((brand) => brand)}
+                        selected='نوع الاثاث'
+                        placeholder
                         onSelect={setSelectedBrand}
-                        className=' w-full  md:w-[867px]'
+                        className='w-full lg:w-[532px] xl:w-[668px] 2xl:w-[867px]'
                     />
 
-                    {/* Gear */}
-                    <div className='flex flex-col gap-5 w-full md:w-[560px]'>
-                        <label className='text-primary text-[20px] lg:text-[25px] font-bold'>القير :</label>
-                        <div className='flex gap-5'>
-                            <div className='w-full  h-[60px] md:h-[76px] flex gap-5'>
-                                <RadioButton
-                                    label='عادي'
-                                    value='normal'
-                                    name='gear'
-                                    onChange={() => setGear('normal')}
-                                    className='w-1/2 md:w-[118px]'
-
-                                />
-                                <RadioButton
-                                    label='أوتوماتيك'
-                                    value='Automatic'
-                                    name='gear'
-                                    onChange={() => setGear('Automatic')}
-                                    className='w-1/2 md:w-[118px]'
-
-                                />
-                            </div>
-                        </div>
+                    {/* Empty Div for Alignment */}
+                    <div className='hidden lg:flex flex-col gap-5'>
+                        <div className='w-full md:w-[320px] lg:w-[345px] xl:w-[432px] 2xl:w-[560px]' />
                     </div>
                 </div>
 
                 {/* Price and Mileage */}
                 <div className='flex flex-col md:flex-row gap-5 w-full'>
-                    <div className='flex flex-col gap-5 w-full md:w-[867px]'>
+                    <div className='flex flex-col gap-5 w-full lg:w-[532px] xl:w-[668px] 2xl:w-[867px]'>
                         <label className='text-primary text-[20px] lg:text-[25px] font-bold'>السعر :</label>
                         <div className='flex flex-col md:flex-row gap-5 w-full'>
                             {/* Syrian Pounds Input */}
@@ -148,28 +126,19 @@ const AddPostCar = () => {
                         </div>
                     </div>
 
-                    {/* Mileage Input */}
-                    <div className='flex flex-col gap-5 w-full md:w-[560px]'>
-                        <label className='text-primary text-[20px] lg:text-[25px] font-bold'>الممشى :</label>
-                        <input
-                            type='text'
-                            placeholder='2000000'
-                            className='w-full h-[60px] md:h-[76px] text-placeholder ring-2 ring-border rounded-10px text-[16px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none focus:ring-primary duration-200 pl-10'
-                        />
-                    </div>
+                    {/* Empty Div for Alignment */}
+                    <div className='hidden lg:flex flex-col gap-5 w-full md:w-1/2 lg:w-[345px] xl:w-[432px] 2xl:w-[560px]' />
                 </div>
 
                 {/* Description */}
-                <div className='flex flex-col gap-5  md: lg:w-[895px] xl:w-[1120px] 2xl:w-[1450px]'>
+                <div className='flex flex-col gap-5 w-full lg:w-[895px] xl:w-[1120px] 2xl:w-[1450px]'>
                     <label className='text-primary text-[20px] lg:text-[25px] font-bold'>الوصف :</label>
                     <textarea
                         cols='30'
                         rows='10'
                         placeholder='التفاصيل كاملة :'
-
-                        className=' md:h-[200px]  text-placeholder ring-2 ring-border rounded-10px text-[16px] lg:text-[20px] pr-2 pt-2 md:pr-[10px] md:pt-[10px] xl:pr-[20px] xl:pt-[20px] outline-none focus:outline-none focus:ring-primary duration-200 pl-10 resize-y'
-                    >
-                    </textarea>
+                        className='w-full h-[200px] md:h-[266px] text-placeholder ring-2 ring-border rounded-10px text-[16px] lg:text-[20px] pr-2 pt-2 md:pr-[10px] md:pt-[10px] xl:pr-[20px] xl:pt-[20px] outline-none focus:outline-none focus:ring-primary duration-200 pl-10 resize-y'
+                    />
                 </div>
 
                 {/* Submit Button */}
@@ -181,4 +150,4 @@ const AddPostCar = () => {
     );
 };
 
-export default AddPostCar;
+export default AddPostFurniture;

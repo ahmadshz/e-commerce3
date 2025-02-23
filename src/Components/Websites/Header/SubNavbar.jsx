@@ -41,7 +41,7 @@ const SubNavbar = () => {
                     >
                         <span className="w-[75%] md:w-[85%] lg:w-[80%] text-center text-[13px] md:text-[15px] lg:text-[17px] ">{selectedLocation}</span>
                         <MdOutlineKeyboardArrowDown
-                            className="  w-[40px]  lg:w-[54px]  h-[35px] md:h-[45px] xl:h-[53px] ring-2 ring-border rounded-10px"
+                            className="  w-[40px]   lg:w-[54px]  h-[35px] md:h-[45px] xl:h-[53px] ring-2 ring-border rounded-10px"
                         />
                     </button>
 
@@ -72,7 +72,7 @@ const SubNavbar = () => {
                     
                 </div>
 
-                <Link to={'/addpost'} className='flex items-center  w-2/4 lg:w-[170px] xl:w-[220px] h-[35px] md:h-[45px] xl:h-[53px]  text-[13px] md:text-[15px] lg:text-[17px]  bg-primary rounded-md md:rounded-10px'>
+                <Link to={'/addpost'} className='flex items-center justify-between  w-2/4 lg:w-[170px] xl:w-[220px] h-[35px] md:h-[45px] xl:h-[53px]  text-[13px] md:text-[15px] lg:text-[17px]  bg-primary rounded-md md:rounded-10px'>
                     <div className='text-white w-[75%] md:w-[85%] lg:w-[80%] text-center '>
                         أضــف اعــلان
                     </div>
