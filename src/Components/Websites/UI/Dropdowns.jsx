@@ -40,7 +40,7 @@ const Dropdown = ({ label, options, selected, onSelect, className }) => {
                     {options.map((item, index) => (
                         <div
                             key={index}
-                            className='px-4 py-3 hover:bg-red-500 hover:text-white cursor-pointer duration-200'
+                            className='px-4 py-3 hover:bg-red-500 hover:text-white text-[16px] lg:text-[20px] cursor-pointer duration-200'
                             onClick={() => {
                                 onSelect(item);
                                 setIsOpen(false);
