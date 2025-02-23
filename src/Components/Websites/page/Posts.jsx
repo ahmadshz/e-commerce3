@@ -19,7 +19,7 @@ const Posts = () => {
                         <div className='py-0' >20,000</div>
                     </div>
                     <div className='flex gap-1 md:gap-2 items-center'>
-                        <img className='w-4 md:w-5 lg:w-6' src={pricesy} alt='' />
+                        <img className='w-3 md:w-5 lg:w-6' src={pricesy} alt='' />
                         <div className='py-0' >260,040,000</div>
                     </div>
                     <div className='flex gap-1 md:gap-2 items-center'>

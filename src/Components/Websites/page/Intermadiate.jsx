@@ -61,7 +61,7 @@ const Intermediate = () => {
                         </div>
                     ))}
                 </div>
-                <h1 className="text-placeholder text-[16px] lg:text-[20px] font-bold my-[10px] xl:my-5 ">
+                <h1 className="text-placeholder text-[16px] lg:text-[20px] font-semibold my-[10px] xl:my-5 ">
                     القانون المعمول به: تخضع هذه الاتفاقية لقوانين الجمهورية العربية السورية.
                 </h1>
                 <div className="my-[10px] xl:my-5 ">
