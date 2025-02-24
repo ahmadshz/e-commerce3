@@ -1,10 +1,10 @@
 import React from 'react';
-import { data, location } from '../../../utils/data';
+import { data, location } from '../../../../utils/data';
 import { IoIosCamera } from 'react-icons/io';
-import Dropdown from '../UI/Dropdowns';
-import RadioButton from '../UI/RadioButton';
+import Dropdown from '../../UI/Dropdowns';
+import RadioButton from '../../UI/RadioButton';
 import { useState } from 'react';
-import img from '../../../assets/Carandothers/other.svg';
+import img from '../../../../assets/Carandothers/other.svg';
 
 const AddPostOther = () => {
 

@@ -1,14 +1,14 @@
 import React from 'react';
-import { data, location } from '../../../utils/data';
+import { data, location } from '../../../../utils/data';
 import { IoIosCamera } from 'react-icons/io';
-import Dropdown from '../UI/Dropdowns';
-import RadioButton from '../UI/RadioButton';
+import Dropdown from '../../UI/Dropdowns';
+import RadioButton from '../../UI/RadioButton';
 import { useState } from 'react';
-import img from '../../../assets/Carandothers/furniture.svg';
+import img from '../../../../assets/Carandothers/party.svg';
 
-const AddPostFurniture = () => {
+const AddPostParty = () => {
     const [selectedLocation, setSelectedLocation] = useState('اختر عنوان الاعلان');
-    const [selectedBrand, setSelectedBrand] = useState('نوع الاثاث : ');
+    const [selectedBrand, setSelectedBrand] = useState('');
     const [status, setStatus] = useState('used');
 
     return (
@@ -27,7 +27,7 @@ const AddPostFurniture = () => {
                         <input
                             type='text'
                             className='w-full h-[60px] md:h-[76px] text-placeholder block border-2 border-border rounded-10px text-[16px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none focus:border-primary duration-200'
-                            placeholder='مثال : ايفون 13 برو ماكس بالكرتونة'
+                            placeholder='مثال : شركة الأتاسي لتنظيم الأعراس في دمشق'
                         />
                     </div>
 
@@ -83,9 +83,9 @@ const AddPostFurniture = () => {
                 {/* Brands Dropdown and Tabo */}
                 <div className='flex flex-col md:flex-row gap-5 w-full'>
                     <Dropdown
-                        label='نوع الاثاث :'
-                        options={data[4].brands.map((brand) => brand)}
-                        selected='نوع الاثاث'
+                        label=' نوع الخدمة : '
+                        options={data[10].brands.map((brand) => brand)}
+                        selected='اختر الخدمة'
                         placeholder
                         onSelect={setSelectedBrand}
                         className='w-full lg:w-[532px] xl:w-[668px] 2xl:w-[867px]'
@@ -147,7 +147,7 @@ const AddPostFurniture = () => {
                 </button>
             </form>
         </div>
-    );
-};
+    )
+}
 
-export default AddPostFurniture;
+export default AddPostParty;

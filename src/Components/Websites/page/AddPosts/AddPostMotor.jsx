@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
-import { data, location } from '../../../utils/data';
+import { data, location } from '../../../../utils/data';
 import { IoIosCamera } from 'react-icons/io';
-import Dropdown from '../UI/Dropdowns';
-import RadioButton from '../UI/RadioButton';
-import img from '../../../assets/Carandothers/car.svg'
+import Dropdown from '../../UI/Dropdowns';
+import RadioButton from '../../UI/RadioButton';
+import { useState } from 'react';
+import img from '../../../../assets/Carandothers/motor-1.svg'
 
-const AddPostCar = () => {
+const AddPostMotor = () => {
+
     const [selectedLocation, setSelectedLocation] = useState('اختر عنوان الاعلان');
     const [selectedBrand, setSelectedBrand] = useState('اختر الماركة');
     const [status, setStatus] = useState('used');
@@ -14,10 +15,11 @@ const AddPostCar = () => {
     return (
         <div className='min-h-screen py-[50px] md:py-[100px] container flex items-center relative'>
             <img
-                className=' w-[70px] lg:w-[110px] absolute top-2 -left-3 lg:-left-5 -rotate-[90deg]'
+                className=' w-[60px] lg:w-[100px] absolute top-2 -left-2 lg:-left-4 -rotate-[90deg]'
                 src={img}
                 alt='Rotating'
             />
+
             <form className='flex flex-col gap-5 md:gap-7 w-full px-4 md:px-0'>
                 {/* Title and Location Dropdown */}
                 <div className='flex flex-col md:flex-row gap-5 w-full'>
@@ -25,8 +27,8 @@ const AddPostCar = () => {
                         <label className='text-primary text-[20px] lg:text-[25px] font-bold'>عنوان الاعلان :</label>
                         <input
                             type='text'
-                            className='w-full h-[60px] md:h-[76px] text-placeholder block border-2 border-primary rounded-10px text-[16px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none focus:border-primary duration-200'
-                            placeholder='مثال : سيارة تويوتا يارس موديل 2024 فل كامل'
+                            className='w-full h-[60px] md:h-[76px] text-placeholder block border-2 border-border rounded-10px text-[16px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none focus:border-primary duration-200'
+                            placeholder='مثال : متور كاوازاكي slv 227'
                         />
                     </div>
 
@@ -48,7 +50,7 @@ const AddPostCar = () => {
                         <div className='relative'>
                             <input
                                 type='text'
-                                className='w-full h-[60px] md:h-[76px] text-placeholder block border-2 border-primary rounded-10px text-[16px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none focus:border-primary duration-200 pl-10'
+                                className='w-full h-[60px] md:h-[76px] text-placeholder block border-2 border-border rounded-10px text-[16px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none focus:border-primary duration-200 pl-10'
                                 placeholder='انقر هنا لاضافة الصور'
                             />
                             <IoIosCamera size={30} className='absolute top-1/2 left-4 transform -translate-y-1/2 text-placeholder' />
@@ -66,7 +68,6 @@ const AddPostCar = () => {
                                     name='status'
                                     onChange={() => setStatus('used')}
                                     className='w-1/2 md:w-[118px]'
-
                                 />
                                 <RadioButton
                                     label='جديد'
@@ -74,7 +75,6 @@ const AddPostCar = () => {
                                     name='status'
                                     onChange={() => setStatus('new')}
                                     className='w-1/2 md:w-[118px]'
-
                                 />
                             </div>
                         </div>
@@ -85,10 +85,10 @@ const AddPostCar = () => {
                 <div className='flex flex-col md:flex-row gap-5 w-full'>
                     <Dropdown
                         label='الماركة :'
-                        options={data[0].brands.map((brand) => (
+                        options={data[1].brands.map((brand) => (
                             <div><span>{brand.arabic} </span> <span>({brand.english})</span></div>
-                        ))}
-                        selected={selectedBrand}
+                        ))} selected={selectedBrand}
+                        placeholder
                         onSelect={setSelectedBrand}
                         className=' w-full  md:w-[867px]'
                     />
@@ -104,7 +104,6 @@ const AddPostCar = () => {
                                     name='gear'
                                     onChange={() => setGear('normal')}
                                     className='w-1/2 md:w-[118px]'
-
                                 />
                                 <RadioButton
                                     label='أوتوماتيك'
@@ -112,7 +111,6 @@ const AddPostCar = () => {
                                     name='gear'
                                     onChange={() => setGear('Automatic')}
                                     className='w-1/2 md:w-[118px]'
-
                                 />
                             </div>
                         </div>
@@ -128,7 +126,7 @@ const AddPostCar = () => {
                             <div className='relative w-full md:w-1/2'>
                                 <input
                                     placeholder='2000000'
-                                    className='w-full h-[60px] md:h-[76px] text-placeholder border-2 border-primary rounded-10px text-[16px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none focus:border-primary duration-200 pl-10'
+                                    className='w-full h-[60px] md:h-[76px] text-placeholder border-2 border-border rounded-10px text-[16px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none focus:border-primary duration-200 pl-10'
                                 />
                                 <span className='absolute left-2 top-1/2 transform -translate-y-1/2 text-placeholder text-[16px] lg:text-[20px]'>
                                     ليرة سورية
@@ -139,7 +137,7 @@ const AddPostCar = () => {
                             <div className='relative w-full md:w-1/2'>
                                 <input
                                     placeholder='500'
-                                    className='w-full h-[60px] md:h-[76px] text-placeholder border-2 border-primary rounded-10px text-[16px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none focus:border-primary duration-200 pl-10'
+                                    className='w-full h-[60px] md:h-[76px] text-placeholder border-2 border-border rounded-10px text-[16px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none focus:border-primary duration-200 pl-10'
                                 />
                                 <span className='absolute left-2 top-1/2 transform -translate-y-1/2 text-placeholder text-[16px] lg:text-[20px]'>
                                     دولار أمريكي
@@ -154,7 +152,7 @@ const AddPostCar = () => {
                         <input
                             type='text'
                             placeholder='2000000'
-                            className='w-full h-[60px] md:h-[76px] text-placeholder border-2 border-primary rounded-10px text-[16px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none focus:border-primary duration-200 pl-10'
+                            className='w-full h-[60px] md:h-[76px] text-placeholder border-2 border-border rounded-10px text-[16px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none focus:border-primary duration-200 pl-10'
                         />
                     </div>
                 </div>
@@ -166,8 +164,7 @@ const AddPostCar = () => {
                         cols='30'
                         rows='10'
                         placeholder='التفاصيل كاملة :'
-
-                        className=' md:h-[200px]  text-placeholder border-2 border-primary rounded-10px text-[16px] lg:text-[20px] pr-2 pt-2 md:pr-[10px] md:pt-[10px] xl:pr-[20px] xl:pt-[20px] outline-none focus:outline-none focus:border-primary duration-200 pl-10 resize-y'
+                        className=' md:h-[200px]  text-placeholder border-2 border-border rounded-10px text-[16px] lg:text-[20px] pr-2 pt-2 md:pr-[10px] md:pt-[10px] xl:pr-[20px] xl:pt-[20px] outline-none focus:outline-none focus:border-primary duration-200 pl-10 resize-y'
                     >
                     </textarea>
                 </div>
@@ -178,7 +175,7 @@ const AddPostCar = () => {
                 </button>
             </form>
         </div>
-    );
-};
+    )
+}
 
-export default AddPostCar;
+export default AddPostMotor

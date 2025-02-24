@@ -1,60 +1,108 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import MainHeader from '../Header/MainHeader';
-import img from '../../../assets/download.jpeg'
-import { MdOutlineAttachMoney } from 'react-icons/md';
-import { BiTime } from 'react-icons/bi';
-import { FaDollarSign, FaUser } from 'react-icons/fa';
+import axios from 'axios';
+import { jwtDecode } from 'jwt-decode';
+import Cookies from 'universal-cookie';
 
 const DetailsAccount = () => {
+  const [userDetails, setUserDetails] = useState(null);
+
+  useEffect(() => {
+    const cookies = new Cookies();
+    const token = cookies.get('auth_token');
+    if (token) {
+      try {
+        const decodedToken = jwtDecode(token);
+        const userId = decodedToken.id;
+
+        // Fetch user details from API
+        const fetchUserDetails = async () => {
+          try {
+            const response = await axios.get(`http://localhost:8000/user/${userId}`);
+            setUserDetails(response.data);
+          } catch (error) {
+            console.error('Error fetching user details:', error);
+          }
+        };
+
+        fetchUserDetails();
+      } catch (error) {
+        console.error('Error decoding token:', error);
+      }
+    }
+  }, []);
+
+  if (!userDetails) {
+    return <div>Loading...</div>; // Show loading state while fetching data
+  }
 
   return (
-    <div className='min-h-screen'>
+    <div className="min-h-screen">
       <MainHeader />
-      <div className=' min-h-screen container '>
-        <div className="p-6 bg-white container  mx-auto">
-          <h2 className="text-2xl lg:text-3xl text-primary font-bold my-20">معلومات الحساب</h2>
-          <div className="grid grid-cols-2 gap-6 md:gap-8 mt-5 mb-20">
+      <div className="min-h-screen   px-4 sm:px-6 lg:px-8">
+        <div className="py-6 bg-white container">
+          {/* عنوان معلومات الحساب */}
+          <h2 className="text-[25px] lg:text-[30px] text-primary font-bold my-10 sm:my-16 lg:my-20">
+            معلومات الحساب
+          </h2>
 
-            <div className="flex flex-col lg:flex-row gap-3 md:gap-4 col-span-2 md:col-span-1">
-              <div className="font-semibold text-lg md:w-2/6 flex items-center">الاسم</div>
-              <div className="text-placeholder bg-gray-100 w-full h-[76px] flex items-center rounded-lg text-md font-medium tracking-wider p-3">
-                أحمد
+          {/* شبكة العناصر */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8 mt-5 mb-10 sm:mb-16 lg:mb-20">
+            {/* الاسم الأول */}
+            <div className="flex flex-col lg:flex-row gap-3 md:gap-4">
+              <div className="font-semibold text-[20px] lg:text-[25px] md:w-[239px] flex items-center">
+                الاسم
+              </div>
+              <div className="text-placeholder bg-gray-100 w-full lg:w-[433px] h-[60px] md:h-[76px] flex items-center rounded-10px font-medium tracking-wider p-3">
+                {userDetails.firstname}
               </div>
             </div>
 
-            <div className="flex flex-col lg:flex-row gap-3 md:gap-4 col-span-2 md:col-span-1">
-              <div className="font-semibold text-lg md:w-2/6  flex items-center">اسم العائلة</div>
-              <div className="text-placeholder bg-gray-100 w-full  flex items-center rounded-lg text-md font-medium tracking-wider p-3">
-                asasfasf
+            {/* اسم العائلة */}
+            <div className="flex flex-col lg:flex-row gap-3 md:gap-4">
+              <div className="font-semibold text-[20px] lg:text-[25px] md:w-[239px] flex items-center">
+                اسم العائلة
+              </div>
+              <div className="text-placeholder bg-gray-100 w-full lg:w-[433px] h-[60px] md:h-[76px] flex items-center rounded-10px font-medium tracking-wider p-3">
+                {userDetails.lastname}
               </div>
             </div>
 
-            <div className="flex flex-col lg:flex-row gap-3 md:gap-4 col-span-2 md:col-span-1">
-              <div className="font-semibold text-lg md:w-2/6">اسم المستخدم</div>
-              <div className="text-placeholder bg-gray-100 w-full rounded-lg text-md font-medium tracking-wider p-3">
-                ahmd_shmt
+            {/* اسم المستخدم */}
+            <div className="flex flex-col lg:flex-row gap-3 md:gap-4">
+              <div className="font-semibold text-[20px] lg:text-[25px] md:w-[239px]">
+                اسم المستخدم
+              </div>
+              <div className="text-placeholder bg-gray-100 w-full lg:w-[433px] h-[60px] md:h-[76px] rounded-10px font-medium tracking-wider p-3 flex items-center">
+                {userDetails.username}
               </div>
             </div>
 
-            <div className="flex flex-col lg:flex-row gap-3 md:gap-4 col-span-2 md:col-span-1">
-              <div className="font-semibold text-lg md:w-2/6">رقم الجوال</div>
-              <div className="text-placeholder bg-gray-100 w-full rounded-lg text-md font-medium tracking-wider p-3">
-                21313333
+            {/* رقم الجوال */}
+            <div className="flex flex-col lg:flex-row gap-3 md:gap-4">
+              <div className="font-semibold text-[20px] lg:text-[25px] md:w-[239px]">
+                رقم الجوال
+              </div>
+              <div className="text-placeholder bg-gray-100 w-full lg:w-[433px] h-[60px] md:h-[76px] rounded-10px font-medium tracking-wider p-3 flex items-center">
+                {userDetails.phoneNumber}
               </div>
             </div>
 
-            <div className="flex flex-col lg:flex-row md:items-center gap-3 md:gap-4 col-span-2">
-              <div className="font-semibold text-lg w-full lg:w-[13%]">البريد الإلكتروني</div>
-              <div className="w-full text-placeholder bg-gray-100 rounded-lg text-md font-medium tracking-wider p-3">
-                example@email.com
+            {/* البريد الإلكتروني */}
+            <div className="flex flex-col lg:flex-row gap-3 md:gap-4 col-span-1 sm:col-span-2">
+              <div className="font-semibold text-[20px] lg:text-[25px] xl:w-[239px]">
+                البريد الإلكتروني
+              </div>
+              <div className="text-placeholder bg-gray-100 w-full lg:w-[952px] xl:w-[1170px] 2xl:w-[1272px]  h-[60px] md:h-[76px] rounded-10px font-medium tracking-wider p-3 flex items-center">
+                {userDetails.email}
               </div>
             </div>
           </div>
 
-          {/* اعلاناتي */}
-          <h2 className="text-2xl lg:text-3xl text-primary font-bold my-20"> اعلاناتي</h2>
-          
-
+          {/* عنوان إعلاناتي */}
+          <h2 className=" text-[25px] lg:text-[30px] text-primary font-bold my-10 sm:my-16 lg:my-20">
+            اعلاناتي
+          </h2>
         </div>
       </div>
     </div>

@@ -1,22 +1,22 @@
-import React from 'react'
-import { data, location } from '../../../utils/data';
+import React from 'react';
+import { data, location } from '../../../../utils/data';
 import { IoIosCamera } from 'react-icons/io';
-import Dropdown from '../UI/Dropdowns';
-import RadioButton from '../UI/RadioButton';
 import { useState } from 'react';
-import img from '../../../assets/Carandothers/devices.svg'
+import img from '../../../../assets/Carandothers/animals.svg';
+import Dropdown from '../../UI/Dropdowns';
+import RadioButton from '../../UI/RadioButton';
 
-const AddPostDevices = () => {
-
+const AddPostAnimals = () => {
     const [selectedLocation, setSelectedLocation] = useState('اختر عنوان الاعلان');
     const [selectedBrand, setSelectedBrand] = useState('');
     const [status, setStatus] = useState('used');
 
 
+
     return (
         <div className='min-h-screen py-[50px] md:py-[100px] container flex items-center relative'>
             <img
-                className=' w-[60px] lg:w-[100px] absolute top-2 left-2 '
+                className='w-[60px] lg:w-[100px] absolute top-2 left-2'
                 src={img}
                 alt='Rotating'
             />
@@ -24,12 +24,12 @@ const AddPostDevices = () => {
             <form className='flex flex-col gap-5 md:gap-7 w-full px-4 md:px-0'>
                 {/* Title and Location Dropdown */}
                 <div className='flex flex-col md:flex-row gap-5 w-full'>
-                    <div className='flex flex-col gap-5 w-full md:w-3/6 lg:w-[867px] '>
+                    <div className='flex flex-col gap-5 w-full md:w-3/6 lg:w-[867px]'>
                         <label className='text-primary text-[20px] lg:text-[25px] font-bold'>عنوان الاعلان :</label>
                         <input
                             type='text'
-                            className='w-full h-[60px] md:h-[76px] text-placeholder block border-2 border-primary rounded-10px text-[16px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none focus:border-primary duration-200'
-                            placeholder='مثال : ايفون 13 برو ماكس بالكرتونة'
+                            className='w-full h-[60px] md:h-[76px] text-placeholder block border-2 border-border rounded-10px text-[16px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none focus:border-primary duration-200'
+                            placeholder='مثال : خيل عربي أسود أصيل  '
                         />
                     </div>
 
@@ -51,7 +51,7 @@ const AddPostDevices = () => {
                         <div className='relative'>
                             <input
                                 type='text'
-                                className='w-full h-[60px] md:h-[76px] text-placeholder block border-2 border-primary rounded-10px text-[16px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none focus:border-primary duration-200 pl-10'
+                                className='w-full h-[60px] md:h-[76px] text-placeholder block border-2 border-border rounded-10px text-[16px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none focus:border-primary duration-200 pl-10'
                                 placeholder='انقر هنا لاضافة الصور'
                             />
                             <IoIosCamera size={30} className='absolute top-1/2 left-4 transform -translate-y-1/2 text-placeholder' />
@@ -59,24 +59,23 @@ const AddPostDevices = () => {
                     </div>
 
                     {/* Condition (Used/New) Section */}
-                    <div className='flex flex-col gap-5 w-full md:w-1/2 lg:w-[340px] xl:w-[432px] 2xl:w-[560px] '>
+                    <div className='flex flex-col gap-5 w-full md:w-1/2 lg:w-[340px] xl:w-[432px] 2xl:w-[560px]'>
                         <label className='text-primary text-[20px] lg:text-[25px] font-bold'>الحالة :</label>
                         <div className='flex gap-5'>
                             <div className='w-full md:w-[560px] h-[60px] md:h-[76px] flex gap-5'>
-
                                 <RadioButton
-                                    label='جديد'
+                                    label='صغير'
                                     value='new'
                                     name='status'
                                     onChange={() => setStatus('new')}
-                                    className='w-1/2 '
+                                    className='w-1/2'
                                 />
                                 <RadioButton
-                                    label='مستعمل'
+                                    label='كبير'
                                     value='used'
                                     name='status'
                                     onChange={() => setStatus('used')}
-                                    className='w-1/2 '
+                                    className='w-1/2'
                                 />
                             </div>
                         </div>
@@ -86,33 +85,30 @@ const AddPostDevices = () => {
                 {/* Brands Dropdown and Tabo */}
                 <div className='flex flex-col md:flex-row gap-5 w-full'>
                     <Dropdown
-                        label=' نوع الجهاز :'
-                        options={data[3].brands.map((brand) => brand)}
-                        selected='نوع الجهاز '
+                        label='نوع الحيوان :  '
+                        options={data[5].brands.map((brand) => brand)}
+                        selected='اختر الحيوان '
                         placeholder
                         onSelect={setSelectedBrand}
-                        className='w-full  lg:w-[532px] xl:w-[668px] 2xl:w-[867px]'
+                        className='w-full lg:w-[532px] xl:w-[668px] 2xl:w-[867px]'
                     />
 
-                    {/* Tabo */}
+                    {/* Empty Div for Alignment */}
                     <div className='hidden lg:flex flex-col gap-5'>
-                        <div
-                            className=' w-full md:w-[320px] lg:w-[345px] xl:w-[432px] 2xl:w-[560px]'
-                        />
+                        <div className='w-full md:w-[320px] lg:w-[345px] xl:w-[432px] 2xl:w-[560px]' />
                     </div>
                 </div>
-                
 
                 {/* Price and Mileage */}
                 <div className='flex flex-col md:flex-row gap-5 w-full'>
-                    <div className='flex flex-col gap-5 w-full  lg:w-[532px] xl:w-[668px] 2xl:w-[867px]'>
+                    <div className='flex flex-col gap-5 w-full lg:w-[532px] xl:w-[668px] 2xl:w-[867px]'>
                         <label className='text-primary text-[20px] lg:text-[25px] font-bold'>السعر :</label>
                         <div className='flex flex-col md:flex-row gap-5 w-full'>
                             {/* Syrian Pounds Input */}
                             <div className='relative w-full md:w-1/2'>
                                 <input
                                     placeholder='2000000'
-                                    className='w-full h-[60px] md:h-[76px] text-placeholder border-2 border-primary rounded-10px text-[16px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none focus:border-primary duration-200 pl-10'
+                                    className='w-full h-[60px] md:h-[76px] text-placeholder border-2 border-border rounded-10px text-[16px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none focus:border-primary duration-200 pl-10'
                                 />
                                 <span className='absolute left-2 top-1/2 transform -translate-y-1/2 text-placeholder text-[16px] lg:text-[20px]'>
                                     ليرة سورية
@@ -123,7 +119,7 @@ const AddPostDevices = () => {
                             <div className='relative w-full md:w-1/2'>
                                 <input
                                     placeholder='500'
-                                    className='w-full h-[60px] md:h-[76px] text-placeholder border-2 border-primary rounded-10px text-[16px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none focus:border-primary duration-200 pl-10'
+                                    className='w-full h-[60px] md:h-[76px] text-placeholder border-2 border-border rounded-10px text-[16px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none focus:border-primary duration-200 pl-10'
                                 />
                                 <span className='absolute left-2 top-1/2 transform -translate-y-1/2 text-placeholder text-[16px] lg:text-[20px]'>
                                     دولار أمريكي
@@ -131,33 +127,29 @@ const AddPostDevices = () => {
                             </div>
                         </div>
                     </div>
-                    {/*Status Architectual */}
-                    <div className=' hidden lg:flex flex-col gap-5 w-full md:w-1/2 lg:w-[345px] xl:w-[432px] 2xl:w-[560px] '>
-                       
-                    </div>
+
+                    {/* Empty Div for Alignment */}
+                    <div className='hidden lg:flex flex-col gap-5 w-full md:w-1/2 lg:w-[345px] xl:w-[432px] 2xl:w-[560px]' />
                 </div>
 
                 {/* Description */}
-                <div className='flex flex-col gap-5  md: lg:w-[895px] xl:w-[1120px] 2xl:w-[1450px]'>
+                <div className='flex flex-col gap-5 w-full lg:w-[895px] xl:w-[1120px] 2xl:w-[1450px]'>
                     <label className='text-primary text-[20px] lg:text-[25px] font-bold'>الوصف :</label>
                     <textarea
                         cols='30'
                         rows='10'
                         placeholder='التفاصيل كاملة :'
-                        className=' md:h-[200px]  text-placeholder border-2 border-primary rounded-10px text-[16px] lg:text-[20px] pr-2 pt-2 md:pr-[10px] md:pt-[10px] xl:pr-[20px] xl:pt-[20px] outline-none focus:outline-none focus:border-primary duration-200 pl-10 resize-y'
-                    >
-                    </textarea>
+                        className='w-full h-[200px] md:h-[266px] text-placeholder border-2 border-border rounded-10px text-[16px] lg:text-[20px] pr-2 pt-2 md:pr-[10px] md:pt-[10px] xl:pr-[20px] xl:pt-[20px] outline-none focus:outline-none focus:border-primary duration-200 pl-10 resize-y'
+                    />
                 </div>
-                
 
                 {/* Submit Button */}
                 <button className='bg-primary h-[60px] md:h-[76px] w-full md:w-[370px] lg:w-[426px] text-white text-[20px] lg:text-[25px] font-bold rounded-10px'>
                     اعلان
                 </button>
-            </form >
-        </div >
-        
+            </form>
+        </div>
     )
 }
 
-export default AddPostDevices
+export default AddPostAnimals

@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { IoIosArrowDown } from 'react-icons/io';
 
-const Dropdown = ({ label, options, selected, onSelect, className ,width }) => {
+const Dropdown = ({ label, options, selected, onSelect, className, width }) => {
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef(null);
 
@@ -27,7 +27,9 @@ const Dropdown = ({ label, options, selected, onSelect, className ,width }) => {
 
             {/* Dropdown Trigger */}
             <div
-                className='w-full h-[60px] md:h-[76px] text-placeholder border-2  border-border rounded-10px text-[16px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] bg-white outline-none focus:border-primary duration-200 flex items-center justify-between px-4 cursor-pointer'
+                className={`w-full h-[60px] md:h-[76px] text-placeholder border-2 rounded-10px text-[16px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] bg-white outline-none duration-200 flex items-center justify-between px-4 cursor-pointer ${
+                    isOpen ? 'border-primary' : 'border-border'
+                }`}
                 onClick={() => setIsOpen(!isOpen)}
             >
                 {selected}
@@ -40,7 +42,7 @@ const Dropdown = ({ label, options, selected, onSelect, className ,width }) => {
                     {options.map((item, index) => (
                         <div
                             key={index}
-                            className='px-4 py-3 hover:bg-red-500 hover:text-white  cursor-pointer duration-200'
+                            className='px-4 py-3 hover:bg-red-500 hover:text-white cursor-pointer duration-200'
                             onClick={() => {
                                 onSelect(item);
                                 setIsOpen(false);

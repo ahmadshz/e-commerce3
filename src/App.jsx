@@ -10,18 +10,18 @@ import ShowUser from "./Pages/Dashboard/User/ShowUser";
 import DetailsAccount from "./Components/Websites/page/DetailsAccount";
 import PostId from "./Components/Websites/page/PostId";
 import AddPost from "./Components/Websites/page/AddPost";
-import Intermediate from "./Components/Websites/page/Intermadiate";
-import AddPostCar from "./Components/Websites/page/AddPostCar";
-import AddPostMotor from "./Components/Websites/page/AddPostMotor";
-import AddPostEstate from "./Components/Websites/page/AddPostEstate";
-import AddPostDevices from "./Components/Websites/page/AddPostDevices";
-import AddPostFurniture from "./Components/Websites/page/AddPostFurniture";
-import AddPostServices from "./Components/Websites/page/AddPostServices";
-import AddPostAnimals from "./Components/Websites/page/AddPostAnimals";
-import AddPostJobs from "./Components/Websites/page/AddPostJobs";
-import AddPostEducation from "./Components/Websites/page/AddPostEducation";
-import AddPostParty from "./Components/Websites/page/AddPostParty";
-import AddPostOther from "./Components/Websites/page/AddPostOther";
+import Intermediate from "./Components/Websites/page/AddPosts/Intermadiate";
+import AddPostCar from "./Components/Websites/page/AddPosts/AddPostCar";
+import AddPostMotor from "./Components/Websites/page/AddPosts/AddPostMotor";
+import AddPostEstate from "./Components/Websites/page/AddPosts/AddPostEstate";
+import AddPostDevices from "./Components/Websites/page/AddPosts/AddPostDevices";
+import AddPostFurniture from "./Components/Websites/page/AddPosts/AddPostFurniture";
+import AddPostServices from "./Components/Websites/page/AddPosts/AddPostServices";
+import AddPostAnimals from "./Components/Websites/page/AddPosts/AddPostAnimals";
+import AddPostJobs from "./Components/Websites/page/AddPosts/AddPostJobs";
+import AddPostEducation from "./Components/Websites/page/AddPosts/AddPostEducation";
+import AddPostParty from "./Components/Websites/page/AddPosts/AddPostParty";
+import AddPostOther from "./Components/Websites/page/AddPosts/AddPostOther";
 
 
 function App() {

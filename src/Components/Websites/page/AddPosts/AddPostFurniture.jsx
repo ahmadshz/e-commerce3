@@ -1,14 +1,15 @@
 import React from 'react';
-import { data, location } from '../../../utils/data';
+import { data, location } from '../../../../utils/data';
 import { IoIosCamera } from 'react-icons/io';
-import Dropdown from '../UI/Dropdowns';
-import RadioButton from '../UI/RadioButton';
-import { useState } from 'react';
-import img from '../../../assets/Carandothers/jobs.svg';
 
-const AddPostJobs = () => {
+import { useState } from 'react';
+import img from '../../../../assets/Carandothers/furniture.svg';
+import Dropdown from '../../UI/Dropdowns';
+import RadioButton from '../../UI/RadioButton';
+
+const AddPostFurniture = () => {
     const [selectedLocation, setSelectedLocation] = useState('اختر عنوان الاعلان');
-    const [selectedBrand, setSelectedBrand] = useState('');
+    const [selectedBrand, setSelectedBrand] = useState('نوع الاثاث : ');
     const [status, setStatus] = useState('used');
 
     return (
@@ -27,7 +28,7 @@ const AddPostJobs = () => {
                         <input
                             type='text'
                             className='w-full h-[60px] md:h-[76px] text-placeholder block border-2 border-border rounded-10px text-[16px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none focus:border-primary duration-200'
-                            placeholder='مثال : وظيفة ادارية براتب مغري '
+                            placeholder='مثال : ايفون 13 برو ماكس بالكرتونة'
                         />
                     </div>
 
@@ -83,9 +84,9 @@ const AddPostJobs = () => {
                 {/* Brands Dropdown and Tabo */}
                 <div className='flex flex-col md:flex-row gap-5 w-full'>
                     <Dropdown
-                        label='نوع الوظيفة : '
-                        options={data[6].brands.map((brand) => brand)}
-                        selected='اختر نوع الوظيفة'
+                        label='نوع الاثاث :'
+                        options={data[4].brands.map((brand) => brand)}
+                        selected='نوع الاثاث'
                         placeholder
                         onSelect={setSelectedBrand}
                         className='w-full lg:w-[532px] xl:w-[668px] 2xl:w-[867px]'
@@ -147,7 +148,7 @@ const AddPostJobs = () => {
                 </button>
             </form>
         </div>
-    )
-}
+    );
+};
 
-export default AddPostJobs
+export default AddPostFurniture;

@@ -59,7 +59,7 @@ const CategoryNavbar = () => {
                                 className={`border rounded-10px px-2 py-1 md:p-4 w-fit bg-white text-center  cursor-pointer ${selectedBrand === index ? 'text-primary' : 'text-placeholder'
                                     }`} 
                             >
-                                <p className="text-[10px] md:text-[12px] lg:text-[16px] font-bold truncate">
+                                <p className="text-[10px] md:text-[12px] lg:text-[16px] font-semibold truncate">
                                     {brand.arabic ? brand.arabic : brand}
                                 </p>
                             </div>
