@@ -27,7 +27,7 @@ const Dropdown = ({ label, options, selected, onSelect, className ,width }) => {
 
             {/* Dropdown Trigger */}
             <div
-                className='w-full h-[60px] md:h-[76px] text-placeholder ring-2 ring-border rounded-10px text-[16px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] bg-white outline-none focus:ring-primary duration-200 flex items-center justify-between px-4 cursor-pointer'
+                className='w-full h-[60px] md:h-[76px] text-placeholder border-2  border-border rounded-10px text-[16px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] bg-white outline-none focus:border-primary duration-200 flex items-center justify-between px-4 cursor-pointer'
                 onClick={() => setIsOpen(!isOpen)}
             >
                 {selected}

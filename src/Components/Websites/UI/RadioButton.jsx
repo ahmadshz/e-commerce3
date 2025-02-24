@@ -12,7 +12,7 @@ const RadioButton = ({ label, value, name, checked, onChange ,className }) => {
                     onChange={onChange}
                     className='hidden peer'
                 />
-                <div className='w-full text-center h-[60px] md:h-[76px] ring-2  text-[16px] lg:text-[20px] text-placeholder ring-border rounded-10px py-2 px-4 cursor-pointer peer-checked:ring-primary peer-checked:text-primary flex justify-center items-center'>
+                <div className='w-full text-center h-[60px] md:h-[76px] border-2 border-border text-[16px] lg:text-[20px] text-placeholder  rounded-10px py-2 px-4 cursor-pointer peer-checked:border-primary peer-checked:text-primary flex justify-center items-center'>
                     {label}
                 </div>
             </label>

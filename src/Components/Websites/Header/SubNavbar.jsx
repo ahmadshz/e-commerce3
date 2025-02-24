@@ -18,22 +18,22 @@ const SubNavbar = () => {
     return (
         <div className='container flex flex-wrap lg:flex-nowrap justify-between items-center  gap-2'>
             {/* Search Input */}
-            <div className='h-[35px] md:h-[45px] xl:h-[53px] w-full  lg:w-1/2 ring-2 ring-border relative rounded-10px'>
+            <div className='h-[35px] md:h-[45px] xl:h-[53px] w-full  lg:w-1/2 border-2 border-border relative rounded-10px'>
                 <input
                     type='search' 
-                    className='h-full w-full font-normal   text-[13px] md:text-[15px] lg:text-[17px] rrounded-10px pr-2  md:pr-[10px] xl:pr-[20px] focus:outline-none'
+                    className='h-full w-full font-normal   text-[13px] md:text-[15px] lg:text-[17px] rounded-10px pr-2  md:pr-[10px] xl:pr-[20px] focus:outline-none'
                     placeholder='ابحث عن أي عقار أو سلعة أو خدمة في سوريا...'
                 />
                 <img
                     src={searchIcon}
                     alt=''
-                    className='bg-primary h-full md:h-[45px] xl:h-[53px] w-[40px]  lg:w-[54px] absolute left-0 top-0 p-1 md:p-2 rounded-l-10px'
+                    className='bg-primary h-full  w-[40px]  lg:w-[54px] absolute left-0 top-0 p-1 md:p-2 rounded-l-10px'
                 />
             </div>
 
             {/* Location Dropdown */}
             <div className=' flex justify-between items-center gap-4  w-full lg:w-2/4'>
-                <div className=" w-2/4 lg:w-[160px] xl:w-[210px] ring-2 ring-border rounded-10px relative text-placeholder">
+                <div className=" w-2/4 lg:w-[160px] xl:w-[210px] border-2 border-border rounded-10px relative text-placeholder">
                     {/* Button */}
                     <button
                         onClick={toggleDropdown}
@@ -41,7 +41,7 @@ const SubNavbar = () => {
                     >
                         <span className="w-[75%] md:w-[85%] lg:w-[80%] text-center text-[13px] md:text-[15px] lg:text-[17px] ">{selectedLocation}</span>
                         <MdOutlineKeyboardArrowDown
-                            className="  w-[40px]   lg:w-[54px]  h-[35px] md:h-[45px] xl:h-[53px] ring-2 ring-border rounded-10px"
+                            className="  w-[40px]   lg:w-[54px]  h-[39px] md:h-[49px] xl:h-[57px] border-2 border-l-0 border-border rounded-10px"
                         />
                     </button>
 

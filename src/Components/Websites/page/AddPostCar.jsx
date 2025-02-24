@@ -25,7 +25,7 @@ const AddPostCar = () => {
                         <label className='text-primary text-[20px] lg:text-[25px] font-bold'>عنوان الاعلان :</label>
                         <input
                             type='text'
-                            className='w-full h-[60px] md:h-[76px] text-placeholder block ring-2 ring-border rounded-10px text-[16px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none focus:ring-primary duration-200'
+                            className='w-full h-[60px] md:h-[76px] text-placeholder block border-2 border-primary rounded-10px text-[16px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none focus:border-primary duration-200'
                             placeholder='مثال : سيارة تويوتا يارس موديل 2024 فل كامل'
                         />
                     </div>
@@ -48,7 +48,7 @@ const AddPostCar = () => {
                         <div className='relative'>
                             <input
                                 type='text'
-                                className='w-full h-[60px] md:h-[76px] text-placeholder block ring-2 ring-border rounded-10px text-[16px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none focus:ring-primary duration-200 pl-10'
+                                className='w-full h-[60px] md:h-[76px] text-placeholder block border-2 border-primary rounded-10px text-[16px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none focus:border-primary duration-200 pl-10'
                                 placeholder='انقر هنا لاضافة الصور'
                             />
                             <IoIosCamera size={30} className='absolute top-1/2 left-4 transform -translate-y-1/2 text-placeholder' />
@@ -128,7 +128,7 @@ const AddPostCar = () => {
                             <div className='relative w-full md:w-1/2'>
                                 <input
                                     placeholder='2000000'
-                                    className='w-full h-[60px] md:h-[76px] text-placeholder ring-2 ring-border rounded-10px text-[16px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none focus:ring-primary duration-200 pl-10'
+                                    className='w-full h-[60px] md:h-[76px] text-placeholder border-2 border-primary rounded-10px text-[16px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none focus:border-primary duration-200 pl-10'
                                 />
                                 <span className='absolute left-2 top-1/2 transform -translate-y-1/2 text-placeholder text-[16px] lg:text-[20px]'>
                                     ليرة سورية
@@ -139,7 +139,7 @@ const AddPostCar = () => {
                             <div className='relative w-full md:w-1/2'>
                                 <input
                                     placeholder='500'
-                                    className='w-full h-[60px] md:h-[76px] text-placeholder ring-2 ring-border rounded-10px text-[16px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none focus:ring-primary duration-200 pl-10'
+                                    className='w-full h-[60px] md:h-[76px] text-placeholder border-2 border-primary rounded-10px text-[16px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none focus:border-primary duration-200 pl-10'
                                 />
                                 <span className='absolute left-2 top-1/2 transform -translate-y-1/2 text-placeholder text-[16px] lg:text-[20px]'>
                                     دولار أمريكي
@@ -154,7 +154,7 @@ const AddPostCar = () => {
                         <input
                             type='text'
                             placeholder='2000000'
-                            className='w-full h-[60px] md:h-[76px] text-placeholder ring-2 ring-border rounded-10px text-[16px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none focus:ring-primary duration-200 pl-10'
+                            className='w-full h-[60px] md:h-[76px] text-placeholder border-2 border-primary rounded-10px text-[16px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none focus:border-primary duration-200 pl-10'
                         />
                     </div>
                 </div>
@@ -167,7 +167,7 @@ const AddPostCar = () => {
                         rows='10'
                         placeholder='التفاصيل كاملة :'
 
-                        className=' md:h-[200px]  text-placeholder ring-2 ring-border rounded-10px text-[16px] lg:text-[20px] pr-2 pt-2 md:pr-[10px] md:pt-[10px] xl:pr-[20px] xl:pt-[20px] outline-none focus:outline-none focus:ring-primary duration-200 pl-10 resize-y'
+                        className=' md:h-[200px]  text-placeholder border-2 border-primary rounded-10px text-[16px] lg:text-[20px] pr-2 pt-2 md:pr-[10px] md:pt-[10px] xl:pr-[20px] xl:pt-[20px] outline-none focus:outline-none focus:border-primary duration-200 pl-10 resize-y'
                     >
                     </textarea>
                 </div>
