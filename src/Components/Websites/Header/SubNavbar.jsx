@@ -55,7 +55,7 @@ const SubNavbar = () => {
                                 onClick={() => handleSelect('جميع المناطق')}
                                 className="  xl:pr-5 py-1 text-[17px] hover:bg-gray-200 cursor-pointer"
                             >
-                                <span className='text-start md:text-center pr-2 md:pr-5  text-[13px] md:text-[15px] lg:text-[17px]'>جميع المناطق</span>
+                                <span className='text-start    text-[13px] md:text-[15px] lg:text-[17px]'>جميع المناطق</span>
                             </div>
                     
                             {location.map((loc, index) => (
@@ -76,7 +76,7 @@ const SubNavbar = () => {
                     <div className='text-white w-[75%] md:w-[85%] lg:w-[80%] text-center '>
                         أضــف اعــلان
                     </div>
-                    <div className=' w-[40px]  lg:w-[54px] bg-placeholder h-full rounded-md md:rounded-10px flex items-center justify-center'>
+                    <div className=' w-[40px]  lg:w-[54px] bg-placeholder h-full rounded-10px flex items-center justify-center'>
                         <img className='w-8 ' src={add} alt='' />
                     </div>
                 </Link>

@@ -12,6 +12,7 @@ const AddPostCar = () => {
     const [status, setStatus] = useState('used');
     const [gear, setGear] = useState('normal');
 
+
     return (
         <div className='min-h-screen py-[50px] md:py-[100px] container flex items-center relative'>
             <img
