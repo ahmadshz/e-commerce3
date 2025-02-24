@@ -42,7 +42,7 @@ const Login = () => {
             <Navbar />
             <div className='container h-full flex items-center justify-center'>
                 {/* Form Container */}
-                <div className='w-full sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-[735px] h-auto sm:h-[505px] flex flex-col gap-4 border-2 border-primary rounded-lg bg-white'>
+                <div className='w-full sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-[735px] h-auto sm:h-auto flex flex-col gap-4 border-2 border-primary rounded-lg bg-white'>
                     {/* Header */}
                     <div className='bg-primary flex justify-between items-center text-white text-2xl font-medium p-4 sm:p-5'>
                         <h1 className='text-[25px] sm:text-[30px] font-bold'>تسجيل الدخول</h1>
@@ -79,7 +79,7 @@ const Login = () => {
                             <button
                                 type="button"
                                 onClick={togglePassword}
-                                className="absolute left-4 top-[57px] sm:top-[25px] md:top-[65px] text-placeholder"
+                                className="absolute left-4 top-[57px] sm:top-[25px] md:top-[65px] lg:top-[27px] text-placeholder"
                             >
                                 {show ? <FaRegEyeSlash size={30} /> : <BiShow size={30} />}
                             </button>
