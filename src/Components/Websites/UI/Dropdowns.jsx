@@ -1,11 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { IoIosArrowDown } from 'react-icons/io';
 
-const Dropdown = ({ label, options, selected, onSelect, className, width }) => {
+const Dropdown = ({ label, options, selected, onSelect, className }) => {
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef(null);
 
-    // Close dropdown when clicking outside
+    // ✅ إغلاق القائمة عند النقر خارجها
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -14,7 +14,6 @@ const Dropdown = ({ label, options, selected, onSelect, className, width }) => {
         };
 
         document.addEventListener('mousedown', handleClickOutside);
-
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
@@ -27,12 +26,12 @@ const Dropdown = ({ label, options, selected, onSelect, className, width }) => {
 
             {/* Dropdown Trigger */}
             <div
-                className={`w-full h-[60px] md:h-[76px] text-placeholder border-2 rounded-10px text-[16px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] bg-white outline-none duration-200 flex items-center justify-between px-4 cursor-pointer ${
-                    isOpen ? 'border-primary' : 'border-border'
-                }`}
+                className={`w-full h-[60px] md:h-[76px] text-placeholder border-2 rounded-10px text-[16px] lg:text-[20px] 
+                pr-2 md:pr-[10px] xl:pr-[20px] bg-white outline-none duration-200 flex items-center justify-between 
+                px-4 cursor-pointer ${isOpen ? 'border-primary' : 'border-border'}`}
                 onClick={() => setIsOpen(!isOpen)}
             >
-                {selected}
+                {selected || 'اختر الماركة'} {/* ✅ عرض النص الافتراضي إذا لم يتم اختيار أي خيار */}
                 <IoIosArrowDown className='text-placeholder text-[25px] md:text-[35px]' />
             </div>
 
@@ -42,9 +41,9 @@ const Dropdown = ({ label, options, selected, onSelect, className, width }) => {
                     {options.map((item, index) => (
                         <div
                             key={index}
-                            className='px-4 py-3 hover:bg-red-500 hover:text-white cursor-pointer duration-200'
+                            className='px-4 py-3 hover:bg-primary hover:text-white cursor-pointer duration-200'
                             onClick={() => {
-                                onSelect(item);
+                                onSelect(item); // ✅ تمرير النص المحدد فقط
                                 setIsOpen(false);
                             }}
                         >

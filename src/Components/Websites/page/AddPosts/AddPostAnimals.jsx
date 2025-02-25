@@ -2,7 +2,6 @@ import React from 'react';
 import { data, location } from '../../../../utils/data';
 import { IoIosCamera } from 'react-icons/io';
 import { useState } from 'react';
-import img from '../../../../assets/Carandothers/animals.svg';
 import Dropdown from '../../UI/Dropdowns';
 import RadioButton from '../../UI/RadioButton';
 
@@ -15,11 +14,6 @@ const AddPostAnimals = () => {
 
     return (
         <div className='min-h-screen py-[50px] md:py-[100px] container flex items-center relative'>
-            <img
-                className='w-[60px] lg:w-[100px] absolute top-2 left-2'
-                src={img}
-                alt='Rotating'
-            />
 
             <form className='flex flex-col gap-5 md:gap-7 w-full px-4 md:px-0'>
                 {/* Title and Location Dropdown */}

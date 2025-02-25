@@ -39,7 +39,7 @@ const MainHeader = () => {
   };
 
   return (
-    <div className='bg-primary flex h-[60px] md:h-[70px] lg:h-[95px] items-center'>
+    <div className='bg-primary flex h-[60px] md:h-[70px] lg:h-[80px] items-center'>
       <div className='container flex justify-between items-center'>
         <img className='w-12 md:w-12 lg:w-16 xl:w-20' src={Logo} alt='' />
         <div className='text-white flex gap-4'>
@@ -48,33 +48,33 @@ const MainHeader = () => {
           </button>
 
           {username  ? (
-            <Link to='/myaccount' className='border-2 hidden lg:flex items-center border-white rounded-10px min-w-[216px] md:h-[45px] xl:h-[53px] lg:text-[17px]'>
-              <span className='min-w-[75%] px-2 text-center'>{username}@</span>
-              <span className='w-[45px] xl:w-[53px] md:h-[45px] xl:h-[53px] border-2 pb-1 border-l-0 flex items-center justify-center rounded-10px'>
+            <Link to='/myaccount' className='border-2 hidden lg:flex items-center border-white rounded-10px min-w-[216px] md:h-[45px] xl:h-[50px] lg:text-[17px]'>
+              <span className='min-w-[75%] px-2 text-center font-semibold'>{username}@</span>
+              <span className='w-[45px] xl:w-[50px] md:h-[45px] xl:h-[50px] border-2 pb-1 border-l-0 flex items-center justify-center rounded-10px'>
                 <img src={user} className='w-12' alt='' />
               </span>
             </Link>
           ) : (
-            <Link to='/login' className='border-2 hidden lg:flex items-center border-white rounded-10px w-[216px] md:h-[45px] xl:h-[53px] lg:text-[17px]'>
-              <span className='w-[80%] text-center'> تسجيل الدخول</span>
-              <span className='w-[45px] xl:w-[53px] md:h-[45px] xl:h-[53px] border-2 pb-1 border-l-0 flex items-center justify-center rounded-10px'>
-                <img src={logout} className='w-14' alt='' />
+            <Link to='/login' className='border-2 hidden lg:flex items-center border-white rounded-10px w-[150px] md:h-[45px] xl:h-[50px] lg:text-[17px]'>
+              <span className='w-[80%] text-center font-semibold'>الدخول</span>
+              <span className='w-[45px] xl:w-[50px] md:h-[45px] xl:h-[50px] border-2  border-l-0 flex items-center justify-center rounded-10px'>
+                <img src={logout} className='w-16' alt='' />
               </span>
             </Link>
           )}
           {
             token ?
-            <div onClick={logOut} className='border-2 md:h-[45px] xl:h-[53px] w-[150px] lg:text-[17px] hidden lg:flex items-center border-white rounded-10px'>
-              <span className='w-[75%] text-center'>الخروج</span>
-              <span className='w-[45px] xl:w-[53px] md:h-[45px] xl:h-[53px] border-2  border-l-0 flex items-center justify-center rounded-10px'>
+            <div onClick={logOut} className='border-2 md:h-[45px] xl:h-[50px] w-[150px] lg:text-[17px] hidden lg:flex items-center border-white rounded-10px'>
+              <span className='w-[75%] text-center font-semibold'>الخروج</span>
+              <span className='w-[45px] xl:w-[50px] md:h-[45px] xl:h-[50px] border-2  border-l-0 flex items-center justify-center rounded-10px'>
                 <img className='w-14' src={logout} alt='' />
               </span>
             </div>
           : (
-            <Link to="/register" className='border-2 md:h-[45px] xl:h-[53px] w-auto  lg:text-[17px] hidden lg:flex items-center border-white rounded-10px'>
-              <span className=' text-center px-4'>انشاء حساب جديد</span>
-              <span className='w-[45px] xl:w-[53px] md:h-[45px] xl:h-[53px] border-2 pb-1 border-l-0 flex items-center justify-center rounded-10px'>
-                <img className='w-11' src={login} alt='' />
+            <Link to="/register" className='border-2 md:h-[45px] xl:h-[50px] w-auto  lg:text-[17px] hidden lg:flex items-center border-white rounded-10px'>
+              <span className=' text-center font-semibold px-4'>انشاء حساب جديد</span>
+              <span className='w-[45px] xl:w-[50px] md:h-[45px] xl:h-[50px] border-2 pb-1 border-l-0 flex items-center justify-center rounded-10px'>
+                <img className='' src={login} alt='' />
               </span>
             </Link>
           )

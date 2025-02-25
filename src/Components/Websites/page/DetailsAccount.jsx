@@ -3,6 +3,7 @@ import MainHeader from '../Header/MainHeader';
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 import Cookies from 'universal-cookie';
+import { baseUrl } from '../../../Api/Api';
 
 const DetailsAccount = () => {
   const [userDetails, setUserDetails] = useState(null);
@@ -18,7 +19,7 @@ const DetailsAccount = () => {
         // Fetch user details from API
         const fetchUserDetails = async () => {
           try {
-            const response = await axios.get(`http://localhost:8000/user/${userId}`);
+            const response = await axios.get(`${baseUrl}/user/${userId}`);
             setUserDetails(response.data);
           } catch (error) {
             console.error('Error fetching user details:', error);

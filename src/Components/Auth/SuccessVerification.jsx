@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Navbar from '../Websites/Header/Navbar'
-import arrow from '../../assets/Icons_Arrow/1.svg'
+import arrow from '../../assets/Icons_Arrow/3.svg'
 
 const SuccessVerification = () => {
     return (

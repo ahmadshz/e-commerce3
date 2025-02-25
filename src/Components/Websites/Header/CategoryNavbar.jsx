@@ -17,7 +17,7 @@ const CategoryNavbar = () => {
     return (
         <div className="container">
             {/* Scrollable Container for Categories */}
-            <div className="flex justify-between lg:gap-x-0 xl:gap-x-5 overflow-x-auto overflow-y-hidden scroll-smooth custom-scrollbar pb-[5px] md:pb-[10px]">
+            <div className="flex justify-between  overflow-x-auto overflow-y-hidden scroll-smooth custom-scrollbar pb-[5px] md:pb-[10px]">
                 {data.map((category, index) => (
                     <div
                         key={index}
