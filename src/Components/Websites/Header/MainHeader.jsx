@@ -41,7 +41,7 @@ const MainHeader = () => {
   return (
     <div className='bg-primary flex h-[60px] md:h-[70px] lg:h-[80px] items-center'>
       <div className='container flex justify-between items-center'>
-        <img className='w-12 md:w-12 lg:w-16 xl:w-20' src={Logo} alt='' />
+       <Link to={'/'}> <img className='w-12 md:w-12 lg:w-16 xl:w-20' src={Logo} alt='' /></Link>
         <div className='text-white flex gap-4'>
           <button className='lg:hidden' onClick={toggleSidebar}>
             {isSidebarOpen ? <RiCloseLine size={30} /> : <RiMenu2Line size={27} />}

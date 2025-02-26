@@ -36,7 +36,7 @@ const DetailsAccount = () => {
   }, []);
 
   if (!userDetails) {
-    return <div></div>; // Show loading state while fetching data
+    return <div></div>; 
   }
 
   return (
@@ -114,7 +114,6 @@ const DetailsAccount = () => {
             </h2>
             <MyPost />
           </div>
-
         </div>
       </div>
     </div>

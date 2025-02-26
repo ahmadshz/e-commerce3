@@ -8,7 +8,6 @@ import Dashboard from "./Pages/Dashboard/Dashboard";
 import User from "./Pages/Dashboard/User/User";
 import ShowUser from "./Pages/Dashboard/User/ShowUser";
 import DetailsAccount from "./Components/Websites/page/DetailsAccount";
-import PostId from "./Components/Websites/page/PostId";
 import AddPost from "./Components/Websites/page/AddPost";
 import Intermediate from "./Components/Websites/page/AddPosts/Intermadiate";
 import AddPostCar from "./Components/Websites/page/AddPosts/AddPostCar";
@@ -22,6 +21,7 @@ import AddPostJobs from "./Components/Websites/page/AddPosts/AddPostJobs";
 import AddPostEducation from "./Components/Websites/page/AddPosts/AddPostEducation";
 import AddPostParty from "./Components/Websites/page/AddPosts/AddPostParty";
 import AddPostOther from "./Components/Websites/page/AddPosts/AddPostOther";
+import SinglePost from "./Components/Websites/page/SinglePost";
 
 
 function App() {
@@ -48,7 +48,7 @@ function App() {
         <Route path="/addpost" element={<AddPost />} />
         <Route path="intermediate" element={<Intermediate />} />
         {/* Get Single Post */}
-        <Route path="/singlePost/:id" element={<PostId />} />
+        <Route path="/singlePost" element={<SinglePost />} />
         {/*Add Posts */}
         <Route path="/addPostCar" element={<AddPostCar />} />
         <Route path="/addPostMotor" element={<AddPostMotor />} />
