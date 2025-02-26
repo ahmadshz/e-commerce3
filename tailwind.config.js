@@ -25,15 +25,10 @@ module.exports = {
           md: "3rem",
           lg: "4rem",
           xl: "5rem",
-          "2xl": "155px",
+          "2xl": "1rem",
         },
       },
-      screens: {
-        '3xl': '1900px', // أضفت شاشة جديدة لحجم 1900px
-      },
-      maxWidth: {
-        '3xl': '155px', // تحديد عرض الحاوية عند حجم 1900px
-      },
+     
       fontFamily: {
         cairo: ['Cairo', 'sans-serif'],
       },
