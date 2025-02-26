@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import img from '../../../assets/download.jpeg';
 import price from '../../../assets/iconpost/1.svg';
 import pricesy from '../../../assets/iconpost/3.svg';
 import clock from '../../../assets/iconpost/6.svg';

@@ -61,7 +61,7 @@ const Login = () => {
                                 placeholder='ادخل البريد الإلكتروني هنا'
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
-                                className='w-full xl:w-[433px] h-[50px] sm:h-[76px] ring-2 ring-border focus:outline-none focus:border-primary rounded-lg p-2'
+                                className='w-full xl:w-[433px] h-[50px] sm:h-[76px] border-2 border-border focus:outline-none focus:border-primary rounded-lg p-2'
                             />
                         </div>
 
@@ -73,7 +73,7 @@ const Login = () => {
                                 placeholder='ادخل كلمة المرور هنا'
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
-                                className='w-full xl:w-[433px] h-[50px] sm:h-[76px] ring-2 ring-border focus:outline-none focus:border-primary rounded-lg p-2'
+                                className='w-full xl:w-[433px] h-[50px] sm:h-[76px] border-2 border-border focus:outline-none focus:border-primary rounded-lg p-2'
                             />
                             {/* Password Toggle Button */}
                             <button
