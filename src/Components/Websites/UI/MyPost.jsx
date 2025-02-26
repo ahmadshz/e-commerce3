@@ -66,16 +66,17 @@ const MyPost = () => {
                 ads.map((item, index) => (
                     <div
                         key={index}
-                        className='bg-background mt-[10px] w-full lg:w-full xl:w-[1130px] 2xl:w-[1510px] h-[160px] flex flex-wrap lg:flex-col max-lg:h-auto py-2 md:py-0'
+                        className='bg-background mt-[15px] py-0 w-full lg:w-full xl:w-[1130px] 2xl:w-[1510px] h-[160px] flex flex-wrap 
+                        lg:flex-col max-lg:h-auto  '
                     >
                         {/* Title and Location */}
-                        <div className='w-3/5 md:w-3/5 gap-2 lg:w-2/6 flex flex-col justify-between lg:h-full md:py-2 pr-2 md:pr-[10px] xl:pr-[20px]'>
+                        <div className='w-2/6 md:w-3/5 mt-2  lg:w-2/6 flex flex-col justify-between lg:h-full md:py-2 pr-2 md:pr-[10px] xl:pr-[20px]'>
                             <Link to={`/singlePost/${item._id}`} className='text-[15px] md:text-[19px] lg:text-[24px] font-semibold'>{item.title}</Link>
                             <span className='text-[13px] lg:text-[15px] font-normal text-placeholder'>{item.location}</span>
                         </div>
 
                         {/* Prices, Time, User */}
-                        <div className='w-2/5 md:w-1/5 lg:h-full lg:w-1/6'>
+                        <div className='w-2/6 mt-2 h-full md:w-1/5 lg:h-full lg:w-1/6'>
                             <div className='xl:pr-16 md:py-2 flex flex-col md:justify-between h-full text-placeholder text-[10px] md:text-[13px] lg:text-[17px]'>
                                 <div className='flex gap-1 md:gap-2 items-center'>
                                     <img className='w-3 md:w-5 lg:w-6 max-lg:w-5' src={price} alt='' />
@@ -97,8 +98,8 @@ const MyPost = () => {
                         </div>
 
                         {/* Image */}
-                        <div className='w-[70%] rounded-10px md:w-1/5 lg:h-full mx-auto lg:w-1/6 my-3 md:my-0 max-lg:h-[150px]'>
-                            <img className='h-full object-cover max-lg:w-full max-lg:h-full' src={img} alt='' />
+                        <div className='w-2/6 rounded-10px md:w-1/5 lg:h-full mx-auto lg:w-1/6  md:my-0'>
+                            <img className='h-full object-cover max-lg:w-full max-lg:h-full' src={item.images} alt='' />
                         </div>
 
                         {/* Buttons */}
