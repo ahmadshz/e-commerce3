@@ -49,8 +49,8 @@ const MainHeader = () => {
 
           {username  ? (
             <Link to='/myaccount' className='border-2 hidden lg:flex items-center border-white rounded-10px min-w-[216px] md:h-[45px] xl:h-[50px] lg:text-[17px]'>
-              <span className='min-w-[75%] px-2 text-center font-semibold'>{username}@</span>
-              <span className='w-[45px] xl:w-[50px] md:h-[45px] xl:h-[50px] border-2 pb-1 border-l-0 flex items-center justify-center rounded-10px'>
+              <span className='w-full px-2 text-center font-semibold'>{username}@</span>
+              <span className='w-[55px] xl:w-[60px] md:h-[45px] xl:h-[50px] border-2 pb-1 border-l-0 flex items-center justify-center rounded-10px'>
                 <img src={user} className='w-12' alt='' />
               </span>
             </Link>

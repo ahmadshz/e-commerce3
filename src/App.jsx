@@ -48,7 +48,7 @@ function App() {
         <Route path="/addpost" element={<AddPost />} />
         <Route path="intermediate" element={<Intermediate />} />
         {/* Get Single Post */}
-        <Route path="/post/id" element={<PostId />} />
+        <Route path="/singlePost/:id" element={<PostId />} />
         {/*Add Posts */}
         <Route path="/addPostCar" element={<AddPostCar />} />
         <Route path="/addPostMotor" element={<AddPostMotor />} />

@@ -7,13 +7,12 @@ import axios from 'axios'; // Import axios for making HTTP requests
 import Cookies from 'universal-cookie';
 import { baseUrl } from '../../../../Api/Api';
 
-const AddPostCar = () => {
-    const [selectedLocation, setSelectedLocation] = useState('اختر عنوان الاعلان');
+const AddPostCar = () => {  const [selectedLocation, setSelectedLocation] = useState('');
     const [selectedBrand, setSelectedBrand] = useState('');
     const [condition, setCondition] = useState('used');
     const [transmission, setTransmission] = useState('manual');
     const [title, setTitle] = useState('');
-    const [images, setImages] = useState(null); // تحديث هنا
+    const [images, setImages] = useState([]); // ✅ Store images as an array
     const [priceSYP, setPriceSYP] = useState('');
     const [priceUSD, setPriceUSD] = useState('');
     const [mileage, setMileage] = useState('');
@@ -22,53 +21,58 @@ const AddPostCar = () => {
     const cookies = new Cookies();
     const token = cookies.get('auth_token');
 
-    // Hardcode the category for testing
-    const category = 'car';
+    const category = 'car'; // Hardcoded category
 
+    // Convert FileList to an Array
     const handleFileChange = (e) => {
-        const files = e.target.files; // الحصول على الملفات المختارة
-        setImages(files); // تحديث الحالة بالملفات
-        console.log(files); // تحقق من الملفات المختارة
+        const files = Array.from(e.target.files);
+        setImages(files);
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // إنشاء FormData لإرسال الملفات
-        const formData = new FormData();
-        formData.append('title', title);
-        formData.append('location', selectedLocation);
-        formData.append('condition', condition);
-        formData.append('priceSYP', priceSYP);
-        formData.append('priceUSD', priceUSD);
-        formData.append('description', description);
-        formData.append('category', category);
-        formData.append('additionalFields', JSON.stringify({
-            transmission,
-            vehicleType: selectedBrand,
-            mileage,
-        }));
-
-        // إضافة الملفات إلى FormData
-        if (images) {
-            for (let i = 0; i < images.length; i++) {
-                formData.append('images', images[i]);
-            }
+        // Check if images are selected
+        if (images.length === 0) {
+            return;
         }
+
+        // Create FormData to send files & data
+        const formData = new FormData();
+        formData.append('title', title || '');
+        formData.append('location', selectedLocation || '');
+        formData.append('condition', condition || '');
+        formData.append('priceSYP', priceSYP || '0');
+        formData.append('priceUSD', priceUSD || '0');
+        formData.append('description', description || '');
+        formData.append('category', category || '');
+
+        // Append additional fields separately
+        formData.append('transmission', transmission || '');
+        formData.append('vehicleType', selectedBrand || '');
+        formData.append('mileage', mileage || '');
+
+        // Append images correctly
+        images.forEach((image) => {
+            formData.append('images', image);
+        });
 
         try {
-            // إرسال الطلب باستخدام axios
+            console.log("🖼 Images:", images);
+
+            // Send request to the correct API endpoint
             const response = await axios.post(`${baseUrl}/ad`, formData, {
                 headers: {
-                    'Authorization': `Bearer ${token}`,
+                    'Authorization':`Bearer ${token}`,
+                    'Content-Type': 'multipart/form-data'
                 },
             });
-            console.log('Post created successfully:', response.data);
-            alert('تم إضافة الإعلان بنجاح!');
+
+            console.log(' تم إضافة الإعلان بنجاح:', response.data);
+            alert('تم إضافة الإعلان بنجاح!');
         } catch (error) {
-            console.error('Error creating post:', error);
-        }
-    };
+            console.error(' حدث خطأ أثناء إضافة الإعلان:', error);}
+};
 
     return (
         <div className='min-h-screen py-[50px] md:py-[100px] container flex items-center relative'>
@@ -90,7 +94,7 @@ const AddPostCar = () => {
                     <Dropdown
                         label='الموقع :'
                         options={location}
-                        selected={selectedLocation}
+                        selected={selectedLocation || " اختر الموقع"}
                         onSelect={setSelectedLocation}
                         className='w-full md:w-[560px]'
                     />

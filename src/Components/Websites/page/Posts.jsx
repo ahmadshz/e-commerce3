@@ -37,33 +37,33 @@ const Posts = ({ ads, selectedCategory, selectedBrand, setVisibleCount, visibleC
         <div className='flex flex-col gap-5'>
             {displayedAds.map((item, index) => (
                 <div className='bg-[#FAFAFA] w-full h-[110px] md:h-[140px] lg:h-[160px] flex' key={index}>
-                    <div className='w-2/4 xl:w-3/5 flex flex-col justify-between md:py-2 pr-2 md:pr-[10px] xl:pr-[20px]'>
-                        <Link to={`/${item._id}`} className='w-[90%] text-[14px] md:text-[19px] lg:text-[24px] font-semibold'>
+                    <div className='w-2/6 xl:w-3/5 flex flex-col justify-between md:py-2 pr-2 md:pr-[10px] xl:pr-[20px]'>
+                        <Link to={`/singlePost/${item._id}`} className='w-[90%] text-[14px] md:text-[19px] lg:text-[24px] font-semibold'>
                             {item.title}
                         </Link>
                         <h1 className='text-[13px] lg:text-[17px] font-normal text-placeholder'>{item.location}</h1>
                     </div>
-                    <div className='w-2/4 xl:w-2/5 flex'>
-                        <div className='w-3/5 md:py-2 flex flex-col md:justify-between text-placeholder text-[10px] md:text-[13px] lg:text-[17px]'>
+                    <div className='w-4/6 xl:w-2/5 flex'>
+                        <div className='w-2/4 md:py-2 flex flex-col md:justify-between text-placeholder text-[10px] md:text-[13px] lg:text-[17px]'>
                             <div className='flex gap-1 md:gap-2 items-center'>
-                                <img className='w-3 md:w-5 lg:w-6' src={price} alt='' />
+                                <img className='w-4 md:w-5 lg:w-6' src={price} alt='' />
                                 <span className='py-0'>{item.priceUSD}</span>
                             </div>
                             <div className='flex gap-1 md:gap-2 items-center'>
-                                <img className='w-3 md:w-5 lg:w-6' src={pricesy} alt='' />
+                                <img className='w-4 md:w-5 lg:w-6' src={pricesy} alt='' />
                                 <span className='py-0 w-[50%]'>{item.priceSYP}</span>
                             </div>
                             <div className='flex gap-1 md:gap-2 items-center'>
-                                <img className='w-3 md:w-5 lg:w-6' src={clock} alt='' />
+                                <img className='w-4 md:w-5 lg:w-6' src={clock} alt='' />
                                 <span className='py-0'>{timeAgo(item.createdAt)}</span>
                             </div>
                             <div className='flex gap-1 md:gap-2 items-center'>
-                                <img className='w-3 md:w-5 lg:w-6' src={person} alt='' />
+                                <img className='w-4 md:w-5 lg:w-6' src={person} alt='' />
                                 <span className='py-0 w-[70%] truncate'>{item.user}</span>
                             </div>
                         </div>
-                        <div className='w-[199px]'>
-                            <img className='h-full object-cover' src={img} alt='' />
+                        <div className='w2/4 w-[199px]'>
+                            <img className='h-full object-cover' src={item.images.length > 1 ? item.images[0] : item.images} alt='' />
                         </div>
                     </div>
                 </div>

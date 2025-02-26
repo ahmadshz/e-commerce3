@@ -42,7 +42,7 @@ const Landing = () => {
             <CategoryNavbar
             />
             <div className="min-h-[50vh] container flex gap-[10px] md:gap-5 xl:gap-7">
-                <div className="w-[1138px] ">
+                <div className=" w-full  md:w-[1138px] ">
                     <Posts
                         selectedCategory={selectedCategory}
                         selectedBrand={selectedBrand}

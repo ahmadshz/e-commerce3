@@ -79,7 +79,7 @@ const Login = () => {
                             <button
                                 type="button"
                                 onClick={togglePassword}
-                                className="absolute left-4 top-[57px] sm:top-[25px] md:top-[65px] lg:top-[27px] text-placeholder"
+                                className="absolute left-4 top-[57px] sm:top-[25px] md:top-[65px]  xl:top-[27px] text-placeholder"
                             >
                                 {show ? <FaRegEyeSlash size={30} /> : <BiShow size={30} />}
                             </button>

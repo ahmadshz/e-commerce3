@@ -54,36 +54,37 @@ const Verification = () => {
     return (
         <div>
             <Navbar />
-            <div className="min-h-screen container  flex flex-col pt-56">
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold  text-primary mb-6">
+            <div className="min-h-screen container  flex flex-col justify-center md:justify-normal md:pt-44">
+                <h2 className="text-[25px] lg:text-[30px] font-semibold  text-primary  mb-10 md:mb-20 ">
                     انشاء حساب جديد
                 </h2>
 
-                <p className="text-xl sm:text-2xl md:text-3xl mb-4">
-                    من فضلك ضع الكود المكون من ستة أرقام المرسل الى االيميل الخاص بك
+                <p className="text-xl sm:text-[20px] lg:text-[25px] mb-4">
+                    من فضلك ضع الكود المكون من ستة أرقام المرسل الى الايميل الخاص بك
                 </p>
 
                 <form onSubmit={handleVerification} >
-                    <div className='flex items-center gap-7 my-8'>
-                        <label className='text-xl sm:text-2xl md:text-3xl'>الكود</label>
+                    <div className='flex items-center justify-between w-full md:w-[400px] gap-7 my-8'>
+                        <label className='text-[20px] lg:text-[25px]'>الكود</label>
                         <input
                             id="verificationCode"
                             type="text"
                             value={verificationCode}
                             onChange={(e) => setVerificationCode(e.target.value)}
                             placeholder="123456"
-                            className=" lg:w-1/12 text-xl ring-2 ring-border  focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary rounded-10px text-center p-4"
+                            className=" text-[20px] w-[150px]  border-2 border-border  focus:outline-none focus:border-primary 
+                             focus:ring-primary rounded-10px text-center p-4"
                             required
                         />
                     </div>
 
                     {error && (
-                        <p className="text-sm text-red-600 text-center">{error}</p>
+                        <p className="text-[20px] text-primary text-center">{error}</p>
                     )}
                     <div>
                         <button
                             type="submit"
-                            className="w-fit px-6 py-4 bg-primary text-white rounded-md hover:bg-secondary transition duration-300"
+                            className="w-full  text-[20px] md:text-[25px] md:w-[200px] px-6 py-3  md:py-4 bg-primary text-white rounded-md hover:bg-secondary transition duration-300"
                         >
                             التأكيد
                         </button>
