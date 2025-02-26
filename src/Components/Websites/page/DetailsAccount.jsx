@@ -100,7 +100,7 @@ const DetailsAccount = () => {
               <div className="font-semibold text-[17px] lg:text-[20px] xl:w-[239px] flex items-center">
                 البريد الإلكتروني
               </div>
-              <div className="text-placeholder border-2 border-border w-full lg:w-[800px] xl:w-[1183px] 2xl:w-[1245px]
+              <div className="text-placeholder border-2 border-border w-full lg:w-[800px] xl:w-[1183px] 2xl:w-[1202px]
                 h-[60px] md:h-[76px] rounded-10px text-[15px] lg:text-[17px] font-medium tracking-wider p-3 flex items-center">
                 {userDetails.email}
               </div>

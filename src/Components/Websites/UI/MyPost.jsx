@@ -59,13 +59,28 @@ const MyPost = () => {
         }
     };
 
+    const deletePost = async (id) => {
+        try {
+            const response = await axios.delete(`${baseUrl}/ad/my-ads/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            console.log('Ad deleted successfully', response);
+            fetchData(); 
+        } catch (err) {
+            console.error('Error deleting ad:', err);
+        }
+    };
+    
+
     return (
         <div className='mt-20'>
             {Array.isArray(ads) && ads.length > 0 ? (
                 ads.map((item, index) => (
                     <div
                         key={index}
-                        className='bg-background mt-[15px] py-0 w-full lg:w-full xl:w-[1130px] 2xl:w-[1510px] h-[160px] flex flex-wrap 
+                        className='bg-background mt-[15px] py-0 w-full lg:w-full xl:w-[1130px] 2xl:w-[1455px] h-[160px] flex flex-wrap 
                         lg:flex-col max-lg:h-auto  '
                     >
                         {/* Title and Location */}
@@ -90,8 +105,7 @@ const MyPost = () => {
                                     <span className='py-0 text-[13px] md:text-[15px]'>{timeAgo(item.createdAt)}</span>
                                 </div>
                                 <div className='flex gap-1 md:gap-2 items-center'>
-                                    <img className='w-3 md:w-5 lg:w-6 max-lg:w-5' src={person} alt='' />
-                                    <span className='py-0 w-[50%] md:w-auto text-[13px] md:text-[15px] truncate'>{item.user || 'Unknown'}</span>
+                                    <span className='py-0 w-[50%] md:w-auto mx-auto text-[13px] md:text-[15px] truncate'>{item.status}</span>
                                 </div>
                             </div>
                         </div>
@@ -106,7 +120,9 @@ const MyPost = () => {
                             <div className='bg-primary text-white w-[140px] lg:w-[150px] xl:w-[160px] 2xl:w-[190px] h-[50px] text-[15px] font-semibold rounded-10px flex items-center justify-center max-lg:h-[40px]'>
                                 تحديث الاعلان
                             </div>
-                            <div className='bg-primary text-white w-[140px] lg:w-[150px] xl:w-[160px] 2xl:w-[190px] h-[50px] text-[15px] font-semibold rounded-10px flex items-center justify-center max-lg:h-[40px]'>
+                            <div onClick={() => deletePost(item._id)}
+                             className='bg-primary text-white w-[140px] lg:w-[150px] xl:w-[160px] 2xl:w-[190px] h-[50px] 
+                             text-[15px] font-semibold rounded-10px flex items-center justify-center max-lg:h-[40px]'>
                                 مسح الاعلان
                             </div>
                         </div>
