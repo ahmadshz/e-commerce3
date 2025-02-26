@@ -16,11 +16,11 @@ const Posts = ({ ads, selectedCategory, selectedBrand, setVisibleCount, visibleC
         const days = Math.floor(differenceInSeconds / (3600 * 24));
 
         if (minutes < 60) {
-            return `قبل ${minutes} دقيقة${minutes === 1 ? '' : 'ات'}`;
+            return `قبل ${minutes} دقيقة`;
         } else if (hours < 24) {
-            return `قبل ${hours} ساعة${hours === 1 ? '' : 'ات'}`;
+            return `قبل ${hours} ساعة`;
         } else {
-            return `قبل ${days} يوم${days === 1 ? '' : 'ات'}`;
+            return `قبل ${days} يوم`;
         }
     };
 
@@ -40,29 +40,29 @@ const Posts = ({ ads, selectedCategory, selectedBrand, setVisibleCount, visibleC
                         <Link to={`/singlePost/${item._id}`} className='w-[90%] text-[14px] md:text-[19px] lg:text-[24px] font-semibold'>
                             {item.title}
                         </Link>
-                        <h1 className='text-[10px] md:text-[13px] lg:text-[17px] font-normal text-placeholder'>{item.location}</h1>
+                        <h1 className='py-0 text-[13px] md:text-[15px] font-normal text-placeholder'>{item.location}</h1>
                     </div>
                     <div className='w-4/6 md:w-1/2 xl:w-2/5 flex'>
                         <div className='w-2/4 md:py-2 flex flex-col md:justify-between text-placeholder text-[10px] md:text-[13px] lg:text-[17px]'>
                             <div className='flex gap-1 md:gap-2 items-center'>
                                 <img className='w-4 md:w-5 lg:w-6' src={price} alt='' />
-                                <span className='py-0'>{item.priceUSD}</span>
+                                <span className='py-0 text-[13px] md:text-[15px]'>{item.priceUSD}</span>
                             </div>
                             <div className='flex gap-1 md:gap-2 items-center'>
                                 <img className='w-4 md:w-5 lg:w-6' src={pricesy} alt='' />
-                                <span className='py-0 w-[50%]'>{item.priceSYP}</span>
+                                <span className='py-0 text-[13px] md:text-[15px] w-[50%]'>{item.priceSYP}</span>
                             </div>
                             <div className='flex gap-1 md:gap-2 items-center'>
                                 <img className='w-4 md:w-5 lg:w-6' src={clock} alt='' />
-                                <span className='py-0'>{timeAgo(item.createdAt)}</span>
+                                <span className='py-0 text-[13px] md:text-[15px]'>{timeAgo(item.createdAt)}</span>
                             </div>
                             <div className='flex gap-1 md:gap-2 items-center'>
                                 <img className='w-4 md:w-5 lg:w-6' src={person} alt='' />
-                                <span className='py-0 w-[70%] truncate'>{item.user}</span>
+                                <span className='py-0 text-[13px] md:text-[15px] w-[70%] truncate'>{item.user}</span>
                             </div>
                         </div>
                         <Link to={`/singlePost/${item._id}`} className='w2/4 w-[199px]'>
-                            <img className='h-full object-cover' src={item.images.length > 1 ? item.images[0] : item.images} alt='' />
+                            <img className='h-full w-full object-cover' src={item.images.length > 1 ? item.images[0] : item.images} alt='' />
                         </Link>
                     </div>
                 </div>

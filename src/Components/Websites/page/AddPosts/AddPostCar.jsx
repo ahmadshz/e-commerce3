@@ -7,12 +7,13 @@ import axios from 'axios'; // Import axios for making HTTP requests
 import Cookies from 'universal-cookie';
 import { baseUrl } from '../../../../Api/Api';
 
-const AddPostCar = () => {  const [selectedLocation, setSelectedLocation] = useState('');
+const AddPostCar = () => {
+    const [selectedLocation, setSelectedLocation] = useState('');
     const [selectedBrand, setSelectedBrand] = useState('');
     const [condition, setCondition] = useState('used');
     const [transmission, setTransmission] = useState('manual');
     const [title, setTitle] = useState('');
-    const [images, setImages] = useState([]); // ✅ Store images as an array
+    const [images, setImages] = useState([]); // Store images as an array
     const [priceSYP, setPriceSYP] = useState('');
     const [priceUSD, setPriceUSD] = useState('');
     const [mileage, setMileage] = useState('');
@@ -26,6 +27,10 @@ const AddPostCar = () => {  const [selectedLocation, setSelectedLocation] = useS
     // Convert FileList to an Array
     const handleFileChange = (e) => {
         const files = Array.from(e.target.files);
+        if (files.length > 5) {
+            alert('يمكنك تحميل ما يصل إلى 5 صور فقط.');
+            return;
+        }
         setImages(files);
     };
 
@@ -34,6 +39,13 @@ const AddPostCar = () => {  const [selectedLocation, setSelectedLocation] = useS
 
         // Check if images are selected
         if (images.length === 0) {
+            alert('الرجاء تحميل صورة واحدة على الأقل.');
+            return;
+        }
+
+        // Check if more than 5 images are selected
+        if (images.length > 5) {
+            alert('يمكنك تحميل ما يصل إلى 5 صور فقط.');
             return;
         }
 
@@ -54,7 +66,7 @@ const AddPostCar = () => {  const [selectedLocation, setSelectedLocation] = useS
 
         // Append images correctly
         images.forEach((image) => {
-            formData.append('images', image);
+            formData.append('images', image); // Use 'images' as the field name
         });
 
         try {
@@ -63,7 +75,7 @@ const AddPostCar = () => {  const [selectedLocation, setSelectedLocation] = useS
             // Send request to the correct API endpoint
             const response = await axios.post(`${baseUrl}/ad`, formData, {
                 headers: {
-                    'Authorization':`Bearer ${token}`,
+                    'Authorization': `Bearer ${token}`,
                     'Content-Type': 'multipart/form-data'
                 },
             });
@@ -71,8 +83,10 @@ const AddPostCar = () => {  const [selectedLocation, setSelectedLocation] = useS
             console.log(' تم إضافة الإعلان بنجاح:', response.data);
             alert('تم إضافة الإعلان بنجاح!');
         } catch (error) {
-            console.error(' حدث خطأ أثناء إضافة الإعلان:', error);}
-};
+            console.error(' حدث خطأ أثناء إضافة الإعلان:', error);
+            alert('حدث خطأ أثناء إضافة الإعلان. الرجاء المحاولة مرة أخرى.');
+        }
+    };
 
     return (
         <div className='min-h-screen py-[50px] md:py-[100px] container flex items-center relative'>
@@ -105,21 +119,24 @@ const AddPostCar = () => {  const [selectedLocation, setSelectedLocation] = useS
                     {/* Image Upload Section */}
                     <div className='flex flex-col gap-5 w-full md:w-[395px] lg:w-[532px] xl:w-[668px] 2xl:w-[867px]'>
                         <label className='text-primary text-[20px] lg:text-[25px] font-bold'>الصور :</label>
-                        <div className='relative w-full h-[60px] md:h-[76px] text-placeholder block border-2 border-border rounded-10px text-[16px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none focus:border-primary duration-200 pl-10'>
+                        <div className='relative w-full h-[60px] md:h-[76px] text-placeholder block border-2 border-border rounded-10px
+                         text-[16px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none
+                          focus:border-primary duration-200 pl-10'>
                             {/* Placeholder */}
-                            <div className='absolute inset-0 flex items-center pl-10 text-placeholder'>
+                            <div className='absolute inset-0 pr-2 md:pr-[10px] xl:pr-[20px] flex items-center pl-10 text-placeholder'>
                                 {images && images.length > 0
-                                    ? Array.from(images).map((file, index) => (
-                                        <span key={index}>{file.name}</span>
-                                    ))
+                                    ? <span >{images.length < 2 ? images.length + " صور" : images.length + "صورة"} </span>
                                     : 'انقر هنا لاضافة الصور'}
                             </div>
 
                             {/* File Input */}
                             <input
                                 type='file'
+                                multiple
+                                accept='image/*' // Allow only image files
+                                max={5} // Limit to 5 files
                                 className='absolute inset-0 w-full h-full opacity-0 cursor-pointer'
-                                onChange={handleFileChange} // تحديث هنا
+                                onChange={handleFileChange}
                             />
 
                             {/* Camera Icon */}

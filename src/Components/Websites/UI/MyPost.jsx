@@ -54,11 +54,11 @@ const MyPost = () => {
         const days = Math.floor(differenceInSeconds / (3600 * 24));
 
         if (minutes < 60) {
-            return `قبل ${minutes} دقيقة${minutes === 1 ? '' : 'ات'}`;
+            return `قبل ${minutes} دقيقة`;
         } else if (hours < 24) {
-            return `قبل ${hours} ساع${hours > 10 ? 'ة' : 'ات'}`;
+            return `قبل ${hours} ساعة`;
         } else {
-            return `قبل ${days} ${days === 1 ? 'يوم' : 'ايام'}`;
+            return `قبل ${days} ايام`;
         }
     };
 
@@ -133,7 +133,7 @@ const MyPost = () => {
 
                             {/* Image */}
                             <div className='w-2/6 rounded-10px md:w-1/5 lg:h-full mx-auto lg:w-1/6  md:my-0'>
-                                <img className='h-full object-cover max-lg:w-full max-lg:h-full' src={item.images} alt='' />
+                                <img className='h-full object-cover max-lg:w-full max-lg:h-full' src={item.images.length > 1 ? item.images[0] : item.images} alt='' />
                             </div>
 
                             {/* Buttons */}
@@ -171,7 +171,7 @@ const MyPost = () => {
                 <div className="text-center mb-[5px] md:mb-[10px] lg:mb-[2px] mt-[15px] md:mt-[30px] w-full">
                     <div className="ring-2 ring-border text-[10px] md:text-[13px] lg:text-[17px] mx-auto h-[40px] md:h-[60px] lg:h-[76px] w-[110px] md:w-[150px] lg:w-[250px] rounded-10px flex justify-center items-center font-semibold text-placeholder cursor-pointer"
                     >
-                        لا يوجد المزيد ...
+                        لا يوجد المزيد 
                     </div>
                 </div>
             }

@@ -22,6 +22,8 @@ import AddPostEducation from "./Components/Websites/page/AddPosts/AddPostEducati
 import AddPostParty from "./Components/Websites/page/AddPosts/AddPostParty";
 import AddPostOther from "./Components/Websites/page/AddPosts/AddPostOther";
 import SinglePost from "./Components/Websites/page/SinglePost";
+import RequireBack from "./Pages/Auth/RequireBack";
+import RequireAuth from "./Pages/Auth/RequireAuth";
 
 
 function App() {
@@ -30,12 +32,14 @@ function App() {
       <Routes>
         <Route path="/" element={<Website />} />
         {/*Auth */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/verification" element={<Verification />} />
-        <Route path="/successVerification" element={<SuccessVerification />} />
-        {/*Account login by id */}
-        <Route path="/myaccount" element={<DetailsAccount />} />
+        <Route element={<RequireBack />} >
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/verification" element={<Verification />} />
+          <Route path="/successVerification" element={<SuccessVerification />} />
+        </Route>
+
+
 
 
         {/*Dashboard */}
@@ -44,24 +48,32 @@ function App() {
           <Route path="users/:id" element={<ShowUser />} />
         </Route>
 
-        {/*Start to Add Post */}
-        <Route path="/addpost" element={<AddPost />} />
-        <Route path="intermediate" element={<Intermediate />} />
-        {/* Get Single Post */}
-        <Route path="/singlePost" element={<SinglePost />} />
-        {/*Add Posts */}
-        <Route path="/addPostCar" element={<AddPostCar />} />
-        <Route path="/addPostMotor" element={<AddPostMotor />} />
-        <Route path="/addPostEstate" element={<AddPostEstate />} />
-        <Route path="/addPostDevices" element={<AddPostDevices />} />
-        <Route path="/addPostFurniture" element={<AddPostFurniture />} />
-        <Route path="/addPostForServises" element={<AddPostServices />} />
-        <Route path="/addPostAnimals" element={<AddPostAnimals />} />
-        <Route path="/addPostForJob" element={<AddPostJobs />} />
-        <Route path="/addPostForEducation" element={<AddPostEducation />} />
-        <Route path="/addPostParty" element={<AddPostParty />} />
-        <Route path="/addPostAboutOthers" element={<AddPostOther />} />
 
+        {/* Get Single Post */}
+        <Route path="/singlePost/:id" element={<SinglePost />} />
+
+        {/*Auth */}
+        <Route element={<RequireAuth />}>
+          {/*Details Account Login*/}
+          <Route path="/myaccount" element={<DetailsAccount />} />
+
+          {/*Start to Add Post */}
+          <Route path="/addpost" element={<AddPost />} />
+          <Route path="intermediate" element={<Intermediate />} />
+
+          {/*Add Posts */}
+          <Route path="/addPostCar" element={<AddPostCar />} />
+          <Route path="/addPostMotor" element={<AddPostMotor />} />
+          <Route path="/addPostEstate" element={<AddPostEstate />} />
+          <Route path="/addPostDevices" element={<AddPostDevices />} />
+          <Route path="/addPostFurniture" element={<AddPostFurniture />} />
+          <Route path="/addPostForServises" element={<AddPostServices />} />
+          <Route path="/addPostAnimals" element={<AddPostAnimals />} />
+          <Route path="/addPostForJob" element={<AddPostJobs />} />
+          <Route path="/addPostForEducation" element={<AddPostEducation />} />
+          <Route path="/addPostParty" element={<AddPostParty />} />
+          <Route path="/addPostAboutOthers" element={<AddPostOther />} />
+        </Route>
       </Routes>
     </div>
   );

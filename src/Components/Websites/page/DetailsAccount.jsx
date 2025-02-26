@@ -8,7 +8,7 @@ import MyPost from '../UI/MyPost';
 
 
 const DetailsAccount = () => {
-  const [userDetails, setUserDetails] = useState(null);
+  const [userDetails, setUserDetails] = useState('');
 
   useEffect(() => {
     const cookies = new Cookies();
