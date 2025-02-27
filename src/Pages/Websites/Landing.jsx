@@ -19,30 +19,43 @@ const Landing = () => {
                 params: {
                     search: query,
                     category: selectedCategory,
-                    location: location !== 'جميع المناطق' ? location : undefined, // إذا لم تكن "جميع المناطق"، قم بفلترة حسب الموقع
+                    location: location !== 'جميع المناطق' ? location : undefined,
                 },
                 withCredentials: true,
             });
-            setAds(response.data.ads); // تحديث الإعلانات المعروضة
+            setAds(response.data.ads);
         } catch (err) {
             console.error('Error fetching ads:', err);
         }
     };
+
     useEffect(() => {
         fetchAds(searchQuery, selectedLocation);
-    }, [searchQuery, selectedCategory, selectedBrand, selectedLocation]); // أضف selectedLocation إلى قائمة الاعتمادات
+        setVisibleCount(10); // Reset visible count only when filters change
+    }, [searchQuery, selectedCategory, selectedBrand, selectedLocation]);
+    
+    const handleSearch = (query) => setSearchQuery(query);
+    const handleLocationChange = (loc) => setSelectedLocation(loc);
 
-    const handleSearch = (query) => setSearchQuery(query); // تحديث البحث
-    const handleLocationChange = (loc) => setSelectedLocation(loc); // تحديث الموقع
+    const handleCategoryChange = (category) => {
+        setSelectedCategory(category);
+    };
 
+    const handleBrandChange = (brand) => {
+        setSelectedBrand(brand);
+    };
+
+    const handleShowMore = () => {
+        setVisibleCount((prev) => prev + 10); // Increase by 10 instead of 1
+    };
+    
 
     return (
         <div className='flex flex-col gap-[10px] md:gap-5 xl:gap-7'>
             <SubNavbar onSearch={handleSearch} onLocationChange={handleLocationChange} />
-            <CategoryNavbar
-            />
+            <CategoryNavbar onCategoryChange={handleCategoryChange} onBrandChange={handleBrandChange} />
             <div className="min-h-[50vh] container flex gap-[10px] md:gap-5 xl:gap-7">
-                <div className=" w-full  md:w-[1138px] ">
+                <div className="w-full md:w-[1138px]">
                     <Posts
                         selectedCategory={selectedCategory}
                         selectedBrand={selectedBrand}
@@ -51,16 +64,21 @@ const Landing = () => {
                         ads={ads}
                     />
                 </div>
-                <div className="hidden lg:block bg-bgsecondary w-[455px] "></div>
+                <div className="hidden lg:block bg-bgsecondary w-[455px]"></div>
             </div>
 
             <div className="text-center mb-[5px] md:mb-[10px] lg:mb-[2px] mt-[15px] md:mt-[30px] w-full">
-                <div
-
-                    className="ring-2 ring-border text-[10px] md:text-[13px] lg:text-[17px] mx-auto h-[40px] md:h-[60px] lg:h-[76px] w-[110px] md:w-[150px] lg:w-[250px] rounded-10px flex justify-center items-center font-semibold text-placeholder cursor-pointer"
-                >
-                    مشاهدة المزيد ...
+            {visibleCount < ads.length && (
+                <div className="text-center mb-[5px] md:mb-[10px] lg:mb-[2px] mt-[15px] md:mt-[30px] w-full">
+                    <div
+                        onClick={handleShowMore}
+                        className="ring-2 ring-border text-[10px] md:text-[13px] lg:text-[17px] mx-auto h-[40px] md:h-[60px] lg:h-[76px] w-[110px] md:w-[150px] lg:w-[250px] rounded-10px flex justify-center items-center font-semibold text-placeholder cursor-pointer"
+                    >
+                        مشاهدة المزيد ...
+                    </div>
                 </div>
+            )}
+            
             </div>
         </div>
     );

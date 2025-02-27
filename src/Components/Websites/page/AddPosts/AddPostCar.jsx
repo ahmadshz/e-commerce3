@@ -151,16 +151,16 @@ const AddPostCar = () => {
                                 <div className='w-full md:w-[560px] h-[60px] md:h-[76px] flex gap-5'>
                                     <RadioButton
                                         label='مستعمل'
-                                        value='مستعمل'
+                                        value='used'
                                         name='status'
-                                        onChange={() => setCondition('مستعمل')}
+                                        onChange={() => setCondition('used')}
                                         className='w-1/2 md:w-[118px]'
                                     />
                                     <RadioButton
                                         label='جديد'
-                                        value='جديد'
+                                        value='new'
                                         name='status'
-                                        onChange={() => setCondition('جديد')}
+                                        onChange={() => setCondition('new')}
                                         className='w-1/2 md:w-[118px]'
                                     />
                                 </div>
@@ -185,16 +185,16 @@ const AddPostCar = () => {
                                 <div className='w-full h-[60px] md:h-[76px] flex gap-5'>
                                     <RadioButton
                                         label='عادي'
-                                        value='عادي'
+                                        value='manual'
                                         name='gear'
-                                        onChange={() => setTransmission('عادي')}
+                                        onChange={() => setTransmission('manual')}
                                         className='w-1/2 md:w-[118px]'
                                     />
                                     <RadioButton
                                         label='أوتوماتيك'
-                                        value='أوتوماتيك'
+                                        value='automatic'
                                         name='gear'
-                                        onChange={() => setTransmission('أوتوماتيك')}
+                                        onChange={() => setTransmission('automatic')}
                                         className='w-1/2 md:w-[118px]'
                                     />
                                 </div>

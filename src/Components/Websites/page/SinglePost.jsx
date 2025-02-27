@@ -10,23 +10,22 @@ import { baseUrl } from '../../../Api/Api';
 import Footer from '../Footer/Footer';
 
 const SinglePost = () => {
-    const [ad, setAd] = useState(''); // Initialize as null or an empty object
+    const [ad, setAd] = useState([]);
     const { id } = useParams();
-
-    const fetchData = async () => {
-        try {
-            const res = await axios.get(`${baseUrl}/ad/${id}`);
-            setAd(res.data); // Set the single ad object
-        } catch (err) {
-            console.log(err);
-        }
-    };
+    const [selectedImage, setSelectedImage] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const res = await axios.get(`${baseUrl}/ad/${id}`);
+                setAd(res.data);
+            } catch (err) {
+                console.log(err);
+            }
+        };
         fetchData();
     }, [id]);
-
-
 
     const timeAgo = (timestamp) => {
         const now = new Date();
@@ -37,100 +36,106 @@ const SinglePost = () => {
         const hours = Math.floor(differenceInSeconds / 3600);
         const days = Math.floor(differenceInSeconds / (3600 * 24));
 
-        if (minutes < 60) {
-            return `قبل ${minutes} دقيقة${minutes === 1 ? '' : 'ات'}`;
-        } else if (hours < 24) {
-            return `قبل ${hours} ساع${hours > 10 ? 'ة' : 'ات'}`;
-        } else {
-            return `قبل ${days} ${days === 1 ? 'يوم' : 'ايام'}`;
-        }
+        if (minutes < 60) return `قبل ${minutes} دقيقة`;
+        if (hours < 24) return `قبل ${hours} ساعة`;
+        return `قبل ${days} يوم`;
+    };
+
+    const handleImageClick = (image) => {
+        setSelectedImage(image);
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+        setSelectedImage(null);
     };
 
     return (
-        <div className='flex flex-col gap-[100px]'>
+        <div className='flex flex-col gap-[40px] md:gap-[100px]'>
             <MainHeader />
-            <div className="min-h-screen container flex gap-[10px] md:gap-5 xl:gap-7">
+            <div className="min-h-screen container flex flex-col md:flex-row gap-5">
                 <div className="w-full md:w-[1138px]">
-                    {/* Render the single ad */}
-                    <div className='bg-background w-full h-[155px] flex'>
-                        <div className='w-3/5 md:py-2 pr-2 md:pr-[10px] xl:pr-[20px] flex flex-col justify-between'>
-                            <div className='text-[15px] md:text-[19px] lg:text-[24px] font-semibold'>{ad.title}</div>
-                            <div className='text-[13px] lg:text-[15px] font-normal text-placeholder'>{ad.location}</div>
+                    <div className='bg-background p-4 h-[155px] flex flex-row justify-between'>
+                        <div className='h-full flex flex-col justify-between'>
+                            <div className='text-[17px] md:text-[19px] lg:text-[24px] font-semibold'>{ad.title}</div>
+                            <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>{ad.location}</p>
                         </div>
-                        {/* Details Post like Mileage */}
-                        <div className='w-1/5'>
-                            <div className='xl:pr-16 md:py-2 flex flex-col md:justify-evenly h-full text-placeholder text-[10px] md:text-[13px] lg:text-[17px]'>
-                                <div className='flex gap-1 md:gap-2 items-center'>
-                                    <span className='text-[13px] md:text-[15px] '>النوع: </span>
-                                    <span className='py-0 text-[13px] md:text-[15px]'>{ad.type}</span>
+                        <div className='flex gap-4 text-placeholder'>
+
+                            {ad.category === 'car' && (
+                                <div className='hidden  lg:flex flex-col justify-around'>
+                                    <p className='text-[13px] lg:text-[15px] font-normal text-placeholder '>النوع: {ad.vehicleType}</p>
+                                    <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>الحالة: {ad.condition}</p>
+                                    <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>القير: {ad.transmission}</p>
+                                    <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>الممشى: {ad.mileage}</p>
                                 </div>
-                                <div className='flex gap-1 md:gap-2 items-center'>
-                                    <span className='text-[13px] md:text-[15px] '>الحالة:</span>
-                                    <span className='py-0 text-[13px] md:text-[15px]'>{ad.status}</span>
+                            )}
+                            <div className='flex flex-col justify-around'>
+                                <div className='flex items-center  gap-1'>
+                                    <img className='w-4 md:w-5' src={price} alt='' />
+                                    <span className='text-[13px] lg:text-[15px] font-normal text-placeholder'>{ad.priceUSD}</span>
                                 </div>
-                                <div className='flex gap-1 md:gap-2 items-center w-[100%]'>
-                                    <span className='text-[13px] md:text-[15px] '>القير :</span>
-                                    <span className='py-0 text-[13px] md:text-[15px]'>{ad.gear}</span>
+                                <div className='flex items-center gap-1'>
+                                    <img className='w-4 md:w-5' src={pricesy} alt='' />
+                                    <span className='text-[13px] lg:text-[15px] font-normal text-placeholder'>{ad.priceSYP}</span>
                                 </div>
-                                <div className='flex gap-1 md:gap-2 items-center'>
-                                    <span className='text-[13px] md:text-[15px] '>الممشى :</span>
-                                    <span className='py-0 w-[50%] md:w-auto text-[13px] md:text-[15px]'>{ad.mileage}</span>
+                                <div className='flex items-center gap-1'>
+                                    <img className='w-4 md:w-5' src={clock} alt='' />
+                                    <span className='text-[13px] lg:text-[15px] font-normal text-placeholder'>{timeAgo(ad.createdAt)}</span>
                                 </div>
+                                <div className='flex items-center gap-1'>
+                                    <img className='w-4 md:w-5' src={person} alt='' />
+                                    <span className='text-[13px] lg:text-[15px] font-normal text-placeholder'>{ad.user?.username}</span>
+                                </div>
+
                             </div>
+
                         </div>
-                        <div className='w-1/5'>
-                            <div className='md:py-2 flex flex-col md:justify-evenly h-full text-placeholder text-[10px] md:text-[13px] lg:text-[17px]'>
-                                <div className='flex gap-1 md:gap-2 items-center'>
-                                    <img className='w-3 md:w-5 lg:w-6 max-lg:w-5' src={price} alt='' />
-                                    <span className='py-0 text-[13px] md:text-[15px]'>{ad.priceUSD}</span>
-                                </div>
-                                <div className='flex gap-1 md:gap-2 items-center'>
-                                    <img className='w-3 md:w-5 lg:w-6 max-lg:w-5' src={pricesy} alt='' />
-                                    <span className='py-0 text-[13px] md:text-[15px]'>{ad.priceSYP}</span>
-                                </div>
-                                <div className='flex gap-1 md:gap-2 items-center w-[100%]'>
-                                    <img className='w-3 md:w-5 lg:w-6 max-lg:w-5' src={clock} alt='' />
-                                    <span className='py-0 text-[13px] md:text-[15px]'>{timeAgo(ad.createdAt)}</span>
-                                </div>
-                                <div className='flex gap-1 md:gap-2 items-center'>
-                                    <img className='w-3 md:w-5 lg:w-6 max-lg:w-5' src={person} alt='' />
-                                    <span className='py-0 w-[50%] md:w-auto text-[13px] md:text-[15px]'>{ad.user?.username}</span>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
-                    <div className='my-8 flex flex-col'>
-                        <span className='text-[13px] md:text-[15px] '>هوندا اكورد EX 2015</span>
-                        <span className='text-[13px] md:text-[15px] ' >بنزين</span>
-                        <span className='text-[13px] md:text-[15px] ' >قير اوتماتيك</span>
-                        <span className='text-[13px] md:text-[15px] ' >الممشى: 300 ألف كيلو</span>
-                        <span className='text-[13px] md:text-[15px] '>{ad.description}</span>
-                       
-                    </div>
-                    <div className='custom-scrollbar w-full overflow-x-auto whitespace-nowrap'>
-                        {ad.images && ad.images.length > 1 ? (
-                            <div className='inline-flex gap-2'>
-                                {ad.images.map((image, index) => (
-                                    <img
-                                        key={index}
-                                        className=' w-[500px] h-[620px] object-cover inline-block'
-                                        src={image}
-                                        alt={``}
-                                    />
-                                ))}
+
+                    <div className='my-6 space-y-4 p-4 bg-gray-200 lg:bg-transparent rounded-lg'>
+                        <p className='text-md'>{ad.description}</p>
+                        {ad.category === 'real_estate' && (
+                            <div className='space-y-2'>
+                                <p>نوع العقار: {ad.propertyType}</p>
+                                <p>نوع الطابو: {ad.deedType}</p>
+                                <p>مشروع سكني جديد: {ad.newHousingProject ? 'نعم' : 'لا'}</p>
                             </div>
-                        ) : (
-                            // Render a single image
-                            <img
-                                className='w-[500px] h-[620px] object-cover'
-                                src={ad.images?.[0]}
-                                alt=''
-                            />
                         )}
+                        {ad.category === 'car' && (
+                            <div className='space-y-2 block lg:hidden'>
+                                <p>النوع: {ad.vehicleType}</p>
+                                <p>الحالة: {ad.condition}</p>
+                                <p>القير: {ad.transmission}</p>
+                                <p>الممشى: {ad.mileage}</p>
+                            </div>
+                        )}
+                    </div>
+
+                    <div className='w-full custom-scrollbar overflow-x-auto flex gap-2 py-4'>
+                        {ad.images?.map((image, index) => (
+                            <img
+                                key={index}
+                                className='w-[200px] h-[300px] md:w-[350px] md:h-[450px] object-cover cursor-pointer '
+                                src={image}
+                                alt=''
+                                onClick={() => handleImageClick(image)}
+                            />
+                        ))}
                     </div>
                 </div>
                 <div className="hidden lg:block bg-bgsecondary w-[455px]"></div>
             </div>
+            {isModalOpen && (
+                <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50" onClick={closeModal}>
+                    <div className="relative">
+                        <img src={selectedImage} alt="Selected" className="max-w-[90vw] max-h-[90vh] object-contain" />
+                        <button className="absolute top-2 right-2 bg-white rounded-full p-2 text-black hover:bg-gray-200" onClick={closeModal}>✕</button>
+                    </div>
+                </div>
+            )}
             <Footer />
         </div>
     );

@@ -28,7 +28,7 @@ import old from '../assets/Carandothers/used-1.svg'
 export const data = [
     {
         title: "دلال المركبات",
-        category: "Car",
+        category: "car",
         brands: [
             { arabic: "شاحنات", english: "Trucks" },
             { arabic: "قطع غيار ", english: "spare parts" },
@@ -231,6 +231,7 @@ export const data = [
     },
     {
         title: "الوظيفة ",
+        category: "job",
         brands: ["وظائف إدارية", "وظائف أزياء وتجميل", "وظائف أمن وسلامة", "وظائف تعليمية", "وظائف تقنية وتصميم", "وظائف زراعة ورعي", "وظائف صناعية", "وظائف طب وتمريض", "وظائف عمارة وبناء", "وظائف عمالة منزلية", "وظائف مطاعم", "وظائف المبيعات وخدمة العملاء", "وظائف النقل والمواصلات", "وظائف الإعلام والإعلان", "وظائف السياحة والفندقة", "وظائف رياضية", "وظائف بحرية"],
         path: "/addPostForJob",
         add: "انشر إعلانك للبحث عن موظفين  أو نشر إعلانك للبحث عن وظيفة",
@@ -252,6 +253,7 @@ export const data = [
     },
     {
         title: "مستعمل",
+        category: "used",
         path: "/addPostAboutOthers",
         add: "لبيع أو شراء أشياء مستعملة؟ أضف إعلانك هنا",
         icon: old,
@@ -268,6 +270,7 @@ export const data = [
     },
     {
         title: "حفلات ومناسبات",
+        category: "party",
         brands: ["تنظيم حفلات", "تأجير معدات", "تصوير فوتوغرافي وفيديو", "تصميم الدعوات"],
         path: "/addPostParty",
         add: "أعلن عن أعمال حفلاتك أو مناسباتك أو أعرض طلبك للبحث عن الجهة المناسبة",
@@ -276,6 +279,7 @@ export const data = [
     },
     {
         title: "المزيد",
+        category: "others",
         path: "/addPostAboutOthers",
         add: "لديك شيء مختلف؟ أضف إعلانك في هذه الفئة",
         icon: use,

@@ -11,8 +11,8 @@ import DeletePost from './DeletePost';
 const MyPost = () => {
     const [ads, setAds] = useState([]);
     const [showDelete, setShowDelete] = useState(false);
-    const [selectedAdId, setSelectedAdId] = useState(null); 
-    const [visiblePosts, setVisiblePosts] = useState(2); 
+    const [selectedAdId, setSelectedAdId] = useState(null);
+    const [visiblePosts, setVisiblePosts] = useState(2);
 
     const cookies = new Cookies();
     const token = cookies.get('auth_token');
@@ -63,8 +63,8 @@ const MyPost = () => {
     };
 
     const ShowdeletePost = (id) => {
-        setSelectedAdId(id); 
-        setShowDelete(true); 
+        setSelectedAdId(id);
+        setShowDelete(true);
     };
 
     // Delete Post 
@@ -77,23 +77,23 @@ const MyPost = () => {
             });
             console.log('Ad deleted successfully', response);
             fetchData();
-            setShowDelete(false); 
+            setShowDelete(false);
         } catch (err) {
             console.error('Error deleting ad:', err);
         }
     };
 
     const handleShowMore = () => {
-        setVisiblePosts((prev) => prev + 2); 
+        setVisiblePosts((prev) => prev + 2);
     };
 
     return (
         <div className='mt-10 md:mt-16'>
-            
+
             {showDelete && (
                 <DeletePost
-                    closeDelete={() => setShowDelete(false)} 
-                    deletePost={() => deletePost(selectedAdId)} 
+                    closeDelete={() => setShowDelete(false)}
+                    deletePost={() => deletePost(selectedAdId)}
                 />
             )}
 
@@ -157,7 +157,7 @@ const MyPost = () => {
             )}
 
             {/* Show More Button */}
-            {ads.length > visiblePosts ? (
+            {ads.length > visiblePosts && (
                 <div className="text-center mb-[5px] md:mb-[10px] lg:mb-[2px] mt-[15px] md:mt-[30px] w-full">
                     <div
                         onClick={handleShowMore}
@@ -167,13 +167,7 @@ const MyPost = () => {
                     </div>
                 </div>
             )
-                :
-                <div className="text-center mb-[5px] md:mb-[10px] lg:mb-[2px] mt-[15px] md:mt-[30px] w-full">
-                    <div className="ring-2 ring-border text-[10px] md:text-[13px] lg:text-[17px] mx-auto h-[40px] md:h-[60px] lg:h-[76px] w-[110px] md:w-[150px] lg:w-[250px] rounded-10px flex justify-center items-center font-semibold text-placeholder cursor-pointer"
-                    >
-                        لا يوجد المزيد 
-                    </div>
-                </div>
+
             }
         </div>
     );
