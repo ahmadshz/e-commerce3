@@ -252,7 +252,7 @@ export const data = [
     },
     {
         title: "مستعمل",
-        path: "/addPostOld",
+        path: "/addPostAboutOthers",
         add: "لبيع أو شراء أشياء مستعملة؟ أضف إعلانك هنا",
         icon: old,
         iconcolor: oldcolor,
