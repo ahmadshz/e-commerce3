@@ -12,8 +12,8 @@ const AddPostMotor = () => {
     const [title, setTitle] = useState('');
     const [selectedLocation, setSelectedLocation] = useState('اختر عنوان الاعلان');
     const [selectedBrand, setSelectedBrand] = useState('اختر الماركة');
-    const [status, setStatus] = useState('used');
-    const [gear, setGear] = useState('normal');
+    const [status, setStatus] = useState('');
+    const [gear, setGear] = useState('');
     const [priceSYP, setPriceSYP] = useState('');
     const [priceUSD, setPriceUSD] = useState('');
     const [mileage, setMileage] = useState('');
@@ -37,7 +37,7 @@ const AddPostMotor = () => {
         const formData = new FormData();
         formData.append('title', title);
         formData.append('location', selectedLocation);
-        formData.append('brand', selectedBrand);
+        formData.append('vehicleType', selectedBrand);
         formData.append('condition', status);
         formData.append('gear', gear);
         formData.append('priceSYP', priceSYP);

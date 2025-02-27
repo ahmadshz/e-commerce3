@@ -1,12 +1,26 @@
 // src/components/Sidebar.js
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { RiCloseLine } from 'react-icons/ri';
+import { RiCloseLine, RiStarSFill } from 'react-icons/ri';
+import { IoIosArrowBack } from 'react-icons/io';
+import { FaRegQuestionCircle, FaTiktok, FaTwitter } from 'react-icons/fa';
+import { GoPlus } from 'react-icons/go';
+import { FiLogIn } from 'react-icons/fi';
+import { MdCardMembership, MdOutlineAccountCircle, MdOutlinePrivacyTip, MdOutlineProductionQuantityLimits, MdOutlineSecurity } from 'react-icons/md';
+import { ImFacebook2 } from 'react-icons/im';
+import { SiInstagram } from 'react-icons/si';
+import { GrSnapchat } from 'react-icons/gr';
+import Cookies from 'universal-cookie';
 
 const SideBar = ({ isSidebarOpen, toggleSidebar }) => {
-  // Check if the user is logged in (example: cookie called 'userLoggedIn')
-  const isLoggedIn = document.cookie.includes('userLoggedIn=true'); // Change this as per your cookie name and value logic
-  
+
+  const cookies = new Cookies();
+  const token = cookies.get('auth_token');
+
+  const logout = () => {
+    cookies.remove('auth_token', { path: '/' });
+  };
+
   return (
     <div>
       {isSidebarOpen && (
@@ -14,38 +28,106 @@ const SideBar = ({ isSidebarOpen, toggleSidebar }) => {
       )}
 
       <div
-        className={`fixed lg:hidden top-0 left-0 h-full w-64 bg-white shadow-lg z-50 transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300`}
+        className={`fixed lg:hidden top-0 right-0 h-full w-64 bg-[#f1ecea] shadow-lg z-50 transform ${isSidebarOpen ? 'translate-x-0' : 'translate-x-full'
+          } transition-transform duration-300`}
       >
-        <div className='p-4 relative'>
-          <button className='absolute top-4 left-4 text-gray-800' onClick={toggleSidebar}>
-            <RiCloseLine size={30} />
+        <div className=' relative flex flex-col '>
+          <button className='absolute  top-3 left-2 text-gray-800' onClick={toggleSidebar}>
+            <RiCloseLine size={25} />
           </button>
-          <h2 className='text-xl font-bold mb-4'>القائمة</h2>
-          <ul className='space-y-4'>
-            {/* Conditionally render the links based on login state */}
-            {isLoggedIn ? (
-              // If logged in, show logout
-              <li>
-                <Link to='/logout' className='block text-gray-800' onClick={toggleSidebar}>
-                  الخروج
-                </Link>
-              </li>
-            ) : (
-              // If not logged in, show login and my account
-              <div>
-                <li>
-                  <Link to='/login' className='block text-gray-800' onClick={toggleSidebar}>
-                    تسجيل الدخول
-                  </Link>
-                </li>
-                <li>
-                  <Link to='/myaccount' className='block text-gray-800' onClick={toggleSidebar}>
-                    حسابي
-                  </Link>
-                </li>
+          <h2 className='text-[15px] bg-white font-bold mb-2 text-right px-4 py-4'>القائمة </h2>
+
+          <div className='flex flex-col bg-white mb-2 '>
+            <div className='flex justify-between items-center border-b border-border px-2 '>
+
+              <div className='flex items-center gap-1  py-4'>
+                <FiLogIn size={15} />
+                {
+                  token ? <div onClick={logout} className='text-[12px]'> تسجيل الخروج</div> :
+                    <Link to={'/login'} className='text-[12px]'>تسجيل الدخول او انشاء حساب</Link>
+                }
               </div>
-            )}
-          </ul>
+              <IoIosArrowBack size={15} />
+            </div>
+            <div className='flex justify-between items-center border-b border-border px-2'>
+
+              <div className='flex items-center gap-1  py-4 '>
+                <GoPlus size={16} />
+                <Link to={'/addpost'} className='text-[12px]'>اضافة اعلان</Link>
+              </div>
+              <IoIosArrowBack size={15} />
+            </div>
+            <div className='flex justify-between items-center border-b border-border px-2'>
+
+              <div className='flex items-center gap-1  py-4 '>
+                <MdOutlineAccountCircle size={16} />
+                <Link to={'/myaccount'} className='mr-1 text-[12px]'> حسابي</Link>
+              </div>
+              <IoIosArrowBack size={15} />
+            </div>
+
+
+          </div>
+
+          <div className='flex flex-col bg-white mb-2'>
+            <div className='flex justify-between items-center border-b bg-white border-border px-2'>
+              <div className='flex items-center gap-1  py-4 '>
+                <MdCardMembership size={16} />
+                <Link to={'/'} className='mr-1 text-[12px]'> توثيق العضوية
+                </Link>
+              </div>
+              <IoIosArrowBack size={15} />
+            </div>
+            <div className='flex justify-between items-center border-b bg-white border-border px-2'>
+              <div className='flex items-center gap-1  py-4 '>
+                <FaRegQuestionCircle size={16} />
+                <Link to={'/'} className='mr-1 text-[12px]'> الأسئلة الشائعة</Link>
+              </div>
+              <IoIosArrowBack size={15} />
+            </div>
+
+            <div className='flex justify-between items-center border-b bg-white border-border px-2'>
+              <div className='flex items-center gap-1  py-4 '>
+                <MdOutlineProductionQuantityLimits size={16} />
+                <Link to={'/'} className='mr-1 text-[12px]'>قائمة السلع والاعلانات الممنوعة</Link>
+              </div>
+              <IoIosArrowBack size={15} />
+            </div>
+          </div>
+          <div className='flex flex-col bg-white mb-2'>
+            <div className='flex justify-between items-center border-b bg-white border-border px-2'>
+              <div className='flex items-center gap-1  py-4 '>
+                <MdOutlinePrivacyTip size={16} />
+                <Link to={'/'} className='mr-1 text-[12px]'> سياسة الخصوصية</Link>
+              </div>
+              <IoIosArrowBack size={15} />
+            </div>
+            <div className='flex justify-between items-center border-b bg-white border-border px-2'>
+              <div className='flex items-center gap-1  py-4 '>
+                <MdOutlineSecurity size={16} />
+                <Link to={'/'} className='mr-1 text-[12px]'>مركز الأمان</Link>
+              </div>
+              <IoIosArrowBack size={15} />
+            </div>
+            <div className='flex justify-between items-center border-b bg-white border-border px-2'>
+              <div className='flex items-center gap-1  py-4 '>
+                <RiStarSFill size={16} />
+                <Link to={'/'} className='mr-1 text-[12px]'>نظام التقييم</Link>
+              </div>
+              <IoIosArrowBack size={15} />
+            </div>
+          </div>
+
+          <div className='flex flex-wrap mx-4 gap-2 items-center justify-center mt-4  '>
+            <div className=' flex flex-wrap gap-3 justify-center'>
+              <ImFacebook2 size={30} className='text-[#FF936D]' />
+              <SiInstagram size={30} className='text-[#FF936D]' />
+              <GrSnapchat size={30} className='text-[#FF936D]' />
+              <FaTiktok size={30} className='text-[#FF936D]' />
+              <FaTwitter size={30} className='text-[#FF936D]' />
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
