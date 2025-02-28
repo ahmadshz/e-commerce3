@@ -83,6 +83,20 @@ const MyPost = () => {
         }
     };
 
+    const updatePost = async (id) => {
+        try {
+            const response = await axios.put(`${baseUrl}/ad/${id}/refresh `, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            console.log('Ad updated successfully', response);
+            fetchData();
+        } catch (err) {
+            console.error('Error updating ad:', err);
+        }
+    };
+
     const handleShowMore = () => {
         setVisiblePosts((prev) => prev + 2);
     };
@@ -138,7 +152,9 @@ const MyPost = () => {
 
                             {/* Buttons */}
                             <div className='flex lg:w-1/6 mx-auto w-full py-4 lg:py-0 lg:flex-col justify-center lg:h-full gap-4 items-center lg:mx-4 xl:mx-0'>
-                                <div className='bg-primary text-white w-[140px] lg:w-[150px] xl:w-[160px] 2xl:w-[190px] h-[50px] text-[15px] font-semibold rounded-10px flex items-center justify-center max-lg:h-[40px]'>
+                                <div
+                                    onClick={() => updatePost(item._id)}
+                                    className='bg-primary text-white w-[140px] lg:w-[150px] xl:w-[160px] 2xl:w-[190px] h-[50px] text-[15px] font-semibold rounded-10px flex items-center justify-center max-lg:h-[40px]'>
                                     تحديث الاعلان
                                 </div>
                                 <div

@@ -40,82 +40,82 @@ const SideBar = ({ isSidebarOpen, toggleSidebar }) => {
           <div className='flex flex-col bg-white mb-2 '>
             <div className='flex justify-between items-center border-b border-border px-2 '>
 
-              <div className='flex items-center gap-1  py-4'>
-                <FiLogIn size={15} />
+              <Link onClick={logout} to={'/login'} className='flex items-center gap-1  py-4'>
+                <FiLogIn className={` ${token ? 'text-primary'  : ' text-green-600'}`} size={15} />
                 {
-                  token ? <div onClick={logout} className='text-[12px]'> تسجيل الخروج</div> :
-                    <Link to={'/login'} className='text-[12px]'>تسجيل الدخول او انشاء حساب</Link>
+                  token ? <div  className='text-[12px] text-primary'> تسجيل الخروج</div> :
+                    <div className='text-[12px] '>تسجيل الدخول او انشاء حساب</div>
                 }
-              </div>
-              <IoIosArrowBack size={15} />
+              </Link>
+              <IoIosArrowBack className={` ${token ? 'text-primary'  : ' '}`} size={15} />
             </div>
-            <div className='flex justify-between items-center border-b border-border px-2'>
+            <Link to={'/addpost'} className='flex justify-between items-center border-b border-border px-2'>
 
               <div className='flex items-center gap-1  py-4 '>
                 <GoPlus size={16} />
-                <Link to={'/addpost'} className='text-[12px]'>اضافة اعلان</Link>
+                <div className='text-[12px]'>اضافة اعلان</div>
               </div>
               <IoIosArrowBack size={15} />
-            </div>
-            <div className='flex justify-between items-center border-b border-border px-2'>
+            </Link>
+            <Link to={'/myaccount'} className='flex justify-between items-center border-b border-border px-2'>
 
               <div className='flex items-center gap-1  py-4 '>
                 <MdOutlineAccountCircle size={16} />
-                <Link to={'/myaccount'} className='mr-1 text-[12px]'> حسابي</Link>
+                <div className='mr-1 text-[12px]'> حسابي</div>
               </div>
               <IoIosArrowBack size={15} />
-            </div>
+            </Link>
 
 
           </div>
 
           <div className='flex flex-col bg-white mb-2'>
-            <div className='flex justify-between items-center border-b bg-white border-border px-2'>
+            <Link to={'/'} className='flex justify-between items-center border-b bg-white border-border px-2'>
               <div className='flex items-center gap-1  py-4 '>
                 <MdCardMembership size={16} />
-                <Link to={'/'} className='mr-1 text-[12px]'> توثيق العضوية
-                </Link>
+                <div className='mr-1 text-[12px]'> توثيق العضوية
+                </div>
               </div>
               <IoIosArrowBack size={15} />
-            </div>
-            <div className='flex justify-between items-center border-b bg-white border-border px-2'>
+            </Link>
+            <Link to={'/'} className='flex justify-between items-center border-b bg-white border-border px-2'>
               <div className='flex items-center gap-1  py-4 '>
                 <FaRegQuestionCircle size={16} />
-                <Link to={'/'} className='mr-1 text-[12px]'> الأسئلة الشائعة</Link>
+                <div className='mr-1 text-[12px]'> الأسئلة الشائعة</div>
               </div>
               <IoIosArrowBack size={15} />
-            </div>
+            </Link>
 
-            <div className='flex justify-between items-center border-b bg-white border-border px-2'>
+            <Link to={'/'} className='flex justify-between items-center border-b bg-white border-border px-2'>
               <div className='flex items-center gap-1  py-4 '>
                 <MdOutlineProductionQuantityLimits size={16} />
-                <Link to={'/'} className='mr-1 text-[12px]'>قائمة السلع والاعلانات الممنوعة</Link>
+                <div className='mr-1 text-[12px]'>قائمة السلع والاعلانات الممنوعة</div>
               </div>
               <IoIosArrowBack size={15} />
-            </div>
+            </Link>
           </div>
           <div className='flex flex-col bg-white mb-2'>
-            <div className='flex justify-between items-center border-b bg-white border-border px-2'>
+            <Link to={'/'} className='flex justify-between items-center border-b bg-white border-border px-2'>
               <div className='flex items-center gap-1  py-4 '>
                 <MdOutlinePrivacyTip size={16} />
-                <Link to={'/'} className='mr-1 text-[12px]'> سياسة الخصوصية</Link>
+                <div className='mr-1 text-[12px]'> سياسة الخصوصية</div>
               </div>
               <IoIosArrowBack size={15} />
-            </div>
-            <div className='flex justify-between items-center border-b bg-white border-border px-2'>
+            </Link>
+            <Link to={'/'} className='flex justify-between items-center border-b bg-white border-border px-2'>
               <div className='flex items-center gap-1  py-4 '>
                 <MdOutlineSecurity size={16} />
-                <Link to={'/'} className='mr-1 text-[12px]'>مركز الأمان</Link>
+                <div className='mr-1 text-[12px]'>مركز الأمان</div>
               </div>
               <IoIosArrowBack size={15} />
-            </div>
-            <div className='flex justify-between items-center border-b bg-white border-border px-2'>
+            </Link>
+            <Link to={'/'} className='flex justify-between items-center border-b bg-white border-border px-2'>
               <div className='flex items-center gap-1  py-4 '>
                 <RiStarSFill size={16} />
-                <Link to={'/'} className='mr-1 text-[12px]'>نظام التقييم</Link>
+                <div className='mr-1 text-[12px]'>نظام التقييم</div>
               </div>
               <IoIosArrowBack size={15} />
-            </div>
+            </Link>
           </div>
 
           <div className='flex flex-wrap mx-4 gap-2 items-center justify-center mt-4  '>

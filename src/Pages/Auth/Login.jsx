@@ -44,15 +44,15 @@ const Login = () => {
                 {/* Form Container */}
                 <div className='w-full sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-[635px] h-auto sm:h-auto flex flex-col gap-4 border-2 border-primary rounded-10px bg-white'>
                     {/* Header */}
-                    <div className='bg-primary flex items-center text-white  rounded-t-10px  h-[70px] lg:h-[85px] px-6'>
+                    <div className='bg-primary flex items-center text-white  rounded-t-10px  h-[60px] lg:h-[85px] px-6'>
                         <h1 className=' text-[20px] lg:text-[25px] font-bold'>تسجيل الدخول</h1>
                         
                     </div>
 
                     {/* Form */}
-                    <form className='flex flex-col gap-4 sm:gap-[20px] py-4 px-6' onSubmit={handleSubmit}>
+                    <form className='flex flex-col gap-2 sm:gap-[20px]  lg:py-4 px-6' onSubmit={handleSubmit}>
                         {/* Email Input */}
-                        <div className='flex flex-col xl:flex-row justify-between xl:items-center gap-4 xl:gap-2'>
+                        <div className='flex flex-col xl:flex-row justify-between xl:items-center gap-2 lg:gap-4 xl:gap-2'>
                             <label className='text-[16px] lg:text-[20px] font-semibold w-[230px]'> اسم المستخدم </label>
                             <input
                                 type="text"
@@ -65,7 +65,7 @@ const Login = () => {
                         </div>
 
                         {/* Password Input */}
-                        <div className="relative flex flex-col xl:flex-row justify-between xl:items-center gap-4 xl:gap-2">
+                        <div className="relative flex flex-col xl:flex-row justify-between xl:items-center gap-2 lg:gap-4 xl:gap-2">
                             <label className=' text-[16px] lg:text-[20px] w-[230px] font-semibold'> كلمة المرور </label>
                             <input
                                 type={show ? 'text' : 'password'}
@@ -79,7 +79,7 @@ const Login = () => {
                             <button
                                 type="button"
                                 onClick={togglePassword}
-                                className="absolute left-4 top-[60px] sm:top-[28px] md:top-[68px]  xl:top-[25px] text-placeholder"
+                                className="absolute left-4 top-[52px] sm:top-[32px] md:top-[60px] lg:top-[67px] xl:top-[23px] text-placeholder"
                             >
                                 {show ? <FaRegEyeSlash size={30} /> : <BiShow size={30} />}
                             </button>
@@ -91,7 +91,7 @@ const Login = () => {
                         {/* Submit Button */}
                         <button
                             type="submit"
-                            className={`bg-primary text-[20px] lg:text-[25px]  font-bold text-white w-full   h-[60px] lg:h-[70px] mt-[20px] lg:mt-[30px] rounded-lg p-2 ${loading ? 'opacity-50' : ''}`}
+                            className={`bg-primary text-[20px] lg:text-[25px]  font-bold text-white w-full   h-[50px] lg:h-[70px] mt-[10px] lg:mt-[30px] rounded-lg p-2 ${loading ? 'opacity-50' : ''}`}
                             disabled={loading}
                         >
                             {loading ? 'جاري تسجيل الدخول...' : 'الدخول'}
