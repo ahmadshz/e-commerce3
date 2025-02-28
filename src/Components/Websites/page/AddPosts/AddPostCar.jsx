@@ -264,11 +264,12 @@ const AddPostCar = () => {
                     {/* Submit Button */}
                     <button
                         type='submit'
+                        disabled={loading ? true : false}
                         className={`bg-primary ${loading ? 'opacity-50' : ''} h-[60px] md:h-[76px] w-full md:w-[370px] lg:w-[426px] text-white text-[20px] lg:text-[25px] font-bold rounded-10px`}
                     >
                         اعلان
                     </button>
-                    <div className='text-primary text-[20px] lg:text-[25px] font-semibold '> {error}</div>
+                    <div className='text-primary font-semibold text-[17px] lg:text-[20px] '> {error}</div>
 
                 </form>
 

@@ -6,6 +6,7 @@ import Dropdown from '../../UI/Dropdowns';
 import RadioButton from '../../UI/RadioButton';
 import img from '../../../../assets/Carandothers/motor-1.svg';
 import { baseUrl } from '../../../../Api/Api';
+import Cookies from 'universal-cookie';
 
 const AddPostMotor = () => {
     // State for form inputs
@@ -20,6 +21,9 @@ const AddPostMotor = () => {
     const [description, setDescription] = useState('');
     const [images, setImages] = useState([]);
 
+    const cookies = new Cookies();
+    const token = cookies.get('auth_token');
+
     // Convert FileList to an Array
     const handleFileChange = (e) => {
         const files = Array.from(e.target.files);
@@ -28,7 +32,8 @@ const AddPostMotor = () => {
             return;
         }
         setImages(files);
-    }; 
+    };
+
 
     // Handle form submission
     const handleSubmit = async (e) => {
@@ -37,9 +42,10 @@ const AddPostMotor = () => {
         const formData = new FormData();
         formData.append('title', title);
         formData.append('location', selectedLocation);
+        formData.append('category', 'bike');
         formData.append('vehicleType', selectedBrand);
         formData.append('condition', status);
-        formData.append('gear', gear);
+        formData.append('transmission', gear);
         formData.append('priceSYP', priceSYP);
         formData.append('priceUSD', priceUSD);
         formData.append('mileage', mileage);
@@ -50,7 +56,6 @@ const AddPostMotor = () => {
         });
 
         try {
-            const token = localStorage.getItem('token'); // Get the token from local storage
             const response = await axios.post(`${baseUrl}/ad`, formData, {
                 headers: {
                     'Authorization': `Bearer ${token}`,

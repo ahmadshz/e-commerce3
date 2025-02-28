@@ -211,14 +211,15 @@ const Register = () => {
                     </div>
 
                     {/* Error Message */}
-                    {error && <p className='text-red-500 text-sm col-span-1 md:col-span-2 text-center'>{error}</p>}
+                    {error && <p className='font-semibold text-[17px] lg:text-[20px] text-primary col-span-1 md:col-span-2 text-center'>{error}</p>}
 
                     {/* Submit Button */}
                     <div className='col-span-1 md:col-span-2 flex justify-center items-center my-4 md:my-10'>
                         <button
+                        
                             type="submit"
                             className={`bg-primary font-bold text-lg md:text-[25px] text-white  h-[60px] md:h-[76px] w-[660px] rounded-10px ${loading ? 'opacity-50' : ''}`}
-                            disabled={loading}
+                            disabled={loading ? true : false}
                         >
                             {loading ? 'جاري إنشاء الحساب...' : 'اﻧﺸﺎء ﺣﺴﺎب ﺟﺪﻳﺪ'}
                         </button>

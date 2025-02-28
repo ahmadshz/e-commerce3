@@ -123,7 +123,7 @@ export const data = [
     },
     {
         title: "دلال الدراجات",
-        category: "Bike",
+        category: "bike",
         brands: [
             { arabic: "دراجة سوزوكي", english: "Suzuki" },
             { arabic: "دراجة ياماها", english: "Yamaha" },

@@ -27,15 +27,15 @@ const Posts = ({ ads, selectedCategory, selectedBrand, setVisibleCount, visibleC
     const filteredAds = ads.filter((item) => {
         const categoryMatch = selectedCategory
             ? selectedCategory === "used"
-                ? item.condition.tolowerCase().includes("used")  
+                ? item.condition.toLowerCase().includes("used")  
                 : item.category === selectedCategory 
             : true;
-    
-        const brandMatch = selectedBrand ? item.vehicleType === selectedBrand : true;
-    
+
+        const brandMatch = selectedBrand 
+            ? item.vehicleType.toLowerCase().includes(selectedBrand.arabic) 
+            : true;
         return categoryMatch && brandMatch;
     });
-    
 
     const displayedAds = filteredAds.slice(0, visibleCount);
 
