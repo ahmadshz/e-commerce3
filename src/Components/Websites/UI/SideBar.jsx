@@ -31,7 +31,7 @@ const SideBar = ({ isSidebarOpen, toggleSidebar }) => {
         className={`fixed lg:hidden top-0 right-0 h-full w-64 bg-[#f1ecea] shadow-lg z-50 transform ${isSidebarOpen ? 'translate-x-0' : 'translate-x-full'
           } transition-transform duration-300`}
       >
-        <div className=' relative flex flex-col '>
+        <div className=' relative flex flex-col overflow-y-scroll '>
           <button className='absolute  top-3 left-2 text-gray-800' onClick={toggleSidebar}>
             <RiCloseLine size={25} />
           </button>
@@ -41,13 +41,13 @@ const SideBar = ({ isSidebarOpen, toggleSidebar }) => {
             <div className='flex justify-between items-center border-b border-border px-2 '>
 
               <Link onClick={logout} to={'/login'} className='flex items-center gap-1  py-4'>
-                <FiLogIn className={` ${token ? 'text-primary'  : ' text-green-600'}`} size={15} />
+                <FiLogIn className={` ${token ? 'text-primary' : ' text-green-600'}`} size={15} />
                 {
-                  token ? <div  className='text-[12px] text-primary'> تسجيل الخروج</div> :
+                  token ? <div className='text-[12px] text-primary'> تسجيل الخروج</div> :
                     <div className='text-[12px] '>تسجيل الدخول او انشاء حساب</div>
                 }
               </Link>
-              <IoIosArrowBack className={` ${token ? 'text-primary'  : ' '}`} size={15} />
+              <IoIosArrowBack className={` ${token ? 'text-primary' : ' '}`} size={15} />
             </div>
             <Link to={'/addpost'} className='flex justify-between items-center border-b border-border px-2'>
 
