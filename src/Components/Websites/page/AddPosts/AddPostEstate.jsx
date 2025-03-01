@@ -53,14 +53,14 @@ const AddPostEstate = () => {
         const formData = new FormData();
         formData.append('title', title);
         formData.append('location', selectedLocation);
-        formData.append('status', status);
+        formData.append('condition', status);
         formData.append('priceSYP', priceSYP);
         formData.append('priceUSD', priceUSD);
         formData.append('description', description);
-        formData.append('category', 'real_estate'); // Hardcoded category
+        formData.append('category', 'real_estate');
         formData.append('deedType', selectedBrand);
         formData.append('propertyType', type);
-        formData.append('condition', isNewProject);
+        formData.append('newHousingProject', isNewProject);
 
         // Append images
         images.forEach((image) => {
@@ -153,23 +153,23 @@ const AddPostEstate = () => {
                                 <div className='w-full md:w-[325px] lg:w-[345px] xl:w-[432px] 2xl:w-[560px] h-[60px] md:h-[76px] flex gap-2 md:gap-5'>
                                     <RadioButton
                                         label='مفروش'
-                                        value='مفروش'
+                                        value='furnished'
                                         name='status'
-                                        onChange={() => setStatus('مفروش')}
+                                        onChange={() => setStatus('furnished')}
                                         className='w-1/3 md:w-1/3'
                                     />
                                     <RadioButton
                                         label='غير مفروش'
-                                        value='غير مفروش'
+                                        value='unfurnished'
                                         name='status'
-                                        onChange={() => setStatus('غير مفروش')}
+                                        onChange={() => setStatus('unfurnished')}
                                         className='w-1/3 md:w-1/3'
                                     />
                                     <RadioButton
                                         label='على العظم'
-                                        value=' على العظم' 
+                                        value='shell' 
                                         name='status'
-                                        onChange={() => setStatus('على العظم')}
+                                        onChange={() => setStatus('shell')}
                                         className='w-1/3 md:w-1/3'
                                     />
                                 </div>

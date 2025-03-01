@@ -1,22 +1,49 @@
+// Redux slice (userSlice.js)
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { baseUrl } from "../Api/Api";
+import Cookies from "universal-cookie";
 
+const cookies = new Cookies();
+const token = cookies.get("auth_token");
 
 // Fetch all users
-export const getUsers = createAsyncThunk("user/getUsers", async () => {
-    const response = await axios.get(`${baseUrl}/user`);
-    return response.data;
+export const getUsers = createAsyncThunk("user/getUsers", async (_, { rejectWithValue }) => {
+    try {
+        const response = await axios.get(`${baseUrl}/user`, {
+            headers: { Authorization: `Bearer ${token}` },
+        });
+
+        if (response.data.message === "Access denied. Admins only.") {
+            return rejectWithValue("Access denied. Admins only.");
+        }
+
+        return response.data;
+    } catch (error) {
+        return rejectWithValue(error.response?.data?.message || "An error occurred");
+    }
 });
 
-export const updateUser = createAsyncThunk("user/updateUser", async ({ id, updatedData }) => {
-    const response = await axios.put(`${baseUrl}/user/${id}`, updatedData);
-    return response.data;
+// Fetch a single user by ID
+export const getUserById = createAsyncThunk("user/getUserById", async (userId, { rejectWithValue }) => {
+    try {
+        const response = await axios.get(`${baseUrl}/user/${userId}`, {
+            headers: { Authorization: `Bearer ${token}` },
+        });
+
+        if (response.data.message === "Access denied. Admins only.") {
+            return rejectWithValue("Access denied. Admins only.");
+        }
+
+        return response.data; // Return the fetched user
+    } catch (error) {
+        return rejectWithValue(error.response?.data?.message || "An error occurred");
+    }
 });
 
 // Delete user by ID
 export const deleteUser = createAsyncThunk("user/deleteUser", async (id) => {
-    if (!id) throw new Error("User ID is required"); // إضافة حماية ضد القيم غير الصحيحة
+    if (!id) throw new Error("User ID is required");
     await axios.delete(`${baseUrl}/user/${id}`);
     return id;
 });
@@ -26,11 +53,11 @@ const userSlice = createSlice({
     name: "user",
     initialState: {
         users: [],
+        currentUser: null, // New state to store the current user
         loading: false,
         error: null,
     },
-    reducers: {}, // No need for manual reducers here
-
+    reducers: {},
     extraReducers: (builder) => {
         builder
             // Handle Fetch Users
@@ -46,11 +73,17 @@ const userSlice = createSlice({
                 state.error = action.error.message;
             })
 
-            // Handle Update User
-            .addCase(updateUser.fulfilled, (state, action) => {
-                state.users = state.users.map(user =>
-                    user._id === action.payload._id ? action.payload : user
-                );
+            // Handle Fetch User by ID
+            .addCase(getUserById.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(getUserById.fulfilled, (state, action) => {
+                state.loading = false;
+                state.currentUser = action.payload;
+            })
+            .addCase(getUserById.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
             })
 
             // Handle Delete User

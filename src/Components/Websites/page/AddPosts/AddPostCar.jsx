@@ -43,7 +43,7 @@ const AddPostCar = () => {
         e.preventDefault();
          // Validate required fields
          if (!title || !selectedLocation || images.length === 0) {
-            alert('الرجاء تعبئة جميع الحقول المطلوبة (العنوان، الموقع، الصور...).');
+            setError('الرجاء تعبئة جميع الحقول المطلوبة (العنوان، الموقع، الصور...');
             return;
         }
         setLoading(true)

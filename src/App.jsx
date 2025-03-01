@@ -24,6 +24,8 @@ import AddPostOther from "./Components/Websites/page/AddPosts/AddPostOther";
 import SinglePost from "./Components/Websites/page/SinglePost";
 import RequireBack from "./Pages/Auth/RequireBack";
 import RequireAuth from "./Pages/Auth/RequireAuth";
+import PostAdmin from "./Pages/Dashboard/Post/PostAdmin";
+import PostApproved from "./Pages/Dashboard/Post/PostApproved";
 
 
 function App() {
@@ -46,6 +48,8 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />}>
           <Route path="users" element={<User />} />
           <Route path="users/:id" element={<ShowUser />} />
+          <Route path="posts" element={<PostAdmin />} />
+          <Route path="post/pending" element={<PostApproved />} />
         </Route>
 
 

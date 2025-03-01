@@ -25,15 +25,17 @@ const Posts = ({ ads, selectedCategory, selectedBrand, setVisibleCount, visibleC
     };
 
     const filteredAds = ads.filter((item) => {
+        console.log(item); // Log the item to see its structure
         const categoryMatch = selectedCategory
             ? selectedCategory === "used"
-                ? item.condition.toLowerCase().includes("used")  
+                ? item.condition?.toLowerCase().includes("used")  
                 : item.category === selectedCategory 
             : true;
-
+    
         const brandMatch = selectedBrand 
-            ? item.vehicleType.toLowerCase().includes(selectedBrand.arabic) 
+            ? item.vehicleType?.toLowerCase().includes(selectedBrand.arabic) 
             : true;
+    
         return categoryMatch && brandMatch;
     });
 
