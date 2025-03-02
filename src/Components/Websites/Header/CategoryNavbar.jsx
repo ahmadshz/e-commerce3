@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { data } from '../../../utils/data'; // Import the data
+import { data } from '../../../utils/data'; 
+import { motion } from 'framer-motion';
 
 const CategoryNavbar = ({ onCategoryChange, onBrandChange }) => {
     const [selectedCategory, setSelectedCategory] = useState(null); // State to track the selected category
@@ -19,7 +20,11 @@ const CategoryNavbar = ({ onCategoryChange, onBrandChange }) => {
     };
 
     return (
-        <div className="container">
+        <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.7 }} 
+        className="container">
             {/* Scrollable Container for Categories */}
             <div className="flex justify-between overflow-x-auto overflow-y-hidden scroll-smooth custom-scrollbar pb-[5px] md:pb-[10px]">
                 {data.map((category, index) => (
@@ -81,7 +86,11 @@ const CategoryNavbar = ({ onCategoryChange, onBrandChange }) => {
 
             {/* Brands Section */}
             {selectedCategory !== null && data[selectedCategory].brands && data[selectedCategory].brands.length > 0 && (
-                <div className="mt-[5px] md:mt-[20px]">
+                <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay:  0.3 }}
+                className="mt-[5px] md:mt-[20px]">
                     <div className="flex overflow-x-auto pb-[5px] md:pb-[10px] gap-2 md:gap-4 custom-scrollbar">
                         {data[selectedCategory].brands.map((brand, index) => (
                             <div
@@ -97,9 +106,9 @@ const CategoryNavbar = ({ onCategoryChange, onBrandChange }) => {
                             </div>
                         ))}
                     </div>
-                </div>
+                </motion.div>
             )}
-        </div>
+        </motion.div>
     );
 };
 

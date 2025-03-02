@@ -5,6 +5,7 @@ import { location } from '../../../utils/data';
 import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { CgClose } from 'react-icons/cg';
+import { motion } from 'framer-motion';
 
 const SubNavbar = ({ onSearch, onLocationChange }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -33,10 +34,10 @@ const SubNavbar = ({ onSearch, onLocationChange }) => {
             onSearch('');
         } else {
             onSearch(searchQuery);
-            
+
             setSearchHistory((prevHistory) => {
                 const newHistory = [searchQuery, ...prevHistory.filter(item => item !== searchQuery)].slice(0, 5);
-                
+
                 // حفظ سجل البحث في localStorage
                 localStorage.setItem('searchHistory', JSON.stringify(newHistory));
 
@@ -55,13 +56,17 @@ const SubNavbar = ({ onSearch, onLocationChange }) => {
     const handleDeleteSearch = (itemToDelete) => {
         const updatedHistory = searchHistory.filter(item => item !== itemToDelete);
         setSearchHistory(updatedHistory);
-        
+
         // تحديث localStorage بعد حذف العنصر
         localStorage.setItem('searchHistory', JSON.stringify(updatedHistory));
     };
 
     return (
-        <div className='container flex flex-wrap lg:flex-nowrap justify-between items-center gap-2'>
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay:  0.5 }}
+            className='container flex flex-wrap lg:flex-nowrap justify-between items-center gap-2'>
             {/* Search Box */}
             <div className='h-[35px] md:h-[45px] xl:h-[53px] w-full lg:w-1/2 2xl:w-[876px] border-2 border-border relative rounded-10px'>
                 <input
@@ -101,7 +106,7 @@ const SubNavbar = ({ onSearch, onLocationChange }) => {
                             >
                                 <span>{item}</span>
                                 <CgClose className='text-placeholder font-bold'
-                                   size={30}
+                                    size={30}
                                     onClick={(e) => {
                                         e.stopPropagation();
                                         handleDeleteSearch(item);
@@ -155,7 +160,7 @@ const SubNavbar = ({ onSearch, onLocationChange }) => {
                     </div>
                 </Link>
             </div>
-        </div>
+        </motion.div>
     );
 };
 

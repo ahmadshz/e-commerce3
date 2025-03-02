@@ -56,7 +56,7 @@ const Landing = () => {
         <div className='min-h-screen flex flex-col gap-[10px] md:gap-5 xl:gap-7 pb-[80px] md:pb-0'>
             <SubNavbar onSearch={handleSearch} onLocationChange={handleLocationChange} />
             <CategoryNavbar onCategoryChange={handleCategoryChange} onBrandChange={handleBrandChange} />
-            <div className="min-h-[50vh] container flex gap-[10px] md:gap-5 xl:gap-7">
+            <div className="min-h-[100vh] container flex gap-[10px] md:gap-5 xl:gap-7">
                 <div className="w-full md:w-[1138px]">
                     <Posts
                         selectedCategory={selectedCategory}
