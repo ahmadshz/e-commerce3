@@ -27,6 +27,7 @@ import RequireAuth from "./Pages/Auth/RequireAuth";
 import PostAdmin from "./Pages/Dashboard/Post/PostAdmin";
 import PostApproved from "./Pages/Dashboard/Post/PostApproved";
 import RequiredDashboard from "./Pages/Auth/RequiredDashboard";
+import CategoriesMobile from "./Components/Websites/page/CategoriesMobile";
 
 
 function App() {
@@ -42,9 +43,6 @@ function App() {
           <Route path="/successVerification" element={<SuccessVerification />} />
         </Route>
 
-
-
-
         {/*Dashboard */}
         <Route element={<RequiredDashboard />} >
           <Route path="/dashboard" element={<Dashboard />}>
@@ -55,9 +53,11 @@ function App() {
           </Route>
         </Route>
 
-
         {/* Get Single Post */}
         <Route path="/singlePost/:id" element={<SinglePost />} />
+
+        <Route path="/category" element={ <CategoriesMobile />} />
+
 
         {/*Auth */}
         <Route element={<RequireAuth />}>

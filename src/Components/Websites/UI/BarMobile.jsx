@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import home from '../../../assets/Carandothers/houses.svg'
-import { BiAddToQueue, BiCategory } from 'react-icons/bi';
+import {  BiCategory } from 'react-icons/bi';
 import { MdOutlineAccountCircle } from 'react-icons/md';
 import { FiPlus } from 'react-icons/fi';
 
@@ -18,15 +18,15 @@ const BarMobile = () => {
                     <img className='w-7' src={home} alt='' />
                     <span>الرئيسية</span>
                 </NavLink>
-                <NavLink className='text-primary flex flex-col items-center' to={'/'}>
+                <NavLink className='text-primary flex flex-col items-center' to={'/category'}>
                     <BiCategory size={25} />
                     <span>الاقسام</span>
                 </NavLink>
-                <NavLink className='text-primary flex flex-col items-center' to={'/'}>
-                <FiPlus size={25} />               
-                     <span>اضافة اعلان</span>
+                <NavLink className='text-primary flex flex-col items-center' to={'/addpost'}>
+                    <FiPlus size={25} />
+                    <span>اضافة اعلان</span>
                 </NavLink>
-                <NavLink className='text-primary flex flex-col items-center' to={'/'}>
+                <NavLink className='text-primary flex flex-col items-center' to={'/myaccount'}>
                     <MdOutlineAccountCircle size={25} />
                     <span>حسابي</span>
                 </NavLink>
