@@ -1,5 +1,4 @@
 import { Route, Routes } from "react-router-dom";
-import Website from "./Pages/Websites/Website";
 import Login from "./Pages/Auth/Login";
 import Register from "./Pages/Auth/Register";
 import Verification from "./Components/Auth/Verification";
