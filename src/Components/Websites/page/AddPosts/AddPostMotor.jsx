@@ -12,7 +12,7 @@ import SubmissionAddPost from '../SubmissionAddPost';
 const AddPostMotor = () => {
     // State for form inputs
     const [title, setTitle] = useState('');
-    const [selectedLocation, setSelectedLocation] = useState('اختر عنوان الاعلان');
+    const [selectedLocation, setSelectedLocation] = useState('الموقع');
     const [selectedBrand, setSelectedBrand] = useState('اختر الماركة');
     const [status, setStatus] = useState('');
     const [gear, setGear] = useState('');
@@ -104,7 +104,8 @@ const AddPostMotor = () => {
 
                         {/* Location Dropdown */}
                         <Dropdown
-                            label='الموقع :'
+                            label='الموقع:'
+
                             options={location}
                             selected={selectedLocation}
                             onSelect={setSelectedLocation}
@@ -172,12 +173,8 @@ const AddPostMotor = () => {
                     <div className='flex flex-col md:flex-row gap-5 w-full'>
                         <Dropdown
                             label='الماركة :'
-                            options={data[1].brands.map((brand) => (
-                                <div key={brand.english}>
-                                    <span>{brand.arabic}</span> <span>({brand.english})</span>
-                                </div>
-                            ))}
-                            selected={selectedBrand}
+                            options={data[1].brands.map((brand) => `${brand.arabic} (${brand.english})`)}
+                            selected={selectedBrand || 'اختر الماركة'}
                             onSelect={setSelectedBrand}
                             className='w-full md:w-[867px]'
                         />

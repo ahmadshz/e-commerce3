@@ -148,7 +148,7 @@ const SubNavbar = ({ onSearch, onLocationChange }) => {
                 </div>
 
                 {/* Add Post Button */}
-                <Link to={'/addpost'} className='flex items-center justify-between w-2/4 lg:w-[170px] xl:w-[220px] h-[35px] md:h-[45px] xl:h-[53px] text-[13px] md:text-[15px] lg:text-[17px] bg-primary rounded-10px'>
+                <Link to={'/addpost'} className=' hidden md:flex items-center justify-between w-2/4 lg:w-[170px] xl:w-[220px] h-[35px] md:h-[45px] xl:h-[53px] text-[13px] md:text-[15px] lg:text-[17px] bg-primary rounded-10px'>
                     <div className='text-white w-[75%] md:w-[85%] lg:w-[80%] text-center font-bold'>أضــف اعــلان</div>
                     <div className='w-[40px] lg:w-[54px] bg-placeholder h-full rounded-10px flex items-center justify-center'>
                         <img className='w-8' src={add} alt='' />

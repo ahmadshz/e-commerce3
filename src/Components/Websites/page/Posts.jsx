@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import price from '../../../assets/iconpost/1.svg';
 import pricesy from '../../../assets/iconpost/3.svg';
 import clock from '../../../assets/iconpost/6.svg';
 import person from '../../../assets/iconpost/7.svg';
+import { motion } from 'framer-motion';
 
 const Posts = ({ ads, selectedCategory, selectedBrand, visibleCount }) => {
+    const [totalDisplayedAds, setTotalDisplayedAds] = useState(0); 
+
     // Function to calculate time ago
     const timeAgo = (timestamp) => {
         const now = new Date();
@@ -27,14 +30,12 @@ const Posts = ({ ads, selectedCategory, selectedBrand, visibleCount }) => {
 
     // Filter ads based on selected category and brand
     const filteredAds = ads.filter((item) => {
-        // Check if the selected category is "used"
         const categoryMatch = selectedCategory
             ? selectedCategory === "used"
-                ? item.condition?.toLowerCase() === "used" // Compare with the "condition" field
-                : item.category === selectedCategory // Compare with the "category" field
+                ? item.condition?.toLowerCase() === "used"
+                : item.category === selectedCategory 
             : true;
 
-        // Check if the selected brand matches
         const brandMatch = selectedBrand
             ? item.vehicleType?.toLowerCase().includes(selectedBrand.arabic)
             : true;
@@ -45,11 +46,22 @@ const Posts = ({ ads, selectedCategory, selectedBrand, visibleCount }) => {
     // Slice the filtered ads based on visibleCount
     const displayedAds = filteredAds.slice(0, visibleCount);
 
+    // Update totalDisplayedAds whenever visibleCount changes
+    React.useEffect(() => {
+        setTotalDisplayedAds(visibleCount);
+    }, [visibleCount]);
+
     return (
         <div className='flex flex-col gap-5'>
-            {displayedAds.length > 0 && (
-                displayedAds.map((item) => (
-                    <div className='bg-[#FAFAFA] w-full h-[110px] md:h-[140px] lg:h-[160px] flex' key={item._id}>
+            {displayedAds.length > 0 &&
+                displayedAds.map((item, index) => (
+                    <motion.div
+                        key={item._id}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: (totalDisplayedAds - visibleCount + index) * 0.2 }} 
+                        className='bg-[#FAFAFA] w-full h-[110px] md:h-[140px] lg:h-[160px] flex'
+                    >
                         <div className='w-2/6 md:w-1/2 xl:w-3/5 flex flex-col justify-between md:py-2 pr-2 md:pr-[10px] xl:pr-[20px]'>
                             <Link to={`/singlePost/${item._id}`} className='w-[90%] text-[14px] md:text-[19px] lg:text-[24px] font-semibold'>
                                 {item.title}
@@ -83,9 +95,8 @@ const Posts = ({ ads, selectedCategory, selectedBrand, visibleCount }) => {
                                 />
                             </Link>
                         </div>
-                    </div>
-                ))
-            ) }
+                    </motion.div>
+                ))}
         </div>
     );
 };

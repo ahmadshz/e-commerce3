@@ -51,6 +51,22 @@ body {
 }
 
 
+.custom-scroll::-webkit-scrollbar {
+  height: 10px; /* Smaller scrollbar height */
+  width: 0px; /* Smaller scrollbar width */
+}
+
+.custom-scroll::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Light gray track */
+  border-radius: 10px; /* Rounded corners for track */
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+  background: #d3d3d3 !important; /* Scrollbar thumb color */
+  border-radius: 10px; /* Rounded corners for thumb */
+}
+
+
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

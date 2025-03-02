@@ -76,6 +76,19 @@ const PostApproved = () => {
             console.error('Error approving ad:', error);
         }
     };
+    const rejectAd = async (id) => {
+        try {
+            await axios.put(`${baseUrl}/ad/${id}/approve`, { status: "rejected" }, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            setPendingAds((prevAds) => prevAds.filter((ad) => ad._id !== id));
+            setTotalPendingAdsCount((prevCount) => prevCount - 1); // Decrease total count
+        } catch (error) {
+            console.error('Error approving ad:', error);
+        }
+    };
 
     // Pagination logic
     const indexOfLastItem = currentPage * itemsPerPage;
@@ -140,7 +153,7 @@ const PostApproved = () => {
                                     </td>
                                     <td className="px-3 py-6 h-full flex justify-end items-center gap-2">
                                         <button onClick={() => approveAd(ad._id)} className="text-blue-500 hover:text-blue-700"><FaCheck /></button>
-                                        <button className="text-red-500 hover:text-red-700"><IoClose size={30} /></button>
+                                        <button onClick={() => rejectAd(ad._id)} className="text-red-500 hover:text-red-700"><IoClose size={30} /></button>
                                     </td>
                                 </tr>
                             ))

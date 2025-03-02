@@ -4,6 +4,7 @@ import CategoryNavbar from '../../Components/Websites/Header/CategoryNavbar';
 import SubNavbar from '../../Components/Websites/Header/SubNavbar';
 import axios from 'axios';
 import { baseUrl } from '../../Api/Api';
+import { motion } from 'framer-motion'
 
 const Landing = () => {
     const [ads, setAds] = useState([]);
@@ -52,7 +53,7 @@ const Landing = () => {
     };
 
     return (
-        <div className='flex flex-col gap-[10px] md:gap-5 xl:gap-7 pb-[80px] md:pb-0'>
+        <div className='min-h-screen flex flex-col gap-[10px] md:gap-5 xl:gap-7 pb-[80px] md:pb-0'>
             <SubNavbar onSearch={handleSearch} onLocationChange={handleLocationChange} />
             <CategoryNavbar onCategoryChange={handleCategoryChange} onBrandChange={handleBrandChange} />
             <div className="min-h-[50vh] container flex gap-[10px] md:gap-5 xl:gap-7">
@@ -64,7 +65,11 @@ const Landing = () => {
                         ads={ads}
                     />
                 </div>
-                <div className="hidden lg:block bg-bgsecondary w-[455px]"></div>
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.5 }}
+                    className="hidden lg:block bg-bgsecondary w-[455px]"></motion.div>
             </div>
 
             {/* Show More Button */}
@@ -78,7 +83,7 @@ const Landing = () => {
                     </div>
                 </div>
             )}
-            
+
         </div>
     );
 };

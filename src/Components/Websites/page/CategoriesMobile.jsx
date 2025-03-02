@@ -20,9 +20,9 @@ const CategoriesMobile = () => {
       </div>
 
       {/* Main Content */}
-      <div className="flex pt-[60px]">
+      <div className="flex pt-[60px] h-screen overflow-hidden">
         {/* Sidebar */}
-        <div className="w-[30%] bg-background">
+        <div className="w-[30%] bg-background overflow-y-auto h-full">
           <Sidbarcategory
             selectedCategory={selectedCategory}
             setSelectedCategory={setSelectedCategory}
@@ -30,7 +30,7 @@ const CategoriesMobile = () => {
         </div>
 
         {/* Landing Category */}
-        <div className="w-[70%]">
+        <div className="w-[70%] overflow-y-auto h-full">
           <LandingCategory selectedCategory={selectedCategory} />
         </div>
       </div>

@@ -11,12 +11,12 @@ const DeletePost = ({ closeDelete, deletePost }) => {
                     هل أنت متأكد أنك تريد مسح الاعلان ؟
                 </h2>
                 <div className="flex flex-col md:flex-row w-full justify-between gap-4">
-                    <div onClick={deletePost} className="bg-primary text-white w-full md:w-[220px] h-[50px] md:h-[60px] xl:h-[70px] text-[16px] md:text-[25px] font-bold flex items-center justify-center rounded-10px">
+                    <div onClick={deletePost} className="bg-primary cursor-pointer text-white w-full md:w-[220px] h-[50px] md:h-[60px] xl:h-[70px] text-[16px] md:text-[25px] font-bold flex items-center justify-center rounded-10px">
                         نعم
                     </div>
                     <div
                         onClick={closeDelete}
-                        className="bg-[#009C46] text-white w-full md:w-[220px] h-[50px] md:h-[60px] xl:h-[70px] text-[16px] md:text-[25px] font-bold flex items-center justify-center rounded-10px"
+                        className="bg-[#009C46] cursor-pointer text-white w-full md:w-[220px] h-[50px] md:h-[60px] xl:h-[70px] text-[16px] md:text-[25px] font-bold flex items-center justify-center rounded-10px"
                     >
                         لا
                     </div>
