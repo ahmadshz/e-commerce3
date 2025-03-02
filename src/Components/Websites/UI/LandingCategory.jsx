@@ -31,12 +31,12 @@ const LandingCategory = ({ selectedCategory }) => {
     if (index % 3 === 2) return 'col-span-2'; // Every 3rd ad takes 2/3 width
     if (index % 4 === 1) return 'col-span-1'; // Every 3rd ad takes 2/3 width
     if (index % 4 === 2) return 'col-span-2'; // Every 3rd ad takes 2/3 width
-    return 'col-span-3'; // Every 4th ad takes full width
+    return 'col-span-3'; 
   };
 
   return (
     <div className="min-h-[93vh] w-full p-2 grid grid-cols-3 gap-2 auto-rows-[110px]">
-      {filteredAds.length > 0 ? (
+      {filteredAds.length > 0 && (
         filteredAds.map((item, index) => (
           <Link
             to={`/singlePost/${item._id}`}
@@ -55,11 +55,7 @@ const LandingCategory = ({ selectedCategory }) => {
             </div>
           </Link>
         ))
-      ) : (
-        <p className="col-span-3 text-center text-lg text-gray-500">
-          No ads found for the selected category
-        </p>
-      )}
+      ) }
     </div>
   );
 };

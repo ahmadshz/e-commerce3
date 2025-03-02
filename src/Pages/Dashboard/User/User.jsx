@@ -4,11 +4,11 @@ import { getUsers, deleteUser } from "../../../ReduxToolkit/userSlice";
 import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { IoReaderOutline } from "react-icons/io5";
-import { FaUserClock, FaUsers, FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { FaUsers, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const User = () => {
     const dispatch = useDispatch();
-    const { users } = useSelector((state) => state.user);
+    const { users, loading, error } = useSelector((state) => state.user);
     const [totalUsersCount, setTotalUsersCount] = useState(0);
     const [lastMonthUsersCount, setLastMonthUsersCount] = useState(0);
     const [currentPage, setCurrentPage] = useState(1); // State to manage current page
@@ -19,7 +19,13 @@ const User = () => {
     }, [dispatch]);
 
     const handleDelete = (id) => {
-        dispatch(deleteUser(id));
+        dispatch(deleteUser(id)).then(() => {
+            // Reset currentPage if it exceeds the total number of pages after deletion
+            const totalPages = Math.ceil((users.length - 1) / itemsPerPage);
+            if (currentPage > totalPages) {
+                setCurrentPage(totalPages);
+            }
+        });
     };
 
     // Total number of users
@@ -33,33 +39,35 @@ const User = () => {
         return userDate > oneMonthAgo;
     }).length;
 
-    // Animate the counters
+    // Animate the counters when users data changes
     useEffect(() => {
-        const animateCounters = () => {
-            let totalCount = 0;
-            let lastMonthCount = 0;
+        if (users.length > 0) {
+            const animateCounters = () => {
+                let totalCount = 0;
+                let lastMonthCount = 0;
 
-            const totalInterval = setInterval(() => {
-                if (totalCount < totalUsers) {
-                    totalCount += 1;
-                    setTotalUsersCount(totalCount);
-                } else {
-                    clearInterval(totalInterval);
-                }
-            }, 50); // Adjust speed here
+                const totalInterval = setInterval(() => {
+                    if (totalCount < totalUsers) {
+                        totalCount += 1;
+                        setTotalUsersCount(totalCount);
+                    } else {
+                        clearInterval(totalInterval);
+                    }
+                }, 50); // Adjust speed here
 
-            const lastMonthInterval = setInterval(() => {
-                if (lastMonthCount < lastMonthUsers) {
-                    lastMonthCount += 1;
-                    setLastMonthUsersCount(lastMonthCount);
-                } else {
-                    clearInterval(lastMonthInterval);
-                }
-            }, 50); // Adjust speed here
-        };
+                const lastMonthInterval = setInterval(() => {
+                    if (lastMonthCount < lastMonthUsers) {
+                        lastMonthCount += 1;
+                        setLastMonthUsersCount(lastMonthCount);
+                    } else {
+                        clearInterval(lastMonthInterval);
+                    }
+                }, 50); // Adjust speed here
+            };
 
-        animateCounters();
-    }, [totalUsers, lastMonthUsers]);
+            animateCounters();
+        }
+    }, [totalUsers, lastMonthUsers, users.length]);
 
     // Pagination logic
     const indexOfLastItem = currentPage * itemsPerPage;
@@ -75,16 +83,13 @@ const User = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                 {/* Total Users Card */}
                 <div className="flex gap-6 mb-6 col-span-2 justify-center">
-                    {/* Total Users Card */}
-                    <div className="bg-white w-[400px] p-6 rounded-2xl shadow-xl flex flex-col items-center border border-gray-200">
+                    <div className="bg-white w-full sm:w-[400px] p-6 rounded-2xl shadow-xl flex flex-col items-center border border-gray-200">
                         <div className="bg-[#ff402c] p-3 rounded-full shadow-md">
                             <FaUsers className="text-white w-8 h-8" />
                         </div>
                         <h3 className="text-lg font-semibold text-gray-700 mt-3">عدد المستخدمين الكلي</h3>
                         <p className="text-5xl font-extrabold text-[#ff402c] mt-2">{totalUsersCount}</p>
                     </div>
-
-                  
                 </div>
             </div>
 
@@ -104,7 +109,19 @@ const User = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {currentItems.length > 0 ? (
+                        {loading ? (
+                            <tr>
+                                <td colSpan="8" className="text-center p-5">
+                                    تحميل ...
+                                </td>
+                            </tr>
+                        ) : error ? (
+                            <tr>
+                                <td colSpan="8" className="text-center p-5">
+                                    خطأ في تحميل البيانات
+                                </td>
+                            </tr>
+                        ) : currentItems.length > 0 ? (
                             currentItems.map((item, index) => (
                                 <tr key={index} className="border-b even:bg-gray-100 hover:bg-gray-200">
                                     <td className="p-3 text-center">{indexOfFirstItem + index + 1}</td>
@@ -144,7 +161,7 @@ const User = () => {
                                 disabled={currentPage === 1}
                                 className="px-3 py-2 bg-gray-200 text-gray-500 hover:bg-gray-300 disabled:cursor-not-allowed rounded-md flex items-center gap-1"
                             >
-                            <FaChevronRight />
+                                <FaChevronRight />
                             </button>
                         </li>
 
@@ -153,11 +170,10 @@ const User = () => {
                             <li key={i + 1}>
                                 <button
                                     onClick={() => paginate(i + 1)}
-                                    className={`px-4 py-2 leading-tight border rounded-md ${
-                                        currentPage === i + 1
-                                            ? 'bg-primary text-white'
-                                            : 'bg-white text-gray-500 hover:bg-gray-100'
-                                    }`}
+                                    className={`px-4 py-2 leading-tight border rounded-md ${currentPage === i + 1
+                                        ? 'bg-primary text-white'
+                                        : 'bg-white text-gray-500 hover:bg-gray-100'
+                                        }`}
                                 >
                                     {i + 1}
                                 </button>
@@ -171,7 +187,7 @@ const User = () => {
                                 disabled={currentPage === Math.ceil(users.length / itemsPerPage)}
                                 className="px-3 py-2 bg-gray-200 text-gray-500 hover:bg-gray-300 disabled:cursor-not-allowed rounded-md flex items-center gap-1"
                             >
-                            <FaChevronLeft /> 
+                                <FaChevronLeft />
                             </button>
                         </li>
                     </ul>
