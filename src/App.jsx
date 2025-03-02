@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import Website from "./Pages/Websites/website";
+import Website from "./Pages/Websites/Website";
 import Login from "./Pages/Auth/Login";
 import Register from "./Pages/Auth/Register";
 import Verification from "./Components/Auth/Verification";
@@ -28,13 +28,14 @@ import PostAdmin from "./Pages/Dashboard/Post/PostAdmin";
 import PostApproved from "./Pages/Dashboard/Post/PostApproved";
 import RequiredDashboard from "./Pages/Auth/RequiredDashboard";
 import CategoriesMobile from "./Components/Websites/page/CategoriesMobile";
+import Home from "./Pages/Websites/Home";
 
 
 function App() {
   return (
     <div dir="rtl" className="font-medium text-lg tracking-wider">
       <Routes>
-        <Route path="/" element={<Website />} />
+        <Route path="/" element={<Home />} />
         {/*Auth */}
         <Route element={<RequireBack />} >
           <Route path="/login" element={<Login />} />

@@ -3,14 +3,12 @@ import MainHeader from '../../Components/Websites/Header/MainHeader'
 import Landing from './Landing'
 import Footer from '../../Components/Websites/Footer/Footer'
 import BarMobile from '../../Components/Websites/UI/BarMobile'
-import Preload from '../../Components/Websites/UI/Preload'
 
-const website = () => {
+const Website = () => {
 
 
     return (
         <div className='flex flex-col gap-[10px] md:gap-5 xl:gap-7'>
-            <Preload />
             <MainHeader />
             <Landing />
             <Footer />
@@ -19,4 +17,4 @@ const website = () => {
     )
 }
 
-export default website
+export default Website
