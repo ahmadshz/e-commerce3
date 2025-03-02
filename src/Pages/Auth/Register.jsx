@@ -41,13 +41,21 @@ const Register = () => {
         setLoading(true);
         setError(null);
 
+        // Validate phone number format
+        if (!formData.phone.startsWith('+963')) {
+            setError('رقم الهاتف يجب أن يبدأ ب +963');
+            setLoading(false);
+            return;
+        }
+
+        // Ensure password and confirm password match
         if (formData.password !== formData.confirmPassword) {
             setError('كلمات المرور غير متطابقة');
             setLoading(false);
             return;
         }
 
-        const sanitizedPhoneNumber = formData.phone.replace(/\D/g, '');
+        const sanitizedPhoneNumber = formData.phone.replace(/\D/g, ''); // Remove non-numeric characters
 
         const dataToSend = {
             firstname: formData.firstName,
@@ -71,9 +79,11 @@ const Register = () => {
         } catch (err) {
             console.error('Server Error:', err.response?.data || err.message);
             setError(err.response?.data?.message || 'فشل في إنشاء الحساب، يرجى المحاولة مرة أخرى');
+        } finally {
             setLoading(false);
         }
     };
+
 
     return (
         <div>
@@ -115,24 +125,24 @@ const Register = () => {
 
                     {/* Username */}
                     <div className='flex flex-col lg:flex-row gap-3 md:gap-4'>
-                    <label htmlFor="username" className='font-semibold text-[17px] lg:text-[20px] md:w-[239px] flex items-center'>
-                        اﺳﻢ اﻟﻤﺴﺘﺨﺪم
-                    </label>
-                    <div className="relative w-full lg:w-[433px]">
-                        <input
-                            id='username'
-                            type='text'
-                            value={formData.username}
-                            onChange={handleChange}
-                            className="text-placeholder text-[15px] lg:text-[17px] border-2 border-border w-full h-[60px] md:h-[76px] flex items-center rounded-10px font-medium tracking-wider pl-10 outline-none focus:border-primary"
-                            placeholder='اكتب اسم المستخدم باللغة الانجليزية'
-                            required
-                        />
-                        <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-placeholder text-[15px] lg:text-[17px] pointer-events-none">
-                            @
-                        </span>
+                        <label htmlFor="username" className='font-semibold text-[17px] lg:text-[20px] md:w-[239px] flex items-center'>
+                            اﺳﻢ اﻟﻤﺴﺘﺨﺪم
+                        </label>
+                        <div className="relative w-full lg:w-[433px]">
+                            <input
+                                id='username'
+                                type='text'
+                                value={formData.username}
+                                onChange={handleChange}
+                                className="text-placeholder text-[15px] lg:text-[17px] border-2 border-border w-full h-[60px] md:h-[76px] flex items-center rounded-10px font-medium tracking-wider pl-10 outline-none focus:border-primary"
+                                placeholder='اكتب اسم المستخدم باللغة الانجليزية'
+                                required
+                            />
+                            <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-placeholder text-[15px] lg:text-[17px] pointer-events-none">
+                                @
+                            </span>
+                        </div>
                     </div>
-                </div>
 
                     {/* Phone Number */}
                     <div className='flex flex-col lg:flex-row gap-3 md:gap-4'>
@@ -216,7 +226,7 @@ const Register = () => {
                     {/* Submit Button */}
                     <div className='col-span-1 md:col-span-2 flex justify-center items-center my-4 md:my-10'>
                         <button
-                        
+
                             type="submit"
                             className={`bg-primary font-bold text-lg md:text-[25px] text-white  h-[60px] md:h-[76px] w-[660px] rounded-10px ${loading ? 'opacity-50' : ''}`}
                             disabled={loading ? true : false}

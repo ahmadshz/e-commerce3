@@ -36,11 +36,11 @@ const SideBar = ({ isSidebarOpen, toggleSidebar }) => {
   return (
     <div>
       {isSidebarOpen && (
-        <div className='fixed inset-0 bg-black bg-opacity-50 z-50 lg:hidden ' onClick={toggleSidebar}></div>
+        <div className='fixed inset-0 bg-black bg-opacity-50 z-[70] lg:hidden ' onClick={toggleSidebar}></div>
       )}
 
       <div
-        className={`fixed lg:hidden top-0 right-0 h-full w-64 bg-[#f1ecea] shadow-lg z-50 transform ${isSidebarOpen ? 'translate-x-0' : 'translate-x-full'
+        className={`fixed lg:hidden top-0 right-0 h-full w-64 bg-[#f1ecea] shadow-lg z-[100] transform ${isSidebarOpen ? 'translate-x-0' : 'translate-x-full'
           } transition-transform duration-300  `}
       >
         <div className='relative flex flex-col h-full overflow-y-auto'> {/* Allow scrolling inside the sidebar */}

@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaRegEyeSlash } from 'react-icons/fa';
 import { BiShow } from 'react-icons/bi';
-import { IoArrowBackCircleOutline } from 'react-icons/io5';
 import axios from 'axios';
 import { baseUrl } from '../../Api/Api';
 import Cookies from 'universal-cookie';
 import Navbar from '../../Components/Websites/Header/Navbar';
+import { jwtDecode } from 'jwt-decode';
 
 const Login = () => {
     const [show, setShow] = useState(false);
@@ -17,6 +17,7 @@ const Login = () => {
     const navigate = useNavigate();
 
     const cookies = new Cookies();
+
 
     const togglePassword = () => {
         setShow(!show);
@@ -30,7 +31,11 @@ const Login = () => {
             const response = await axios.post(`${baseUrl}/user/login`, { email, password });
             const { token } = response.data;
             cookies.set('auth_token', token, { path: '/' });
-            navigate('/');
+            
+            const {role} = jwtDecode(cookies.get('auth_token'));
+
+            const go = role === 'admin' ? '/dashboard/users' : '/';
+            navigate(`${go}`);
         } catch (err) {
             setError('فشل تسجيل الدخول، يرجى المحاولة مرة اخرى');
             setLoading(false);

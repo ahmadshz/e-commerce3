@@ -12,7 +12,7 @@ const MyPost = () => {
     const [ads, setAds] = useState([]);
     const [showDelete, setShowDelete] = useState(false);
     const [selectedAdId, setSelectedAdId] = useState(null);
-    const [visiblePosts, setVisiblePosts] = useState(2);
+    const [visiblePosts, setVisiblePosts] = useState(5);
 
     const cookies = new Cookies();
     const token = cookies.get('auth_token');
@@ -98,7 +98,7 @@ const MyPost = () => {
     };
 
     const handleShowMore = () => {
-        setVisiblePosts((prev) => prev + 2);
+        setVisiblePosts((prev) => prev + 5);
     };
 
     return (

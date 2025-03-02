@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom"; // Import useNavigate
 import { FiX, FiMenu } from "react-icons/fi"; // أيقونات الفتح والإغلاق
 import Logo from "../../assets/Logo/Logo.png";
 import Cookies from "universal-cookie";
 
 const SideBar = () => {
   const [isOpen, setIsOpen] = useState(false); // للتحكم في فتح وإغلاق القائمة
- 
-  const coockie = new Cookies();
+  const cookies = new Cookies();
+  const navigate = useNavigate(); // Hook for navigation
 
   const navlink = [
     { name: "الصفحة الرئيسية", link: "/" },
@@ -17,7 +17,8 @@ const SideBar = () => {
   ];
 
   const handleLogout = () => {
-    coockie.remove("auth_token");
+    cookies.remove('auth_token', { path: '/' });
+    navigate('/');
   };
 
   return (
@@ -37,9 +38,8 @@ const SideBar = () => {
       )}
 
       <div
-        className={`h-screen bg-white shadow-lg border-l-2 border-border flex flex-col items-center py-4 lg:py-10 px-6 w-64 transition-transform duration-300 z-50 fixed ${
-          isOpen ? "translate-x-0" : "translate-x-full lg:translate-x-0"
-        }`}
+        className={`h-screen bg-white shadow-lg border-l-2 border-border flex flex-col items-center py-4 lg:py-10 px-6 w-64 transition-transform duration-300 z-50 fixed ${isOpen ? "translate-x-0" : "translate-x-full lg:translate-x-0"
+          }`}
       >
         <button
           className="lg:hidden self-end mb-4 p-2 hover:text-red-600 transition duration-300"
@@ -58,8 +58,7 @@ const SideBar = () => {
               key={index}
               to={link.link}
               className={({ isActive }) =>
-                `w-full text-sm lg:text-lg font-bold rounded-10px py-2 lg:py-3 transition duration-300 ${
-                  isActive ? "text-primary border-white" : ""
+                `w-full text-sm lg:text-lg font-bold rounded-10px py-2 lg:py-3 transition duration-300 ${isActive ? "text-primary border-white" : ""
                 }`
               }
             >
@@ -69,7 +68,10 @@ const SideBar = () => {
         </div>
 
         <div className="w-full">
-          <button onClick={handleLogout} className="w-full bg-primary text-white text-sm lg:text-lg font-bold border-2 border-white rounded-10px py-2 lg:py-3 hover:bg-red-600 transition duration-300">
+          <button
+            onClick={handleLogout}
+            className="w-full bg-primary text-white text-sm lg:text-lg font-bold border-2 border-white rounded-10px py-2 lg:py-3 hover:bg-red-600 transition duration-300"
+          >
             تسجيل الخروج
           </button>
         </div>

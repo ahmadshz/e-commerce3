@@ -4,6 +4,7 @@ import { baseUrl } from '../../../Api/Api'; // Adjust the path as needed
 import Cookies from 'universal-cookie';
 import { FaCheck, FaChevronLeft, FaChevronRight } from 'react-icons/fa'; // Import icons
 import { IoClose } from 'react-icons/io5';
+import { MdPendingActions } from 'react-icons/md';
 
 const PostApproved = () => {
     const [pendingAds, setPendingAds] = useState([]); // State to store pending ads
@@ -11,6 +12,8 @@ const PostApproved = () => {
     const [error, setError] = useState(null); // State to handle errors
     const [currentPage, setCurrentPage] = useState(1); // State to manage current page
     const [itemsPerPage] = useState(10); // Number of items per page
+    const [totalPendingAdsCount, setTotalPendingAdsCount] = useState(0); // Total count of pending ads
+    const [animatedCount, setAnimatedCount] = useState(0); // Animated counter value
 
     const cookies = new Cookies();
     const token = cookies.get('auth_token');
@@ -27,6 +30,7 @@ const PostApproved = () => {
 
                 if (response.data) {
                     setPendingAds(response.data);
+                    setTotalPendingAdsCount(response.data.length); // Set total count
                 } else {
                     throw new Error('No data found');
                 }
@@ -40,27 +44,34 @@ const PostApproved = () => {
         fetchPendingAds();
     }, [token]);
 
+    // Animate the counter
+    useEffect(() => {
+        if (totalPendingAdsCount > 0) {
+            const interval = setInterval(() => {
+                setAnimatedCount((prevCount) => {
+                    if (prevCount < totalPendingAdsCount) {
+                        return prevCount + 1;
+                    } else {
+                        clearInterval(interval);
+                        return prevCount;
+                    }
+                });
+            }, 50); // Adjust speed here (lower = faster)
+
+            return () => clearInterval(interval); // Cleanup interval on unmount
+        }
+    }, [totalPendingAdsCount]);
+
     // Approve an ad
     const approveAd = async (id) => {
         try {
-            await axios.put(`${baseUrl}/ad/${id}/approve`,{status:"approved"}, {
+            await axios.put(`${baseUrl}/ad/${id}/approve`, { status: "approved" }, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
             });
             setPendingAds((prevAds) => prevAds.filter((ad) => ad._id !== id));
-        } catch (error) {
-            console.error('Error approving ad:', error);
-        }
-    };
-    const rejectAd = async (id) => {
-        try {
-            await axios.put(`${baseUrl}/ad/${id}/approve`,{status:"approved"}, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-            setPendingAds((prevAds) => prevAds.filter((ad) => ad._id !== id));
+            setTotalPendingAdsCount((prevCount) => prevCount - 1); // Decrease total count
         } catch (error) {
             console.error('Error approving ad:', error);
         }
@@ -74,10 +85,20 @@ const PostApproved = () => {
     // Change page
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-
     return (
         <div className="p-6">
-            <h1 className="text-2xl font-bold mb-6">الاعلانات المعلقة</h1>
+            {/* Counter Card */}
+            <div className="flex justify-center mb-6">
+                <div className="bg-white w-[400px] p-6 rounded-2xl shadow-xl flex flex-col items-center border border-gray-200">
+                    <div className="bg-[#ff402c] p-3 rounded-full shadow-md">
+                        <MdPendingActions className="text-white w-8 h-8" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-gray-700 mt-3">عدد الاعلانات المعلقة</h3>
+                    <p className="text-5xl font-extrabold text-[#ff402c] mt-2">{animatedCount}</p>
+                </div>
+            </div>
+
+            {/* Ads Table */}
             <div className="overflow-x-auto">
                 <table className="min-w-max w-full border-collapse bg-white border border-gray-200">
                     <thead>
@@ -126,7 +147,7 @@ const PostApproved = () => {
                         ) : (
                             <tr>
                                 <td colSpan="9" className="py-5 text-center">
-                                تحميل...
+                                    تحميل...
                                 </td>
                             </tr>
                         )}
@@ -155,8 +176,8 @@ const PostApproved = () => {
                                 <button
                                     onClick={() => paginate(i + 1)}
                                     className={`px-4 py-2 leading-tight border rounded-md ${currentPage === i + 1
-                                            ? 'bg-primary text-white'
-                                            : 'bg-white text-gray-500 hover:bg-gray-100'
+                                        ? 'bg-primary text-white'
+                                        : 'bg-white text-gray-500 hover:bg-gray-100'
                                         }`}
                                 >
                                     {i + 1}

@@ -26,6 +26,7 @@ import RequireBack from "./Pages/Auth/RequireBack";
 import RequireAuth from "./Pages/Auth/RequireAuth";
 import PostAdmin from "./Pages/Dashboard/Post/PostAdmin";
 import PostApproved from "./Pages/Dashboard/Post/PostApproved";
+import RequiredDashboard from "./Pages/Auth/RequiredDashboard";
 
 
 function App() {
@@ -45,11 +46,13 @@ function App() {
 
 
         {/*Dashboard */}
-        <Route path="/dashboard" element={<Dashboard />}>
-          <Route path="users" element={<User />} />
-          <Route path="users/:id" element={<ShowUser />} />
-          <Route path="posts" element={<PostAdmin />} />
-          <Route path="post/pending" element={<PostApproved />} />
+        <Route element={<RequiredDashboard />} >
+          <Route path="/dashboard" element={<Dashboard />}>
+            <Route path="users" element={<User />} />
+            <Route path="users/:id" element={<ShowUser />} />
+            <Route path="posts" element={<PostAdmin />} />
+            <Route path="post/pending" element={<PostApproved />} />
+          </Route>
         </Route>
 
 

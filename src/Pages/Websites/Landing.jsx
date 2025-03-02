@@ -11,34 +11,36 @@ const Landing = () => {
     const [selectedCategory, setSelectedCategory] = useState('');
     const [selectedBrand, setSelectedBrand] = useState('');
     const [selectedLocation, setSelectedLocation] = useState('');
-    const [visibleCount, setVisibleCount] = useState(10);
+    const [visibleCount, setVisibleCount] = useState(10); // Start with 10 visible posts
 
     const fetchAds = async (query = '', location = 'جميع المناطق') => {
         try {
             const response = await axios.get(`${baseUrl}/ad`, {
                 params: {
                     search: query,
-                    category: selectedCategory,
+                    category: selectedCategory === "used" ? undefined : selectedCategory, // Don't send "used" as category
                     location: location !== 'جميع المناطق' ? location : undefined,
                 },
                 withCredentials: true,
             });
             setAds(response.data.ads);
+            setVisibleCount(10); // Reset visible count when filters change
         } catch (err) {
             console.error('Error fetching ads:', err);
         }
     };
 
+    // Fetch ads when searchQuery, selectedCategory, selectedBrand, or selectedLocation changes
     useEffect(() => {
         fetchAds(searchQuery, selectedLocation);
-        setVisibleCount(10); // Reset visible count only when filters change
     }, [searchQuery, selectedCategory, selectedBrand, selectedLocation]);
-    
+
     const handleSearch = (query) => setSearchQuery(query);
     const handleLocationChange = (loc) => setSelectedLocation(loc);
 
     const handleCategoryChange = (category) => {
         setSelectedCategory(category);
+        setSelectedBrand(''); // Reset selected brand when category changes
     };
 
     const handleBrandChange = (brand) => {
@@ -46,9 +48,8 @@ const Landing = () => {
     };
 
     const handleShowMore = () => {
-        setVisibleCount((prev) => prev + 10); // Increase by 10 instead of 1
+        setVisibleCount((prev) => prev + 10); // Increase by 10
     };
-    
 
     return (
         <div className='flex flex-col gap-[10px] md:gap-5 xl:gap-7'>
@@ -59,7 +60,6 @@ const Landing = () => {
                     <Posts
                         selectedCategory={selectedCategory}
                         selectedBrand={selectedBrand}
-                        setVisibleCount={setVisibleCount}
                         visibleCount={visibleCount}
                         ads={ads}
                     />
@@ -67,7 +67,7 @@ const Landing = () => {
                 <div className="hidden lg:block bg-bgsecondary w-[455px]"></div>
             </div>
 
-            <div className="text-center mb-[5px] md:mb-[10px] lg:mb-[2px] mt-[15px] md:mt-[30px] w-full">
+            {/* Show More Button */}
             {visibleCount < ads.length && (
                 <div className="text-center mb-[5px] md:mb-[10px] lg:mb-[2px] mt-[15px] md:mt-[30px] w-full">
                     <div
@@ -79,7 +79,6 @@ const Landing = () => {
                 </div>
             )}
             
-            </div>
         </div>
     );
 };

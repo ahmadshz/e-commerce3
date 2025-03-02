@@ -12,11 +12,25 @@ const AddPost = () => {
                     key={index}
                     className='w-full relative h-[140px] md:h-[160px] lg:h-[200px] rounded-10px bg-background flex justify-between px-2 md:px-7 items-center gap-2 cursor-pointer'
                 >
-                    <div className='text-[13px]  md:text-[17px] lg:text-[25px] font-bold text-primary'>
+                    <div className='text-[13px]  md:text-[17px] lg:text-[20px] xl:text-[25px] w-8/12 font-bold text-primary'>
                         {item.add}
                     </div>
                     <img
-                        className={`${index === 0 ? "w-[70px] lg:w-[190px] h-[120px] " : "w-[60px] lg:w-[170px] h-[100px]"}`}
+                        className={`${
+                                index === 0
+                                    ? 'w-[80px] h-[80px] -ml-1 lg:ml-1 lg:w-[200px] lg:h-[150px]'
+                                    : index === 1
+                                    ? 'w-[70px] h-[70px] -ml-1 lg:ml-3 lg:w-[180px] lg:h-[140px]'
+                                    : index === 4
+                                    ? 'w-[60px] h-[70px] ml-1 lg:ml-8 lg:w-[150px] lg:h-[130px]'
+                                    : index === 8
+                                    ? 'w-[70px] h-[70px] -ml-1 lg:ml-7 lg:w-[150px] lg:h-[130px]'
+                                    : index === 9
+                                    ? 'w-[70px] h-[70px] -ml-1 lg:ml-7 lg:w-[150px] lg:h-[125px]'
+                                    : index === 10
+                                    ? 'w-[70px] h-[70px] -ml-1 lg:ml-7 lg:w-[150px] lg:h-[125px]'
+                                    : ' lg:ml-12 w-[55px] lg:w-[100px]'
+                            }`}
                         src={item.iconcolor}
                         alt=''
                     />

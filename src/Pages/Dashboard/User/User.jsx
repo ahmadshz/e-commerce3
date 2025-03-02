@@ -84,14 +84,7 @@ const User = () => {
                         <p className="text-5xl font-extrabold text-[#ff402c] mt-2">{totalUsersCount}</p>
                     </div>
 
-                    {/* Last Month Users Card */}
-                    <div className="bg-white w-[400px] p-6 rounded-2xl shadow-xl flex flex-col items-center border border-gray-200">
-                        <div className="bg-[#ff402c] p-3 rounded-full shadow-md">
-                            <FaUserClock className="text-white w-8 h-8" />
-                        </div>
-                        <h3 className="text-lg font-semibold text-gray-700 mt-3">المستخدمين في الشهر الأخير</h3>
-                        <p className="text-5xl font-extrabold text-[#ff402c] mt-2">{lastMonthUsersCount}/{totalUsers}</p>
-                    </div>
+                  
                 </div>
             </div>
 
@@ -119,7 +112,7 @@ const User = () => {
                                     <td className="p-3 text-left">{item.lastname}</td>
                                     <td className="p-3 text-left">{item.username}</td>
                                     <td className="p-3 text-left">{item.email}</td>
-                                    <td className="p-3 text-left">{item.phoneNumber}</td>
+                                    <td className="p-3 text-left">{item.phoneNumber}+</td>
                                     <td className="p-3 text-left">{item.role}</td>
                                     <td className="p-3 justify-end flex items-center gap-2">
                                         <Link to={`/dashboard/users/${item._id}`}>

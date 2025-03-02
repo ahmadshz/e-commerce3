@@ -12,6 +12,7 @@ import person from '../../../assets/iconpost/7.svg';
 
 const ShowUser = () => {
     const [postId, setPostId] = useState([]); // Initialize as an empty array
+    const [visiblePosts, setVisiblePosts] = useState(5); // State to track visible posts
 
     const { id } = useParams();
     const dispatch = useDispatch();
@@ -60,9 +61,14 @@ const ShowUser = () => {
         }
     };
 
+    // Function to handle "Show More" button click
+    const handleShowMore = () => {
+        setVisiblePosts((prev) => prev + 5); // Increase visible posts by 5
+    };
+
     if (loading) return <p className="font-semibold text-[17px] lg:text-[20px] p-5">جار التحميل...</p>;
     if (error) return <p className="font-semibold text-[17px] lg:text-[20px] p-5">حدث خطأ: {error}</p>;
-    if (!currentUser) return <p></p>; 
+    if (!currentUser) return <p></p>;
 
     return (
         <div className="p-5 bg-white ">
@@ -110,7 +116,7 @@ const ShowUser = () => {
                         </div>
                         <div className="text-placeholder border-2 text-[15px] lg:text-[17px] border-border
                w-full lg:w-[433px] h-[60px] md:h-[76px] rounded-10px font-medium tracking-wider p-3 flex items-center">
-                            {currentUser.phoneNumber}
+                           {currentUser.phoneNumber}+
                         </div>
                     </div>
 
@@ -119,7 +125,7 @@ const ShowUser = () => {
                         <div className="font-semibold text-[17px] lg:text-[20px] xl:w-[239px] flex items-center">
                             البريد الإلكتروني
                         </div>
-                        <div className="text-placeholder border-2 border-border w-full lg:w-[800px] xl:w-[1183px] 2xl:w-[1230px]
+                        <div className="text-placeholder border-2 border-border w-full lg:w-[800px] xl:w-[1183px] 2xl:w-[1242px]
                 h-[60px] md:h-[76px] rounded-10px text-[15px] lg:text-[17px] font-medium tracking-wider p-3 flex items-center">
                             {currentUser.email}
                         </div>
@@ -130,7 +136,7 @@ const ShowUser = () => {
                 <h2 className="text-[25px] lg:text-[30px] text-primary font-bold mt-10 mb-10">اﻋﻼﻧﺎﺗﻲ</h2>
                 {postId.length > 0 ? (
                     <div className='flex flex-col gap-5 w-full lg:w-[800px] xl:w-[1103px] 2xl:w-[1484px]'>
-                        {postId.map((item, index) => (
+                        {postId.slice(0, visiblePosts).map((item, index) => (
                             <div className='bg-[#FAFAFA] w-full h-[110px] md:h-[140px] lg:h-[160px] flex justify-between' key={index}>
                                 <div className='w-2/6 md:w-1/2 xl:w-3/5 flex flex-col justify-between md:py-2 pr-2 md:pr-[10px] xl:pr-[20px]'>
                                     <Link to={`/singlePost/${item._id}`} className='w-[90%] text-[14px] md:text-[19px] lg:text-[24px] font-semibold'>
@@ -162,6 +168,16 @@ const ShowUser = () => {
                                 </div>
                             </div>
                         ))}
+
+                        {/* Show More Button */}
+                        {visiblePosts < postId.length && (
+                            <div
+                                onClick={handleShowMore}
+                                className="ring-2 ring-border text-[10px] md:text-[13px] lg:text-[17px] mx-auto h-[40px] md:h-[60px] lg:h-[76px] w-[110px] md:w-[150px] lg:w-[250px] rounded-10px flex justify-center items-center font-semibold text-placeholder cursor-pointer"
+                            >
+                                مشاهدة المزيد ...
+                            </div>
+                        )}
                     </div>
                 ) : (
                     <p className='font-semibold text-[17px] lg:text-[25px]'>هذه الخانة فارغة لم يتم اضافة أي اعلانات بعد.</p>

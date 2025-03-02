@@ -2,6 +2,7 @@ import React from 'react'
 import MainHeader from '../../Components/Websites/Header/MainHeader'
 import Landing from './Landing'
 import Footer from '../../Components/Websites/Footer/Footer'
+import BarMobile from '../../Components/Websites/UI/BarMobile'
 
 const website = () => {
     
@@ -11,6 +12,7 @@ const website = () => {
             <MainHeader />
             <Landing />
             <Footer />
+            <BarMobile />
         </div>
     )
 }
