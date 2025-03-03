@@ -17,8 +17,12 @@ const SideBar = () => {
   ];
 
   const handleLogout = () => {
-    cookies.remove('auth_token', { path: '/' });
-    navigate('/');
+    try{
+      cookies.remove('auth_token', { path: '/' });
+      navigate('/');
+    }catch(error){
+      console.log(error);
+    }
   };
 
   return (

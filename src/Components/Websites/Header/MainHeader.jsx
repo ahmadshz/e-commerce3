@@ -26,17 +26,22 @@ const MainHeader = () => {
   if (token) {
     try {
       const decodedToken = jwtDecode(token);
-      username = decodedToken.username || ''; // Ensure username exists
+      username = decodedToken.username || ''; 
     } catch (error) {
       console.error('Invalid token:', error);
-      cookies.remove('auth_token', { path: '/' }); // Remove invalid token
+      cookies.remove('auth_token', { path: '/' }); 
       navigate('/login');
     }
   }
 
+
   const logOut = () => {
-    cookies.remove('auth_token', { path: '/' });
-    navigate('/');
+    try{
+      cookies.remove('auth_token', { path: '/' });
+      navigate('/');
+    }catch(error){
+      console.log(error);
+    }
   };
 
   return (
@@ -70,7 +75,7 @@ const MainHeader = () => {
           {
             token ?
               <div onClick={logOut} className='border-2 md:h-[45px] xl:h-[50px] w-[150px] lg:text-[17px] hidden lg:flex items-center border-white rounded-10px'>
-                <span className='w-[75%] text-center font-semibold'>الخروج</span>
+                <span className='w-[75%] text-center font-semibold cursor-pointer'>الخروج</span>
                 <span className='w-[45px] xl:w-[50px] md:h-[45px] xl:h-[50px] border-2  border-l-0 flex items-center justify-center rounded-10px'>
                   <img className='w-14' src={logout} alt='' />
                 </span>

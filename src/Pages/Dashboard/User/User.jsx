@@ -21,7 +21,6 @@ const User = () => {
 
     const handleDelete = useCallback((id) => {
         dispatch(deleteUser(id)).then(() => {
-            // Reset currentPage if it exceeds the total number of pages after deletion
             const totalPages = Math.ceil((users.length - 1) / itemsPerPage);
             if (currentPage > totalPages) {
                 setCurrentPage(totalPages);

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { TbLogout2, TbEye, TbEyeOff } from 'react-icons/tb'; // Import eye icons
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { baseUrl } from '../../Api/Api';
 import Cookies from 'universal-cookie'; // Import universal-cookie

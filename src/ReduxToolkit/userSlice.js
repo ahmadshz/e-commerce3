@@ -11,7 +11,7 @@ const token = cookies.get("auth_token");
 export const getUsers = createAsyncThunk("user/getUsers", async (_, { rejectWithValue }) => {
     try {
         const response = await axios.get(`${baseUrl}/user`, {
-            headers: { Authorization: `Bearer ${token}` },
+            headers: { "Authorization": `Bearer ${token}` },
         });
 
         if (response.data.message === "Access denied. Admins only.") {

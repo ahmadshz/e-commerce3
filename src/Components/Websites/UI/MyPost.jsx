@@ -16,6 +16,7 @@ const MyPost = () => {
     const [visiblePosts, setVisiblePosts] = useState(5);
     const [message, setMessage] = useState('');
     const [messageType, setMessageType] = useState('');
+    const [isDeleting, setIsDeleting] = useState(false);
 
     const cookies = new Cookies();
     const token = cookies.get('auth_token');
@@ -71,6 +72,7 @@ const MyPost = () => {
 
     // Delete Post
     const deletePost = async (id) => {
+        setIsDeleting(true);
         try {
             const response = await axios.delete(`${baseUrl}/ad/${id}`, {
                 headers: {
@@ -82,6 +84,9 @@ const MyPost = () => {
             setShowDelete(false);
         } catch (err) {
             console.error('Error deleting ad:', err);
+        }
+        finally {
+            setIsDeleting(false);  
         }
     };
 
@@ -130,6 +135,7 @@ const MyPost = () => {
                 <DeletePost
                     closeDelete={() => setShowDelete(false)}
                     deletePost={() => deletePost(selectedAdId)}
+                    isDeleting={isDeleting}
                 />
             )}
 

@@ -117,9 +117,9 @@ const PostApproved = () => {
                         <tr className="bg-primary text-white">
                             <th className="p-3 text-left">الرقم التعريفي</th>
                             <th className="p-3 text-left">الصور</th>
-                            <th className="p-3 text-left">اسم الاعلان</th>
-                            <th className="p-3 text-left">نوع الاعلان</th>
                             <th className="p-3 text-left">العنوان</th>
+                            <th className="p-3 text-left">نوع الاعلان</th>
+                            <th className="p-3 text-left">الموقع</th>
                             <th className="p-3 text-left">السعر بالليرة سورية</th>
                             <th className="p-3 text-left">السعر بالدولار</th>
                             <th className="p-3 text-left">التاريخ</th>

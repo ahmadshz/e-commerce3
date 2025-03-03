@@ -29,11 +29,9 @@ const Login = () => {
         setError(null);
         try {
             const response = await axios.post(`${baseUrl}/user/login`, { email, password });
-            const { token } = response.data;
-            cookies.set('auth_token', token, { path: '/' });
-            
+            const  token  = response.data.token;
+            cookies.set('auth_token', token);
             const {role} = jwtDecode(cookies.get('auth_token'));
-
             const go = role === 'admin' ? '/dashboard/users' : '/';
             navigate(`${go}`);
         } catch (err) {
