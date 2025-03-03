@@ -8,7 +8,6 @@ import Cookies from "universal-cookie";
 import price from '../../../assets/iconpost/1.svg';
 import pricesy from '../../../assets/iconpost/3.svg';
 import clock from '../../../assets/iconpost/6.svg';
-import person from '../../../assets/iconpost/7.svg';
 
 const ShowUser = () => {
     const [postId, setPostId] = useState([]); // Initialize as an empty array
@@ -33,10 +32,10 @@ const ShowUser = () => {
                         Authorization: `Bearer ${token}`,
                     },
                 });
-                setPostId(response.data || []); // Set to empty array if no data is found
+                setPostId(response.data || []); 
             } catch (error) {
                 console.error("Error fetching user ads:", error);
-                setPostId([]); // Set to empty array in case of an error
+                setPostId([]); 
             }
         };
 
@@ -133,7 +132,7 @@ const ShowUser = () => {
                 </div>
 
                 {/* عنوان إعلاناتي */}
-                <h2 className="text-[25px] lg:text-[30px] text-primary font-bold mt-10 mb-10">اﻋﻼﻧﺎﺗﻲ</h2>
+                <h2 className="text-[25px] lg:text-[30px] text-primary font-bold mt-10 mb-10">اعلانات</h2>
                 {postId.length > 0 ? (
                     <div className='flex flex-col gap-5 w-full lg:w-[800px] xl:w-[1103px] 2xl:w-[1484px]'>
                         {postId.slice(0, visiblePosts).map((item, index) => (

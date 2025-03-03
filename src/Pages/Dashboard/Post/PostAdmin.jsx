@@ -73,12 +73,22 @@ const PostAdmin = () => {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            setPosts((prevPosts) => prevPosts.filter((post) => post.id !== id));
-            setTotalPostsCount((prevCount) => prevCount - 1); // Decrease total count
+    
+            setPosts((prevPosts) => {
+                if (!prevPosts || !Array.isArray(prevPosts.ads)) return prevPosts;
+    
+                return {
+                    ...prevPosts,
+                    ads: prevPosts.ads.filter((post) => post._id !== id), // تعديل `ads` بدلاً من `prevPosts` مباشرةً
+                };
+            });
+    
+            setTotalPostsCount((prevCount) => Math.max(0, prevCount - 1));
         } catch (error) {
             console.error('Error deleting post:', error);
         }
     };
+    
 
     // Pagination logic
     const indexOfLastItem = currentPage * itemsPerPage;

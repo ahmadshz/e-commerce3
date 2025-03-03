@@ -12,6 +12,8 @@ import Cookies from 'universal-cookie';
 import { jwtDecode } from 'jwt-decode';
 import BarMobile from '../UI/BarMobile';
 import { motion } from 'framer-motion';
+import { MdArrowForward } from 'react-icons/md';
+import { HiOutlineArrowRight } from 'react-icons/hi';
 
 const SinglePost = () => {
     const [ad, setAd] = useState({}); // Initialize as an empty object
@@ -84,19 +86,29 @@ const SinglePost = () => {
         visible: { scale: 1, opacity: 1 },
     };
 
-    return (
-        <div className='flex flex-col gap-[40px] md:gap-[100px]'>
-            <MainHeader />
+    const goBack = () => {
+        window.history.back();
+    };
 
+    return (
+        <div className='flex flex-col gap-[30px]'>
+            <MainHeader />
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+                className='container'>
+                <HiOutlineArrowRight onClick={goBack} className='text-[45px]  ' />
+            </motion.div>
             {/* Check if ad has data before rendering */}
             {Object.keys(ad).length > 0 ? (
-                <div className="min-h-screen container flex flex-col md:flex-row gap-5 mb-[50px] md:mb-0">
+                <div className="min-h-screen relative container flex flex-col md:flex-row gap-5 mb-[50px] md:mb-0">
                     <div className="w-full md:w-[1138px]">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.5 }}
-                            className='bg-background p-4 h-[155px] flex justify-between'
+                            className='bg-background p-4 h-[150px] flex justify-between'
                         >
                             <div className='h-full flex flex-col justify-between'>
                                 <div className='text-[15px] md:text-[20px] lg:text-[25px] font-semibold'>{ad.title}</div>

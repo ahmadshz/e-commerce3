@@ -5,6 +5,8 @@ import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { IoReaderOutline } from "react-icons/io5";
 import { FaUsers, FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import Cookies from "universal-cookie";
+import { jwtDecode } from 'jwt-decode';
 
 const User = () => {
     const dispatch = useDispatch();
@@ -17,6 +19,10 @@ const User = () => {
     useEffect(() => {
         dispatch(getUsers());
     }, [dispatch]);
+
+    const cookies = new Cookies();
+    const token = cookies.get("auth_token");
+    const { ids } = jwtDecode(token); // Extract the user id(s) from the JWT token
 
     const handleDelete = (id) => {
         dispatch(deleteUser(id)).then(() => {
@@ -135,7 +141,14 @@ const User = () => {
                                         <Link to={`/dashboard/users/${item._id}`}>
                                             <IoReaderOutline size={20} className="text-blue-500" />
                                         </Link>
-                                        <MdDelete onClick={() => handleDelete(item._id)} size={20} className="text-red-500 cursor-pointer" />
+                                        {/* Hide delete icon if the user is the logged-in user */}
+                                        {item.role === 'admin' ? "" : (
+                                            <MdDelete
+                                                onClick={() => handleDelete(item._id)}
+                                                size={20}
+                                                className="text-red-500 cursor-pointer"
+                                            />
+                                        )}
                                     </td>
                                 </tr>
                             ))
@@ -189,6 +202,8 @@ const User = () => {
                             >
                                 <FaChevronLeft />
                             </button>
+
+                           
                         </li>
                     </ul>
                 </nav>

@@ -1,17 +1,22 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import home from '../../../assets/Carandothers/houses.svg'
-import {  BiCategory } from 'react-icons/bi';
+import { BiCategory } from 'react-icons/bi';
 import { MdOutlineAccountCircle } from 'react-icons/md';
 import { FiPlus } from 'react-icons/fi';
+import { motion } from 'framer-motion'
 
 const BarMobile = () => {
     return (
-        <div className='fixed md:hidden z-[50] bottom-0 right-0 h-[70px] w-full bg-background'>
+        <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.8 }}
+            className='fixed md:hidden z-[50] bottom-0 right-0 h-[70px] w-full bg-background'>
             <div className='flex justify-around items-center h-full gap-2 text-primary font-bold text-[13px]'>
                 <NavLink
-                    className={({ isActive }) =>
-                        `flex flex-col items-center ${isActive ? 'text-primary' : 'text-black'}`
+                    className={
+                        `flex flex-col items-center text-primary`
                     }
                     to={'/'}
                 >
@@ -32,7 +37,7 @@ const BarMobile = () => {
                 </NavLink>
 
             </div>
-        </div>
+        </motion.div>
     );
 };
 

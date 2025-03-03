@@ -60,7 +60,7 @@ const Posts = ({ ads, selectedCategory, selectedBrand, visibleCount }) => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: (totalDisplayedAds - visibleCount + index) * 0.2 }} 
-                        className='bg-[#FAFAFA] w-full h-[110px] md:h-[140px] lg:h-[160px] flex'
+                        className='bg-[#FAFAFA] w-full h-[130px] md:h-[140px] lg:h-[160px] flex'
                     >
                         <div className='w-2/6 md:w-1/2 xl:w-3/5 flex flex-col justify-between md:py-2 pr-2 md:pr-[10px] xl:pr-[20px]'>
                             <Link to={`/singlePost/${item._id}`} className='w-[90%] text-[14px] md:text-[19px] lg:text-[24px] font-semibold'>
@@ -72,19 +72,19 @@ const Posts = ({ ads, selectedCategory, selectedBrand, visibleCount }) => {
                             <div className='w-2/4 md:py-2 flex flex-col md:justify-between text-placeholder text-[10px] md:text-[13px] lg:text-[17px]'>
                                 <div className='flex gap-1 md:gap-2 items-center'>
                                     <img className='w-4 md:w-5 lg:w-6' src={price} alt='' />
-                                    <span className='py-0 text-[13px] md:text-[15px]'>{item.priceUSD}</span>
+                                    <span className='text-[13px] lg:text-[15px] font-normal text-placeholder'>{item.priceUSD}</span>
                                 </div>
                                 <div className='flex gap-1 md:gap-2 items-center'>
                                     <img className='w-4 md:w-5 lg:w-6' src={pricesy} alt='' />
-                                    <span className='py-0 text-[13px] md:text-[15px] w-[50%]'>{item.priceSYP}</span>
+                                    <span className='text-[13px] lg:text-[15px] font-normal text-placeholder'>{item.priceSYP}</span>
                                 </div>
                                 <div className='flex gap-1 md:gap-2 items-center'>
                                     <img className='w-4 md:w-5 lg:w-6' src={clock} alt='' />
-                                    <span className='py-0 text-[13px] md:text-[15px]'>{timeAgo(item.createdAt)}</span>
+                                    <span className='text-[13px] lg:text-[15px] font-normal text-placeholder'>{timeAgo(item.createdAt)}</span>
                                 </div>
                                 <div className='flex gap-1 md:gap-2 items-center'>
                                     <img className='w-4 md:w-5 lg:w-6' src={person} alt='' />
-                                    <span className='py-0 text-[13px] md:text-[15px] w-[70%] truncate'>{item.user}</span>
+                                    <span className='text-[13px] lg:text-[15px] font-normal text-placeholder truncate'>{item.user}</span>
                                 </div>
                             </div>
                             <Link to={`/singlePost/${item._id}`} className='w-2/4 md:w-[199px]'>
