@@ -103,8 +103,8 @@ const SinglePost = () => {
                                     <div className='hidden  lg:flex flex-col justify-around'>
                                         <p className='text-[13px] lg:text-[15px] font-normal text-placeholder '>النوع: {ad.vehicleType}</p>
                                         <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>الحالة: {ad.condition === 'new' ? 'جديد' : 'مستعمل'}</p>
+                                        <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>القير: {ad.transmission}</p>
                                         <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>الممشى: {ad.mileage}</p>
-                                        <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>رقم الهاتف:{ad.user.phoneNumber}</p>
                                     </div>
                                 )}
                                 {ad.category === 'bike' && (
