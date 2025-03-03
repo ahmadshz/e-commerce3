@@ -96,7 +96,7 @@ const SinglePost = () => {
                         >
                             <div className='h-full flex flex-col justify-between'>
                                 <div className='text-[15px] md:text-[20px] lg:text-[25px] font-semibold'>{ad.title}</div>
-                                <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>{ad.location}</p>
+                                <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>{ad.location}{ad.user.phoneNumber}</p>
                             </div>
                             <div className='flex justify-evenly gap-4 lg:px-4 text-placeholder'>
                                 {ad.category === 'car' && (

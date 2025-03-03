@@ -84,7 +84,7 @@ const Posts = ({ ads, selectedCategory, selectedBrand, visibleCount }) => {
                                 </div>
                                 <div className='flex gap-1 md:gap-2 items-center'>
                                     <img className='w-4 md:w-5 lg:w-6' src={person} alt='' />
-                                    <span className='text-[13px] lg:text-[15px] font-normal text-placeholder truncate'>{item.user}</span>
+                                    <span className='text-[13px] lg:text-[15px] font-normal text-placeholder truncate'>{item.user.username}</span>
                                 </div>
                             </div>
                             <Link to={`/singlePost/${item._id}`} className='w-2/4 md:w-[199px]'>
