@@ -30,16 +30,12 @@ const PostAdmin = () => {
                     },
                 });
 
-                // Check if the response contains data
-                if (response.data) {
                     setPosts(response.data); // Set the fetched posts to state
                     setTotalPostsCount(response.data.ads?.length || 0); // Set total count
-                } else {
-                    throw new Error('No data found');
-                }
             } catch (error) {
-                setError(error.message); // Set error message if something goes wrong
-            } finally {
+
+            }
+             finally {
                 setLoading(false); // Set loading to false after fetching
             }
         };
@@ -214,7 +210,7 @@ const PostAdmin = () => {
                                         {new Date(post.createdAt).toLocaleDateString()}
                                     </td>
                                     <td className="px-3 py-6 h-full flex justify-end items-center gap-2">
-                                        <Link to={`/dashboard/users/${post._id}`}>
+                                        <Link to={`/singlePost/${post._id}`}>
                                             <IoReaderOutline size={20} className="text-blue-500" />
                                         </Link>
                                         <MdDelete

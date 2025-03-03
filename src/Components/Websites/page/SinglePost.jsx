@@ -8,11 +8,8 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { baseUrl } from '../../../Api/Api';
 import Footer from '../Footer/Footer';
-import Cookies from 'universal-cookie';
-import { jwtDecode } from 'jwt-decode';
 import BarMobile from '../UI/BarMobile';
 import { motion } from 'framer-motion';
-import { MdArrowForward } from 'react-icons/md';
 import { HiOutlineArrowRight } from 'react-icons/hi';
 
 const SinglePost = () => {
@@ -23,22 +20,7 @@ const SinglePost = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
 
-    const cookies = new Cookies();
-    const token = cookies.get('auth_token');
-    const jwt = jwtDecode(token);
-    const ids = jwt.id;
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const res = await axios.get(`${baseUrl}/user/${ids}`);
-                setUser(res.data);
-            } catch (err) {
-                console.log(err);
-            }
-        };
-        fetchData();
-    }, [id]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -51,6 +33,8 @@ const SinglePost = () => {
         };
         fetchData();
     }, [id]);
+
+    
 
     const timeAgo = (timestamp) => {
         const now = new Date();
@@ -120,7 +104,7 @@ const SinglePost = () => {
                                         <p className='text-[13px] lg:text-[15px] font-normal text-placeholder '>النوع: {ad.vehicleType}</p>
                                         <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>الحالة: {ad.condition === 'new' ? 'جديد' : 'مستعمل'}</p>
                                         <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>الممشى: {ad.mileage}</p>
-                                        <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>رقم الهاتف:{user.phoneNumber}</p>
+                                        <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>رقم الهاتف:{ad.user.phoneNumber}</p>
                                     </div>
                                 )}
                                 {ad.category === 'bike' && (
@@ -128,7 +112,7 @@ const SinglePost = () => {
                                         <p className='text-[13px] lg:text-[15px] font-normal text-placeholder '>النوع: {ad.vehicleType}</p>
                                         <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>الحالة: {ad.condition === 'new' ? 'جديد' : 'مستعمل'}</p>
                                         <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>الممشى: {ad.mileage}</p>
-                                        <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>رقم الهاتف:{user.phoneNumber}</p>
+                                        <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>رقم الهاتف:{ad.user.phoneNumber}</p>
                                     </div>
                                 )}
                                 {ad.category === 'real_estate' && (
@@ -136,14 +120,14 @@ const SinglePost = () => {
                                         <p className='text-[13px] lg:text-[15px] font-normal text-placeholder '>النوع: {ad.propertyType}</p>
                                         <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>نوع الطابو: {ad.deedType}</p>
                                         <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>مشروع سكني جديد: {ad.newHousingProject ? 'نعم' : 'لا'}</p>
-                                        <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>رقم الهاتف:{user.phoneNumber}</p>
+                                        <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>رقم الهاتف:{ad.user.phoneNumber}</p>
                                     </div>
                                 )}
                                 {ad.category === 'electronics' && (
                                     <div className='hidden  lg:flex flex-col '>
                                         <p className='text-[13px] lg:text-[15px] font-normal text-placeholder '>النوع: {ad.deviceType}</p>
                                         <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>الحالة: {ad.condition === 'new' ? 'جديد' : 'مستعمل'}</p>
-                                        <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>رقم الهاتف:{user.phoneNumber}</p>
+                                        <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>رقم الهاتف:{ad.user.phoneNumber}</p>
                                         <div />
                                     </div>
                                 )}
@@ -151,7 +135,7 @@ const SinglePost = () => {
                                     <div className='hidden  lg:flex flex-col'>
                                         <p className='text-[13px] lg:text-[15px] font-normal text-placeholder '>النوع: {ad.adType}</p>
                                         <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>الحالة: {ad.condition === 'new' ? 'جديد' : 'مستعمل'}</p>
-                                        <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>رقم الهاتف:{user.phoneNumber}</p>
+                                        <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>رقم الهاتف:{ad.user.phoneNumber}</p>
                                         <div />
 
                                     </div>
@@ -159,7 +143,7 @@ const SinglePost = () => {
                                 {ad.category === 'pets' && (
                                     <div className='hidden  lg:flex flex-col '>
                                         <p className='text-[13px] lg:text-[15px] font-normal text-placeholder '>النوع: {ad.adType}</p>
-                                        <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>رقم الهاتف:{user.phoneNumber}</p>
+                                        <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>رقم الهاتف:{ad.user.phoneNumber}</p>
                                         <div />
                                         <div />
 
@@ -168,7 +152,7 @@ const SinglePost = () => {
                                 {ad.category === 'education' && (
                                     <div className='hidden  lg:flex flex-col '>
                                         <p className='text-[13px] lg:text-[15px] font-normal text-placeholder '>النوع: {ad.adType}</p>
-                                        <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>رقم الهاتف:{user.phoneNumber}</p>
+                                        <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>رقم الهاتف:{ad.user.phoneNumber}</p>
 
 
                                     </div>
@@ -176,7 +160,7 @@ const SinglePost = () => {
                                 {ad.category === 'jobs' && (
                                     <div className='hidden  lg:flex flex-col '>
                                         <p className='text-[13px] lg:text-[15px] font-normal text-placeholder '>النوع: {ad.adType}</p>
-                                        <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>رقم الهاتف:{user.phoneNumber}</p>
+                                        <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>رقم الهاتف:{ad.user.phoneNumber}</p>
                                         <div />
                                         <div />
 
@@ -186,7 +170,7 @@ const SinglePost = () => {
                                     <div className='hidden  lg:flex flex-col '>
                                         <p className='text-[13px] lg:text-[15px] font-normal text-placeholder '>النوع: {ad.adType}</p>
                                         <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>الحالة: {ad.condition === 'new' ? 'جديد' : 'مستعمل'}</p>
-                                        <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>رقم الهاتف:{user.phoneNumber}</p>
+                                        <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>رقم الهاتف:{ad.user.phoneNumber}</p>
                                         <div />
 
                                     </div>
@@ -194,7 +178,7 @@ const SinglePost = () => {
                                 {ad.category === 'parties' && (
                                     <div className='hidden  lg:flex flex-col '>
                                         <p className='text-[13px] lg:text-[15px] font-normal text-placeholder '>النوع: {ad.adType}</p>
-                                        <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>رقم الهاتف:{user.phoneNumber}</p>
+                                        <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>رقم الهاتف:{ad.user.phoneNumber}</p>
                                         <div />
                                         <div />
 
@@ -203,7 +187,7 @@ const SinglePost = () => {
                                 {ad.category === 'services' && (
                                     <div className='hidden  lg:flex flex-col '>
                                         <p className='text-[13px] lg:text-[15px] font-normal text-placeholder '>النوع: {ad.adType}</p>
-                                        <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>رقم الهاتف:{user.phoneNumber}</p>
+                                        <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>رقم الهاتف:{ad.user.phoneNumber}</p>
                                         <div />
                                         <div />
 
@@ -246,8 +230,8 @@ const SinglePost = () => {
                                     <p className='text-[15px] lg:text-[20px] font-normal '>نوع الطابو:
                                         {ad.condition === 'furnished' ? 'مفروش' : 'unfurnished' ? " غير مفروش" : "على عظم"} </p>
                                     <p className='text-[15px] lg:text-[20px] font-normal '>{ad.description}</p>
-                                    <p className=' md:hidden text-[13px] lg:text-[15px] font-normal text-placeholder'>رقم الهاتف:{user.phoneNumber}</p>
-                                    <p className='text-[15px] lg:text-[20px] font-normal'>رقم الهاتف:{user.phoneNumber}</p>
+                                    <p className=' md:hidden text-[13px] lg:text-[15px] font-normal text-placeholder'>رقم الهاتف:{ad.user.phoneNumber}</p>
+                                    <p className='text-[15px] lg:text-[20px] font-normal'>رقم الهاتف:{ad.user.phoneNumber}</p>
 
 
                                 </div>
@@ -259,7 +243,7 @@ const SinglePost = () => {
                                     <p className='text-[15px] lg:text-[20px] font-normal'>القير: {ad.transmission}</p>
                                     <p className='text-[15px] lg:text-[20px] font-normal'>الممشى: {ad.mileage}</p>
                                     <p className='text-[15px] lg:text-[20px] font-normal '>{ad.description}</p>
-                                    <p className='text-[15px] lg:text-[20px] font-normal'>رقم الهاتف:{user.phoneNumber}</p>
+                                    <p className='text-[15px] lg:text-[20px] font-normal'>رقم الهاتف:{ad.user.phoneNumber}</p>
 
                                 </div>
                             )}
@@ -270,7 +254,7 @@ const SinglePost = () => {
                                     <p className='text-[15px] lg:text-[20px] font-normal'>القير: {ad.transmission}</p>
                                     <p className='text-[15px] lg:text-[20px] font-normal'>الممشى: {ad.mileage}</p>
                                     <p className='text-[15px] lg:text-[20px] font-normal '>{ad.description}</p>
-                                    <p className='text-[15px] lg:text-[20px] font-normal'>رقم الهاتف:{user.phoneNumber}</p>
+                                    <p className='text-[15px] lg:text-[20px] font-normal'>رقم الهاتف:{ad.user.phoneNumber}</p>
 
                                 </div>
                             )}
@@ -279,7 +263,7 @@ const SinglePost = () => {
                                     <p className='text-[15px] lg:text-[20px] font-normal'>النوع: {ad.vehicleType}</p>
                                     <p className='text-[15px] lg:text-[20px] font-normal'>الحالة: {ad.condition === 'new' ? 'جديد' : 'مستعمل'}</p>
                                     <p className='text-[15px] lg:text-[20px] font-normal '>{ad.description}</p>
-                                    <p className='text-[15px] lg:text-[20px] font-normal'>رقم الهاتف:{user.phoneNumber}</p>
+                                    <p className='text-[15px] lg:text-[20px] font-normal'>رقم الهاتف:{ad.user.phoneNumber}</p>
 
                                 </div>
                             )}
@@ -288,7 +272,7 @@ const SinglePost = () => {
                                     <p className='text-[15px] lg:text-[20px] font-normal'>النوع: {ad.adType}</p>
                                     <p className='text-[15px] lg:text-[20px] font-normal'>الحالة: {ad.condition === 'new' ? 'جديد' : 'مستعمل'}</p>
                                     <p className='text-[15px] lg:text-[20px] font-normal '>{ad.description}</p>
-                                    <p className='text-[15px] lg:text-[20px] font-normal'>رقم الهاتف:{user.phoneNumber}</p>
+                                    <p className='text-[15px] lg:text-[20px] font-normal'>رقم الهاتف:{ad.user.phoneNumber}</p>
 
                                 </div>
                             )}
@@ -296,7 +280,7 @@ const SinglePost = () => {
                                 <div className='space-y-2'>
                                     <p className='text-[15px] lg:text-[20px] font-normal'>النوع: {ad.adType}</p>
                                     <p className='text-[15px] lg:text-[20px] font-normal '>{ad.description}</p>
-                                    <p className='text-[15px] lg:text-[20px] font-normal'>رقم الهاتف:{user.phoneNumber}</p>
+                                    <p className='text-[15px] lg:text-[20px] font-normal'>رقم الهاتف:{ad.user.phoneNumber}</p>
 
                                 </div>
                             )}
@@ -304,7 +288,7 @@ const SinglePost = () => {
                                 <div className='space-y-2'>
                                     <p className='text-[15px] lg:text-[20px] font-normal'>النوع: {ad.adType}</p>
                                     <p className='text-[15px] lg:text-[20px] font-normal '>{ad.description}</p>
-                                    <p className='text-[15px] lg:text-[20px] font-normal'>رقم الهاتف:{user.phoneNumber}</p>
+                                    <p className='text-[15px] lg:text-[20px] font-normal'>رقم الهاتف:{ad.user.phoneNumber}</p>
 
                                 </div>
                             )}
@@ -312,7 +296,7 @@ const SinglePost = () => {
                                 <div className='space-y-2'>
                                     <p className='text-[15px] lg:text-[20px] font-normal'>النوع: {ad.adType}</p>
                                     <p className='text-[15px] lg:text-[20px] font-normal '>{ad.description}</p>
-                                    <p className='text-[15px] lg:text-[20px] font-normal'>رقم الهاتف:{user.phoneNumber}</p>
+                                    <p className='text-[15px] lg:text-[20px] font-normal'>رقم الهاتف:{ad.user.phoneNumber}</p>
 
                                 </div>
                             )}
@@ -321,7 +305,7 @@ const SinglePost = () => {
                                     <p className='text-[15px] lg:text-[20px] font-normal'>النوع: {ad.adType}</p>
                                     <p className='text-[15px] lg:text-[20px] font-normal'>الحالة: {ad.condition === 'new' ? 'جديد' : 'مستعمل'}</p>
                                     <p className='text-[15px] lg:text-[20px] font-normal '>{ad.description}</p>
-                                    <p className='text-[15px] lg:text-[20px] font-normal'>رقم الهاتف:{user.phoneNumber}</p>
+                                    <p className='text-[15px] lg:text-[20px] font-normal'>رقم الهاتف:{ad.user.phoneNumber}</p>
 
                                 </div>
                             )}
@@ -329,7 +313,7 @@ const SinglePost = () => {
                                 <div className='space-y-2'>
                                     <p className='text-[15px] lg:text-[20px] font-normal'>النوع: {ad.adType}</p>
                                     <p className='text-[15px] lg:text-[20px] font-normal '>{ad.description}</p>
-                                    <p className='text-[15px] lg:text-[20px] font-normal'>رقم الهاتف:{user.phoneNumber}</p>
+                                    <p className='text-[15px] lg:text-[20px] font-normal'>رقم الهاتف:{ad.user.phoneNumber}</p>
 
                                 </div>
                             )}
