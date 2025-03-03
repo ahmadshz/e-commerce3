@@ -11,10 +11,10 @@ import Footer from '../Footer/Footer';
 import BarMobile from '../UI/BarMobile';
 import { motion } from 'framer-motion';
 import { HiOutlineArrowRight } from 'react-icons/hi';
+import logo from '../../../assets/Logo/Logowhite.png';
 
 const SinglePost = () => {
     const [ad, setAd] = useState({}); // Initialize as an empty object
-    const [user, setUser] = useState({}); // Initialize as an empty object
     const { id } = useParams();
     const [selectedImage, setSelectedImage] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -34,7 +34,7 @@ const SinglePost = () => {
         fetchData();
     }, [id]);
 
-    
+
 
     const timeAgo = (timestamp) => {
         const now = new Date();
@@ -81,8 +81,8 @@ const SinglePost = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.5 }}
-                className='container'>
-                <HiOutlineArrowRight onClick={goBack} className='text-[45px]  ' />
+                className='container '>
+                <HiOutlineArrowRight onClick={goBack} className=' text-[30px] h-[30px] lg:h-[50px] lg:text-[45px]  ' />
             </motion.div>
             {/* Check if ad has data before rendering */}
             {Object.keys(ad).length > 0 ? (
@@ -168,7 +168,6 @@ const SinglePost = () => {
                                 )}
                                 {ad.category === 'others' && (
                                     <div className='hidden  lg:flex flex-col '>
-                                        <p className='text-[13px] lg:text-[15px] font-normal text-placeholder '>النوع: {ad.adType}</p>
                                         <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>الحالة: {ad.condition === 'new' ? 'جديد' : 'مستعمل'}</p>
                                         <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>رقم الهاتف:{ad.user.phoneNumber}</p>
                                         <div />
@@ -302,7 +301,6 @@ const SinglePost = () => {
                             )}
                             {ad.category === 'others' && (
                                 <div className='space-y-2'>
-                                    <p className='text-[15px] lg:text-[20px] font-normal'>النوع: {ad.adType}</p>
                                     <p className='text-[15px] lg:text-[20px] font-normal'>الحالة: {ad.condition === 'new' ? 'جديد' : 'مستعمل'}</p>
                                     <p className='text-[15px] lg:text-[20px] font-normal '>{ad.description}</p>
                                     <p className='text-[15px] lg:text-[20px] font-normal'>رقم الهاتف:{ad.user.phoneNumber}</p>
@@ -327,20 +325,24 @@ const SinglePost = () => {
 
                         </motion.div>
 
-                        <div className='w-full custom-scroll overflow-x-auto  flex gap-2 py-4' st>
+                        <div className='w-full custom-scroll overflow-x-auto  flex flex-wrap  gap-10  py-4' st>
                             {Array.isArray(ad.images) && ad.images.length > 0 && (
                                 ad.images.map((image, index) => (
-                                    <motion.img
-                                        variants={fadeIn}
-                                        initial="hidden"
-                                        animate="visible"
-                                        transition={{ duration: 0.5, delay: 0.7 }}
-                                        key={index}
-                                        className='w-[200px] h-[300px] md:w-[350px] md:h-[450px] object-cover cursor-pointer'
-                                        src={image}
-                                        alt=''
-                                        onClick={() => handleImageClick(image)}
-                                    />
+                                    <div className='relative'>
+                                        <motion.img
+                                            variants={fadeIn}
+                                            initial="hidden"
+                                            animate="visible"
+                                            transition={{ duration: 0.5, delay: 0.7 }}
+                                            key={index}
+                                            className='w-full md:w-[200px]  h-[300px] lg:w-[300px] lg:h-[400px]  xl:w-[380px] xl:h-[500px] 
+                                        2xl:w-[450px] 2xl:h-[550px] rounded-10px object-cover cursor-pointer'
+                                            src={image}
+                                            alt=''
+                                            onClick={() => handleImageClick(image)}
+                                        />
+                                        <img className='w-10 md:w-12 lg:w-16 xl:w-20 absolute bottom-4 right-4  ' src={logo} alt='' />
+                                    </div>
                                 ))
                             )}
                         </div>
@@ -367,7 +369,7 @@ const SinglePost = () => {
                     <div className="relative">
                         <img src={selectedImage} alt="Selected" className="max-w-[90vw] max-h-[90vh] object-contain" />
                         <button
-                            className="absolute top-0 md:top-2 right-2 font-bold text-xl md:text-2xl p-2 text-black hover:bg-gray-200"
+                            className="absolute top-0 md:top-2 right-2 font-bold text-xl md:text-2xl p-2 text-white bg-primary rounded-10px"
                             onClick={closeModal}
                         >
                             ✕

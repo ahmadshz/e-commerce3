@@ -1,82 +1,84 @@
 import React, { useState } from 'react';
-import { data } from '../../../utils/data'; 
+import { data } from '../../../utils/data';
 import { motion } from 'framer-motion';
 
 const CategoryNavbar = ({ onCategoryChange, onBrandChange }) => {
-    const [selectedCategory, setSelectedCategory] = useState(null); // State to track the selected category
-    const [selectedBrand, setSelectedBrand] = useState(null); // State to track the selected brand
+    const [selectedCategory, setSelectedCategory] = useState(null);
+    const [selectedBrand, setSelectedBrand] = useState(null);
 
     const handleCategoryClick = (index) => {
-        setSelectedCategory(index);
-        onCategoryChange(data[index].category); // Pass the category to the parent component
-        setSelectedBrand(null); // Reset selected brand when a new category is selected
-
+        if (selectedCategory === index) {
+            setSelectedCategory(null);
+            onCategoryChange(null);
+            setSelectedBrand(null);
+        } else {
+            setSelectedCategory(index);
+            onCategoryChange(data[index].category);
+            setSelectedBrand(null);
+        }
     };
-    
+
 
     const handleBrandClick = (index) => {
-        setSelectedBrand(index); // Update the selected brand
-        onBrandChange(data[selectedCategory].brands[index]); // Pass the selected brand to the parent component
+        setSelectedBrand(index);
+        onBrandChange(data[selectedCategory].brands[index]);
     };
 
     return (
         <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.7 }} 
-        className="container">
-            {/* Scrollable Container for Categories */}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.7 }}
+            className="container">
+            
+            {/* Category Section */}
             <div className="flex justify-between overflow-x-auto overflow-y-hidden scroll-smooth custom-scrollbar pb-[5px] md:pb-[10px]">
                 {data.map((category, index) => (
                     <div
                         key={index}
                         onClick={() => handleCategoryClick(index)}
-                        className={`flex flex-col items-center justify-center md:px-4 py-0 lg:py-2 xl:py-4 cursor-pointer transition-transform transform ${
-                            selectedCategory === index ? 'bg-border rounded-10px duration-300' : ''
-                        }`}
+                        className={`flex flex-col items-center justify-center md:px-4 py-0 lg:py-2 xl:py-4 cursor-pointer transition-transform transform ${selectedCategory === index ? 'bg-border rounded-10px duration-300' : ''
+                            }`}
                     >
                         <img
                             src={category.icon}
                             alt={category.title}
-                            className={`object-cover ${
-                                index === 0
+                            className={`object-cover ${index === 0
                                     ? 'w-[60px] h-[35px] lg:w-[85px] lg:h-[45px]'
                                     : index === 1
-                                    ? 'w-[50px] h-[40px] lg:w-[65px] lg:h-[50px]'
-                                    : index === 4
-                                    ? 'w-[50px] h-[45px] lg:w-[65px] lg:h-[55px]'
-                                    : index === 8
-                                    ? 'w-[50px] h-[35px] lg:w-[65px] lg:h-[45px]'
-                                    : index === 9
-                                    ? 'w-[50px] h-[35px] lg:w-[65px] lg:h-[45px]'
-                                    : index === 10
-                                    ? 'w-[50px] h-[40px] lg:w-[65px] lg:h-[45px]'
-                                    : 'w-[40px] lg:w-[50px]'
-                            } ${selectedCategory === index ? 'hidden' : 'block'}`}
+                                        ? 'w-[50px] h-[40px] lg:w-[65px] lg:h-[50px]'
+                                        : index === 4
+                                            ? 'w-[50px] h-[45px] lg:w-[65px] lg:h-[55px]'
+                                            : index === 8
+                                                ? 'w-[50px] h-[35px] lg:w-[65px] lg:h-[45px]'
+                                                : index === 9
+                                                    ? 'w-[50px] h-[35px] lg:w-[65px] lg:h-[45px]'
+                                                    : index === 10
+                                                        ? 'w-[50px] h-[40px] lg:w-[65px] lg:h-[45px]'
+                                                        : 'w-[40px] lg:w-[50px]'
+                                } ${selectedCategory === index ? 'hidden' : 'block'}`}
                         />
                         <img
                             src={category.iconcolor}
                             alt={category.title}
-                            className={`object-cover ${
-                                index === 0
+                            className={`object-cover ${index === 0
                                     ? 'w-[60px] h-[35px] lg:w-[85px] lg:h-[45px]'
                                     : index === 1
-                                    ? 'w-[50px] h-[40px] lg:w-[65px] lg:h-[50px]'
-                                    : index === 4
-                                    ? 'w-[50px] h-[45px] lg:w-[65px] lg:h-[55px]'
-                                    : index === 8
-                                    ? 'w-[50px] h-[35px] lg:w-[65px] lg:h-[45px]'
-                                    : index === 9
-                                    ? 'w-[50px] h-[35px] lg:w-[65px] lg:h-[45px]'
-                                    : index === 10
-                                    ? 'w-[50px] h-[40px] lg:w-[65px] lg:h-[45px]'
-                                    : 'w-[40px] lg:w-[50px]'
-                            } ${selectedCategory === index ? 'block' : 'hidden'}`}
+                                        ? 'w-[50px] h-[40px] lg:w-[65px] lg:h-[50px]'
+                                        : index === 4
+                                            ? 'w-[50px] h-[45px] lg:w-[65px] lg:h-[55px]'
+                                            : index === 8
+                                                ? 'w-[50px] h-[35px] lg:w-[65px] lg:h-[45px]'
+                                                : index === 9
+                                                    ? 'w-[50px] h-[35px] lg:w-[65px] lg:h-[45px]'
+                                                    : index === 10
+                                                        ? 'w-[50px] h-[40px] lg:w-[65px] lg:h-[45px]'
+                                                        : 'w-[40px] lg:w-[50px]'
+                                } ${selectedCategory === index ? 'block' : 'hidden'}`}
                         />
                         <div
-                            className={`text-center w-[110px] lg:w-[123px] xl:w-[140px] text-[10px] md:text-[13px] lg:text-[17px] font-semibold ${
-                                selectedCategory === index ? 'text-primary' : 'text-placeholder'
-                            }`}
+                            className={`text-center w-[110px] lg:w-[123px] xl:w-[140px] text-[10px] md:text-[13px] lg:text-[17px] font-semibold ${selectedCategory === index ? 'text-primary' : 'text-placeholder'
+                                }`}
                         >
                             {category.title}
                         </div>
@@ -87,18 +89,17 @@ const CategoryNavbar = ({ onCategoryChange, onBrandChange }) => {
             {/* Brands Section */}
             {selectedCategory !== null && data[selectedCategory].brands && data[selectedCategory].brands.length > 0 && (
                 <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay:  0.3 }}
-                className="mt-[5px] md:mt-[20px]">
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.5, delay: 0.3 }}
+                    className="mt-[5px] md:mt-[20px]">
                     <div className="flex overflow-x-auto pb-[5px] md:pb-[10px] gap-2 md:gap-4 custom-scrollbar">
                         {data[selectedCategory].brands.map((brand, index) => (
                             <div
                                 key={index}
                                 onClick={() => handleBrandClick(index)}
-                                className={`border rounded-10px px-2 py-1 md:p-4 w-fit bg-white text-center cursor-pointer ${
-                                    selectedBrand === index ? 'text-primary' : 'text-placeholder'
-                                }`}
+                                className={`border rounded-10px px-2 py-1 md:p-4 w-fit bg-white text-center cursor-pointer ${selectedBrand === index ? 'text-primary' : 'text-placeholder'
+                                    }`}
                             >
                                 <p className="text-[10px] md:text-[12px] lg:text-[16px] font-semibold truncate">
                                     {brand.arabic ? brand.arabic : brand}

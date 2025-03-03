@@ -24,7 +24,14 @@ export const getUsers = createAsyncThunk("user/getUsers", async (_, { rejectWith
     }
 });
 
-// Fetch a single user by ID
+// Delete user by ID
+export const deleteUser = createAsyncThunk("user/deleteUser", async (id) => {
+    if (!id) throw new Error("User ID is required");
+    await axios.delete(`${baseUrl}/user/${id}`);
+    return id;
+});
+
+// Fetch user by ID
 export const getUserById = createAsyncThunk("user/getUserById", async (userId, { rejectWithValue }) => {
     try {
         const response = await axios.get(`${baseUrl}/user/${userId}`, {
@@ -41,12 +48,7 @@ export const getUserById = createAsyncThunk("user/getUserById", async (userId, {
     }
 });
 
-// Delete user by ID
-export const deleteUser = createAsyncThunk("user/deleteUser", async (id) => {
-    if (!id) throw new Error("User ID is required");
-    await axios.delete(`${baseUrl}/user/${id}`);
-    return id;
-});
+
 
 
 const userSlice = createSlice({
@@ -70,7 +72,7 @@ const userSlice = createSlice({
             })
             .addCase(getUsers.rejected, (state, action) => {
                 state.loading = false;
-                state.error = action.error.message;
+                state.error = action.payload || "An error occurred";
             })
 
             // Handle Fetch User by ID
@@ -83,7 +85,7 @@ const userSlice = createSlice({
             })
             .addCase(getUserById.rejected, (state, action) => {
                 state.loading = false;
-                state.error = action.error.message;
+                state.error = action.payload || "An error occurred";
             })
 
             // Handle Delete User

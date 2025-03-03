@@ -186,6 +186,7 @@ const Register = () => {
                                   font-medium tracking-wider p-3 outline-none focus:border-primary"
                                 placeholder='اكتب كلمة السر باللغة الانجليزية'
                                 required
+                                minLength={6} 
                             />
                             <button
                                 type="button"

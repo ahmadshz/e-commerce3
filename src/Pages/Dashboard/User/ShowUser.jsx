@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { getUserById } from "../../../ReduxToolkit/userSlice"; // Import the new action
@@ -32,10 +32,10 @@ const ShowUser = () => {
                         Authorization: `Bearer ${token}`,
                     },
                 });
-                setPostId(response.data || []); 
+                setPostId(response.data || []); // Ensure response.data is an array
             } catch (error) {
                 console.error("Error fetching user ads:", error);
-                setPostId([]); 
+                setPostId([]); // Set to empty array on error
             }
         };
 
@@ -50,20 +50,25 @@ const ShowUser = () => {
         const minutes = Math.floor(differenceInSeconds / 60);
         const hours = Math.floor(differenceInSeconds / 3600);
         const days = Math.floor(differenceInSeconds / (3600 * 24));
+        const weeks = Math.floor(differenceInSeconds / (3600 * 24 * 7));
 
-        if (minutes < 60) {
+        if (differenceInSeconds < 60) {
+            return `الآن`;
+        } else if (minutes < 60) {
             return `قبل ${minutes} دقيقة`;
         } else if (hours < 24) {
             return `قبل ${hours} ساعة`;
-        } else {
+        } else if (days < 7) {
             return `قبل ${days} يوم`;
+        } else {
+            return `قبل ${weeks} أسبوع`;
         }
     };
 
     // Function to handle "Show More" button click
-    const handleShowMore = () => {
+    const handleShowMore = useCallback(() => {
         setVisiblePosts((prev) => prev + 5); // Increase visible posts by 5
-    };
+    }, []);
 
     if (loading) return <p className="font-semibold text-[17px] lg:text-[20px] p-5">جار التحميل...</p>;
     if (error) return <p className="font-semibold text-[17px] lg:text-[20px] p-5">حدث خطأ: {error}</p>;
@@ -133,7 +138,7 @@ const ShowUser = () => {
 
                 {/* عنوان إعلاناتي */}
                 <h2 className="text-[25px] lg:text-[30px] text-primary font-bold mt-10 mb-10">اعلانات</h2>
-                {postId.length > 0 ? (
+                {postId && postId.length > 0 ? (
                     <div className='flex flex-col gap-5 w-full lg:w-[800px] xl:w-[1103px] 2xl:w-[1484px]'>
                         {postId.slice(0, visiblePosts).map((item, index) => (
                             <div className='bg-[#FAFAFA] w-full h-[110px] md:h-[140px] lg:h-[160px] flex justify-between' key={index}>

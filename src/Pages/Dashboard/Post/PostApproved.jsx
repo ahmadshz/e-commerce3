@@ -9,12 +9,11 @@ import { MdPendingActions } from 'react-icons/md';
 const PostApproved = () => {
     const [pendingAds, setPendingAds] = useState([]); // State to store pending ads
     const [loading, setLoading] = useState(true); // State to manage loading state
-    const [error, setError] = useState(null); // State to handle errors
     const [currentPage, setCurrentPage] = useState(1); // State to manage current page
     const [itemsPerPage] = useState(10); // Number of items per page
     const [totalPendingAdsCount, setTotalPendingAdsCount] = useState(0); // Total count of pending ads
     const [animatedCount, setAnimatedCount] = useState(0); // Animated counter value
-
+    const [error, setError] = useState('');
     const cookies = new Cookies();
     const token = cookies.get('auth_token');
 
@@ -128,6 +127,13 @@ const PostApproved = () => {
                         </tr>
                     </thead>
                     <tbody>
+                    {
+                        error !== "No pending ads found" && (
+                            <tr>
+                            <td> </td>
+                            </tr>
+                        )
+                    }
                         {currentItems.length > 0 ? (
                             currentItems.map((ad, index) => (
                                 <tr key={ad._id} className="border-b even:bg-gray-100 hover:bg-gray-200">
@@ -159,9 +165,15 @@ const PostApproved = () => {
                             ))
                         ) : (
                             <tr>
-                                <td colSpan="9" className="py-5 text-center">
-                                    تحميل...
-                                </td>
+                                {loading ? (
+                                    <td colSpan="9" className="py-5 text-center">
+                                        تحميل...
+                                    </td>
+                                ) :
+                                    <td colSpan="9" className="py-5 text-center">
+                                        لا يوجد اعلانات معلقة
+                                    </td>
+                                }
                             </tr>
                         )}
                     </tbody>

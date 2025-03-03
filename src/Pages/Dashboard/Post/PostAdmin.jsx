@@ -5,17 +5,17 @@ import { baseUrl } from '../../../Api/Api';
 import { Link } from 'react-router-dom';
 import { IoReaderOutline } from 'react-icons/io5';
 import { MdDelete } from 'react-icons/md';
-import { FaChevronLeft, FaChevronRight, FaUserClock, FaUsers } from 'react-icons/fa';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { BsPostcard } from 'react-icons/bs';
 
 const PostAdmin = () => {
     const [posts, setPosts] = useState([]);
-    const [loading, setLoading] = useState(true); // State to manage loading state
-    const [error, setError] = useState(null); // State to handle errors
-    const [currentPage, setCurrentPage] = useState(1); // State to manage current page
-    const [itemsPerPage] = useState(10); // Number of items per page
-    const [totalPostsCount, setTotalPostsCount] = useState(0); // Total count of posts
-    const [animatedCount, setAnimatedCount] = useState(0); // Animated counter value
+    const [loading, setLoading] = useState(true);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [itemsPerPage] = useState(10);
+    const [totalPostsCount, setTotalPostsCount] = useState(0);
+    const [animatedCount, setAnimatedCount] = useState(0);
+    const [error, setError] = useState(null);
 
     const cookies = new Cookies();
     const token = cookies.get('auth_token');
@@ -30,13 +30,13 @@ const PostAdmin = () => {
                     },
                 });
 
-                    setPosts(response.data); // Set the fetched posts to state
-                    setTotalPostsCount(response.data.ads?.length || 0); // Set total count
+                setPosts(response.data);
+                setTotalPostsCount(response.data.ads?.length || 0);
             } catch (error) {
-
+                setError(error.message);
             }
-             finally {
-                setLoading(false); // Set loading to false after fetching
+            finally {
+                setLoading(false);
             }
         };
 
@@ -55,9 +55,9 @@ const PostAdmin = () => {
                         return prevCount;
                     }
                 });
-            }, 50); // Adjust speed here (lower = faster)
+            }, 50);
 
-            return () => clearInterval(interval); // Cleanup interval on unmount
+            return () => clearInterval(interval);
         }
     }, [totalPostsCount]);
 
@@ -69,22 +69,22 @@ const PostAdmin = () => {
                     Authorization: `Bearer ${token}`,
                 },
             });
-    
+
             setPosts((prevPosts) => {
                 if (!prevPosts || !Array.isArray(prevPosts.ads)) return prevPosts;
-    
+
                 return {
                     ...prevPosts,
                     ads: prevPosts.ads.filter((post) => post._id !== id), // تعديل `ads` بدلاً من `prevPosts` مباشرةً
                 };
             });
-    
+
             setTotalPostsCount((prevCount) => Math.max(0, prevCount - 1));
         } catch (error) {
             console.error('Error deleting post:', error);
         }
     };
-    
+
 
     // Pagination logic
     const indexOfLastItem = currentPage * itemsPerPage;
@@ -123,11 +123,10 @@ const PostAdmin = () => {
                             <li key={number}>
                                 <button
                                     onClick={() => paginate(number)}
-                                    className={`px-4 py-2 leading-tight border rounded-md ${
-                                        currentPage === number
-                                            ? 'bg-primary text-white'
-                                            : 'bg-white text-gray-500 hover:bg-gray-100'
-                                    }`}
+                                    className={`px-4 py-2 leading-tight border rounded-md ${currentPage === number
+                                        ? 'bg-primary text-white'
+                                        : 'bg-white text-gray-500 hover:bg-gray-100'
+                                        }`}
                                 >
                                     {number}
                                 </button>
@@ -182,53 +181,65 @@ const PostAdmin = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {currentItems.length > 0 ? (
-                            currentItems.map((post, index) => (
-                                <tr key={post._id} className="border-b even:bg-gray-100 hover:bg-gray-200">
-                                    <td className="p-3 text-center">{indexOfFirstItem + index + 1}</td>
-                                    <td className="py-3 px-4 text-left">
-                                        {post.images.length > 1 ? (
-                                            <img
-                                                src={post.images[0]}
-                                                alt=""
-                                                className="w-12 h-12 object-cover rounded-md inline-block"
-                                            />
-                                        ) : (
-                                            <img
-                                                src={post.images}
-                                                alt=""
-                                                className="w-12 h-12 object-cover rounded-md inline-block"
-                                            />
-                                        )}
-                                    </td>
-                                    <td className="p-3 text-left">{post.title}</td>
-                                    <td className="p-3 text-left">{post.category}</td>
-                                    <td className="p-3 text-left">{post.location}</td>
-                                    <td className="p-3 text-left">{post.priceSYP}</td>
-                                    <td className="p-3 text-left">{post.priceUSD}</td>
-                                    <td className="p-3 text-left">
-                                        {new Date(post.createdAt).toLocaleDateString()}
-                                    </td>
-                                    <td className="px-3 py-6 h-full flex justify-end items-center gap-2">
-                                        <Link to={`/singlePost/${post._id}`}>
-                                            <IoReaderOutline size={20} className="text-blue-500" />
-                                        </Link>
-                                        <MdDelete
-                                            onClick={() => handleDelete(post._id)}
-                                            size={20}
-                                            className="text-red-500 cursor-pointer"
-                                        />
-                                    </td>
-                                </tr>
-                            ))
-                        ) : (
-                            <tr>
-                                <td colSpan="9" className="py-5 text-center">
-                                    لا يوجد اعلانات
+                    {loading && (
+                        <tr>
+                            <td colSpan="9" className="p-5 text-center">
+                                جاري التحميل...
+                            </td>
+                        </tr>
+                    )}
+                
+                    {error && (
+                        <tr>
+                            <td colSpan="9" className="p-5 text-center text-red-500">
+                                خطأ في تحميل البيانات
+                            </td>
+                        </tr>
+                    )}
+                
+                    {!loading && !error && currentItems.length > 0 ? (
+                        currentItems.map((post, index) => (
+                            <tr key={post._id} className="border-b even:bg-gray-100 hover:bg-gray-200">
+                                <td className="p-3 text-center">{indexOfFirstItem + index + 1}</td>
+                                <td className="py-3 px-4 text-left">
+                                    <img
+                                        src={Array.isArray(post.images) ? post.images[0] : post.images}
+                                        alt=""
+                                        className="w-12 h-12 object-cover rounded-md inline-block"
+                                    />
+                                </td>
+                                <td className="p-3 text-left">{post.title}</td>
+                                <td className="p-3 text-left">{post.category}</td>
+                                <td className="p-3 text-left">{post.location}</td>
+                                <td className="p-3 text-left">{post.priceSYP}</td>
+                                <td className="p-3 text-left">{post.priceUSD}</td>
+                                <td className="p-3 text-left">
+                                    {new Date(post.createdAt).toLocaleDateString()}
+                                </td>
+                                <td className="px-3 py-6 h-full flex justify-end items-center gap-2">
+                                    <Link to={`/singlePost/${post._id}`}>
+                                        <IoReaderOutline size={20} className="text-blue-500" />
+                                    </Link>
+                                    <MdDelete
+                                        onClick={() => handleDelete(post._id)}
+                                        size={20}
+                                        className="text-red-500 cursor-pointer"
+                                    />
                                 </td>
                             </tr>
-                        )}
-                    </tbody>
+                        ))
+                    ) : (
+                        !loading &&
+                        !error && (
+                            <tr>
+                                <td colSpan="9" className="p-5 text-center text-gray-500">
+                                    لا يوجد إعلانات
+                                </td>
+                            </tr>
+                        )
+                    )}
+                </tbody>
+                
                 </table>
             </div>
 

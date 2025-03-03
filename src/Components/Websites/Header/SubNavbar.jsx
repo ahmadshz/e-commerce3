@@ -123,12 +123,12 @@ const SubNavbar = ({ onSearch, onLocationChange }) => {
                 <div className="w-2/4 lg:w-[160px] 2xl:w-[195px] border-2 border-border rounded-10px relative text-placeholder">
                     <button
                         onClick={toggleDropdown}
-                        className="w-full h-[35px] md:h-[45px] xl:h-[53px] flex items-center justify-between"
+                        className="w-full h-[31px] md:h-[41px] xl:h-[49px] flex items-center justify-between"
                     >
                         <span className="w-[75%] md:w-[85%] lg:w-[80%] text-center text-[13px] md:text-[15px]">
                             {selectedLocation}
                         </span>
-                        <MdOutlineKeyboardArrowDown className="w-[40px] lg:w-[54px] h-[39px] md:h-[49px] xl:h-[57px] border-2 border-l-0 border-border rounded-10px" />
+                        <MdOutlineKeyboardArrowDown className="w-[40px] lg:w-[54px] h-[35px] md:h-[45px] xl:h-[53px] border-2 border-l-0 border-border rounded-10px" />
                     </button>
 
                     {isOpen && (
@@ -153,7 +153,8 @@ const SubNavbar = ({ onSearch, onLocationChange }) => {
                 </div>
 
                 {/* Add Post Button */}
-                <Link to={'/addpost'} className=' hidden md:flex items-center justify-between w-2/4 lg:w-[170px] xl:w-[220px] h-[35px] md:h-[45px] xl:h-[53px] text-[13px] md:text-[15px] lg:text-[17px] bg-primary rounded-10px'>
+                <Link to={'/addpost'} className=' hidden md:flex items-center justify-between w-2/4 lg:w-[170px] xl:w-[220px]
+                 h-[31px] md:h-[41px] xl:h-[49px] text-[13px] md:text-[15px] lg:text-[17px] bg-primary rounded-10px'>
                     <div className='text-white w-[75%] md:w-[85%] lg:w-[80%] text-center font-bold'>أضــف اعــلان</div>
                     <div className='w-[40px] lg:w-[54px] bg-placeholder h-full rounded-10px flex items-center justify-center'>
                         <img className='w-8' src={add} alt='' />

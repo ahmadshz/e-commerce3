@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsers, deleteUser } from "../../../ReduxToolkit/userSlice";
 import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { IoReaderOutline } from "react-icons/io5";
 import { FaUsers, FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import Cookies from "universal-cookie";
-import { jwtDecode } from 'jwt-decode';
+
 
 const User = () => {
     const dispatch = useDispatch();
@@ -20,11 +19,7 @@ const User = () => {
         dispatch(getUsers());
     }, [dispatch]);
 
-    const cookies = new Cookies();
-    const token = cookies.get("auth_token");
-    const { ids } = jwtDecode(token); // Extract the user id(s) from the JWT token
-
-    const handleDelete = (id) => {
+    const handleDelete = useCallback((id) => {
         dispatch(deleteUser(id)).then(() => {
             // Reset currentPage if it exceeds the total number of pages after deletion
             const totalPages = Math.ceil((users.length - 1) / itemsPerPage);
@@ -32,18 +27,20 @@ const User = () => {
                 setCurrentPage(totalPages);
             }
         });
-    };
+    }, [dispatch, users.length, currentPage, itemsPerPage]);
 
     // Total number of users
     const totalUsers = users.length;
 
     // Number of users created in the last month
-    const lastMonthUsers = users.filter((user) => {
-        const userDate = new Date(user.createdAt);
-        const currentDate = new Date();
-        const oneMonthAgo = new Date(currentDate.setMonth(currentDate.getMonth() - 1));
-        return userDate > oneMonthAgo;
-    }).length;
+    const lastMonthUsers = useMemo(() => {
+        return users.filter((user) => {
+            const userDate = new Date(user.createdAt);
+            const currentDate = new Date();
+            const oneMonthAgo = new Date(currentDate.setMonth(currentDate.getMonth() - 1));
+            return userDate > oneMonthAgo;
+        }).length;
+    }, [users]);
 
     // Animate the counters when users data changes
     useEffect(() => {
@@ -78,7 +75,10 @@ const User = () => {
     // Pagination logic
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = users.slice(indexOfFirstItem, indexOfLastItem);
+    const currentItems = useMemo(() => {
+        return users.slice(indexOfFirstItem, indexOfLastItem);
+    }, [indexOfFirstItem, indexOfLastItem, users]);
+
 
     // Change page
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -100,7 +100,7 @@ const User = () => {
             </div>
 
             {/* Users Table */}
-            <div className="overflow-auto shadow-md">
+            <div className="overflow-auto ">
                 <table className="min-w-max w-full border-collapse bg-white">
                     <thead>
                         <tr className="bg-primary text-white ">
@@ -117,14 +117,14 @@ const User = () => {
                     <tbody>
                         {loading ? (
                             <tr>
-                                <td colSpan="8" className="text-center p-5">
+                                <td colSpan="8" className="text-center border p-3">
                                     تحميل ...
                                 </td>
                             </tr>
                         ) : error ? (
                             <tr>
                                 <td colSpan="8" className="text-center p-5">
-                                    خطأ في تحميل البيانات
+                                    خطأ في تحميل البيانات
                                 </td>
                             </tr>
                         ) : currentItems.length > 0 ? (
@@ -202,8 +202,6 @@ const User = () => {
                             >
                                 <FaChevronLeft />
                             </button>
-
-                           
                         </li>
                     </ul>
                 </nav>
