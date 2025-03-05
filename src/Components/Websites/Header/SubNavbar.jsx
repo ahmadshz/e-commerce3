@@ -15,7 +15,6 @@ const SubNavbar = ({ onSearch, onLocationChange }) => {
     const [showHistory, setShowHistory] = useState(false);
 
     useEffect(() => {
-        // استرجاع سجل البحث من localStorage عند تحميل الصفحة
         const storedHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
         setSearchHistory(storedHistory);
     }, []);
@@ -30,7 +29,6 @@ const SubNavbar = ({ onSearch, onLocationChange }) => {
 
     const handleSearch = () => {
         if (searchQuery.trim() === '') {
-            // إذا كان حقل البحث فارغًا، قم بإظهار جميع المنشورات
             onSearch('');
         } else {
             onSearch(searchQuery);
@@ -38,7 +36,6 @@ const SubNavbar = ({ onSearch, onLocationChange }) => {
             setSearchHistory((prevHistory) => {
                 const newHistory = [searchQuery, ...prevHistory.filter(item => item !== searchQuery)].slice(0, 5);
 
-                // حفظ سجل البحث في localStorage
                 localStorage.setItem('searchHistory', JSON.stringify(newHistory));
 
                 return newHistory;
@@ -57,7 +54,6 @@ const SubNavbar = ({ onSearch, onLocationChange }) => {
         const updatedHistory = searchHistory.filter(item => item !== itemToDelete);
         setSearchHistory(updatedHistory);
 
-        // تحديث localStorage بعد حذف العنصر
         localStorage.setItem('searchHistory', JSON.stringify(updatedHistory));
     };
 
@@ -135,7 +131,7 @@ const SubNavbar = ({ onSearch, onLocationChange }) => {
                         <div className="custom-scrollbar absolute w-full lg:w-[160px] 2xl:w-[193px] max-h-[300px] overflow-y-auto border border-gray-300 rounded-10px mt-1 bg-white z-10">
                             <div
                                 onClick={() => handleSelect('جميع المناطق')}
-                                className="xl:pr-5 py-1 text-[15px] hover:bg-gray-200 cursor-pointer"
+                                className="pr-2 md:pr-5  py-1 text-[15px] hover:bg-gray-200 cursor-pointer"
                             >
                                 جميع المناطق
                             </div>

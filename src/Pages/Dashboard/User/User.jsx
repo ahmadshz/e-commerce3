@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import { IoReaderOutline } from "react-icons/io5";
 import { FaUsers, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
-
 const User = () => {
     const dispatch = useDispatch();
     const { users, loading, error } = useSelector((state) => state.user);
@@ -15,6 +14,7 @@ const User = () => {
     const [currentPage, setCurrentPage] = useState(1); // State to manage current page
     const [itemsPerPage] = useState(10); // Number of items per page
 
+    // Fetch users when the component mounts
     useEffect(() => {
         dispatch(getUsers());
     }, [dispatch]);
@@ -69,7 +69,7 @@ const User = () => {
 
             animateCounters();
         }
-    }, [totalUsers, lastMonthUsers, users.length]);
+    }, [users.length]); // Only depend on users.length
 
     // Pagination logic
     const indexOfLastItem = currentPage * itemsPerPage;
@@ -77,7 +77,6 @@ const User = () => {
     const currentItems = useMemo(() => {
         return users.slice(indexOfFirstItem, indexOfLastItem);
     }, [indexOfFirstItem, indexOfLastItem, users]);
-
 
     // Change page
     const paginate = (pageNumber) => setCurrentPage(pageNumber);

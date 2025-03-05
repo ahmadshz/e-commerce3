@@ -22,23 +22,26 @@ const Login = () => {
     const togglePassword = () => {
         setShow(!show);
     };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
         setError(null);
         try {
             const response = await axios.post(`${baseUrl}/user/login`, { email, password });
-            const  token  = response.data.token;
-            cookies.set('auth_token', token);
-            const {role} = jwtDecode(cookies.get('auth_token'));
-            const go = role === 'admin' ? '/dashboard/users' : '/';
-            navigate(`${go}`);
-        } catch (err) {
-            setError('فشل تسجيل الدخول، يرجى المحاولة مرة اخرى');
-            setLoading(false);
+            const { accessToken, refreshToken } = response.data;
+        
+            // Store tokens in cookies
+            cookies.set("auth_token", accessToken);
+            cookies.set("refresh_token", refreshToken);
+        
+            // Redirect to dashboard or home page
+            
+            navigate("/dashboard");
+          } catch (err) {
+          setError("فشل تسجيل الدخول، يرجى المحاولة مرة اخرى");
+          setLoading(false);
         }
-    };
+      };
 
     return (
         <div className='h-screen'>
@@ -89,7 +92,7 @@ const Login = () => {
                         </div>
 
                         {/* Error Message */}
-                        {error && <p className='text-primary text-[26px] lg:text-[20px] font-semibold p-2 '>{error}</p>}
+                        {error && <p className='text-primary font-semibold text-[17px] lg:text-[20px] p-2 '>{error}</p>}
 
                         {/* Submit Button */}
                         <button
