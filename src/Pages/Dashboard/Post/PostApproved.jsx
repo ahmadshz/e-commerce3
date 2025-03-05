@@ -3,8 +3,9 @@ import axios from 'axios';
 import { baseUrl } from '../../../Api/Api'; // Adjust the path as needed
 import Cookies from 'universal-cookie';
 import { FaCheck, FaChevronLeft, FaChevronRight } from 'react-icons/fa'; // Import icons
-import { IoClose } from 'react-icons/io5';
+import { IoClose, IoReaderOutline } from 'react-icons/io5';
 import { MdPendingActions } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 
 const PostApproved = () => {
     const [pendingAds, setPendingAds] = useState([]); // State to store pending ads
@@ -97,6 +98,45 @@ const PostApproved = () => {
     // Change page
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
+    const deleteAllApproved = async () => {
+        try {
+            const response = await axios.put(
+                `${baseUrl}/ad/approve-all`,
+                {}, // Second parameter (empty object) since PUT usually expects a body
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            );
+            if(response.data) {
+                setPendingAds([])
+                setTotalPendingAdsCount(0)
+            }
+        } catch (error) {
+            console.error("Error approving ads:", error.response?.data || error.message);
+        }
+    };
+    const rejectAll = async () => {
+        try {
+            const response = await axios.put(
+                `${baseUrl}/ad/reject-all`,
+                {}, // Second parameter (empty object) since PUT usually expects a body
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            );
+            if(response.data) {
+                setPendingAds([])
+                setTotalPendingAdsCount(0)
+            }
+        } catch (error) {
+            console.error("Error approving ads:", error.response?.data || error.message);
+        }
+    };
+
     return (
         <div className="p-6">
             {/* Counter Card */}
@@ -111,6 +151,12 @@ const PostApproved = () => {
             </div>
 
             {/* Ads Table */}
+            <div className='w-full flex gap-5 my-10'>
+                <button onClick={deleteAllApproved} className='text-[20px] font-semibold border-none outline px-4 rounded-10px lg:h-[76px] 
+                focus:outline-none bg-primary text-white flex justify-center items-center '> موافقة على جميع الاعلانات المعلقة</button>
+                <button onClick={rejectAll} className='text-[20px] font-semibold border-none outline px-4 rounded-10px lg:h-[76px] 
+                focus:outline-none bg-primary text-white flex justify-center items-center '> حذف جميع الاعلانات المعلقة </button>
+            </div>
             <div className="overflow-x-auto">
                 <table className="min-w-max w-full border-collapse bg-white border border-gray-200">
                     <thead>
@@ -127,13 +173,13 @@ const PostApproved = () => {
                         </tr>
                     </thead>
                     <tbody>
-                    {
-                        error !== "No pending ads found" && (
-                            <tr>
-                            <td> </td>
-                            </tr>
-                        )
-                    }
+                        {
+                            error !== "No pending ads found" && (
+                                <tr>
+                                    <td> </td>
+                                </tr>
+                            )
+                        }
                         {currentItems.length > 0 ? (
                             currentItems.map((ad, index) => (
                                 <tr key={ad._id} className="border-b even:bg-gray-100 hover:bg-gray-200">
@@ -158,6 +204,9 @@ const PostApproved = () => {
                                         {new Date(ad.createdAt).toLocaleDateString()}
                                     </td>
                                     <td className="px-3 py-6 h-full flex justify-end items-center gap-2">
+                                        <Link to={`/singlePost/${ad._id}`}>
+                                            <IoReaderOutline size={20} className="text-blue-500" />
+                                        </Link>
                                         <button onClick={() => approveAd(ad._id)} className="text-blue-500 hover:text-blue-700"><FaCheck /></button>
                                         <button onClick={() => rejectAd(ad._id)} className="text-red-500 hover:text-red-700"><IoClose size={30} /></button>
                                     </td>

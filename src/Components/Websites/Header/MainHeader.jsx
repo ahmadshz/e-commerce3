@@ -10,6 +10,8 @@ import Sidebar from '../UI/SideBar';  // Import Sidebar component
 import Cookies from 'universal-cookie';
 import { jwtDecode } from 'jwt-decode';
 import { motion } from 'framer-motion';
+import axios from 'axios';
+import { baseUrl } from '../../../Api/Api';
 
 const MainHeader = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -35,14 +37,18 @@ const MainHeader = () => {
   }
 
 
-  const logOut = () => {
-    try{
-      cookies.remove('auth_token', { path: '/' });
-      navigate('/');
-    }catch(error){
-      console.log(error);
+  const logOut =  () => {
+    try {
+      
+        cookies.remove('auth_token', { path: '/' });
+
+        window.location.reload();
+    } catch (error) {
+        console.error("Logout failed:", error.response?.data || error.message);
+        alert("Logout failed. Please try again.");
     }
-  };
+};
+
 
   return (
     <motion.div

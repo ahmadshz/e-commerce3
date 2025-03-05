@@ -4,6 +4,7 @@ import { GrSnapchat } from 'react-icons/gr';
 import { ImFacebook2 } from 'react-icons/im';
 import { SiInstagram } from 'react-icons/si';
 import { AnimatePresence, motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
@@ -20,15 +21,14 @@ const Footer = () => {
                 </div>
                 <div className='container mx-3 py-2 mb-[50px] md:mb-0 md:py-4 lg:py-6 flex flex-wrap md:flex-nowrap xl:justify-between gap-6 md:gap-4 text-[13px] md:text-[15px] xl:text-[17px] font-semibold text-placeholder'>
                     <div className='flex md:w-2/5 flex-col gap-2'>
-                        <div>تسجيل</div>
-                        <div>توثيق العضوية</div>
-                        <div>الأسئلة الشائعة</div>
-                        <div>قائمة السلع والاعلانات الممنوعة</div>
+                        <Link to={'/registration'}>تسجيل</Link>
+                        <Link to={'/memberDocumentation'}>توثيق العضوية</Link>
+                        <Link to={'/faq'}>الأسئلة الشائعة</Link>
+                        <Link to={'/prohibitedAds'}>قائمة السلع والاعلانات الممنوعة</Link>
                     </div>
                     <div className='flex w-full md:w-2/5 flex-col gap-2'>
-                        <div>سياسة الخصوصية</div>
-                        <div>مركز الأمان</div>
-                        <div>نظام التقييم</div>
+                        <Link to={'/privacyPolicy'}>سياسة الخصوصية</Link>
+                        <Link to={'/securityCenter'}>مركز الأمان</Link>
                     </div>
                     <div className='flex flex-col gap-2'>
                         <div>تواصل معنا</div>

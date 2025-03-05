@@ -28,6 +28,14 @@ import PostApproved from "./Pages/Dashboard/Post/PostApproved";
 import RequiredDashboard from "./Pages/Auth/RequiredDashboard";
 import CategoriesMobile from "./Components/Websites/page/CategoriesMobile";
 import Home from "./Pages/Websites/Home";
+import RegistrationMembership from "./Components/Websites/page/RegistrationMembership";
+import MembreDocumentation from "./Components/Websites/page/MembreDocumentation";
+import FrequentlyAsked from "./Components/Websites/page/FrequentlyAsked";
+import ProhibitedAds from "./Components/Websites/page/ProhibitedAds";
+import PrivacyPolicy from "./Components/Websites/page/PrivacyPolicy";
+import SecurityCenter from "./Components/Websites/page/SecurityCenter";
+import AddPostForm from "./Pages/Dashboard/Post/AddPostForm";
+import WelcomeDashboard from "./Pages/Dashboard/WelcomeDashboard";
 
 
 function App() {
@@ -35,6 +43,12 @@ function App() {
     <div dir="rtl" className="font-medium text-lg tracking-wider">
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/registration" element={<RegistrationMembership/>} />
+        <Route path="/memberDocumentation" element={<MembreDocumentation/>} />
+        <Route path="/faq" element={<FrequentlyAsked/>} />
+        <Route path="/prohibitedAds" element={<ProhibitedAds/>} />
+        <Route path="/privacyPolicy" element={<PrivacyPolicy/>} />
+        <Route path="/securityCenter" element={<SecurityCenter/>} />
         {/*Auth */}
         <Route element={<RequireBack />} >
           <Route path="/login" element={<Login />} />
@@ -46,10 +60,12 @@ function App() {
         {/*Dashboard */}
         <Route element={<RequiredDashboard />} >
           <Route path="/dashboard" element={<Dashboard />}>
+          <Route path="welcomeDashboard" element={<WelcomeDashboard />} />
             <Route path="users" element={<User />} />
             <Route path="users/:id" element={<ShowUser />} />
             <Route path="posts" element={<PostAdmin />} />
             <Route path="post/pending" element={<PostApproved />} />
+            <Route path="post/AddPostDash" element={<AddPostForm />} />
           </Route>
         </Route>
 

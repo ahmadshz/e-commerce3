@@ -12,9 +12,9 @@ const DeletePost = ({ closeDelete, deletePost, isDeleting }) => {
                 </h2>
                 <div className="flex flex-col md:flex-row w-full justify-between gap-4">
                     <button
-                    disabled={isDeleting}
+                        disabled={isDeleting === true}
                         onClick={deletePost}
-                        className="bg-primary cursor-pointer text-white w-full md:w-[220px] h-[50px] md:h-[60px] xl:h-[70px] text-[16px] md:text-[25px] font-bold flex items-center justify-center rounded-10px"
+                        className="bg-primary cursor-pointer text-white w-full md:w-[220px] h-[50px] md:h-[60px] xl:h-[70px] text-[16px] md:text-[20px] font-bold flex items-center justify-center rounded-10px"
                     >
                         {isDeleting ? 'جاري الحذف...' : 'نعم'}
                     </button>

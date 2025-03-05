@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'; // Import useEffect
 import { Link } from 'react-router-dom';
 import { RiCloseLine, RiStarSFill } from 'react-icons/ri';
-import { IoIosArrowBack } from 'react-icons/io';
+import { IoIosArrowBack, IoMdLogIn } from 'react-icons/io';
 import { FaRegQuestionCircle, FaTiktok, FaTwitter } from 'react-icons/fa';
 import { GoPlus } from 'react-icons/go';
 import { FiLogIn } from 'react-icons/fi';
@@ -17,6 +17,7 @@ const SideBar = ({ isSidebarOpen, toggleSidebar }) => {
 
   const logout = () => {
     cookies.remove('auth_token', { path: '/' });
+    window.location.reload();
   };
 
   // Add or remove overflow: hidden from body based on isSidebarOpen
@@ -78,21 +79,28 @@ const SideBar = ({ isSidebarOpen, toggleSidebar }) => {
           </div>
 
           <div className='flex flex-col bg-white mb-2'>
-            <Link to={'/'} className='flex justify-between items-center border-b bg-white border-border px-2'>
+            <Link to={'/registration'} className='flex justify-between items-center border-b bg-white border-border px-2'>
+              <div className='flex items-center gap-1 py-4'>
+                <IoMdLogIn size={17} />
+                <div className='mr-1 text-[12px]'>تسجيل </div>
+              </div>
+              <IoIosArrowBack size={15} />
+            </Link>
+            <Link to={'/memberDocumentation'} className='flex justify-between items-center border-b bg-white border-border px-2'>
               <div className='flex items-center gap-1 py-4'>
                 <MdCardMembership size={16} />
                 <div className='mr-1 text-[12px]'>توثيق العضوية</div>
               </div>
               <IoIosArrowBack size={15} />
             </Link>
-            <Link to={'/'} className='flex justify-between items-center border-b bg-white border-border px-2'>
+            <Link to={'/faq'} className='flex justify-between items-center border-b bg-white border-border px-2'>
               <div className='flex items-center gap-1 py-4'>
                 <FaRegQuestionCircle size={16} />
                 <div className='mr-1 text-[12px]'>الأسئلة الشائعة</div>
               </div>
               <IoIosArrowBack size={15} />
             </Link>
-            <Link to={'/'} className='flex justify-between items-center border-b bg-white border-border px-2'>
+            <Link to={'/prohibitedAds'} className='flex justify-between items-center border-b bg-white border-border px-2'>
               <div className='flex items-center gap-1 py-4'>
                 <MdOutlineProductionQuantityLimits size={16} />
                 <div className='mr-1 text-[12px]'>قائمة السلع والاعلانات الممنوعة</div>
@@ -102,27 +110,21 @@ const SideBar = ({ isSidebarOpen, toggleSidebar }) => {
           </div>
 
           <div className='flex flex-col bg-white mb-2'>
-            <Link to={'/'} className='flex justify-between items-center border-b bg-white border-border px-2'>
+            <Link to={'/privacyPolicy'} className='flex justify-between items-center border-b bg-white border-border px-2'>
               <div className='flex items-center gap-1 py-4'>
                 <MdOutlinePrivacyTip size={16} />
                 <div className='mr-1 text-[12px]'>سياسة الخصوصية</div>
               </div>
               <IoIosArrowBack size={15} />
             </Link>
-            <Link to={'/'} className='flex justify-between items-center border-b bg-white border-border px-2'>
+            <Link to={'/securityCenter'} className='flex justify-between items-center border-b bg-white border-border px-2'>
               <div className='flex items-center gap-1 py-4'>
                 <MdOutlineSecurity size={16} />
                 <div className='mr-1 text-[12px]'>مركز الأمان</div>
               </div>
               <IoIosArrowBack size={15} />
             </Link>
-            <Link to={'/'} className='flex justify-between items-center border-b bg-white border-border px-2'>
-              <div className='flex items-center gap-1 py-4'>
-                <RiStarSFill size={16} />
-                <div className='mr-1 text-[12px]'>نظام التقييم</div>
-              </div>
-              <IoIosArrowBack size={15} />
-            </Link>
+           
           </div>
 
           <div className='flex flex-wrap mx-4 gap-4 items-center justify-center mt-2 mb-16'>

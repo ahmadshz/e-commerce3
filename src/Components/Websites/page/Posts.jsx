@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import price from '../../../assets/iconpost/1.svg';
 import pricesy from '../../../assets/iconpost/3.svg';
@@ -7,7 +7,7 @@ import person from '../../../assets/iconpost/7.svg';
 import { motion } from 'framer-motion';
 
 const Posts = ({ ads, selectedCategory, selectedBrand, visibleCount }) => {
-    const [totalDisplayedAds, setTotalDisplayedAds] = useState(0); 
+    const [totalDisplayedAds, setTotalDisplayedAds] = useState(0);
 
     // Function to calculate time ago
     const timeAgo = (timestamp) => {
@@ -33,7 +33,7 @@ const Posts = ({ ads, selectedCategory, selectedBrand, visibleCount }) => {
         const categoryMatch = selectedCategory
             ? selectedCategory === "used"
                 ? item.condition?.toLowerCase() === "used"
-                : item.category === selectedCategory 
+                : item.category === selectedCategory
             : true;
 
         const brandMatch = selectedBrand
@@ -47,19 +47,19 @@ const Posts = ({ ads, selectedCategory, selectedBrand, visibleCount }) => {
     const displayedAds = filteredAds.slice(0, visibleCount);
 
     // Update totalDisplayedAds whenever visibleCount changes
-    React.useEffect(() => {
+    useEffect(() => {
         setTotalDisplayedAds(visibleCount);
     }, [visibleCount]);
 
     return (
         <div className='flex flex-col gap-5'>
-            {displayedAds.length > 0 &&
+            {displayedAds.length > 0 ? (
                 displayedAds.map((item, index) => (
                     <motion.div
                         key={item._id}
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: (totalDisplayedAds - visibleCount + index) * 0.2 }} 
+                        transition={{ duration: 0.5, delay: (totalDisplayedAds - visibleCount + index) * 0.2 }}
                         className='bg-[#FAFAFA] w-full h-[130px] md:h-[140px] lg:h-[160px] flex'
                     >
                         <div className='w-2/6 md:w-1/2 xl:w-3/5 flex flex-col justify-between md:py-2 pr-2 md:pr-[10px] xl:pr-[20px]'>
@@ -96,7 +96,16 @@ const Posts = ({ ads, selectedCategory, selectedBrand, visibleCount }) => {
                             </Link>
                         </div>
                     </motion.div>
-                ))}
+                ))
+            ) : (
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.5 }}
+                    className="text-center text-lg font-semibold text-gray-500 py-10">
+                    لا يوجد اعلانات يرجى زيارة الموقع لاحقًا
+                </motion.div>
+            )}
         </div>
     );
 };
