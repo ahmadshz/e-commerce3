@@ -5,23 +5,21 @@ import Cookies from 'universal-cookie';
 import { IoIosCamera } from 'react-icons/io';
 
 const AddPostForm = () => {
-    const [title, setTitle] = useState(''); // State for post title
     const [images, setImages] = useState([]); // State for post images
     const [loading, setLoading] = useState(false); // State for loading state
     const [error, setError] = useState(''); // State for error messages
-    const [success, setSuccess] = useState(''); // State for success messages
+    const [success, setSuccess] = useState('');
     const cookies = new Cookies();
     const token = cookies.get('auth_token');
+
+
+
 
     // Handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault(); // Prevent default form behavior
 
-        // Validate inputs
-        if (!title.trim() || images.length === 0) {
-            setError('الرجاء إدخال عنوان الصورة وتحميل صورة.');
-            return;
-        }
+
 
         setLoading(true); // Start loading
         setError(''); // Clear previous errors
@@ -30,13 +28,13 @@ const AddPostForm = () => {
         try {
             // Create a FormData object to send the images and title
             const formData = new FormData();
-            formData.append('title', title);
             images.forEach((image) => {
-                formData.append('images', image); // Append each image
+                formData.append('image', image);
             });
 
+
             // Send the POST request to the backend
-            const response = await axios.post(`${baseUrl}/posts`, formData, {
+            const response = await axios.post(`${baseUrl}/img/upload-sponsor`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     Authorization: `Bearer ${token}`,
@@ -45,7 +43,6 @@ const AddPostForm = () => {
 
             if (response.data) {
                 setSuccess('تمت إضافة الإعلان بنجاح!');
-                setTitle(''); // Clear the title input
                 setImages([]); // Clear the images input
             }
         } catch (error) {
@@ -57,11 +54,13 @@ const AddPostForm = () => {
     };
 
     // Handle images file input change
-    const handleImagesChange = (e) => {
-        const files = Array.from(e.target.files); // Convert FileList to array
-        if (files.length > 0) {
-            setImages(files); // Set the selected images
+    const handleFileChange = (e) => {
+        const files = Array.from(e.target.files);
+        if (files.length > 5) {
+            setError('يمكنك تحميل ما يصل إلى 5 صور فقط.');
+            return;
         }
+        setImages(files);
     };
 
     return (
@@ -86,20 +85,6 @@ const AddPostForm = () => {
                 {/* Form */}
                 <form onSubmit={handleSubmit}>
                     {/* Title Input */}
-                    <div className="mb-6">
-                        <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-2">
-                            عنوان الإعلان
-                        </label>
-                        <input
-                            type="text"
-                            id="title"
-                            value={title}
-                            onChange={(e) => setTitle(e.target.value)}
-                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
-                            placeholder="أدخل عنوان الإعلان"
-                            required
-                        />
-                    </div>
 
                     {/* Images Input */}
                     <div className="mb-6">
@@ -121,7 +106,7 @@ const AddPostForm = () => {
                                 type="file"
                                 multiple
                                 accept="image/*" // Allow only image files
-                                onChange={handleImagesChange}
+                                onChange={handleFileChange}
                                 className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                             />
 

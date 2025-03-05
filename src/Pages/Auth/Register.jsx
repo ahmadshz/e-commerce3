@@ -29,11 +29,34 @@ const Register = () => {
 
     // Handle Change Form Data
     const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.id]: e.target.value,
-        });
+        const { id, value } = e.target;
+    
+        if (id === "phone") {
+            let cleanedValue = value.replace(/\D/g, ""); // Remove non-numeric characters
+    
+            // Ensure it always starts with "+963 9"
+            if (!cleanedValue.startsWith("9639")) {
+                cleanedValue = "9639";
+            }
+    
+            // Limit the total length to "+963 9" followed by 8 digits
+            if (cleanedValue.length > 12) {
+                cleanedValue = cleanedValue.slice(0, 12);
+            }
+    
+            setFormData({
+                ...formData,
+                phone: "+" + cleanedValue, // Add "+" back
+            });
+        } else {
+            setFormData({
+                ...formData,
+                [id]: value,
+            });
+        }
     };
+    
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -152,7 +175,7 @@ const Register = () => {
                             value={formData.phone}
                             onChange={handleChange}
                             className="text-placeholder text-[15px] lg:text-[17px] border-2 border-border w-full lg:w-[433px] h-[60px] md:h-[76px] flex items-center rounded-10px font-medium tracking-wider p-3 outline-none focus:border-primary"
-                            placeholder='+963 ... ... ...'
+                            placeholder='+963 9.. ... ...'
                             required
                         />
                     </div>

@@ -18,8 +18,29 @@ const SinglePost = () => {
     const { id } = useParams();
     const [selectedImage, setSelectedImage] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [sponsorImages, setSponsorImages] = useState(null); // State for sponsor image (object)
 
 
+    const fetchSponsorImages = async () => {
+        try {
+            const response = await axios.get(`${baseUrl}/img/sponsor-image`);
+            console.log('Sponsor Images Data:', response.data); // Check the data format
+
+            // Ensure the data is an object with imageUrl
+            if (response.data && response.data.imageUrl) {
+                setSponsorImages(response.data);
+            } else {
+                console.error('Expected an object with imageUrl but got:', response.data);
+                setSponsorImages(null); // Set to null if data is invalid
+            }
+        } catch (err) {
+            console.error('Error fetching sponsor images:', err);
+        }
+    };
+
+    useEffect(() => {
+        fetchSponsorImages();
+    }, []);
 
 
     useEffect(() => {
@@ -331,7 +352,24 @@ const SinglePost = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.5 }}
-                        className="hidden lg:block bg-bgsecondary w-[455px]"></motion.div>
+                        className="hidden lg:block bg-bgsecondary w-[455px] overflow-y-auto"
+                        style={{
+                            backgroundImage: sponsorImages ? `url(${sponsorImages.imageUrl})` : 'none',
+                            backgroundRepeat: 'repeat-y', // Repeat vertically only
+                            backgroundSize: 'contain', // Adjust the image size
+                        }}
+                    >
+                        {/* Display sponsor image */}
+                        {sponsorImages && (
+                            <div className="w-full h-[200px] mb-4">
+                                <img
+                                    src={sponsorImages.imageUrl} // Use the imageUrl from the object
+                                    alt="Sponsor"
+                                    className="w-full h-full  rounded-lg"
+                                />
+                            </div>
+                        )}
+                    </motion.div>
                 </div>
             ) : (
                 <div className='h-screen'></div>
