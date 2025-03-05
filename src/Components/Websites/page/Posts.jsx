@@ -1,33 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import price from '../../../assets/iconpost/1.svg';
 import pricesy from '../../../assets/iconpost/3.svg';
 import clock from '../../../assets/iconpost/6.svg';
 import person from '../../../assets/iconpost/7.svg';
 import { motion } from 'framer-motion';
-import axios from 'axios';
-import { baseUrl } from '../../../Api/Api';
 
 const Posts = ({ ads, selectedCategory, selectedBrand, visibleCount, sponsorImages }) => {
     const [totalDisplayedAds, setTotalDisplayedAds] = useState(0);
-    const [sponsor, setSponsorImages] = useState(null);
-   
-    const fetchSponsorImages = async () => {
-        try {
-            const response = await axios.get(`${baseUrl}/img/sponsor-image`);
-            console.log('Sponsor Images Data:', response.data); // Check the data format
-
-            // Ensure the data is an object with imageUrl
-            if (response.data && response.data.imageUrl) {
-                setSponsorImages(response.data);
-            } else {
-                console.error('Expected an object with imageUrl but got:', response.data);
-                setSponsorImages(null); // Set to null if data is invalid
-            }
-        } catch (err) {
-            console.error('Error fetching sponsor images:', err);
-        }
-    };
+    const [isSponsorClicked, setIsSponsorClicked] = useState(false); // State to track sponsor click
 
     // Function to calculate time ago
     const timeAgo = (timestamp) => {
@@ -71,6 +52,16 @@ const Posts = ({ ads, selectedCategory, selectedBrand, visibleCount, sponsorImag
         setTotalDisplayedAds(visibleCount);
     }, [visibleCount]);
 
+    // Handle sponsor click
+    const handleSponsorClick = () => {
+        setIsSponsorClicked(true);
+    };
+
+    // Handle closing the modal
+    const handleCloseModal = () => {
+        setIsSponsorClicked(false);
+    };
+
     return (
         <div className='flex flex-col gap-5'>
             {displayedAds.length > 0 ? (
@@ -81,7 +72,9 @@ const Posts = ({ ads, selectedCategory, selectedBrand, visibleCount, sponsorImag
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5 }}
-                            className="w-full h-[150px] md:h-[200px] bg-bgsecondary flex justify-center items-center lg:hidden">
+                            className="w-full h-[150px] md:h-[200px] bg-bgsecondary flex justify-center items-center lg:hidden cursor-pointer"
+                            onClick={handleSponsorClick} // Add click handler
+                        >
                             <img
                                 src={sponsorImages?.imageUrl}
                                 alt="Sponsor"
@@ -138,6 +131,25 @@ const Posts = ({ ads, selectedCategory, selectedBrand, visibleCount, sponsorImag
                     transition={{ duration: 0.5, delay: 0.5 }}
                     className="text-center text-lg font-semibold text-gray-500 py-10">
                     لا يوجد اعلانات يرجى زيارة الموقع لاحقًا
+                </motion.div>
+            )}
+
+            {/* Modal for Sponsor Image */}
+            {isSponsorClicked && (
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                    className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50"
+                    onClick={handleCloseModal} // Close modal on click outside
+                >
+                    <div className="bg-white p-4 rounded-lg max-w-[90%] max-h-[90%] overflow-auto">
+                        <img
+                            src={sponsorImages?.imageUrl}
+                            alt="Sponsor"
+                            className="w-full h-full object-contain"
+                        />
+                    </div>
                 </motion.div>
             )}
         </div>
