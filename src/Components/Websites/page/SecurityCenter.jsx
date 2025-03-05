@@ -18,7 +18,7 @@ const SecurityCenter = () => {
 
         {/* Safe Buying and Selling Guidelines Section */}
         <section className="mb-8">
-          <h2 className="text-2xl font-semibold text-primary mb-4">
+          <h2 className="text-[16px] lg:text-[20px] font-semibold text-primary mb-4">
             إرشادات البيع والشراء بأمان
           </h2>
           <p className="font-normal text-[13px] lg:text-[17px] leading-relaxed">
@@ -34,10 +34,10 @@ const SecurityCenter = () => {
 
         {/* Dealing with Fraud Section */}
         <section className="mb-8">
-          <h2 className="text-2xl font-semibold text-primary mb-4">
+          <h2 className="text-[16px] lg:text-[20px] font-semibold text-primary mb-4">
             التعامل مع الاحتيال والإبلاغ عنه
           </h2>
-          <p className="tfont-normal text-[13px] lg:text-[17px] leading-relaxedmb-2">
+          <p className="font-normal text-[13px] lg:text-[17px] leading-relaxed mb-2">
             رغم جهودنا في مكافحة الاحتيال، قد يحاول بعض الأفراد استغلال المنصة لأغراض غير قانونية. في حال واجهت عملية مشبوهة أو اشتبهت في إعلان احتيالي، يمكنك اتباع الخطوات التالية:
           </p>
           <ul className="list-disc list-inside space-y-3 mt-3">
@@ -49,10 +49,10 @@ const SecurityCenter = () => {
 
         {/* Security Measures Section */}
         <section className="mb-8">
-          <h2 className="text-2xl font-semibold text-primary mb-4">
+          <h2 className="text-[16px] lg:text-[20px] font-semibold text-primary mb-4">
             ضوابط الأمان داخل المنصة
           </h2>
-          <p className="tfont-normal text-[13px] lg:text-[17px] leading-relaxedmb-2">
+          <p className="font-normal text-[13px] lg:text-[17px] leading-relaxed mb-2">
             تعمل "دلال" على حماية المستخدمين من خلال مجموعة من التقنيات والتدابير الأمنية التي تهدف إلى تعزيز الموثوقية داخل المنصة، ومنها:
           </p>
           <ul className="list-disc list-inside space-y-3 mt-3">
@@ -65,17 +65,17 @@ const SecurityCenter = () => {
 
         {/* Commitment Section */}
         <section className="mb-8">
-          <h2 className="text-2xl font-semibold text-primary mb-4">
+          <h2 className="text-[16px] lg:text-[20px] font-semibold text-primary mb-4">
             التزام دلال بتوفير بيئة آمنة
           </h2>
-          <p className="tfont-normal text-[13px] lg:text-[17px] leading-relaxedmb-2">
+          <p className="font-normal text-[13px] lg:text-[17px] leading-relaxed mb-2">
             نحن في "دلال" ندرك أن الأمان هو حجر الأساس لأي منصة إلكترونية ناجحة. لذلك، نسعى جاهدين لتقديم تجربة استخدام خالية من المخاطر، مع توفير جميع الأدوات والإرشادات التي تُمكّن المستخدمين من إجراء معاملات موثوقة وآمنة. إذا كنت بحاجة إلى أي مساعدة أو لديك استفسارات بخصوص الأمان داخل المنصة، لا تتردد في التواصل مع فريق الدعم الخاص بنا.
           </p>
         </section>
 
         {/* Conclusion Section */}
         <section className="mb-8">
-          <p className="tfont-normal text-[13px] lg:text-[17px] leading-relaxedmb-2">
+          <p className="font-normal text-[13px] lg:text-[17px] leading-relaxed mb-2">
             إن التزامك بهذه الإرشادات واتخاذ الاحتياطات اللازمة أثناء التعاملات عبر "دلال" سيساهم في جعل المنصة مكانًا أكثر أمانًا لجميع المستخدمين، مما يعزز الثقة والشفافية في سوق الإعلانات المبوبة داخل سوريا.
           </p>
         </section>
