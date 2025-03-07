@@ -92,7 +92,7 @@ const Posts = ({ ads, selectedCategory, selectedBrand, visibleCount, sponsorImag
                                 <Link to={`/singlePost/${item._id}`} className='text-[12px] lg:text-[20px] font-semibold 
                                 truncate w-full   '>{item.title}</Link>
                                 <div className='flex items-center gap-2'>
-                                    <div className='flex gap-4 lg:gap-10'>
+                                    <div className='flex gap-1 lg:gap-10'>
                                         <div>
                                             <div className='flex gap-1'>
                                                 <img className='w-4 md:w-5' src={clock} alt="" />
