@@ -111,8 +111,8 @@ const Register = () => {
         <div className='flex flex-col gap-4'>
             <Navbar />
             <h1 className='text-[25px] lg:text-[30px] w-full text-primary font-bold my-10 sm:my-16 lg:my-10 container'>
-            إنشاء حساب جديد
-        </h1>
+                إنشاء حساب جديد
+            </h1>
             <div className=' container flex flex-col  '>
                 <form className='grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8 mt-5 mb-10 sm:mb-16 lg:mb-20' onSubmit={handleSubmit}>
                     {/* First Name */}
