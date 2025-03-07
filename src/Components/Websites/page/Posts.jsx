@@ -88,7 +88,7 @@ const Posts = ({ ads, selectedCategory, selectedBrand, visibleCount, sponsorImag
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: (totalDisplayedAds - visibleCount + index) * 0.2 }}
                             className='bg-[#FAFAFA] w-full h-[140px] lg:h-[160px] flex justify-between'>
-                            <div className='w-4/6 lg:w-4/5 p-3 h-full flex flex-col justify-between'>
+                            <div className='w-4/6 lg:w-4/5 px-3 h-full flex flex-col justify-between'>
                                 <Link to={`/singlePost/${item._id}`} className='text-[12px] lg:text-[20px] font-semibold 
                                 truncate w-full   '>{item.title}</Link>
                                 <div className='flex items-center gap-2'>
