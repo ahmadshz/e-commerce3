@@ -96,21 +96,21 @@ const Posts = ({ ads, selectedCategory, selectedBrand, visibleCount, sponsorImag
                                         <div>
                                             <div className='flex gap-1'>
                                                 <img className='w-4 md:w-5' src={clock} alt="" />
-                                                <h1 className='text-[12px] lg:text-[14px] text-placeholder'>{timeAgo(item.createdAt)}</h1>
+                                                <h1 className=' text-[10px] lg:text-[14px] text-placeholder w-[50px] truncate  block overflow-hidden text-ellipsis whitespace-nowrap'>{timeAgo(item.createdAt)}</h1>
                                             </div>
                                             <div className='flex gap-1'>
                                                 <img className='w-4 md:w-5' src={person} alt="" />
-                                                <h1 className='text-[12px] lg:text-[14px] text-placeholder'>{item.user.username}</h1>
+                                                <h1 className='text-[10px] lg:text-[14px] text-placeholder w-[50px] truncate  block overflow-hidden text-ellipsis whitespace-nowrap'>{item.user.username}</h1>
                                             </div>
                                         </div>
                                         <div>
                                             <div className='flex gap-1'>
                                                 <img className='w-4 md:w-5' src={price} alt="" />
-                                                <h1 className='text-[12px] lg:text-[14px] text-placeholder'>{item.priceUSD}</h1>
+                                                <h1 className='text-[10px] lg:text-[14px] text-placeholder w-[50px] truncate  block overflow-hidden text-ellipsis whitespace-nowrap'>{item.priceUSD}</h1>
                                             </div>
                                             <div className='flex gap-1'>
                                                 <img className='w-4 md:w-5' src={pricesy} alt="" />
-                                                <h1 className='text-[12px] lg:text-[14px] text-placeholder'>{item.priceSYP}</h1>
+                                                <h1 className='text-[10px] lg:text-[14px] text-placeholder w-[50px] truncate  block overflow-hidden text-ellipsis whitespace-nowrap'>{item.priceSYP}</h1>
                                             </div>
                                         </div>
                                     </div>
