@@ -90,28 +90,27 @@ const Posts = ({ ads, selectedCategory, selectedBrand, visibleCount, sponsorImag
                             className='bg-[#FAFAFA] w-full h-[120px] md:h-[140px] lg:h-[160px] flex justify-between'>
                             <div className='w-4/6 lg:w-4/5 px-3  md:p-3 h-full flex flex-col justify-between'>
                                 <Link to={`/singlePost/${item._id}`} className='text-[12px] lg:text-[20px] font-semibold 
-                                truncate w-full   '>{item.title}</Link>
-                                <div className='flex items-center gap-2'>
-                                    <div className='flex gap-1 lg:gap-10'>
-                                        <div>
-                                            <div className='flex gap-1'>
-                                                <img className='w-4 md:w-5' src={clock} alt="" />
-                                                <h1 className=' text-[10px] lg:text-[14px] text-placeholder w-[50px] truncate  block overflow-hidden text-ellipsis whitespace-nowrap'>{timeAgo(item.createdAt)}</h1>
-                                            </div>
-                                            <div className='flex gap-1'>
-                                                <img className='w-4 md:w-5' src={person} alt="" />
-                                                <h1 className='text-[10px] lg:text-[14px] text-placeholder w-[50px] truncate  block overflow-hidden text-ellipsis whitespace-nowrap'>{item.user.username}</h1>
-                                            </div>
+                                truncate w-full   '>{item.title}
+                                </Link>
+                                <div className='flex gap-4 lg:gap-10'>
+                                    <div>
+                                        <div className='flex gap-1'>
+                                            <img className='w-4 md:w-5' src={clock} alt="" />
+                                            <h1 className=' text-[10px] lg:text-[14px] text-placeholder w-[50px] truncate  block overflow-hidden text-ellipsis whitespace-nowrap'>{timeAgo(item.createdAt)}</h1>
                                         </div>
-                                        <div>
-                                            <div className='flex gap-1'>
-                                                <img className='w-4 md:w-5' src={price} alt="" />
-                                                <h1 className='text-[10px] lg:text-[14px] text-placeholder w-[50px] truncate  block overflow-hidden text-ellipsis whitespace-nowrap'>{item.priceUSD}</h1>
-                                            </div>
-                                            <div className='flex gap-1'>
-                                                <img className='w-4 md:w-5' src={pricesy} alt="" />
-                                                <h1 className='text-[10px] lg:text-[14px] text-placeholder w-[50px] truncate  block overflow-hidden text-ellipsis whitespace-nowrap'>{item.priceSYP}</h1>
-                                            </div>
+                                        <div className='flex gap-1'>
+                                            <img className='w-4 md:w-5' src={person} alt="" />
+                                            <h1 className='text-[10px] lg:text-[14px] text-placeholder w-[50px] truncate  block overflow-hidden text-ellipsis whitespace-nowrap'>{item.user.username}</h1>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div className='flex gap-1'>
+                                            <img className='w-4 md:w-5' src={price} alt="" />
+                                            <h1 className='text-[10px] lg:text-[14px] text-placeholder w-[50px] truncate  block overflow-hidden text-ellipsis whitespace-nowrap'>{item.priceUSD}</h1>
+                                        </div>
+                                        <div className='flex gap-1'>
+                                            <img className='w-4 md:w-5' src={pricesy} alt="" />
+                                            <h1 className='text-[10px] lg:text-[14px] text-placeholder w-[50px] truncate  block overflow-hidden text-ellipsis whitespace-nowrap'>{item.priceSYP}</h1>
                                         </div>
                                     </div>
                                 </div>

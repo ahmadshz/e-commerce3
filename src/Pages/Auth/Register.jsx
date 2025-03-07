@@ -111,9 +111,8 @@ const Register = () => {
         <div>
             <Navbar />
             <div className='min-h-screen container flex flex-col justify-center pt-5'>
-                <div className='flex justify-between w-full my-2 lg:my-5'>
-                    <h1 className='text-[25px] lg:text-[30px] text-primary font-bold my-10 sm:my-16 lg:my-10'>اﻧﺸﺎء ﺣﺴﺎب ﺟﺪﻳﺪ</h1>
-                </div>
+                    <h1 className='text-[25px] lg:text-[30px] w-full text-primary font-bold my-10 sm:my-16 lg:my-10'>اﻧﺸﺎء ﺣﺴﺎب ﺟﺪﻳﺪ</h1>
+                
                 <form className='grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8 mt-5 mb-10 sm:mb-16 lg:mb-20' onSubmit={handleSubmit}>
                     {/* First Name */}
                     <div className='flex flex-col lg:flex-row gap-3 md:gap-4'>
