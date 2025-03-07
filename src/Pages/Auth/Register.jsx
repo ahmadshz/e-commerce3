@@ -111,7 +111,7 @@ const Register = () => {
         <div>
             <Navbar />
             <div className='min-h-screen container flex flex-col justify-center pt-5'>
-            <h1 className='text-[25px] lg:text-[30px] w-full text-primary font-bold my-10 sm:my-16 lg:my-10 text-center whitespace-nowrap overflow-hidden text-ellipsis'>
+            <h1 className='text-[20px] lg:text-[25px] w-full text-primary font-bold my-10 sm:my-16 lg:my-10 text-center whitespace-nowrap overflow-hidden text-ellipsis'>
             اﻧﺸﺎء ﺣﺴﺎب ﺟﺪﻳﺪ
         </h1>
         
