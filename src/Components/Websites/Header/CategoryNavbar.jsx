@@ -77,7 +77,7 @@ const CategoryNavbar = ({ onCategoryChange, onBrandChange }) => {
                                 } ${selectedCategory === index ? 'block' : 'hidden'}`}
                         />
                         <div
-                            className={`text-center w-[95px] md:w-[110px] lg:w-[123px] xl:w-[140px] text-[12px] md:text-[14px] lg:text-[17px] font-semibold ${selectedCategory === index ? 'text-primary' : 'text-placeholder'
+                            className={`text-center w-[100px] md:w-[110px] lg:w-[123px] xl:w-[140px] text-[12px] md:text-[14px] lg:text-[17px] font-semibold ${selectedCategory === index ? 'text-primary' : 'text-placeholder'
                                 }`}
                         >
                             {category.title}
