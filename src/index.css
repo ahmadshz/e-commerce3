@@ -2,33 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "@fontsource/noto-sans-arabic";
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
-@font-face {
-  font-family: 'Noto Kufi Arabic';
-  src: url('./assets/Font/NotoKufiArabic-Regular.ttf') format('truetype');
-  font-weight: normal;
-}
-
-@font-face {
-  font-family: 'Noto Kufi Arabic';
-  src: url('./assets/Font/NotoKufiArabic-SemiBold.ttf') format('truetype');
-  font-weight: 600;
-}
-
-@font-face {
-  font-family: 'Noto Kufi Arabic';
-  src: url('./assets/Font/NotoKufiArabic-Black.ttf') format('truetype');
-  font-weight: bold;
-}
-
 body {
-  font-family: 'Noto Kufi Arabic', sans-serif;
+  font-family: "Noto Sans Arabic", sans-serif;
 }
+
 
 
 /* Custom Scrollbar Styles */

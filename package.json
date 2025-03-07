@@ -4,6 +4,7 @@
   "proxy": "http://localhost:8000",
   "private": true,
   "dependencies": {
+    "@fontsource/noto-sans-arabic": "^5.2.5",
     "@headlessui/react": "^2.2.0",
     "@reduxjs/toolkit": "^2.5.1",
     "@testing-library/dom": "^10.4.0",
