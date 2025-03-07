@@ -89,7 +89,7 @@ const Posts = ({ ads, selectedCategory, selectedBrand, visibleCount, sponsorImag
                             transition={{ duration: 0.5, delay: (totalDisplayedAds - visibleCount + index) * 0.2 }}
                             className='bg-[#FAFAFA] w-full h-[140px] lg:h-[160px] flex justify-between'>
                             <div className='w-4/6 lg:w-4/5 p-3 flex flex-col justify-between'>
-                                <Link to={`/singlePost/${item._id}`} className='text-[16px] lg:text-[20px] font-semibold 
+                                <Link to={`/singlePost/${item._id}`} className='text-[12px] lg:text-[20px] font-semibold 
                                 truncate w-full block overflow-hidden text-ellipsis whitespace-nowrap'>{item.title}</Link>
                                 <div className='flex items-center gap-2'>
                                     <div className='flex gap-4 lg:gap-10'>
@@ -115,7 +115,7 @@ const Posts = ({ ads, selectedCategory, selectedBrand, visibleCount, sponsorImag
                                         </div>
                                     </div>
                                 </div>
-                                <div className='text-[12px] lg:text-[14px] text-placeholder'>{item.location}</div>
+                                <div className='text-[10px] lg:text-[14px] text-placeholder'>{item.location}</div>
 
                             </div>
                             <div className='w-2/6 lg:w-1/5'>
