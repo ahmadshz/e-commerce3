@@ -89,7 +89,7 @@ const Login = () => {
                         </div>
 
                         {/* Error Message */}
-                        {error && <p className='text-primary text-[26px] lg:text-[20px] font-semibold p-2 '>{error}</p>}
+                        {error && <p className='text-primary text-[16px] lg:text-[20px] font-semibold p-2 '>{error}</p>}
 
                         {/* Submit Button */}
                         <button
