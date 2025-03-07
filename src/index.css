@@ -11,27 +11,14 @@
 
 @font-face {
   font-family: 'Cairo';
-  src: url('./assets//Font/Cairo\ Bold\ 700.ttf') format('truetype');
+  src: url('./assets/Font/NotoKufiArabic-Black.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
 
-@font-face {
-  font-family: 'Cairo';
-  src: url('./assets//Font/Cairo\ SemiBold\ 600.ttf') format('truetype');
-  font-weight: 600; /* SemiBold */
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Cairo';
-  src: url('./assets/Font/Cairo\ Regular\ 400.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
 
 body {
-  font-family: 'Cairo', Arial, Helvetica, sans-serif;
+  font-family: 'Noto Kufi Arabic', sans-serif;
 }
 
 /* Custom Scrollbar Styles */
