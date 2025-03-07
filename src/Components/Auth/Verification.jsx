@@ -52,7 +52,7 @@ const Verification = () => {
         <div>
             <Navbar />
             <div className="min-h-[90vh] container  flex flex-col justify-center md:justify-normal md:pt-44">
-                <h2 className="text-[20px] lg:text-[25px] font-semibold  text-primary  mb-3 md:mb-10 ">
+                <h2 className="text-[16px] md:text-[20px] lg:text-[25px] font-semibold  text-primary  mb-3 md:mb-10 ">
                     انشاء حساب جديد
                 </h2>
 
@@ -62,7 +62,7 @@ const Verification = () => {
 
                 <form onSubmit={handleVerification} >
                     <div className='flex items-center justify- w-full md:w-[400px] gap-7 my-4 md:my-8'>
-                        <label className='text-[16px] lg:text-[20px]'>الكود</label>
+                        <label className=' text-[14px] md:text-[16px] lg:text-[20px]'>الكود</label>
                         <input
                             id="verificationCode"
                             type="text"
@@ -77,12 +77,12 @@ const Verification = () => {
                     </div>
 
                     {error && (
-                        <p className="text-[16px] lg:text-[20px] text-primary text-center">{error}</p>
+                        <p className="text-[14px] md:text-[16px] lg:text-[20px]">{error}</p>
                     )}
                     <div>
                         <button
                             type="submit"
-                            className="w-full  text-[20px] md:text-[25px] md:w-[200px] px-6 py-3  md:py-4 bg-primary text-white rounded-md hover:bg-secondary transition duration-300"
+                            className="w-full  text-[16px] md:text-[20px] lg:text-[25px] md:w-[200px] px-6 py-3  md:py-4 bg-primary text-white rounded-md hover:bg-secondary transition duration-300"
                         >
                             التأكيد
                         </button>
