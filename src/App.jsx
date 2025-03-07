@@ -26,7 +26,6 @@ import RequireAuth from "./Pages/Auth/RequireAuth";
 import PostAdmin from "./Pages/Dashboard/Post/PostAdmin";
 import PostApproved from "./Pages/Dashboard/Post/PostApproved";
 import RequiredDashboard from "./Pages/Auth/RequiredDashboard";
-import CategoriesMobile from "./Components/Websites/page/CategoriesMobile";
 import Home from "./Pages/Websites/Home";
 import RegistrationMembership from "./Components/Websites/page/RegistrationMembership";
 import MembreDocumentation from "./Components/Websites/page/MembreDocumentation";
@@ -72,7 +71,6 @@ function App() {
         {/* Get Single Post */}
         <Route path="/singlePost/:id" element={<SinglePost />} />
 
-        <Route path="/category" element={ <CategoriesMobile />} />
 
 
         {/*Auth */}

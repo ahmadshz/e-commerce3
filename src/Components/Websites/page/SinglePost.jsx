@@ -8,7 +8,6 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { baseUrl } from '../../../Api/Api';
 import Footer from '../Footer/Footer';
-import BarMobile from '../UI/BarMobile';
 import { motion } from 'framer-motion';
 import { HiOutlineArrowRight } from 'react-icons/hi';
 import logo from '../../../assets/Logo/Logowhite.png';
@@ -397,7 +396,6 @@ const SinglePost = () => {
             )}
 
             <Footer />
-            <BarMobile />
         </div>
     );
 };

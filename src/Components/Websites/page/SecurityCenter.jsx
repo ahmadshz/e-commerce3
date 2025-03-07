@@ -1,8 +1,22 @@
 import React from 'react';
+import { HiOutlineArrowRight } from 'react-icons/hi';
+import Navbar from '../Header/Navbar';
 
 const SecurityCenter = () => {
+  
+  const goBack = () => {
+    window.history.back();
+  };
+
   return (
-    <div className="min-h-screen py-20">
+    <div className='min-h-screen flex flex-col gap-4 lg:gap-10'>
+    <Navbar />
+    <div
+
+      className='container '>
+      <HiOutlineArrowRight onClick={goBack} className=' text-[30px] h-[30px] lg:h-[50px] lg:text-[45px]  ' />
+    </div>
+    <div className='pb-10 lg:pb-20'>
       <div className="container mx-auto bg-background p-8 rounded-10px">
         {/* Title */}
         <h1 className="text-[20px] lg:text-[25px] font-bold text-primary mb-6">
@@ -79,6 +93,7 @@ const SecurityCenter = () => {
             إن التزامك بهذه الإرشادات واتخاذ الاحتياطات اللازمة أثناء التعاملات عبر "دلال" سيساهم في جعل المنصة مكانًا أكثر أمانًا لجميع المستخدمين، مما يعزز الثقة والشفافية في سوق الإعلانات المبوبة داخل سوريا.
           </p>
         </section>
+      </div>
       </div>
     </div>
   );

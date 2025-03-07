@@ -64,10 +64,10 @@ const SubNavbar = ({ onSearch, onLocationChange }) => {
             transition={{ duration: 0.5, delay:  0.5 }}
             className='container flex flex-wrap lg:flex-nowrap justify-between items-center gap-2'>
             {/* Search Box */}
-            <div className='h-[35px] md:h-[45px] xl:h-[53px] w-full lg:w-1/2 2xl:w-[876px] border-2 border-border relative rounded-10px'>
+            <div className='h-[35px] md:h-[45px] xl:h-[53px] w-full lg:w-1/2 2xl:w-[876px] border md:border-2 border-border relative rounded-10px'>
                 <input
                     type='search'
-                    className='h-full w-full font-normal text-[13px] md:text-[15px] lg:text-[17px] rounded-10px pr-2 md:pr-[10px] xl:pr-[20px] focus:outline-none'
+                    className='h-full w-full font-normal text-[12px] md:text-[14px] lg:text-[17px] rounded-10px pr-2 md:pr-[10px] xl:pr-[20px] focus:outline-none'
                     placeholder='ابحث عن أي عقار أو سلعة أو خدمة في سوريا...'
                     value={searchQuery}
                     onChange={(e) => {
@@ -88,11 +88,11 @@ const SubNavbar = ({ onSearch, onLocationChange }) => {
 
                 {/* Search History Dropdown */}
                 {showHistory && searchHistory.length > 0 && (
-                    <div className="absolute w-full bg-white border-2 border-border rounded-10px mt-1 z-10 max-h-[200px] custom-scrollbar overflow-y-auto">
+                    <div className="absolute w-full bg-white border border-border rounded-10px mt-1 z-10 max-h-[200px] custom-scrollbar overflow-y-auto">
                         {searchHistory.map((item, index) => (
                             <div
                                 key={index}
-                                className="flex items-center justify-between last:border-0 border-b-2 p-2 hover:bg-gray-200 cursor-pointer text-[15px]"
+                                className="flex items-center justify-between last:border-0 border-b-2 p-2 hover:bg-gray-200 cursor-pointer text-[12px] md:text-[14px] lg:text-[17px]"
                                 onMouseDown={(e) => e.preventDefault()}
                                 onClick={() => {
                                     setSearchQuery(item);
@@ -101,8 +101,7 @@ const SubNavbar = ({ onSearch, onLocationChange }) => {
                                 }}
                             >
                                 <span>{item}</span>
-                                <CgClose className='text-placeholder font-bold'
-                                    size={30}
+                                <CgClose className='text-placeholder text-[23px] md:text-[30px] font-bold'
                                     onClick={(e) => {
                                         e.stopPropagation();
                                         handleDeleteSearch(item);
@@ -116,22 +115,22 @@ const SubNavbar = ({ onSearch, onLocationChange }) => {
 
             {/* Location Dropdown */}
             <div className='flex justify-between items-center gap-4 w-full lg:w-2/4'>
-                <div className="w-2/4 lg:w-[160px] 2xl:w-[195px] border-2 border-border rounded-10px relative text-placeholder">
+                <div className="w-2/4 lg:w-[160px] 2xl:w-[195px] border md:border-2 border-border rounded-10px relative text-placeholder">
                     <button
                         onClick={toggleDropdown}
                         className="w-full h-[31px] md:h-[41px] xl:h-[49px] flex items-center justify-between"
                     >
-                        <span className="w-[75%] md:w-[85%] lg:w-[80%] text-center text-[13px] md:text-[15px]">
+                        <span className="w-[75%] md:w-[85%] lg:w-[100%] text-center text-[12px] md:text-[14px] lg:text-[16px] xl:text-[17px]">
                             {selectedLocation}
                         </span>
-                        <MdOutlineKeyboardArrowDown className="w-[40px] lg:w-[54px] h-[35px] md:h-[45px] xl:h-[53px] border-2 border-l-0 border-border rounded-10px" />
+                        <MdOutlineKeyboardArrowDown className="w-[40px] lg:w-[54px] h-[35px] md:h-[45px] xl:h-[53px] border-r  md:border-2 md:border-l-0 border-border rounded-10px" />
                     </button>
 
                     {isOpen && (
                         <div className="custom-scrollbar absolute w-full lg:w-[160px] 2xl:w-[193px] max-h-[300px] overflow-y-auto border border-gray-300 rounded-10px mt-1 bg-white z-10">
                             <div
                                 onClick={() => handleSelect('جميع المناطق')}
-                                className="pr-2 md:pr-5  py-1 text-[15px] hover:bg-gray-200 cursor-pointer"
+                                className="pr-2 md:pr-5  py-1 text-[12px] md:text-[14px] lg:text-[17px] hover:bg-gray-200 cursor-pointer"
                             >
                                 جميع المناطق
                             </div>
@@ -139,7 +138,7 @@ const SubNavbar = ({ onSearch, onLocationChange }) => {
                                 <div
                                     key={index}
                                     onClick={() => handleSelect(loc)}
-                                    className="w-full pr-2 md:pr-5 py-1 hover:bg-gray-200 cursor-pointer text-[15px] md:text-[16px] lg:text-[17px]"
+                                    className="w-full pr-2 md:pr-5 py-1 hover:bg-gray-200 cursor-pointer text-[12px] md:text-[14px] lg:text-[17px]"
                                 >
                                     {loc}
                                 </div>
@@ -149,8 +148,8 @@ const SubNavbar = ({ onSearch, onLocationChange }) => {
                 </div>
 
                 {/* Add Post Button */}
-                <Link to={'/addpost'} className=' hidden md:flex items-center justify-between w-2/4 lg:w-[170px] xl:w-[220px]
-                 h-[31px] md:h-[41px] xl:h-[49px] text-[13px] md:text-[15px] lg:text-[17px] bg-primary rounded-10px'>
+                <Link to={'/addpost'} className=' flex items-center justify-between w-2/4 lg:w-[170px] xl:w-[220px]
+                 h-[31px] md:h-[41px] xl:h-[49px] text-[12px] md:text-[14px] lg:text-[17px]  bg-primary rounded-10px'>
                     <div className='text-white w-[75%] md:w-[85%] lg:w-[80%] text-center font-bold'>أضــف اعــلان</div>
                     <div className='w-[40px] lg:w-[54px] bg-placeholder h-full rounded-10px flex items-center justify-center'>
                         <img className='w-8' src={add} alt='' />

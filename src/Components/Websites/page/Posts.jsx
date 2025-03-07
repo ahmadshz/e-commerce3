@@ -87,40 +87,45 @@ const Posts = ({ ads, selectedCategory, selectedBrand, visibleCount, sponsorImag
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: (totalDisplayedAds - visibleCount + index) * 0.2 }}
-                            className='bg-[#FAFAFA] w-full h-[130px] md:h-[140px] lg:h-[160px] flex'>
-                            <div className='w-2/6 md:w-1/2 xl:w-3/5 flex flex-col justify-between md:py-2 pr-2 md:pr-[10px] xl:pr-[20px]'>
-                                <Link to={`/singlePost/${item._id}`} className='w-[90%] text-[14px] md:text-[19px] lg:text-[24px] font-semibold'>
-                                    {item.title}
-                                </Link>
-                                <h1 className='py-0 text-[13px] md:text-[15px] font-normal text-placeholder'>{item.location}</h1>
-                            </div>
-                            <div className='w-4/6 md:w-1/2 xl:w-2/5 flex justify-between'>
-                                <div className='w-2/4 md:py-2 flex flex-col md:justify-between text-placeholder text-[10px] md:text-[13px] lg:text-[17px]'>
-                                    <div className='flex gap-1 md:gap-2 items-center'>
-                                        <img className='w-4 md:w-5 lg:w-6' src={price} alt='' />
-                                        <span className='text-[13px] lg:text-[15px] font-normal text-placeholder'>{item.priceUSD}</span>
-                                    </div>
-                                    <div className='flex gap-1 md:gap-2 items-center'>
-                                        <img className='w-4 md:w-5 lg:w-6' src={pricesy} alt='' />
-                                        <span className='text-[13px] lg:text-[15px] font-normal text-placeholder'>{item.priceSYP}</span>
-                                    </div>
-                                    <div className='flex gap-1 md:gap-2 items-center'>
-                                        <img className='w-4 md:w-5 lg:w-6' src={clock} alt='' />
-                                        <span className='text-[13px] lg:text-[15px] font-normal text-placeholder'>{timeAgo(item.createdAt)}</span>
-                                    </div>
-                                    <div className='flex gap-1 md:gap-2 items-center'>
-                                        <img className='w-4 md:w-5 lg:w-6' src={person} alt='' />
-                                        <span className='text-[13px] lg:text-[15px] font-normal text-placeholder truncate'>{item?.user?.username}</span>
+                            className='bg-[#FAFAFA] w-full h-[130px] md:h-[140px] lg:h-[160px] flex justify-between'>
+                            <div className='w-4/6 lg:w-4/5 p-3 flex flex-col justify-between'>
+                                <Link to={`/singlePost/${item._id}`} className='text-[16px] lg:text-[20px] font-semibold 
+                                truncate w-full block overflow-hidden text-ellipsis whitespace-nowrap'>{item.title}</Link>
+                                <div className='flex items-center gap-2'>
+                                    <div className='flex gap-4 lg:gap-10'>
+                                        <div>
+                                            <div className='flex gap-1'>
+                                                <img className='w-4 md:w-5' src={clock} alt="" />
+                                                <h1 className='text-[12px] lg:text-[14px] text-placeholder'>{timeAgo(item.createdAt)}</h1>
+                                            </div>
+                                            <div className='flex gap-1'>
+                                                <img className='w-4 md:w-5' src={person} alt="" />
+                                                <h1 className='text-[12px] lg:text-[14px] text-placeholder'>{item.user.username}</h1>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div className='flex gap-1'>
+                                                <img className='w-4 md:w-5' src={price} alt="" />
+                                                <h1 className='text-[12px] lg:text-[14px] text-placeholder'>{item.priceUSD}</h1>
+                                            </div>
+                                            <div className='flex gap-1'>
+                                                <img className='w-4 md:w-5' src={pricesy} alt="" />
+                                                <h1 className='text-[12px] lg:text-[14px] text-placeholder'>{item.priceSYP}</h1>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <Link to={`/singlePost/${item._id}`} className='w-2/4 md:w-[199px]'>
-                                    <img
-                                        className='h-full w-full object-cover'
-                                        src={Array.isArray(item.images) ? item.images[0] : item.images}
-                                        alt=''
-                                    />
-                                </Link>
+                                <div className='text-[12px] lg:text-[14px] text-placeholder'>{item.location}</div>
+
                             </div>
+                            <div className='w-2/6 lg:w-1/5'>
+                                <img
+                                    className='h-full w-full object-cover'
+                                    src={Array.isArray(item.images) ? item.images[0] : item.images}
+                                    alt=''
+                                />
+                            </div>
+
                         </motion.div>
                     )
                 ))
@@ -129,7 +134,7 @@ const Posts = ({ ads, selectedCategory, selectedBrand, visibleCount, sponsorImag
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.5 }}
-                    className="text-center text-lg font-semibold text-gray-500 py-10">
+                    className="text-center text-[13px] lg:text-[20px] font-semibold py-10">
                     لا يوجد اعلانات يرجى زيارة الموقع لاحقًا
                 </motion.div>
             )}

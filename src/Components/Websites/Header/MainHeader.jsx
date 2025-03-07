@@ -12,6 +12,7 @@ import { jwtDecode } from 'jwt-decode';
 import { motion } from 'framer-motion';
 import axios from 'axios';
 import { baseUrl } from '../../../Api/Api';
+import { SlMenu } from 'react-icons/sl';
 
 const MainHeader = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -60,7 +61,7 @@ const MainHeader = () => {
         <Link to={'/'}> <img className='w-12 md:w-12 lg:w-16 xl:w-20' src={Logo} alt='' /></Link>
         <div className='text-white flex gap-4'>
           <button className='lg:hidden' onClick={toggleSidebar}>
-            {isSidebarOpen ? "" : <RiMenu2Line size={27} />}
+            {isSidebarOpen ? "" : <SlMenu size={25} />}
           </button>
 
           {username ? (

@@ -1,7 +1,6 @@
 import React from 'react'
 import MainHeader from '../../Components/Websites/Header/MainHeader'
 import Footer from '../../Components/Websites/Footer/Footer'
-import BarMobile from '../../Components/Websites/UI/BarMobile'
 import Landing from './Landing'
 
 const Web = () => {
@@ -10,8 +9,8 @@ const Web = () => {
             <MainHeader />
             <Landing />
             <Footer />
-            <BarMobile />
-        </div>)
+        </div>
+    )
 }
 
 export default Web

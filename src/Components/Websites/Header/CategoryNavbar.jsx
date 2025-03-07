@@ -43,41 +43,41 @@ const CategoryNavbar = ({ onCategoryChange, onBrandChange }) => {
                         <img
                             src={category.icon}
                             alt={category.title}
-                            className={`object-cover ${index === 0
-                                    ? 'w-[60px] h-[35px] lg:w-[85px] lg:h-[45px]'
+                            className={` object-cover ${index === 0
+                                    ? 'w-[45px] h-[25px] md:w-[60px] md:h-[35px] lg:w-[85px] lg:h-[45px]'
                                     : index === 1
-                                        ? 'w-[50px] h-[40px] lg:w-[65px] lg:h-[50px]'
+                                        ? ' w-[40px] h-[28px] md:w-[50px] md:h-[40px] lg:w-[65px] lg:h-[50px]'
                                         : index === 4
-                                            ? 'w-[50px] h-[45px] lg:w-[65px] lg:h-[55px]'
+                                            ? 'w-[40px] h-[30px] md:w-[50px] md:h-[45px] lg:w-[65px] lg:h-[55px]'
                                             : index === 8
-                                                ? 'w-[50px] h-[35px] lg:w-[65px] lg:h-[45px]'
+                                                ? 'w-[40px] h-[30px] md:w-[50px] md:h-[35px] lg:w-[65px] lg:h-[45px]'
                                                 : index === 9
-                                                    ? 'w-[50px] h-[35px] lg:w-[65px] lg:h-[45px]'
+                                                    ? 'w-[40px] h-[30px] md:w-[50px] md:h-[35px] lg:w-[65px] lg:h-[45px]'
                                                     : index === 10
-                                                        ? 'w-[50px] h-[40px] lg:w-[65px] lg:h-[45px]'
-                                                        : 'w-[40px] lg:w-[50px]'
+                                                        ? 'w-[40px] h-[30px] md:w-[50px] md:h-[40px] lg:w-[65px] lg:h-[45px]'
+                                                        : 'w-[30px] h-[30px] md:h-auto md:w-[40px] lg:w-[50px]'
                                 } ${selectedCategory === index ? 'hidden' : 'block'}`}
                         />
                         <img
                             src={category.iconcolor}
                             alt={category.title}
                             className={`object-cover ${index === 0
-                                    ? 'w-[60px] h-[35px] lg:w-[85px] lg:h-[45px]'
+                                    ? 'w-[45px] h-[25px] md:w-[60px] md:h-[35px] lg:w-[85px] lg:h-[45px]'
                                     : index === 1
-                                        ? 'w-[50px] h-[40px] lg:w-[65px] lg:h-[50px]'
+                                        ? ' w-[40px] h-[28px] md:w-[50px] md:h-[40px] lg:w-[65px] lg:h-[50px]'
                                         : index === 4
-                                            ? 'w-[50px] h-[45px] lg:w-[65px] lg:h-[55px]'
+                                            ? 'w-[40px] h-[30px] md:w-[50px] md:h-[45px] lg:w-[65px] lg:h-[55px]'
                                             : index === 8
-                                                ? 'w-[50px] h-[35px] lg:w-[65px] lg:h-[45px]'
+                                                ? 'w-[40px] h-[30px] md:w-[50px] md:h-[35px] lg:w-[65px] lg:h-[45px]'
                                                 : index === 9
-                                                    ? 'w-[50px] h-[35px] lg:w-[65px] lg:h-[45px]'
+                                                    ? 'w-[40px] h-[30px] md:w-[50px] md:h-[35px] lg:w-[65px] lg:h-[45px]'
                                                     : index === 10
-                                                        ? 'w-[50px] h-[40px] lg:w-[65px] lg:h-[45px]'
-                                                        : 'w-[40px] lg:w-[50px]'
+                                                        ? 'w-[40px] h-[30px] md:w-[50px] md:h-[40px] lg:w-[65px] lg:h-[45px]'
+                                                        : 'w-[30px] h-[30px] md:h-auto md:w-[40px] lg:w-[50px]'
                                 } ${selectedCategory === index ? 'block' : 'hidden'}`}
                         />
                         <div
-                            className={`text-center w-[110px] lg:w-[123px] xl:w-[140px] text-[10px] md:text-[13px] lg:text-[17px] font-semibold ${selectedCategory === index ? 'text-primary' : 'text-placeholder'
+                            className={`text-center w-[95px] md:w-[110px] lg:w-[123px] xl:w-[140px] text-[12px] md:text-[14px] lg:text-[17px] font-semibold ${selectedCategory === index ? 'text-primary' : 'text-placeholder'
                                 }`}
                         >
                             {category.title}
@@ -98,10 +98,10 @@ const CategoryNavbar = ({ onCategoryChange, onBrandChange }) => {
                             <div
                                 key={index}
                                 onClick={() => handleBrandClick(index)}
-                                className={`border rounded-10px px-2 py-1 md:p-4 w-fit bg-white text-center cursor-pointer ${selectedBrand === index ? 'text-primary' : 'text-placeholder'
+                                className={`border rounded-10px px-2 py-1 md:p-2 w-fit bg-white text-center cursor-pointer ${selectedBrand === index ? 'text-primary' : 'text-placeholder'
                                     }`}
                             >
-                                <p className="text-[10px] md:text-[12px] lg:text-[16px] font-semibold truncate">
+                                <p className="text-[12px] lg:text-[16px] font-semibold truncate">
                                     {brand.arabic ? brand.arabic : brand}
                                 </p>
                             </div>

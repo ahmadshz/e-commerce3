@@ -14,7 +14,7 @@ const Footer = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.7 }}
-                className='min-h-[40vh] hidden md:block container'
+                className='min-h-[40vh] hidden lg:block container'
             >
                 <div className='bg-primary text-white rounded-10px py-2 md:py-4 lg:py-6 flex items-center justify-center text-center font-semibold text-[12px] lg:text-[16px] xl:text-[20px]'>
                     دلّال هو المنصة المثالية التي تلبي جميع احتياجات الشعب السوري، معًا نبني سوريا المستقبل
