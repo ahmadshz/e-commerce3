@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
 import { baseUrl } from '../../Api/Api';
-import MainHeader from '../Websites/Header/MainHeader';
 import Navbar from '../Websites/Header/Navbar';
 
 const Verification = () => {
@@ -9,7 +8,7 @@ const Verification = () => {
     const [error, setError] = useState(''); // State for error messages
     const navigate = useNavigate(); // Initialize the navigate function
 
-    const email = localStorage.getItem('email'); // Get email from localStorage
+    const email = localStorage.getItem('email'); 
 
     const handleVerification = async (e) => {
         e.preventDefault();
@@ -20,7 +19,7 @@ const Verification = () => {
         }
 
         const payload = {
-            email: email,  // Use the email from localStorage
+            email: email,  
             otp: verificationCode,
         };
 
@@ -36,15 +35,13 @@ const Verification = () => {
             const data = await response.json();
 
             if (response.ok) {
-                setError('');  // Reset any previous errors
+                setError('');  
 
-                // Delete email from localStorage after successful verification
                 localStorage.removeItem('email');
 
-                // Navigate to the successVerification route
-                navigate('/successVerification'); // Redirect to the success verification page
+                navigate('/successVerification'); 
             } else {
-                setError(data.message);  // Display error message from backend
+                setError(data.message);  
             }
         } catch (error) {
             setError('An error occurred. Please try again later.');
@@ -54,32 +51,33 @@ const Verification = () => {
     return (
         <div>
             <Navbar />
-            <div className="min-h-screen container  flex flex-col justify-center md:justify-normal md:pt-44">
-                <h2 className="text-[25px] lg:text-[30px] font-semibold  text-primary  mb-10 md:mb-20 ">
+            <div className="min-h-[90vh] container  flex flex-col justify-center md:justify-normal md:pt-44">
+                <h2 className="text-[20px] lg:text-[25px] font-semibold  text-primary  mb-3 md:mb-10 ">
                     انشاء حساب جديد
                 </h2>
 
-                <p className="text-xl sm:text-[20px] lg:text-[25px] mb-4">
+                <p className="text-[16px] md:text-[20px] lg:text-[25px] mb-4">
                     من فضلك ضع الكود المكون من ستة أرقام المرسل الى الايميل الخاص بك
                 </p>
 
                 <form onSubmit={handleVerification} >
-                    <div className='flex items-center justify-between w-full md:w-[400px] gap-7 my-8'>
-                        <label className='text-[20px] lg:text-[25px]'>الكود</label>
+                    <div className='flex items-center justify- w-full md:w-[400px] gap-7 my-4 md:my-8'>
+                        <label className='text-[16px] lg:text-[20px]'>الكود</label>
                         <input
                             id="verificationCode"
                             type="text"
                             value={verificationCode}
                             onChange={(e) => setVerificationCode(e.target.value)}
                             placeholder="123456"
-                            className=" text-[20px] w-[150px]  border-2 border-border  focus:outline-none focus:border-primary 
-                             focus:ring-primary rounded-10px text-center p-4"
+                            className=" text-[14px] lg:text-[20px] w-[150px] h-[50px] md:h-[60px] lg:h-[76px]
+                              border md:border-2 border-border  focus:outline-none focus:border-primary 
+                             focus:ring-primary rounded-10px text-center"
                             required
                         />
                     </div>
 
                     {error && (
-                        <p className="text-[20px] text-primary text-center">{error}</p>
+                        <p className="text-[16px] lg:text-[20px] text-primary text-center">{error}</p>
                     )}
                     <div>
                         <button

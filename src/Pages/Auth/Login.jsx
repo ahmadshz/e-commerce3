@@ -63,7 +63,7 @@ const Login = () => {
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 className='w-full xl:w-[433px] h-[50px] md:h-[60px] lg:h-[76px] text-placeholder text-[12px] md:text-[14px] lg:text-[17px] 
-                                border-2 border-border focus:outline-none focus:border-primary rounded-10px pr-2'
+                                border md:border-2 border-border focus:outline-none focus:border-primary rounded-10px pr-2'
                             />
                         </div>
 
@@ -76,7 +76,7 @@ const Login = () => {
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 className='w-full xl:w-[433px] h-[50px] md:h-[60px] lg:h-[76px] text-placeholder text-[12px] md:text-[14px] lg:text-[17px] 
-                                border-2 border-border focus:outline-none focus:border-primary rounded-10px pr-2'
+                                border md:border-2 border-border focus:outline-none focus:border-primary rounded-10px pr-2'
                             />
                             {/* Password Toggle Button */}
                             <button
