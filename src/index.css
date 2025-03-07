@@ -2,18 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-@import "@fontsource/noto-sans-arabic";
+@import '@fontsource-variable/noto-kufi-arabic';
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
-  font-family: "Noto Sans Arabic", sans-serif;
+  font-family: 'Noto Kufi Arabic Variable', sans-serif;
 }
-
-
 
 /* Custom Scrollbar Styles */
 .custom-scrollbar::-webkit-scrollbar {

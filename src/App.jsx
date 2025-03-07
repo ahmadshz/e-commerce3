@@ -39,7 +39,7 @@ import WelcomeDashboard from "./Pages/Dashboard/WelcomeDashboard";
 
 function App() {
   return (
-    <div dir="rtl" className="font-medium text-lg tracking-wider">
+    <div dir="rtl" className="font-medium text-lg ">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/registration" element={<RegistrationMembership/>} />
