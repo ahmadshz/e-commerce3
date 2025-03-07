@@ -48,9 +48,9 @@ const SideBar = ({ isSidebarOpen, toggleSidebar }) => {
 
           <div className='flex flex-col  mb-4 px-4'>
             <div className='flex justify-between items-center  '>
-              <Link onClick={logout} to={'/login'} className='flex items-center gap-1 py-3'>
+              <Link  to={'/login'} className='flex items-center gap-1 py-3'>
                 {token ? (
-                  <div className='text-[14px] text-primary'>تسجيل الخروج</div>
+                  <div onClick={logout} className='text-[14px] text-primary'>تسجيل الخروج</div>
                 ) : (
                   <div className='text-[14px]'>تسجيل الدخول او انشاء حساب</div>
                 )}
