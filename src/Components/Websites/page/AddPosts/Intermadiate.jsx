@@ -44,14 +44,14 @@ const Intermediate = () => {
     return (
         <div className="min-h-screen flex justify-center md:items-center container bg-white p-6 rounded-10px">
             <div className="container h-auto bg-background py-[20px]">
-                <h1 className="text-[20px] lg:text-[25px] text-primary font-bold my-[10px] xl:my-5 ">
+                <h1 className="text-[18px] md:text-[20px] lg:text-[25px] text-primary font-bold my-[10px] xl:my-5 ">
                     بإضافة إعلانك على موقع دلال، فإنك توافق على الالتزام بشروط هذه الاتفاقية :
                 </h1>
                 <div className="grid lg:grid-cols-2 my-[10px] xl:my-5 gap-5 xl:gap-8">
                     {rules.map((rule, index) => (
                         <div key={index} className="my-[10px] xl:my-5 ">
-                            <h2 className="text-[16px] lg:text-[20px] font-semibold text-primary mb-4">{rule.title}</h2>
-                            <ul className="list-disc list-inside space-y-3">
+                            <h2 className="text-[16px] lg:text-[20px] font-semibold text-primary mb-2">{rule.title}</h2>
+                            <ul className="list-disc list-inside md:space-y-3">
                                 {rule.items.map((item, itemIndex) => (
                                     <li key={itemIndex} className=" font-normal text-[13px] lg:text-[17px]">
                                         {item}
@@ -70,7 +70,9 @@ const Intermediate = () => {
                 </div>
                 <div
                     onClick={handleAccept}
-                    className="bg-primary flex justify-center items-center rounded-10px h-[60px] md:h-[76px]  w-full md:w-[180px] xl:w-[211px] text-white text-[20px] lg:text-[25px] font-bold xl:my-5  cursor-pointer"
+                    className="bg-primary flex justify-center items-center rounded-10px 
+                    h-[50px] md:h-[60px] lg:h-[76px]  w-full md:w-[180px] xl:w-[211px]
+                     text-white text-[18px] md:text-[20px] lg:text-[25px] font-bold xl:my-5  cursor-pointer"
                 >
                     موافق
                 </div>

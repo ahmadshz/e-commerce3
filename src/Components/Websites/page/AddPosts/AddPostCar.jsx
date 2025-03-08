@@ -93,11 +93,13 @@ const AddPostCar = () => {
                 <form className='flex flex-col gap-5 md:gap-7 w-full px-4 md:px-0' onSubmit={handleSubmit}>
                     {/* Title and Location Dropdown */}
                     <div className='flex flex-col md:flex-row gap-5 w-full'>
-                        <div className='flex flex-col gap-5 w-full md:w-[867px]'>
-                            <label className='text-primary text-[20px] lg:text-[25px] font-bold'>عنوان الاعلان :</label>
+                        <div className='flex flex-col md:gap-2 lg:gap-5 w-full md:w-[867px]'>
+                            <label className='text-primary text-[14px] md:text-[16px] lg:text-[25px] font-bold'>عنوان الاعلان :</label>
                             <input
                                 type='text'
-                                className='w-full h-[60px] md:h-[76px] text-placeholder block border-2 border-border rounded-10px text-[16px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none focus:border-primary duration-200'
+                                className='w-full h-[50px] md:h-[60px] lg:h-[76px] text-placeholder block
+                                 border md:border-2 border-border rounded-10px text-[12px] md:text-[14px] lg:text-[20px]
+                                  pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none focus:border-primary duration-200'
                                 placeholder='مثال : سيارة تويوتا يارس موديل 2024 فل كامل'
                                 value={title}
                                 onChange={(e) => setTitle(e.target.value)}
@@ -117,13 +119,13 @@ const AddPostCar = () => {
                     {/* Image Upload and Condition (Used/New) */}
                     <div className='flex flex-col md:flex-row gap-5 w-full'>
                         {/* Image Upload Section */}
-                        <div className='flex flex-col gap-5 w-full md:w-[395px] lg:w-[532px] xl:w-[668px] 2xl:w-[867px]'>
-                            <label className='text-primary text-[20px] lg:text-[25px] font-bold'>الصور :</label>
-                            <div className='relative w-full h-[60px] md:h-[76px] text-placeholder block border-2 border-border rounded-10px
-                         text-[16px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none
+                        <div className='flex flex-col md:gap-2 lg:gap-5 w-full md:w-[395px] lg:w-[532px] xl:w-[668px] 2xl:w-[867px]'>
+                            <label className='text-primary text-[14px] md:text-[16px] lg:text-[25px] font-bold'>الصور :</label>
+                            <div className='relative w-full h-[50px] md:h-[60px] lg:h-[76px] text-placeholder block border md:border-2 border-border rounded-10px
+                         text-[16px] lg:text-[25px] pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none
                           focus:border-primary duration-200 pl-10'>
                                 {/* Placeholder */}
-                                <div className='absolute inset-0 pr-2 md:pr-[10px] xl:pr-[20px] flex items-center pl-10 text-placeholder'>
+                                <div className='absolute inset-0 pr-2 md:pr-[10px] xl:pr-[20px] text-[12px] md:text-[14px] lg:text-[20px] flex items-center pl-10 text-placeholder'>
                                     {images && images.length > 0
                                         ? <span >{images.length < 2 ? images.length + " صور" : images.length + "صورة"} </span>
                                         : 'انقر هنا لاضافة الصور'}
@@ -145,10 +147,10 @@ const AddPostCar = () => {
                         </div>
 
                         {/* Condition (Used/New) Section */}
-                        <div className='flex flex-col gap-5 w-full md:w-1/3 lg:w-[340px] xl:w-[432px] 2xl:w-[560px] '>
-                            <label className='text-primary text-[20px] lg:text-[25px] font-bold'>الحالة :</label>
+                        <div className='flex flex-col md:gap-2 lg:gap-5 w-full md:w-1/3 lg:w-[340px] xl:w-[432px] 2xl:w-[560px] '>
+                            <label className='text-primary text-[14px] md:text-[16px] lg:text-[25px] font-bold'>الحالة :</label>
                             <div className='flex gap-5'>
-                                <div className='w-full md:w-[560px] h-[60px] md:h-[76px] flex gap-5'>
+                                <div className='w-full md:w-[560px] h-[50px] md:h-[60px] lg:h-[76px] flex gap-5'>
                                     <RadioButton
                                         label='مستعمل'
                                         value='used'
@@ -179,10 +181,10 @@ const AddPostCar = () => {
                         />
 
                         {/* Gear */}
-                        <div className='flex flex-col gap-5 w-full md:w-[560px]'>
-                            <label className='text-primary text-[20px] lg:text-[25px] font-bold'>القير :</label>
+                        <div className='flex flex-col md:gap-2 lg:gap-5 w-full md:w-[560px]'>
+                            <label className='text-primary text-[14px] md:text-[16px] lg:text-[25px] font-bold'>القير :</label>
                             <div className='flex gap-5'>
-                                <div className='w-full h-[60px] md:h-[76px] flex gap-5'>
+                                <div className='w-full h-[50px] md:h-[60px] lg:h-[76px] flex gap-5'>
                                     <RadioButton
                                         label='عادي'
                                         value='manual'
@@ -204,18 +206,19 @@ const AddPostCar = () => {
 
                     {/* Price and Mileage */}
                     <div className='flex flex-col md:flex-row gap-5 w-full'>
-                        <div className='flex flex-col gap-5 w-full md:w-[867px]'>
-                            <label className='text-primary text-[20px] lg:text-[25px] font-bold'>السعر :</label>
-                            <div className='flex flex-col md:flex-row gap-5 w-full'>
+                        <div className='flex flex-col md:gap-2 lg:gap-5 w-full md:w-[867px]'>
+                            <label className='text-primary text-[14px] md:text-[16px] lg:text-[25px] font-bold'>السعر :</label>
+                            <div className='flex flex-col md:flex-row gap-2 lg:gap-5 w-full'>
                                 {/* Syrian Pounds Input */}
                                 <div className='relative w-full md:w-1/2'>
                                     <input
                                         placeholder='2000000'
-                                        className='w-full h-[60px] md:h-[76px] text-placeholder border-2 border-border rounded-10px text-[16px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none focus:border-primary duration-200 pl-10'
+                                        className='w-full h-[50px] md:h-[60px] lg:h-[76px] text-placeholder border md:border-2
+                                         border-border rounded-10px text-[12px] md:text-[14px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none focus:border-primary duration-200 pl-10'
                                         value={priceSYP}
                                         onChange={(e) => setPriceSYP(e.target.value)}
                                     />
-                                    <span className='absolute left-2 top-1/2 transform -translate-y-1/2 text-placeholder text-[16px] lg:text-[20px]'>
+                                    <span className='absolute left-2 top-1/2 transform -translate-y-1/2 text-placeholder text-[12px] md:text-[14px] lg:text-[20px]'>
                                         ليرة سورية
                                     </span>
                                 </div>
@@ -224,11 +227,12 @@ const AddPostCar = () => {
                                 <div className='relative w-full md:w-1/2'>
                                     <input
                                         placeholder='500'
-                                        className='w-full h-[60px] md:h-[76px] text-placeholder border-2 border-border rounded-10px text-[16px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none focus:border-primary duration-200 pl-10'
+                                        className='w-full h-[50px] md:h-[60px] lg:h-[76px] text-placeholder border md:border-2 border-border
+                                         rounded-10px text-[12px] md:text-[14px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none focus:border-primary duration-200 pl-10'
                                         value={priceUSD}
                                         onChange={(e) => setPriceUSD(e.target.value)}
                                     />
-                                    <span className='absolute left-2 top-1/2 transform -translate-y-1/2 text-placeholder text-[16px] lg:text-[20px]'>
+                                    <span className='absolute left-2 top-1/2 transform -translate-y-1/2 text-placeholder text-[12px] md:text-[14px] lg:text-[20px]'>
                                         دولار أمريكي
                                     </span>
                                 </div>
@@ -236,12 +240,13 @@ const AddPostCar = () => {
                         </div>
 
                         {/* Mileage Input */}
-                        <div className='flex flex-col gap-5 w-full md:w-[560px]'>
-                            <label className='text-primary text-[20px] lg:text-[25px] font-bold'>الممشى :</label>
+                        <div className='flex flex-col md:gap-2 lg:gap-5 w-full md:w-[560px]'>
+                            <label className='text-primary text-[14px] md:text-[16px] lg:text-[25px] font-bold'>الممشى :</label>
                             <input
                                 type='text'
                                 placeholder='2000000'
-                                className='w-full h-[60px] md:h-[76px] text-placeholder border-2 border-border rounded-10px text-[16px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none focus:border-primary duration-200 pl-10'
+                                className='w-full h-[50px] md:h-[60px] lg:h-[76px] text-placeholder
+                                 border md:border-2 border-border rounded-10px text-[12px] md:text-[14px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none focus:border-primary duration-200 pl-10'
                                 value={mileage}
                                 onChange={(e) => setMileage(e.target.value)}
                             />
@@ -249,13 +254,13 @@ const AddPostCar = () => {
                     </div>
 
                     {/* Description */}
-                    <div className='flex flex-col gap-5 md:lg:w-[895px] xl:w-[1120px] 2xl:w-[1450px]'>
-                        <label className='text-primary text-[20px] lg:text-[25px] font-bold'>الوصف :</label>
+                    <div className='flex flex-col md:gap-2 lg:gap-5 md:lg:w-[895px] xl:w-[1120px] 2xl:w-[1450px]'>
+                        <label className='text-primary text-[14px] md:text-[16px] lg:text-[25px] font-bold'>الوصف :</label>
                         <textarea
-                            cols='30'
-                            rows='10'
+                            rows='5'
                             placeholder='التفاصيل كاملة :'
-                            className='md:h-[200px] text-placeholder border-2 border-border rounded-10px text-[16px] lg:text-[20px] pr-2 pt-2 md:pr-[10px] md:pt-[10px] xl:pr-[20px] xl:pt-[20px] outline-none focus:outline-none focus:border-primary duration-200 pl-10 resize-y'
+                            className='md:h-[200px] text-placeholder border md:border-2 border-border rounded-10px 
+                            text-[12px] md:text-[14px] lg:text-[20px] pr-2 pt-2 md:pr-[10px] md:pt-[10px] xl:pr-[20px] xl:pt-[20px] outline-none focus:outline-none focus:border-primary duration-200 pl-10 resize-y'
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
                         />
@@ -265,11 +270,12 @@ const AddPostCar = () => {
                     <button
                         type='submit'
                         disabled={loading ? true : false}
-                        className={`bg-primary ${loading ? 'opacity-50' : ''} h-[60px] md:h-[76px] w-full md:w-[370px] lg:w-[426px] text-white text-[20px] lg:text-[25px] font-bold rounded-10px`}
+                        className={`bg-primary ${loading ? 'opacity-50' : ''} h-[50px] md:h-[60px] lg:h-[76px] w-full md:w-[370px] 
+                            lg:w-[426px] text-white text-[16px] lg:text-[25px] font-bold rounded-10px`}
                     >
                         اعلان
                     </button>
-                    <div className='text-primary font-semibold text-[17px] lg:text-[20px] '> {error}</div>
+                    <div className='text-primary font-semibold text-[14px] md:text-[16px] lg:text-[20px] '> {error}</div>
 
                 </form>
 

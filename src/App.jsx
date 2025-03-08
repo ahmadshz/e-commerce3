@@ -74,7 +74,6 @@ function App() {
 
 
         {/*Auth */}
-        <Route element={<RequireAuth />}>
           {/*Details Account Login*/}
           <Route path="/myaccount" element={<DetailsAccount />} />
 
@@ -94,7 +93,6 @@ function App() {
           <Route path="/addPostForEducation" element={<AddPostEducation />} />
           <Route path="/addPostParty" element={<AddPostParty />} />
           <Route path="/addPostAboutOthers" element={<AddPostOther />} />
-        </Route>
       </Routes>
     </div>
   );

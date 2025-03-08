@@ -158,27 +158,27 @@ const MyPost = () => {
                                 >
                                     {/* Title and Location */}
                                     <div className='w-2/6 md:w-3/5 mt-2 lg:w-2/6 flex flex-col justify-between lg:h-full md:py-2 pr-2 md:pr-[10px] xl:pr-[20px]'>
-                                        <Link to={`/singlePost/${item._id}`} className='text-[15px] md:text-[19px] lg:text-[24px] font-semibold'>{item.title}</Link>
-                                        <span className='text-[13px] lg:text-[15px] font-normal text-placeholder'>{item.location}</span>
+                                        <Link to={`/singlePost/${item._id}`} className='text-[12px] lg:text-[20px] font-semibold'>{item.title}</Link>
+                                        <span className='text-[10px] lg:text-[14px] font-normal text-placeholder'>{item.location}</span>
                                     </div>
 
                                     {/* Prices, Time, User */}
                                     <div className='w-2/6 mt-2 h-full md:w-1/5 lg:h-full lg:w-1/6'>
                                         <div className='xl:pr-16 md:py-2 flex flex-col md:justify-between h-full text-placeholder text-[10px] md:text-[13px] lg:text-[17px]'>
                                             <div className='flex gap-1 md:gap-2 items-center'>
-                                                <img className='w-3 md:w-5 lg:w-6 max-lg:w-5' src={price} alt='' />
-                                                <span className='py-0 text-[13px] md:text-[15px]'>{item.priceUSD}</span>
+                                                <img className='w-4 md:w-5' src={price} alt='' />
+                                                <span className='py-0 text-[10px] lg:text-[14px]'>{item.priceUSD}</span>
                                             </div>
                                             <div className='flex gap-1 md:gap-2 items-center'>
-                                                <img className='w-3 md:w-5 lg:w-6 max-lg:w-5' src={pricesy} alt='' />
-                                                <span className='py-0 text-[13px] md:text-[15px]'>{item.priceSYP}</span>
+                                                <img className='w-4 md:w-5' src={pricesy} alt='' />
+                                                <span className='py-0 text-[10px] lg:text-[14px]'>{item.priceSYP}</span>
                                             </div>
                                             <div className='flex gap-1 md:gap-2 items-center w-[100%]'>
-                                                <img className='w-3 md:w-5 lg:w-6 max-lg:w-5' src={clock} alt='' />
-                                                <span className='py-0 text-[13px] md:text-[15px]'>{timeAgo(item.createdAt)}</span>
+                                                <img className='w-4 md:w-5' src={clock} alt='' />
+                                                <span className='py-0 text-[10px] lg:text-[14px]'>{timeAgo(item.createdAt)}</span>
                                             </div>
                                             <div className='flex gap-1 md:gap-2 items-center'>
-                                                <span className='py-0 w-[50%] md:w-auto mx-auto text-[13px] md:text-[15px] '>{item.status}</span>
+                                                <span className='py-0 w-[50%] md:w-auto mx-auto text-[10px] lg:text-[14px] '>{item.status}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -192,13 +192,15 @@ const MyPost = () => {
                                     <div className='flex lg:w-1/6 mx-auto w-full py-4 lg:py-0 lg:flex-col justify-center lg:h-full gap-4 items-center lg:mx-4 xl:mx-0'>
                                         <div
                                             onClick={() => updatePost(item._id)}
-                                            className='bg-primary cursor-pointer text-white w-[140px] lg:w-[150px] xl:w-[160px] 2xl:w-[190px] h-[50px] text-[15px] font-semibold rounded-10px flex items-center justify-center max-lg:h-[40px]'>
+                                            className='bg-primary cursor-pointer text-white 
+                                            w-[140px] lg:w-[150px] xl:w-[160px] 2xl:w-[190px] h-[50px] 
+                                            text-[12px] lg:text-[16px] font-semibold rounded-10px flex items-center justify-center max-lg:h-[40px]'>
                                             تحديث الاعلان
                                         </div>
                                         <div
                                             onClick={() => ShowdeletePost(item._id)} // Pass the ad ID
                                             className='bg-primary cursor-pointer text-white w-[140px] lg:w-[150px] xl:w-[160px] 2xl:w-[190px] h-[50px] 
-                                     text-[15px] font-semibold rounded-10px flex items-center justify-center max-lg:h-[40px]'>
+                                     text-[12px] lg:text-[16px] font-semibold rounded-10px flex items-center justify-center max-lg:h-[40px]'>
                                             مسح الاعلان
                                         </div>
                                     </div>
@@ -216,7 +218,9 @@ const MyPost = () => {
                 <div className="text-center mb-[5px] md:mb-[10px] lg:mb-[2px] mt-[15px] md:mt-[30px] w-full">
                     <div
                         onClick={handleShowMore}
-                        className="ring-2 ring-border text-[10px] md:text-[13px] lg:text-[17px] mx-auto h-[40px] md:h-[60px] lg:h-[76px] w-[110px] md:w-[150px] lg:w-[250px] rounded-10px flex justify-center items-center font-semibold text-placeholder cursor-pointer"
+                        className=" border md:border-2 border-border text-[10px] md:text-[13px] lg:text-[17px]
+                         mx-auto h-[40px] md:h-[60px] lg:h-[76px] w-[110px] md:w-[150px] lg:w-[250px]
+                          rounded-10px flex justify-center items-center font-semibold text-placeholder cursor-pointer"
                     >
                         مشاهدة المزيد ...
                     </div>
