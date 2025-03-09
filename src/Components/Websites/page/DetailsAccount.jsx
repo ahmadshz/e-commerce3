@@ -91,7 +91,7 @@ const DetailsAccount = () => {
               </div>
               <div className="text-placeholder border md:border-2 text-[12px] md:text-[14px] lg:text-[17px] border-border
                w-full lg:w-[433px] h-[50px] md:h-[60px] lg:h-[76px] rounded-10px font-medium tracking-wider p-3 flex items-center">
-                {userDetails.phoneNumber}
+                {userDetails.phoneNumber}+
               </div>
             </div>
 

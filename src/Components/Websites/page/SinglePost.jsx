@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import MainHeader from '../Header/MainHeader';
 import price from '../../../assets/iconpost/1.svg';
 import pricesy from '../../../assets/iconpost/3.svg';
@@ -11,15 +11,27 @@ import Footer from '../Footer/Footer';
 import { motion } from 'framer-motion';
 import { HiOutlineArrowRight } from 'react-icons/hi';
 import logo from '../../../assets/Logo/Logowhite.png';
+import { FavoriteContext } from '../../../Context/FavoriteContext';
+import { div } from 'framer-motion/client';
 
 const SinglePost = () => {
-    const [ad, setAd] = useState({}); // Initialize as an empty object
+    const [ad, setAd] = useState({});
     const { id } = useParams();
     const [selectedImage, setSelectedImage] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [sponsorImages, setSponsorImages] = useState(null); // State for sponsor image (object)
+    const [sponsorImages, setSponsorImages] = useState(null);
+    const [error, setError] = useState(false)
 
+    const { favorites, addToFavorites, removeFromFavorites } = useContext(FavoriteContext);
+    const isFavorite = favorites.some((favorite) => favorite._id === ad._id); // Ensure you're comparing _id
 
+    const handleFavorite = () => {
+        if (isFavorite) {
+            removeFromFavorites(ad._id);
+        } else {
+            addToFavorites(ad);
+        }
+    };
     const fetchSponsorImages = async () => {
         try {
             const response = await axios.get(`${baseUrl}/img/sponsor-image`);
@@ -48,7 +60,7 @@ const SinglePost = () => {
                 const res = await axios.get(`${baseUrl}/ad/${id}`);
                 setAd(res.data);
             } catch (err) {
-                console.log(err);
+                setError(err);
             }
         };
         fetchData();
@@ -112,54 +124,54 @@ const SinglePost = () => {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.5 }}
-                            className='bg-background p-4 h-[150px] flex justify-between'
+                            className='bg-background px-4 py-2 h-[120px] md:h-[140px] lg:h-[160px] flex justify-between'
                         >
                             <div className='h-full flex flex-col justify-between'>
-                                <div className='text-[15px] md:text-[20px] lg:text-[25px] font-semibold'>{ad.title}</div>
-                                <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>{ad.location} <span className='mx-1'>({ad.user.phoneNumber}+)</span></p>
+                                <div className='text-[12px] lg:text-[20px] font-semibold'>{ad.title}</div>
+                                <p className='text-[10px] lg:text-[14px] font-normal text-placeholder'>{ad.location} <span className='mx-1'>({ad.user.phoneNumber}+)</span></p>
                             </div>
                             <div className='flex justify-evenly gap-4 lg:px-4 text-placeholder'>
                                 {ad.category === 'car' && (
                                     <div className='hidden  lg:flex flex-col justify-around'>
-                                        <p className='text-[13px] lg:text-[15px] font-normal text-placeholder '>النوع: {ad.vehicleType}</p>
-                                        <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>الحالة: {ad.condition === 'new' ? 'جديد' : 'مستعمل'}</p>
-                                        <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>القير: {ad.transmission}</p>
-                                        <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>الممشى: {ad.mileage}</p>
+                                        <p className='text-[10px] lg:text-[14px] font-normal text-placeholder '>النوع: {ad.vehicleType}</p>
+                                        <p className='text-[10px] lg:text-[14px] font-normal text-placeholder'>الحالة: {ad.condition === 'new' ? 'جديد' : 'مستعمل'}</p>
+                                        <p className='text-[10px] lg:text-[14px] font-normal text-placeholder'>القير: {ad.transmission}</p>
+                                        <p className='text-[10px] lg:text-[14px] font-normal text-placeholder'>الممشى: {ad.mileage}</p>
                                     </div>
                                 )}
                                 {ad.category === 'bike' && (
                                     <div className='hidden  lg:flex flex-col justify-around'>
-                                        <p className='text-[13px] lg:text-[15px] font-normal text-placeholder '>النوع: {ad.vehicleType}</p>
-                                        <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>الحالة: {ad.condition === 'new' ? 'جديد' : 'مستعمل'}</p>
-                                        <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>القير: {ad.transmission}</p>
-                                        <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>الممشى: {ad.mileage}</p>
+                                        <p className='text-[10px] lg:text-[14px] font-normal text-placeholder '>النوع: {ad.vehicleType}</p>
+                                        <p className='text-[10px] lg:text-[14px] font-normal text-placeholder'>الحالة: {ad.condition === 'new' ? 'جديد' : 'مستعمل'}</p>
+                                        <p className='text-[10px] lg:text-[14px] font-normal text-placeholder'>القير: {ad.transmission}</p>
+                                        <p className='text-[10px] lg:text-[14px] font-normal text-placeholder'>الممشى: {ad.mileage}</p>
                                     </div>
                                 )}
                                 {ad.category === 'real_estate' && (
                                     <div className='hidden  lg:flex flex-col  justify-around'>
-                                        <p className='text-[13px] lg:text-[15px] font-normal text-placeholder '>النوع: {ad.propertyType}</p>
-                                        <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>نوع الطابو: {ad.deedType}</p>
-                                        <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>مشروع سكني جديد: {ad.newHousingProject ? 'نعم' : 'لا'}</p>
+                                        <p className='text-[10px] lg:text-[14px] font-normal text-placeholder '>النوع: {ad.propertyType}</p>
+                                        <p className='text-[10px] lg:text-[14px] font-normal text-placeholder'>نوع الطابو: {ad.deedType}</p>
+                                        <p className='text-[10px] lg:text-[14px] font-normal text-placeholder'>مشروع سكني جديد: {ad.newHousingProject ? 'نعم' : 'لا'}</p>
                                     </div>
                                 )}
                                 {ad.category === 'electronics' && (
                                     <div className='hidden  lg:flex flex-col '>
-                                        <p className='text-[13px] lg:text-[15px] font-normal text-placeholder '>النوع: {ad.deviceType}</p>
-                                        <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>الحالة: {ad.condition === 'new' ? 'جديد' : 'مستعمل'}</p>
+                                        <p className='text-[10px] lg:text-[14px] font-normal text-placeholder '>النوع: {ad.deviceType}</p>
+                                        <p className='text-[10px] lg:text-[14px] font-normal text-placeholder'>الحالة: {ad.condition === 'new' ? 'جديد' : 'مستعمل'}</p>
                                         <div />
                                     </div>
                                 )}
                                 {ad.category === 'electronics' && (
                                     <div className='hidden  lg:flex flex-col'>
-                                        <p className='text-[13px] lg:text-[15px] font-normal text-placeholder '>النوع: {ad.adType}</p>
-                                        <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>الحالة: {ad.condition === 'new' ? 'جديد' : 'مستعمل'}</p>
+                                        <p className='text-[10px] lg:text-[14px] font-normal text-placeholder '>النوع: {ad.adType}</p>
+                                        <p className='text-[10px] lg:text-[14px] font-normal text-placeholder'>الحالة: {ad.condition === 'new' ? 'جديد' : 'مستعمل'}</p>
                                         <div />
 
                                     </div>
                                 )}
                                 {ad.category === 'pets' && (
                                     <div className='hidden  lg:flex flex-col '>
-                                        <p className='text-[13px] lg:text-[15px] font-normal text-placeholder '>النوع: {ad.adType}</p>
+                                        <p className='text-[10px] lg:text-[14px] font-normal text-placeholder '>النوع: {ad.adType}</p>
                                         <div />
                                         <div />
 
@@ -167,14 +179,14 @@ const SinglePost = () => {
                                 )}
                                 {ad.category === 'education' && (
                                     <div className='hidden  lg:flex flex-col '>
-                                        <p className='text-[13px] lg:text-[15px] font-normal text-placeholder '>النوع: {ad.adType}</p>
+                                        <p className='text-[10px] lg:text-[14px] font-normal text-placeholder '>النوع: {ad.adType}</p>
 
 
                                     </div>
                                 )}
                                 {ad.category === 'jobs' && (
                                     <div className='hidden  lg:flex flex-col '>
-                                        <p className='text-[13px] lg:text-[15px] font-normal text-placeholder '>النوع: {ad.adType}</p>
+                                        <p className='text-[10px] lg:text-[14px] font-normal text-placeholder '>النوع: {ad.adType}</p>
                                         <div />
                                         <div />
 
@@ -182,14 +194,14 @@ const SinglePost = () => {
                                 )}
                                 {ad.category === 'others' && (
                                     <div className='hidden  lg:flex flex-col '>
-                                        <p className='text-[13px] lg:text-[15px] font-normal text-placeholder'>الحالة: {ad.condition === 'new' ? 'جديد' : 'مستعمل'}</p>
+                                        <p className='text-[10px] lg:text-[14px] font-normal text-placeholder'>الحالة: {ad.condition === 'new' ? 'جديد' : 'مستعمل'}</p>
                                         <div />
 
                                     </div>
                                 )}
                                 {ad.category === 'parties' && (
                                     <div className='hidden  lg:flex flex-col '>
-                                        <p className='text-[13px] lg:text-[15px] font-normal text-placeholder '>النوع: {ad.adType}</p>
+                                        <p className='text-[10px] lg:text-[14px] font-normal text-placeholder '>النوع: {ad.adType}</p>
                                         <div />
                                         <div />
 
@@ -197,7 +209,7 @@ const SinglePost = () => {
                                 )}
                                 {ad.category === 'services' && (
                                     <div className='hidden  lg:flex flex-col '>
-                                        <p className='text-[13px] lg:text-[15px] font-normal text-placeholder '>النوع: {ad.adType}</p>
+                                        <p className='text-[10px] lg:text-[14px] font-normal text-placeholder '>النوع: {ad.adType}</p>
                                         <div />
                                         <div />
 
@@ -208,19 +220,19 @@ const SinglePost = () => {
                                 <div className='flex flex-col justify-around'>
                                     <div className='flex items-center gap-1'>
                                         <img className='w-4 md:w-5' src={price} alt='' />
-                                        <span className='text-[13px] lg:text-[15px] font-normal text-placeholder'>{ad.priceUSD}</span>
+                                        <span className='text-[10px] lg:text-[14px] font-normal text-placeholder'>{ad.priceUSD}</span>
                                     </div>
                                     <div className='flex items-center gap-1'>
                                         <img className='w-4 md:w-5' src={pricesy} alt='' />
-                                        <span className='text-[13px] lg:text-[15px] font-normal text-placeholder'>{ad.priceSYP}</span>
+                                        <span className='text-[10px] lg:text-[14px] font-normal text-placeholder'>{ad.priceSYP}</span>
                                     </div>
                                     <div className='flex items-center gap-1'>
                                         <img className='w-4 md:w-5' src={clock} alt='' />
-                                        <span className='text-[13px] lg:text-[15px] font-normal text-placeholder'>{timeAgo(ad.createdAt)}</span>
+                                        <span className='text-[10px] lg:text-[14px] font-normal text-placeholder'>{timeAgo(ad.createdAt)}</span>
                                     </div>
                                     <div className='flex items-center gap-1'>
                                         <img className='w-4 md:w-5' src={person} alt='' />
-                                        <span className='text-[13px] lg:text-[15px] font-normal text-placeholder'>{ad.user?.username}</span>
+                                        <span className='text-[10px] lg:text-[14px] font-normal text-placeholder'>{ad.user?.username}</span>
                                     </div>
                                 </div>
                             </div>
@@ -235,94 +247,96 @@ const SinglePost = () => {
                         >
                             {ad.category === 'real_estate' && (
                                 <div className='space-y-2'>
-                                    <p className='text-[15px] lg:text-[20px] font-normal '>نوع العقار: {ad.propertyType}</p>
-                                    <p className='text-[15px] lg:text-[20px] font-normal '>نوع الطابو: {ad.deedType}</p>
-                                    <p className='text-[15px] lg:text-[20px] font-normal '>نوع الطابو:
+                                    <p className='text-[12px] lg:text-[20px] font-normal '>نوع العقار: {ad.propertyType}</p>
+                                    <p className='text-[12px] lg:text-[20px] font-normal '>نوع الطابو: {ad.deedType}</p>
+                                    <p className='text-[12px] lg:text-[20px] font-normal '>نوع الطابو:
                                         {ad.condition === 'furnished' ? 'مفروش' : 'unfurnished' ? " غير مفروش" : "على عظم"} </p>
-                                    <p className='text-[15px] lg:text-[20px] font-normal '>{ad.description}</p>
-                                    <p className=' md:hidden text-[13px] lg:text-[15px] font-normal text-placeholder'>رقم الهاتف:{ad.user.phoneNumber}</p>
+                                    <p className='text-[12px] lg:text-[20px] font-normal '>{ad.description}</p>
 
 
                                 </div>
                             )}
                             {ad.category === 'car' && (
                                 <div className='space-y-2'>
-                                    <p className='text-[15px] lg:text-[20px] font-normal'>النوع: {ad.vehicleType}</p>
-                                    <p className='text-[15px] lg:text-[20px] font-normal'>الحالة: {ad.condition === 'new' ? 'جديد' : 'مستعمل'}</p>
-                                    <p className='text-[15px] lg:text-[20px] font-normal'>القير: {ad.transmission}</p>
-                                    <p className='text-[15px] lg:text-[20px] font-normal'>الممشى: {ad.mileage}</p>
-                                    <p className='text-[15px] lg:text-[20px] font-normal '>{ad.description}</p>
+                                    <p className='text-[12px] lg:text-[20px] font-normal'>النوع: {ad.vehicleType}</p>
+                                    <p className='text-[12px] lg:text-[20px] font-normal'>الحالة: {ad.condition === 'new' ? 'جديد' : 'مستعمل'}</p>
+                                    <p className='text-[12px] lg:text-[20px] font-normal'>القير: {ad.transmission}</p>
+                                    <p className='text-[12px] lg:text-[20px] font-normal'>الممشى: {ad.mileage}</p>
+                                    <p className='text-[12px] lg:text-[20px] font-normal '>{ad.description}</p>
 
                                 </div>
                             )}
                             {ad.category === 'bike' && (
                                 <div className='space-y-2'>
-                                    <p className='text-[15px] lg:text-[20px] font-normal'>النوع: {ad.vehicleType}</p>
-                                    <p className='text-[15px] lg:text-[20px] font-normal'>الحالة: {ad.condition === 'new' ? 'جديد' : 'مستعمل'}</p>
-                                    <p className='text-[15px] lg:text-[20px] font-normal'>القير: {ad.transmission}</p>
-                                    <p className='text-[15px] lg:text-[20px] font-normal'>الممشى: {ad.mileage}</p>
-                                    <p className='text-[15px] lg:text-[20px] font-normal '>{ad.description}</p>
+                                    <p className='text-[12px] lg:text-[20px] font-normal'>النوع: {ad.vehicleType}</p>
+                                    <p className='text-[12px] lg:text-[20px] font-normal'>الحالة: {ad.condition === 'new' ? 'جديد' : 'مستعمل'}</p>
+                                    <p className='text-[12px] lg:text-[20px] font-normal'>القير: {ad.transmission}</p>
+                                    <p className='text-[12px] lg:text-[20px] font-normal'>الممشى: {ad.mileage}</p>
+                                    <p className='text-[12px] lg:text-[20px] font-normal '>{ad.description}</p>
 
                                 </div>
                             )}
                             {ad.category === 'electronics' && (
                                 <div className='space-y-2'>
-                                    <p className='text-[15px] lg:text-[20px] font-normal'>النوع: {ad.vehicleType}</p>
-                                    <p className='text-[15px] lg:text-[20px] font-normal'>الحالة: {ad.condition === 'new' ? 'جديد' : 'مستعمل'}</p>
-                                    <p className='text-[15px] lg:text-[20px] font-normal '>{ad.description}</p>
+                                    <p className='text-[12px] lg:text-[20px] font-normal'>النوع: {ad.vehicleType}</p>
+                                    <p className='text-[12px] lg:text-[20px] font-normal'>الحالة: {ad.condition === 'new' ? 'جديد' : 'مستعمل'}</p>
+                                    <p className='text-[12px] lg:text-[20px] font-normal '>{ad.description}</p>
 
                                 </div>
                             )}
                             {ad.category === 'furniture' && (
                                 <div className='space-y-2'>
-                                    <p className='text-[15px] lg:text-[20px] font-normal'>النوع: {ad.adType}</p>
-                                    <p className='text-[15px] lg:text-[20px] font-normal'>الحالة: {ad.condition === 'new' ? 'جديد' : 'مستعمل'}</p>
-                                    <p className='text-[15px] lg:text-[20px] font-normal '>{ad.description}</p>
+                                    <p className='text-[12px] lg:text-[20px] font-normal'>النوع: {ad.adType}</p>
+                                    <p className='text-[12px] lg:text-[20px] font-normal'>الحالة: {ad.condition === 'new' ? 'جديد' : 'مستعمل'}</p>
+                                    <p className='text-[12px] lg:text-[20px] font-normal '>{ad.description}</p>
 
                                 </div>
                             )}
                             {ad.category === 'pets' && (
                                 <div className='space-y-2'>
-                                    <p className='text-[15px] lg:text-[20px] font-normal'>النوع: {ad.adType}</p>
-                                    <p className='text-[15px] lg:text-[20px] font-normal '>{ad.description}</p>
+                                    <p className='text-[12px] lg:text-[20px] font-normal'>النوع: {ad.adType}</p>
+                                    <p className='text-[12px] lg:text-[20px] font-normal '>{ad.description}</p>
 
                                 </div>
                             )}
                             {ad.category === 'education' && (
                                 <div className='space-y-2'>
-                                    <p className='text-[15px] lg:text-[20px] font-normal'>النوع: {ad.adType}</p>
-                                    <p className='text-[15px] lg:text-[20px] font-normal '>{ad.description}</p>
+                                    <p className='text-[12px] lg:text-[20px] font-normal'>النوع: {ad.adType}</p>
+                                    <p className='text-[12px] lg:text-[20px] font-normal '>{ad.description}</p>
 
                                 </div>
                             )}
                             {ad.category === 'jobs' && (
                                 <div className='space-y-2'>
-                                    <p className='text-[15px] lg:text-[20px] font-normal'>النوع: {ad.adType}</p>
-                                    <p className='text-[15px] lg:text-[20px] font-normal '>{ad.description}</p>
+                                    <p className='text-[12px] lg:text-[20px] font-normal'>النوع: {ad.adType}</p>
+                                    <p className='text-[12px] lg:text-[20px] font-normal '>{ad.description}</p>
 
                                 </div>
                             )}
                             {ad.category === 'others' && (
                                 <div className='space-y-2'>
-                                    <p className='text-[15px] lg:text-[20px] font-normal'>الحالة: {ad.condition === 'new' ? 'جديد' : 'مستعمل'}</p>
-                                    <p className='text-[15px] lg:text-[20px] font-normal '>{ad.description}</p>
+                                    <p className='text-[12px] lg:text-[20px] font-normal'>الحالة: {ad.condition === 'new' ? 'جديد' : 'مستعمل'}</p>
+                                    <p className='text-[12px] lg:text-[20px] font-normal '>{ad.description}</p>
 
                                 </div>
                             )}
                             {ad.category === 'parties' && (
                                 <div className='space-y-2'>
-                                    <p className='text-[15px] lg:text-[20px] font-normal'>النوع: {ad.adType}</p>
-                                    <p className='text-[15px] lg:text-[20px] font-normal '>{ad.description}</p>
+                                    <p className='text-[12px] lg:text-[20px] font-normal'>النوع: {ad.adType}</p>
+                                    <p className='text-[12px] lg:text-[20px] font-normal '>{ad.description}</p>
 
                                 </div>
                             )}
                             {ad.category === 'services' && (
                                 <div className='space-y-2'>
-                                    <p className='text-[15px] lg:text-[20px] font-normal'>النوع: {ad.adType}</p>
-                                    <p className='text-[15px] lg:text-[20px] font-normal'>الحالة: {ad.condition === 'new' ? 'جديد' : 'مستعمل'}</p>
+                                    <p className='text-[12px] lg:text-[20px] font-normal'>النوع: {ad.adType}</p>
+                                    <p className='text-[12px] lg:text-[20px] font-normal'>الحالة: {ad.condition === 'new' ? 'جديد' : 'مستعمل'}</p>
                                 </div>
                             )}
-
+                            <button className={` px-4 text-white rounded-10px h-[50px] md:h-[60px]   text-[12px] md:text-[14px] lg:text-[17px]
+                             ${isFavorite ? "bg-primary" : "bg-placeholder"}`} onClick={handleFavorite}>
+                                {isFavorite ? "حذف من المفضلة" : "اضافة الى المفضلة"}
+                            </button>
                         </motion.div>
 
                         <div className='w-full custom-scroll overflow-x-auto  flex flex-wrap  gap-10  py-4' st>
@@ -371,7 +385,11 @@ const SinglePost = () => {
                     </motion.div>
                 </div>
             ) : (
-                <div className='h-screen'></div>
+                <div className='h-[70vh] text-[12px] lg:text-[20px] flex justify-center items-center'>{error && 
+                (<div>
+                    هذا الاعلان غير متوفر
+                </div>)}
+                 </div>
             )}
 
             {isModalOpen && (

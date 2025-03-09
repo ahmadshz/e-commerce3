@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import price from '../../../assets/iconpost/1.svg';
 import pricesy from '../../../assets/iconpost/3.svg';
 import clock from '../../../assets/iconpost/6.svg';
@@ -9,6 +9,7 @@ import { motion } from 'framer-motion';
 const Posts = ({ ads, selectedCategory, selectedBrand, visibleCount, sponsorImages }) => {
     const [totalDisplayedAds, setTotalDisplayedAds] = useState(0);
     const [isSponsorClicked, setIsSponsorClicked] = useState(false); // State to track sponsor click
+ const navigate = useNavigate()
 
     // Function to calculate time ago
     const timeAgo = (timestamp) => {
@@ -44,10 +45,8 @@ const Posts = ({ ads, selectedCategory, selectedBrand, visibleCount, sponsorImag
         return categoryMatch && brandMatch;
     });
 
-    // Slice the filtered ads based on visibleCount
     const displayedAds = filteredAds.slice(0, visibleCount);
 
-    // Update totalDisplayedAds whenever visibleCount changes
     useEffect(() => {
         setTotalDisplayedAds(visibleCount);
     }, [visibleCount]);
@@ -61,6 +60,11 @@ const Posts = ({ ads, selectedCategory, selectedBrand, visibleCount, sponsorImag
     const handleCloseModal = () => {
         setIsSponsorClicked(false);
     };
+
+    const goToSinglePost = (id) => {
+        window.scrollTo(0,0)
+        navigate(`/singlePost/${id}`)
+    }
 
     return (
         <div className='flex flex-col gap-5'>
@@ -89,9 +93,9 @@ const Posts = ({ ads, selectedCategory, selectedBrand, visibleCount, sponsorImag
                             transition={{ duration: 0.5, delay: (totalDisplayedAds - visibleCount + index) * 0.2 }}
                             className='bg-[#FAFAFA] w-full h-[120px] md:h-[140px] lg:h-[160px] flex justify-between'>
                             <div className='w-4/6 lg:w-4/5 px-3  md:p-3 h-full flex flex-col justify-between'>
-                                <Link to={`/singlePost/${item._id}`} className='text-[12px] lg:text-[20px] font-semibold 
+                                <div onClick={() => goToSinglePost(`${item._id}`)} className='cursor-pointer text-[12px] lg:text-[20px] font-semibold 
                                 truncate w-full   '>{item.title}
-                                </Link>
+                                </div>
                                 <div className='flex gap-4 lg:gap-10'>
                                     <div>
                                         <div className='flex gap-1'>

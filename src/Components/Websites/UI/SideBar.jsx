@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'; // Import useEffect
+import React, { useContext, useEffect } from 'react'; // Import useEffect
 import { Link } from 'react-router-dom';
 import { FaTiktok } from 'react-icons/fa';
 import { GrFacebookOption } from 'react-icons/gr';
@@ -6,10 +6,14 @@ import Cookies from 'universal-cookie';
 import { IoClose, IoPersonSharp } from 'react-icons/io5';
 import { FaCircleArrowLeft } from 'react-icons/fa6';
 import { BiLogoInstagramAlt, BiSolidPlusCircle } from 'react-icons/bi';
+import { FavoriteContext } from '../../../Context/FavoriteContext';
 
 const SideBar = ({ isSidebarOpen, toggleSidebar }) => {
   const cookies = new Cookies();
   const token = cookies.get('auth_token');
+
+  const { toggleFavorite } = useContext(FavoriteContext);
+
 
   const logout = () => {
     cookies.remove('auth_token', { path: '/' });
@@ -19,16 +23,19 @@ const SideBar = ({ isSidebarOpen, toggleSidebar }) => {
   // Add or remove overflow: hidden from body based on isSidebarOpen
   useEffect(() => {
     if (isSidebarOpen) {
-      document.body.style.overflow = 'hidden'; // Disable scrolling in the background
+      document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = 'auto'; // Enable scrolling in the background
+      document.body.style.overflow = 'auto';
     }
 
-    // Cleanup function to reset overflow when component unmounts
     return () => {
       document.body.style.overflow = 'auto';
     };
   }, [isSidebarOpen]);
+  const showFavorite = () => {
+    toggleSidebar()
+    toggleFavorite()
+  }
 
   return (
     <div >
@@ -48,7 +55,7 @@ const SideBar = ({ isSidebarOpen, toggleSidebar }) => {
 
           <div className='flex flex-col  mb-4 px-4'>
             <div className='flex justify-between items-center  '>
-              <Link  to={'/login'} className='flex items-center gap-1 py-3'>
+              <Link to={'/login'} className='flex items-center gap-1 py-3'>
                 {token ? (
                   <div onClick={logout} className='text-[14px] text-primary'>تسجيل الخروج</div>
                 ) : (
@@ -104,6 +111,13 @@ const SideBar = ({ isSidebarOpen, toggleSidebar }) => {
                 <div className='mr-1 text-[14px]'>مركز الأمان</div>
               </div>
             </Link>
+            <div onClick={showFavorite} className='flex justify-between items-center   '>
+              <div className='flex items-center gap-1 py-3'>
+                <div className='mr-1 text-[14px]'>المفضلة </div>
+              </div>
+            </div>
+
+
 
           </div>
 
