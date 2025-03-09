@@ -135,8 +135,8 @@ const AddPostCar = () => {
                                 <input
                                     type='file'
                                     multiple
-                                    accept='image/*' // Allow only image files
-                                    max={5} // Limit to 5 files
+                                    accept='image/*'
+                                    max={5} 
                                     className='absolute inset-0 w-full h-full opacity-0 cursor-pointer'
                                     onChange={handleFileChange}
                                 />

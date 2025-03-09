@@ -5,7 +5,7 @@ const Dropdown = ({ label, options, selected, onSelect, className }) => {
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef(null);
 
-    // ✅ إغلاق القائمة عند النقر خارجها
+    
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {

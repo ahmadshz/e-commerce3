@@ -37,15 +37,15 @@ const AddPostAnimals = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        // التحقق من الحقول المطلوبة
+        
+        // Validate required fields
         if (!title || !selectedLocation || !selectedBrand || !priceSYP || !priceUSD || !description || images.length === 0) {
             setError('يرجى ملء جميع الحقول المطلوبة');
             return;
         }
         setLoading(true)
 
-
+        // Create FormData to send files & data
         const formData = new FormData();
         formData.append('title', title);
         formData.append('location', selectedLocation);

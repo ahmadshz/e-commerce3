@@ -20,8 +20,8 @@ const Register = () => {
     });
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    const [showPassword, setShowPassword] = useState(false); // State for password visibility
-    const [showConfirmPassword, setShowConfirmPassword] = useState(false); // State for confirm password visibility
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false); 
 
     const navigate = useNavigate();
 
@@ -32,7 +32,7 @@ const Register = () => {
         const { id, value } = e.target;
 
         if (id === "phone") {
-            let cleanedValue = value.replace(/\D/g, ""); // Remove non-numeric characters
+            let cleanedValue = value.replace(/\D/g, ""); 
 
             // Ensure it always starts with "+963 9"
             if (!cleanedValue.startsWith("9639")) {
@@ -46,7 +46,7 @@ const Register = () => {
 
             setFormData({
                 ...formData,
-                phone: "+" + cleanedValue, // Add "+" back
+                phone: "+" + cleanedValue, 
             });
         } else {
             setFormData({
@@ -76,8 +76,8 @@ const Register = () => {
             setLoading(false);
             return;
         }
-
-        const sanitizedPhoneNumber = formData.phone.replace(/\D/g, ''); // Remove non-numeric characters
+        // Remove non-numeric characters
+        const sanitizedPhoneNumber = formData.phone.replace(/\D/g, '');
 
         const dataToSend = {
             firstname: formData.firstName,
@@ -215,7 +215,7 @@ const Register = () => {
                                 className="absolute text-placeholder inset-y-0 left-2 lg:left-5 flex items-center"
                                 onClick={() => setShowPassword(!showPassword)}
                             >
-                                {showPassword ? <FaRegEyeSlash className='text-[25px] md:text-[30px]' /> : <BiShow className='text-[25px] md:text-[30px]'  />}
+                                {showPassword ? <FaRegEyeSlash className='text-[25px] md:text-[30px]' /> : <BiShow className='text-[25px] md:text-[30px]' />}
                             </button>
                         </div>
                     </div>
@@ -238,7 +238,7 @@ const Register = () => {
                                 className="absolute text-placeholder inset-y-0 left-2 lg:left-5 flex items-center"
                                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                             >
-                            {showConfirmPassword ? <FaRegEyeSlash className='text-[25px] md:text-[30px]' /> : <BiShow className='text-[25px] md:text-[30px]'  />}
+                                {showConfirmPassword ? <FaRegEyeSlash className='text-[25px] md:text-[30px]' /> : <BiShow className='text-[25px] md:text-[30px]' />}
                             </button>
                         </div>
                     </div>

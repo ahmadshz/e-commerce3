@@ -6,10 +6,6 @@ const SubmissionAddPost = ({ onClose }) => {
     return (
         <div className="fixed z-50 inset-0 backdrop-blur-sm flex justify-center items-center">
             <div className="bg-background rounded-10px border-2 border-primary  w-[80%] md:w-[60%] lg:w-fit  flex flex-col gap-5 lg:gap-7  relative py-7 p-5 ">
-
-
-
-                {/* رسالة انتظار */}
                 <p className=" text-[14px] md:text-[16px] lg:text-[25px]  text-primary font-semibold">
                     تم إرسال إعلانك بنجاح!
 

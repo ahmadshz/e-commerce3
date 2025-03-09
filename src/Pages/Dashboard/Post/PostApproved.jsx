@@ -8,12 +8,12 @@ import { MdPendingActions } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 
 const PostApproved = () => {
-    const [pendingAds, setPendingAds] = useState([]); // State to store pending ads
-    const [loading, setLoading] = useState(true); // State to manage loading state
-    const [currentPage, setCurrentPage] = useState(1); // State to manage current page
-    const [itemsPerPage] = useState(10); // Number of items per page
-    const [totalPendingAdsCount, setTotalPendingAdsCount] = useState(0); // Total count of pending ads
-    const [animatedCount, setAnimatedCount] = useState(0); // Animated counter value
+    const [pendingAds, setPendingAds] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [itemsPerPage] = useState(10);
+    const [totalPendingAdsCount, setTotalPendingAdsCount] = useState(0);
+    const [animatedCount, setAnimatedCount] = useState(0);
     const [error, setError] = useState('');
     const cookies = new Cookies();
     const token = cookies.get('auth_token');
@@ -30,7 +30,7 @@ const PostApproved = () => {
 
                 if (response.data) {
                     setPendingAds(response.data);
-                    setTotalPendingAdsCount(response.data.length); // Set total count
+                    setTotalPendingAdsCount(response.data.length);
                 } else {
                     throw new Error('No data found');
                 }
@@ -56,9 +56,9 @@ const PostApproved = () => {
                         return prevCount;
                     }
                 });
-            }, 50); // Adjust speed here (lower = faster)
+            }, 50);
 
-            return () => clearInterval(interval); // Cleanup interval on unmount
+            return () => clearInterval(interval);
         }
     }, [totalPendingAdsCount]);
 
@@ -71,7 +71,7 @@ const PostApproved = () => {
                 },
             });
             setPendingAds((prevAds) => prevAds.filter((ad) => ad._id !== id));
-            setTotalPendingAdsCount((prevCount) => prevCount - 1); // Decrease total count
+            setTotalPendingAdsCount((prevCount) => prevCount - 1);
         } catch (error) {
             console.error('Error approving ad:', error);
         }
@@ -84,7 +84,7 @@ const PostApproved = () => {
                 },
             });
             setPendingAds((prevAds) => prevAds.filter((ad) => ad._id !== id));
-            setTotalPendingAdsCount((prevCount) => prevCount - 1); // Decrease total count
+            setTotalPendingAdsCount((prevCount) => prevCount - 1);
         } catch (error) {
             console.error('Error approving ad:', error);
         }
@@ -98,18 +98,20 @@ const PostApproved = () => {
     // Change page
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
+
+    // Approve All Ads
     const deleteAllApproved = async () => {
         try {
             const response = await axios.put(
                 `${baseUrl}/ad/approve-all`,
-                {}, // Second parameter (empty object) since PUT usually expects a body
+                {},
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
                 }
             );
-            if(response.data) {
+            if (response.data) {
                 setPendingAds([])
                 setTotalPendingAdsCount(0)
             }
@@ -117,18 +119,19 @@ const PostApproved = () => {
             console.error("Error approving ads:", error.response?.data || error.message);
         }
     };
+    // Reject All Ads
     const rejectAll = async () => {
         try {
             const response = await axios.put(
                 `${baseUrl}/ad/reject-all`,
-                {}, // Second parameter (empty object) since PUT usually expects a body
+                {},
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
                 }
             );
-            if(response.data) {
+            if (response.data) {
                 setPendingAds([])
                 setTotalPendingAdsCount(0)
             }

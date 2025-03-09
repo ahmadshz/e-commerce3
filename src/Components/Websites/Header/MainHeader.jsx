@@ -12,7 +12,6 @@ import { motion } from 'framer-motion';
 import { SlMenu } from 'react-icons/sl';
 import { FavoriteContext } from '../../../Context/FavoriteContext';
 import Favorite from '../UI/Favorite';
-import { MdOutlineFavorite } from 'react-icons/md';
 import { FaUser } from 'react-icons/fa';
 
 

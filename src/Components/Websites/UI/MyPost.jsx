@@ -21,6 +21,7 @@ const MyPost = () => {
     const cookies = new Cookies();
     const token = cookies.get('auth_token');
 
+    // Fetch user's ads with authentication
     const fetchData = async () => {
         try {
             const res = await axios.get(`${baseUrl}/ad/my-ads`, {
@@ -47,6 +48,7 @@ const MyPost = () => {
         fetchData();
     }, []);
 
+    // Function to calculate time ago
     const timeAgo = (timestamp) => {
         const now = new Date();
         const postedAt = new Date(timestamp);
@@ -86,10 +88,11 @@ const MyPost = () => {
             console.error('Error deleting ad:', err);
         }
         finally {
-            setIsDeleting(false);  
+            setIsDeleting(false);
         }
     };
 
+    // Update Status Post
     const updatePost = async (id) => {
         try {
             const response = await axios.post(`${baseUrl}/ad/${id}/refresh`, {}, {
@@ -124,7 +127,6 @@ const MyPost = () => {
 
     return (
         <div className='mt-10 md:mt-16'>
-            {/* Display success/error message */}
             {message && (
                 <div className={`text-center font-semibold text-[17px] lg:text-[20px] py-2 ${messageType === 'success' ? 'text-[#009C46]' : 'text-primary'}`}>
                     {message === "حدث خطأ أثناء تحديث الإعلان." ? "يمكنك فقط تحديث الإعلان في آخر 5 أيام." : message}
@@ -142,15 +144,14 @@ const MyPost = () => {
             {Array.isArray(ads) && ads.length > 0 ? (
                 <AnimatePresence>
                     {ads.slice(0, visiblePosts).map((item, index) => {
-                        // Calculate the relative index for the current batch of posts
-                        const relativeIndex = index % 5; // Reset index for every 5 posts
+                        const relativeIndex = index % 5;
                         return (
                             <motion.div
-                                key={item._id} // Use a unique key for each post
+                                key={item._id} 
                                 variants={postVariants}
                                 initial="hidden"
                                 animate="visible"
-                                transition={{ duration: 0.3, delay: relativeIndex * 0.3 }} // Use relativeIndex for delay
+                                transition={{ duration: 0.3, delay: relativeIndex * 0.3 }} 
                             >
                                 <div
                                     className='bg-background mt-[15px] py-0 w-full lg:w-full xl:w-[1130px] 2xl:w-[1455px] h-[160px] flex flex-wrap 
@@ -198,7 +199,7 @@ const MyPost = () => {
                                             تحديث الاعلان
                                         </div>
                                         <div
-                                            onClick={() => ShowdeletePost(item._id)} // Pass the ad ID
+                                            onClick={() => ShowdeletePost(item._id)}
                                             className='bg-primary cursor-pointer text-white w-[140px] lg:w-[150px] xl:w-[160px] 2xl:w-[190px] h-[50px] 
                                      text-[12px] lg:text-[16px] font-semibold rounded-10px flex items-center justify-center max-lg:h-[40px]'>
                                             مسح الاعلان

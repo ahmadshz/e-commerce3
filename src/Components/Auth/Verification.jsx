@@ -4,12 +4,13 @@ import { baseUrl } from '../../Api/Api';
 import Navbar from '../Websites/Header/Navbar';
 
 const Verification = () => {
-    const [verificationCode, setVerificationCode] = useState(''); // State for verification code
-    const [error, setError] = useState(''); // State for error messages
-    const navigate = useNavigate(); // Initialize the navigate function
+    const [verificationCode, setVerificationCode] = useState(''); 
+    const [error, setError] = useState('');
+    const navigate = useNavigate(); 
 
     const email = localStorage.getItem('email'); 
 
+    // Handle OTP verification and navigate on success
     const handleVerification = async (e) => {
         e.preventDefault();
 

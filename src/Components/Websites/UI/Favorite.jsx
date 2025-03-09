@@ -22,7 +22,6 @@ const Favorite = () => {
       document.body.classList.remove("no-scroll");
     }
 
-    // Cleanup function to remove the class when the component unmounts
     return () => {
       document.body.classList.remove("no-scroll");
     };

@@ -23,6 +23,7 @@ const Login = () => {
         setShow(!show);
     };
 
+    // Handle user login, store token in cookies
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);

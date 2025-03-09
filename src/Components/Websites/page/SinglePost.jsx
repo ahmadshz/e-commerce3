@@ -12,7 +12,6 @@ import { motion } from 'framer-motion';
 import { HiOutlineArrowRight } from 'react-icons/hi';
 import logo from '../../../assets/Logo/Logowhite.png';
 import { FavoriteContext } from '../../../Context/FavoriteContext';
-import { div } from 'framer-motion/client';
 
 const SinglePost = () => {
     const [ad, setAd] = useState({});
@@ -22,9 +21,11 @@ const SinglePost = () => {
     const [sponsorImages, setSponsorImages] = useState(null);
     const [error, setError] = useState(false)
 
+    // Check if the current ad is already in the favorites list
     const { favorites, addToFavorites, removeFromFavorites } = useContext(FavoriteContext);
-    const isFavorite = favorites.some((favorite) => favorite._id === ad._id); // Ensure you're comparing _id
+    const isFavorite = favorites.some((favorite) => favorite._id === ad._id);
 
+    //Add And Remove favorite 
     const handleFavorite = () => {
         if (isFavorite) {
             removeFromFavorites(ad._id);
@@ -32,17 +33,17 @@ const SinglePost = () => {
             addToFavorites(ad);
         }
     };
+
     const fetchSponsorImages = async () => {
         try {
             const response = await axios.get(`${baseUrl}/img/sponsor-image`);
-            console.log('Sponsor Images Data:', response.data); // Check the data format
+            console.log('Sponsor Images Data:', response.data);
 
-            // Ensure the data is an object with imageUrl
             if (response.data && response.data.imageUrl) {
                 setSponsorImages(response.data);
             } else {
                 console.error('Expected an object with imageUrl but got:', response.data);
-                setSponsorImages(null); // Set to null if data is invalid
+                setSponsorImages(null);
             }
         } catch (err) {
             console.error('Error fetching sponsor images:', err);
@@ -53,7 +54,7 @@ const SinglePost = () => {
         fetchSponsorImages();
     }, []);
 
-
+    // Fetch ad data whenever the 'id' changes
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -67,7 +68,7 @@ const SinglePost = () => {
     }, [id]);
 
 
-
+    // Function to calculate time ago
     const timeAgo = (timestamp) => {
         const now = new Date();
         const postedAt = new Date(timestamp);
@@ -385,12 +386,13 @@ const SinglePost = () => {
                     </motion.div>
                 </div>
             ) : (
-                <div className='h-[70vh] text-[12px] lg:text-[20px] flex justify-center items-center'>{error && 
-                (<div>
-                    هذا الاعلان غير متوفر
-                </div>)}
-                 </div>
-            )}
+                <div className='h-[70vh] text-[12px] lg:text-[20px] flex justify-center items-center'>{error &&
+                    (<div>
+                        هذا الاعلان غير متوفر
+                    </div>)}
+                </div>
+            )
+                }
 
             {isModalOpen && (
                 <motion.div
@@ -415,6 +417,7 @@ const SinglePost = () => {
 
             <Footer />
         </div>
+    
     );
 };
 

@@ -5,9 +5,9 @@ import Cookies from 'universal-cookie';
 import { IoIosCamera } from 'react-icons/io';
 
 const AddPostForm = () => {
-    const [images, setImages] = useState([]); // State for post images
-    const [loading, setLoading] = useState(false); // State for loading state
-    const [error, setError] = useState(''); // State for error messages
+    const [images, setImages] = useState([]); 
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
     const cookies = new Cookies();
     const token = cookies.get('auth_token');
@@ -17,13 +17,11 @@ const AddPostForm = () => {
 
     // Handle form submission
     const handleSubmit = async (e) => {
-        e.preventDefault(); // Prevent default form behavior
+        e.preventDefault(); 
 
-
-
-        setLoading(true); // Start loading
-        setError(''); // Clear previous errors
-        setSuccess(''); // Clear previous success messages
+        setLoading(true); 
+        setError(''); 
+        setSuccess(''); 
 
         try {
             // Create a FormData object to send the images and title
@@ -31,7 +29,6 @@ const AddPostForm = () => {
             images.forEach((image) => {
                 formData.append('image', image);
             });
-
 
             // Send the POST request to the backend
             const response = await axios.post(`${baseUrl}/img/upload-sponsor`, formData, {
@@ -43,13 +40,13 @@ const AddPostForm = () => {
 
             if (response.data) {
                 setSuccess('تمت إضافة الإعلان بنجاح!');
-                setImages([]); // Clear the images input
+                setImages([]); 
             }
         } catch (error) {
             setError('حدث خطأ أثناء إضافة الإعلان. الرجاء المحاولة مرة أخرى.');
             console.error('Error adding post:', error);
         } finally {
-            setLoading(false); // Stop loading
+            setLoading(false); 
         }
     };
 
@@ -105,7 +102,7 @@ const AddPostForm = () => {
                             <input
                                 type="file"
                                 multiple
-                                accept="image/*" // Allow only image files
+                                accept="image/*" 
                                 onChange={handleFileChange}
                                 className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                             />

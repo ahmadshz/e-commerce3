@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 import price from '../../../assets/iconpost/1.svg';
 import pricesy from '../../../assets/iconpost/3.svg';
 import clock from '../../../assets/iconpost/6.svg';
@@ -8,7 +8,7 @@ import { motion } from 'framer-motion';
 
 const Posts = ({ ads, selectedCategory, selectedBrand, visibleCount, sponsorImages }) => {
     const [totalDisplayedAds, setTotalDisplayedAds] = useState(0);
-    const [isSponsorClicked, setIsSponsorClicked] = useState(false); // State to track sponsor click
+    const [isSponsorClicked, setIsSponsorClicked] = useState(false); 
  const navigate = useNavigate()
 
     // Function to calculate time ago
@@ -77,7 +77,7 @@ const Posts = ({ ads, selectedCategory, selectedBrand, visibleCount, sponsorImag
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5 }}
                             className="w-full h-[150px] md:h-[200px] bg-bgsecondary flex justify-center items-center lg:hidden cursor-pointer"
-                            onClick={handleSponsorClick} // Add click handler
+                            onClick={handleSponsorClick} 
                         >
                             <img
                                 src={sponsorImages?.imageUrl}
@@ -149,7 +149,7 @@ const Posts = ({ ads, selectedCategory, selectedBrand, visibleCount, sponsorImag
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.3 }}
                     className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50"
-                    onClick={handleCloseModal} // Close modal on click outside
+                    onClick={handleCloseModal} 
                 >
                     <div className="bg-white p-4 rounded-lg max-w-[90%] max-h-[90%] overflow-auto">
                         <img

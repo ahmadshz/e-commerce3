@@ -20,7 +20,6 @@ const SideBar = ({ isSidebarOpen, toggleSidebar }) => {
     window.location.reload();
   };
 
-  // Add or remove overflow: hidden from body based on isSidebarOpen
   useEffect(() => {
     if (isSidebarOpen) {
       document.body.style.overflow = 'hidden';

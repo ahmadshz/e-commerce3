@@ -75,7 +75,7 @@ const PostAdmin = () => {
 
                 return {
                     ...prevPosts,
-                    ads: prevPosts.ads.filter((post) => post._id !== id), // تعديل `ads` بدلاً من `prevPosts` مباشرةً
+                    ads: prevPosts.ads.filter((post) => post._id !== id), 
                 };
             });
 

@@ -8,7 +8,7 @@ export const FavoriteProvider = ({ children }) => {
     return savedFavorites ? JSON.parse(savedFavorites) : [];
   });
 
-  const [showSidebar, setShowSidebar] = useState(false); // حالة لإدارة عرض الـ Sidebar
+  const [showSidebar, setShowSidebar] = useState(false); 
 
   useEffect(() => {
     localStorage.setItem("favorites", JSON.stringify(favorites));

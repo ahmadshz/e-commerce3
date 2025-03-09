@@ -35,7 +35,7 @@ const AddPostServices = () => {
     };
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        // Validate required fields
         if (!title || !selectedLocation || !selectedBrand || !status || !syrianPounds || !usDollars || !description || images.length === 0) {
             setError('يرجى ملء جميع الحقول المطلوبة');
             return;
@@ -43,7 +43,7 @@ const AddPostServices = () => {
 
         setLoading(true)
 
-
+        // Create FormData to send files & data
         const formData = new FormData();
         formData.append('title', title);
         formData.append('location', selectedLocation);

@@ -5,10 +5,10 @@ import Logo from "../../assets/Logo/Logo.png";
 import Cookies from "universal-cookie";
 
 const SideBar = () => {
-  const [isOpen, setIsOpen] = useState(false); // للتحكم في فتح وإغلاق القائمة
+  const [isOpen, setIsOpen] = useState(false); 
   const cookies = new Cookies();
-  const navigate = useNavigate(); // Hook for navigation
-  const location = useLocation(); // Hook to get the current URL
+  const navigate = useNavigate(); 
+  const location = useLocation(); 
 
   const navlink = [
     { name: "عرض الاعلانات", link: "posts" },
@@ -56,7 +56,6 @@ const SideBar = () => {
 
         <div className="mb-6 w-full">
           <img src={Logo} alt="Logo" className="w-20 lg:w-24 max-w-full" />{" "}
-          {/* الشعار يناسب جميع الشاشات */}
         </div>
 
         <div className="flex-1 flex flex-col justify-center w-full gap-2">
@@ -71,7 +70,7 @@ const SideBar = () => {
           الصفحة الرئيسية
         </NavLink>
           <a
-            href="/dashboard/users" // Link to the users page
+            href="/dashboard/users" 
             className={`w-full text-sm lg:text-lg font-bold rounded-10px py-2 lg:py-3 transition duration-300 ${location.pathname === "/dashboard/users" ? "text-primary" : ""
               }`}
           >
