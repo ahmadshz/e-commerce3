@@ -55,7 +55,7 @@ const DetailsAccount = () => {
                 الاسم
               </div>
               <div className="text-placeholder text-[12px] md:text-[14px] lg:text-[17px] border md:border-2 border-border 
-              w-full lg:w-[433px] h-[50px] md:h-[60px] lg:h-[76px] flex items-center rounded-10px font-medium tracking-wider p-3">
+              w-full lg:w-[433px] h-[50px] md:h-[60px] lg:h-[76px] flex items-center rounded-10px font-medium  p-3">
                 {userDetails.firstname}
               </div>
             </div>
@@ -65,7 +65,7 @@ const DetailsAccount = () => {
                 اسم العائلة
               </div>
               <div className="text-placeholder text-[12px] md:text-[14px] lg:text-[17px] border md:border-2 border-border w-full
-               lg:w-[433px] h-[50px] md:h-[60px] lg:h-[76px] flex items-center rounded-10px font-medium tracking-wider p-3">
+               lg:w-[433px] h-[50px] md:h-[60px] lg:h-[76px] flex items-center rounded-10px font-medium  p-3">
                 {userDetails.lastname}
               </div>
             </div>
@@ -75,7 +75,7 @@ const DetailsAccount = () => {
                 اسم المستخدم
               </div>
               <div className="text-placeholder text-[12px] md:text-[14px] lg:text-[17px] border md:border-2 border-border 
-              w-full lg:w-[433px] h-[50px] md:h-[60px] lg:h-[76px] rounded-10px font-medium tracking-wider p-3 flex items-center">
+              w-full lg:w-[433px] h-[50px] md:h-[60px] lg:h-[76px] rounded-10px font-medium  p-3 flex items-center">
                 {userDetails.username}
               </div>
             </div>
@@ -85,7 +85,7 @@ const DetailsAccount = () => {
                 رقم الجوال
               </div>
               <div className="text-placeholder border md:border-2 text-[12px] md:text-[14px] lg:text-[17px] border-border
-               w-full lg:w-[433px] h-[50px] md:h-[60px] lg:h-[76px] rounded-10px font-medium tracking-wider p-3 flex items-center">
+               w-full lg:w-[433px] h-[50px] md:h-[60px] lg:h-[76px] rounded-10px font-medium  p-3 flex items-center">
                 {userDetails.phoneNumber}+
               </div>
             </div>
@@ -95,7 +95,7 @@ const DetailsAccount = () => {
                 البريد الإلكتروني
               </div>
               <div className="text-placeholder border md:border-2 border-border w-full lg:w-[800px] xl:w-[1183px] 2xl:w-[1202px]
-                h-[50px] md:h-[60px] lg:h-[76px] rounded-10px text-[12px] md:text-[14px] lg:text-[17px] font-medium tracking-wider p-3 flex items-center">
+                h-[50px] md:h-[60px] lg:h-[76px] rounded-10px text-[12px] md:text-[14px] lg:text-[17px] font-medium  p-3 flex items-center">
                 {userDetails.email}
               </div>
             </div>

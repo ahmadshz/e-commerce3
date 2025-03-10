@@ -123,7 +123,7 @@ const Register = () => {
                             type='text'
                             value={formData.firstName}
                             onChange={handleChange}
-                            className='text-placeholder  text-[12px] md:text-[14px] lg:text-[17px] border md:border-2 border-border w-full lg:w-[433px] h-[50px] md:h-[60px] lg:h-[76px] flex items-center rounded-10px font-medium tracking-wider p-3 outline-none focus:border-primary'
+                            className='text-placeholder  text-[12px] md:text-[14px] lg:text-[17px] border md:border-2 border-border w-full lg:w-[433px] h-[50px] md:h-[60px] lg:h-[76px] flex items-center rounded-10px font-medium  p-3 outline-none focus:border-primary'
                             placeholder='اكتب اسمك باللغة العربية'
                             required
                         />
@@ -139,7 +139,7 @@ const Register = () => {
                             type="text"
                             value={formData.lastName}
                             onChange={handleChange}
-                            className="text-placeholder  text-[12px] md:text-[14px] lg:text-[17px] border md:border-2 border-border w-full lg:w-[433px] h-[50px] md:h-[60px] lg:h-[76px] flex items-center rounded-10px font-medium tracking-wider p-3 outline-none focus:border-primary"
+                            className="text-placeholder  text-[12px] md:text-[14px] lg:text-[17px] border md:border-2 border-border w-full lg:w-[433px] h-[50px] md:h-[60px] lg:h-[76px] flex items-center rounded-10px font-medium  p-3 outline-none focus:border-primary"
                             placeholder="اكتب اسم العائلة باللغة العربية"
                             required
                         />
@@ -156,7 +156,7 @@ const Register = () => {
                                 type='text'
                                 value={formData.username}
                                 onChange={handleChange}
-                                className="text-placeholder  text-[12px] md:text-[14px] lg:text-[17px] border md:border-2 border-border w-full h-[50px] md:h-[60px] lg:h-[76px] flex items-center rounded-10px font-medium tracking-wider pl-10 outline-none focus:border-primary"
+                                className="text-placeholder  text-[12px] md:text-[14px] px-3 lg:text-[17px] border md:border-2 border-border w-full h-[50px] md:h-[60px] lg:h-[76px] flex items-center rounded-10px font-medium  outline-none focus:border-primary"
                                 placeholder='اكتب اسم المستخدم باللغة الانجليزية'
                                 required
                             />
@@ -174,7 +174,7 @@ const Register = () => {
                             type='tel'
                             value={formData.phone}
                             onChange={handleChange}
-                            className="text-placeholder  text-[12px] md:text-[14px] lg:text-[17px] border md:border-2 border-border w-full lg:w-[433px] h-[50px] md:h-[60px] lg:h-[76px] flex items-center rounded-10px font-medium tracking-wider p-3 outline-none focus:border-primary"
+                            className="text-placeholder  text-[12px] md:text-[14px] lg:text-[17px] border md:border-2 border-border w-full lg:w-[433px] h-[50px] md:h-[60px] lg:h-[76px] flex items-center rounded-10px font-medium  p-3 outline-none focus:border-primary"
                             placeholder='+963 9.. ... ...'
                             required
                         />
@@ -188,7 +188,7 @@ const Register = () => {
                             type='email'
                             value={formData.email}
                             onChange={handleChange}
-                            className='text-placeholder text-left border md:border-2 border-border w-full lg:w-[800px] xl:w-[1183px] 2xl:w-[1202px] h-[50px] md:h-[60px] lg:h-[76px] rounded-10px  text-[12px] md:text-[14px] lg:text-[17px] font-medium tracking-wider p-3 flex items-center outline-none focus:border-primary'
+                            className='text-placeholder text-left border md:border-2 border-border w-full lg:w-[800px] xl:w-[1183px] 2xl:w-[1202px] h-[50px] md:h-[60px] lg:h-[76px] rounded-10px  text-[12px] md:text-[14px] lg:text-[17px] font-medium  p-3 flex items-center outline-none focus:border-primary'
                             placeholder='@'
                             required
                         />
@@ -205,7 +205,7 @@ const Register = () => {
                                 onChange={handleChange}
                                 className="text-placeholder  text-[12px] md:text-[14px] lg:text-[17px] border md:border-2 border-border
                                  w-full  h-[50px] md:h-[60px] lg:h-[76px] flex items-center rounded-10px
-                                  font-medium tracking-wider p-3 outline-none focus:border-primary"
+                                  font-medium  p-3 outline-none focus:border-primary"
                                 placeholder='اكتب كلمة السر باللغة الانجليزية'
                                 required
                                 minLength={6}
@@ -229,7 +229,7 @@ const Register = () => {
                                 type={showConfirmPassword ? 'text' : 'password'}
                                 value={formData.confirmPassword}
                                 onChange={handleChange}
-                                className="text-placeholder  text-[12px] md:text-[14px] lg:text-[17px] border md:border-2 border-border w-full h-[50px] md:h-[60px] lg:h-[76px] flex items-center rounded-10px font-medium tracking-wider p-3 outline-none focus:border-primary"
+                                className="text-placeholder  text-[12px] md:text-[14px] lg:text-[17px] border md:border-2 border-border w-full h-[50px] md:h-[60px] lg:h-[76px] flex items-center rounded-10px font-medium  p-3 outline-none focus:border-primary"
                                 placeholder='اكتب كلمة السر ثانياّ باللغة الانجليزية'
                                 required
                             />

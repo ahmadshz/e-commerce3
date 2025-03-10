@@ -86,7 +86,7 @@ const ShowUser = () => {
                             الاسم
                         </div>
                         <div className="text-placeholder text-[15px] lg:text-[17px] border-2 border-border 
-              w-full lg:w-[433px] h-[60px] md:h-[76px] flex items-center rounded-10px font-medium tracking-wider p-3">
+              w-full lg:w-[433px] h-[60px] md:h-[76px] flex items-center rounded-10px font-medium  p-3">
                             {currentUser.firstname}
                         </div>
                     </div>
@@ -97,7 +97,7 @@ const ShowUser = () => {
                             اسم العائلة
                         </div>
                         <div className="text-placeholder text-[15px] lg:text-[17px] border-2 border-border w-full
-               lg:w-[433px] h-[60px] md:h-[76px] flex items-center rounded-10px font-medium tracking-wider p-3">
+               lg:w-[433px] h-[60px] md:h-[76px] flex items-center rounded-10px font-medium  p-3">
                             {currentUser.lastname}
                         </div>
                     </div>
@@ -108,7 +108,7 @@ const ShowUser = () => {
                             اسم المستخدم
                         </div>
                         <div className="text-placeholder text-[15px] lg:text-[17px] border-2 border-border 
-              w-full lg:w-[433px] h-[60px] md:h-[76px] rounded-10px font-medium tracking-wider p-3 flex items-center">
+              w-full lg:w-[433px] h-[60px] md:h-[76px] rounded-10px font-medium  p-3 flex items-center">
                             {currentUser.username}
                         </div>
                     </div>
@@ -119,7 +119,7 @@ const ShowUser = () => {
                             رقم الجوال
                         </div>
                         <div className="text-placeholder border-2 text-[15px] lg:text-[17px] border-border
-               w-full lg:w-[433px] h-[60px] md:h-[76px] rounded-10px font-medium tracking-wider p-3 flex items-center">
+               w-full lg:w-[433px] h-[60px] md:h-[76px] rounded-10px font-medium  p-3 flex items-center">
                            {currentUser.phoneNumber}+
                         </div>
                     </div>
@@ -130,7 +130,7 @@ const ShowUser = () => {
                             البريد الإلكتروني
                         </div>
                         <div className="text-placeholder border-2 border-border w-full lg:w-[800px] xl:w-[1183px] 2xl:w-[1242px]
-                h-[60px] md:h-[76px] rounded-10px text-[15px] lg:text-[17px] font-medium tracking-wider p-3 flex items-center">
+                h-[60px] md:h-[76px] rounded-10px text-[15px] lg:text-[17px] font-medium  p-3 flex items-center">
                             {currentUser.email}
                         </div>
                     </div>
