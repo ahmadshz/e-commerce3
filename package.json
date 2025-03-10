@@ -4,7 +4,6 @@
   "proxy": "http://localhost:8000",
   "private": true,
   "dependencies": {
-    "@fontsource-variable/cairo": "^5.2.5",
     "@fontsource-variable/noto-kufi-arabic": "^5.2.5",
     "@fontsource/noto-kufi-arabic": "^5.2.5",
     "@headlessui/react": "^2.2.0",

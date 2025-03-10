@@ -123,10 +123,12 @@ const SideBar = ({ isSidebarOpen, toggleSidebar }) => {
           <div className='flex flex-wrap mx-4 gap-4  mt-4 mb-16'>
             <span className=' text-[14px] '>تواصل معنا</span>
             <div className='flex flex-wrap gap-4 justify-between '>
-              <FaTiktok size={30} className='text-primary' />
-              <GrFacebookOption size={35} className='text-primary' />
-              <BiLogoInstagramAlt size={35} className='text-primary' />
+
+              <FaTiktok onClick={() => window.open('https://www.tiktok.com/@dallal.sy?_t=ZS-8uY4d8ZSIm9&_r=1')} size={30} className='text-primary mt-1' />
+              <GrFacebookOption onClick={() => window.open('https://www.facebook.com/share/166Mdr3wPu/?mibextid=wwXIfr')} size={35} className='text-primary' />
+              <BiLogoInstagramAlt onClick={() => window.open('https://www.instagram.com/dallal_sy?igsh=MTRyaTlhOTJqYzZ2YQ%3D%3D&utm_source=qr')} size={35} className='text-primary' />
               <svg
+              onClick={() => window.open('https://x.com/dallal_sy?s=21&t=jWVmcT1Db2z-NTL_kJjevw')}
                 className='text-primary fill-current font-bold'
                 xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="35" height="35" viewBox="0 0 48 48">
                 <polygon points="41,6 9.929,42 6.215,42 37.287,6"></polygon><polygon fill="#fff" points="31.143,41 7.82,7 16.777,7 40.1,41" ></polygon><path d="M15.724,9l20.578,30h-4.106L11.618,9H15.724 M17.304,6H5.922l24.694,36h11.382L17.304,6L17.304,6z"></path>
