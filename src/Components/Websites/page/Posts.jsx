@@ -39,7 +39,11 @@ const Posts = ({ ads, selectedCategory, selectedBrand, visibleCount, sponsorImag
             : true;
 
         const brandMatch = selectedBrand
-            ? item.vehicleType?.toLowerCase().includes(selectedBrand.arabic)
+            ? (item.vehicleType?.toLowerCase().includes(selectedBrand.arabic)
+                || item.propertyType?.toLowerCase().includes(selectedBrand)
+                || item.deviceType?.toLowerCase().includes(selectedBrand)
+                || item.adType?.toLowerCase().includes(selectedBrand)
+        )
             : true;
 
         return categoryMatch && brandMatch;

@@ -120,7 +120,7 @@ const SubNavbar = ({ onSearch, onLocationChange }) => {
                         onClick={toggleDropdown}
                         className="w-full h-[31px] md:h-[41px] xl:h-[49px] flex items-center justify-between"
                     >
-                        <span className="w-[75%] md:w-[85%] lg:w-[100%] text-center text-[12px] md:text-[14px] lg:text-[16px] xl:text-[17px]">
+                        <span className="w-[75%] md:w-[85%]  text-center text-[12px] md:text-[14px] lg:text-[16px] xl:text-[17px]">
                             {selectedLocation}
                         </span>
                         <MdOutlineKeyboardArrowDown className="w-[40px] lg:w-[54px] h-[35px] md:h-[45px] xl:h-[53px] border-r  md:border-2 md:border-l-0 border-border rounded-10px" />

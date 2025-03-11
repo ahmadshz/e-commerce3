@@ -153,6 +153,7 @@ const SinglePost = () => {
                                         <p className='text-[10px] lg:text-[14px] font-normal text-placeholder '>النوع: {ad.propertyType}</p>
                                         <p className='text-[10px] lg:text-[14px] font-normal text-placeholder'>نوع الطابو: {ad.deedType}</p>
                                         <p className='text-[10px] lg:text-[14px] font-normal text-placeholder'>مشروع سكني جديد: {ad.newHousingProject ? 'نعم' : 'لا'}</p>
+                                        
                                     </div>
                                 )}
                                 {ad.category === 'electronics' && (
@@ -162,14 +163,7 @@ const SinglePost = () => {
                                         <div />
                                     </div>
                                 )}
-                                {ad.category === 'electronics' && (
-                                    <div className='hidden  lg:flex flex-col'>
-                                        <p className='text-[10px] lg:text-[14px] font-normal text-placeholder '>النوع: {ad.adType}</p>
-                                        <p className='text-[10px] lg:text-[14px] font-normal text-placeholder'>الحالة: {ad.condition === 'new' ? 'جديد' : 'مستعمل'}</p>
-                                        <div />
-
-                                    </div>
-                                )}
+                                
                                 {ad.category === 'pets' && (
                                     <div className='hidden  lg:flex flex-col '>
                                         <p className='text-[10px] lg:text-[14px] font-normal text-placeholder '>النوع: {ad.adType}</p>
@@ -250,7 +244,7 @@ const SinglePost = () => {
                                 <div className='space-y-2'>
                                     <p className='text-[12px] lg:text-[20px] font-normal '>نوع العقار: {ad.propertyType}</p>
                                     <p className='text-[12px] lg:text-[20px] font-normal '>نوع الطابو: {ad.deedType}</p>
-                                    <p className='text-[12px] lg:text-[20px] font-normal '>نوع الطابو:
+                                    <p className='text-[12px] lg:text-[20px] font-normal '>الحالة :
                                         {ad.condition === 'furnished' ? 'مفروش' : 'unfurnished' ? " غير مفروش" : "على عظم"} </p>
                                     <p className='text-[12px] lg:text-[20px] font-normal '>{ad.description}</p>
 
@@ -392,7 +386,7 @@ const SinglePost = () => {
                     </div>)}
                 </div>
             )
-                }
+            }
 
             {isModalOpen && (
                 <motion.div
@@ -417,7 +411,7 @@ const SinglePost = () => {
 
             <Footer />
         </div>
-    
+
     );
 };
 
