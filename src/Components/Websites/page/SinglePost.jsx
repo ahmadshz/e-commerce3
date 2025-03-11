@@ -273,7 +273,7 @@ const SinglePost = () => {
                             )}
                             {ad.category === 'electronics' && (
                                 <div className='space-y-2'>
-                                    <p className='text-[12px] lg:text-[20px] font-normal'>النوع: {ad.vehicleType}</p>
+                                    <p className='text-[12px] lg:text-[20px] font-normal'>النوع: {ad.deviceType}</p>
                                     <p className='text-[12px] lg:text-[20px] font-normal'>الحالة: {ad.condition === 'new' ? 'جديد' : 'مستعمل'}</p>
                                     <p className='text-[12px] lg:text-[20px] font-normal '>{ad.description}</p>
 
