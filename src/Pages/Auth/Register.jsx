@@ -90,7 +90,6 @@ const Register = () => {
 
         try {
             const response = await axios.post(`${baseUrl}/user/register`, dataToSend);
-            console.log(response.data);
             const { token } = response.data;
             cookies.set('auth_token', token, { path: '/' });
 

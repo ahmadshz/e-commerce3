@@ -76,12 +76,11 @@ const MyPost = () => {
     const deletePost = async (id) => {
         setIsDeleting(true);
         try {
-            const response = await axios.delete(`${baseUrl}/ad/${id}`, {
+            await axios.delete(`${baseUrl}/ad/${id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            console.log('Ad deleted successfully', response);
             fetchData();
             setShowDelete(false);
         } catch (err) {

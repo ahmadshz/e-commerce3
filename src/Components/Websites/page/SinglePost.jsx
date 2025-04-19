@@ -37,7 +37,6 @@ const SinglePost = () => {
     const fetchSponsorImages = async () => {
         try {
             const response = await axios.get(`${baseUrl}/img/sponsor-image`);
-            console.log('Sponsor Images Data:', response.data);
 
             if (response.data && response.data.imageUrl) {
                 setSponsorImages(response.data);
