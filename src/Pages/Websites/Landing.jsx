@@ -37,8 +37,6 @@ const Landing = () => {
     const fetchSponsorImages = async () => {
         try {
             const response = await axios.get(`${baseUrl}/img/sponsor-image`);
-            ('Sponsor Images Data:', response.data); // Check the data format
-
             // Ensure the data is an object with imageUrl
             if (response.data && response.data.imageUrl) {
                 setSponsorImages(response.data);
