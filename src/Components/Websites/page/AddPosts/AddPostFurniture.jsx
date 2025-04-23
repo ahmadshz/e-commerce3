@@ -9,8 +9,7 @@ import Cookies from 'universal-cookie';
 import Loading from '../Loading';
 import SubmissionAddPost from '../SubmissionAddPost';
 
-const cookies = new Cookies();
-const token = cookies.get('auth_token');
+
 
 const AddPostFurniture = () => {
     const [selectedLocation, setSelectedLocation] = useState('اختر عنوان الاعلان');
@@ -24,6 +23,9 @@ const AddPostFurniture = () => {
     const [error, setError] = useState('')
     const [submission, setSubmission] = useState(false)
     const [loading, setLoading] = useState(false)
+
+    const cookies = new Cookies();
+    const token = cookies.get('auth_token');
 
     const handleFileChange = (e) => {
         const files = Array.from(e.target.files);

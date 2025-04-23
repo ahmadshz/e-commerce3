@@ -9,8 +9,7 @@ import Cookies from 'universal-cookie';
 import Loading from '../Loading';
 import SubmissionAddPost from '../SubmissionAddPost';
 
-const cookies = new Cookies();
-const token = cookies.get('auth_token');
+
 
 const AddPostJobs = () => {
     const [selectedLocation, setSelectedLocation] = useState('اختر عنوان الاعلان');
@@ -24,6 +23,9 @@ const AddPostJobs = () => {
     const [error, setError] = useState('')
     const [submission, setSubmission] = useState(false)
     const [loading, setLoading] = useState(false)
+
+    const cookies = new Cookies();
+    const token = cookies.get('auth_token');
 
     const handleFileChange = (e) => {
         const files = Array.from(e.target.files);
@@ -78,8 +80,8 @@ const AddPostJobs = () => {
 
     return (
         <div>
-        {loading ? <Loading /> : ''}
-        {submission ? <SubmissionAddPost /> : ''}
+            {loading ? <Loading /> : ''}
+            {submission ? <SubmissionAddPost /> : ''}
 
             <div className='min-h-screen py-[50px] md:py-[100px] container flex items-center relative'>
                 <form className='flex flex-col gap-5 md:gap-7 w-full px-4 md:px-0' onSubmit={handleSubmit}>
