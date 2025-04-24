@@ -35,6 +35,8 @@ import PrivacyPolicy from "./Components/Websites/page/PrivacyPolicy";
 import SecurityCenter from "./Components/Websites/page/SecurityCenter";
 import AddPostForm from "./Pages/Dashboard/Post/AddPostForm";
 import WelcomeDashboard from "./Pages/Dashboard/WelcomeDashboard";
+import ForgotPassword from "./Components/Auth/ForgotPassword";
+import ResetPassword from "./Components/Auth/ResetPassword";
 
 
 function App() {
@@ -54,6 +56,8 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/verification" element={<Verification />} />
           <Route path="/successVerification" element={<SuccessVerification />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
         </Route>
 
         {/*Dashboard */}
