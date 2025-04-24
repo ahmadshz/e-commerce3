@@ -105,7 +105,7 @@ const AddPostDevices = () => {
                         <Dropdown
                             label='الموقع :'
                             options={location}
-                            selected={selectedLocation}
+                            selected={selectedLocation || 'اختر الموقع'}
                             onSelect={setSelectedLocation}
                             className='w-full md:w-3/6 lg:w-[560px]'
                         />
@@ -169,7 +169,7 @@ const AddPostDevices = () => {
                         <Dropdown
                             label='نوع الجهاز :'
                             options={data[3].brands.map((brand) => brand)}
-                            selected={selectedBrand}
+                            selected={selectedBrand || 'اختر نوع الجهاز'}
                             onSelect={setSelectedBrand}
                             className='w-full lg:w-[532px] xl:w-[668px] 2xl:w-[867px]'
                         />

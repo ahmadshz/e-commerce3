@@ -57,7 +57,7 @@ function App() {
           <Route path="/verification" element={<Verification />} />
           <Route path="/successVerification" element={<SuccessVerification />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/reset-password/:token" element={<ResetPassword />} />
         </Route>
 
         {/*Dashboard */}

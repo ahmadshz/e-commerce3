@@ -12,7 +12,7 @@ import SubmissionAddPost from '../SubmissionAddPost';
 const AddPostMotor = () => {
     // State for form inputs
     const [title, setTitle] = useState('');
-    const [selectedLocation, setSelectedLocation] = useState('الموقع');
+    const [selectedLocation, setSelectedLocation] = useState('');
     const [selectedBrand, setSelectedBrand] = useState('اختر الماركة');
     const [status, setStatus] = useState('');
     const [gear, setGear] = useState('');
@@ -108,7 +108,7 @@ const AddPostMotor = () => {
                             label='الموقع:'
 
                             options={location}
-                            selected={selectedLocation}
+                            selected={selectedLocation || 'اختر الموقع'}
                             onSelect={setSelectedLocation}
                             className='w-full md:w-[560px]'
                         />

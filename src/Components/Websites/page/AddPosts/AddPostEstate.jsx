@@ -112,7 +112,7 @@ const AddPostEstate = () => {
                         <Dropdown
                             label='الموقع :'
                             options={location}
-                            selected={selectedLocation}
+                            selected={selectedLocation || " اختر الموقع"}
                             onSelect={setSelectedLocation}
                             className='w-full md:w-3/6 lg:w-[560px]'
                         />
@@ -184,7 +184,7 @@ const AddPostEstate = () => {
                         <Dropdown
                             label='نوع العقار :'
                             options={data[2].brands.map((brand) => brand)}
-                            selected={type}
+                            selected={type || 'اختر نوع العقار'}
                             onSelect={setType}
                             className='w-full md:w-[325px] lg:w-[532px] xl:w-[668px] 2xl:w-[867px]'
                         />
@@ -194,7 +194,7 @@ const AddPostEstate = () => {
                             <Dropdown
                                 label='نوع الطابو :'
                                 options={data[2].tabo.map((tabo) => tabo)}
-                                selected={selectedBrand}
+                                selected={selectedBrand || 'اختر نوع الطابو'}
                                 onSelect={setSelectedBrand}
                                 className='w-full md:w-[320px] lg:w-[345px] xl:w-[432px] 2xl:w-[560px]'
                             />

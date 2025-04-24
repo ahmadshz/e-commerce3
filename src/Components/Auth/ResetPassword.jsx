@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Navbar from '../Websites/Header/Navbar';
+import axios from 'axios';
+import { baseUrl } from '../../Api/Api';
 
 const ResetPassword = () => {
     const [newPassword, setNewPassword] = useState('');
@@ -8,24 +10,46 @@ const ResetPassword = () => {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState(false);
     const [loading, setLoading] = useState(false);
+    
+    const { token } = useParams(); // 👈 Get token from the URL
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
         setError('');
 
-        // Simulate password reset validation
-        setTimeout(() => {
-            if (!newPassword || !confirmPassword) {
-                setError('يرجى إدخال كلمة المرور وتأكيدها');
-            } else if (newPassword !== confirmPassword) {
-                setError('كلمتا المرور غير متطابقتين');
-            } else {
-                // Simulate API call here
-                setSuccess(true);
-            }
+        if (!newPassword || !confirmPassword) {
+            setError('يرجى إدخال كلمة المرور وتأكيدها');
             setLoading(false);
-        }, 1500);
+            return;
+        }
+
+        if (newPassword !== confirmPassword) {
+            setError('كلمتا المرور غير متطابقتين');
+            setLoading(false);
+            return;
+        }
+
+        try {
+            const response = await axios.post(`${baseUrl}/user/reset-password-link`, {
+                token,
+                newPassword,
+            });
+
+            if (response.status === 200 || response.data.success) {
+                setSuccess(true);
+            } else {
+                setError('فشل في تحديث كلمة المرور. يرجى المحاولة مرة أخرى.');
+            }
+        } catch (err) {
+            if (err.response?.data?.message) {
+                setError(err.response.data.message);
+            } else {
+                setError('حدث خطأ في الاتصال بالخادم.');
+            }
+        }
+
+        setLoading(false);
     };
 
     return (
