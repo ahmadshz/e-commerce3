@@ -10,7 +10,7 @@ import Loading from '../Loading';
 import SubmissionAddPost from '../SubmissionAddPost';
 
 const AddPostOther = () => {
-    const [selectedLocation, setSelectedLocation] = useState('اختر عنوان الاعلان');
+    const [selectedLocation, setSelectedLocation] = useState('');
     const [status, setStatus] = useState('used');
     const [title, setTitle] = useState('');
     const [images, setImages] = useState([]);
@@ -96,7 +96,7 @@ const AddPostOther = () => {
                         <Dropdown
                             label='الموقع :'
                             options={location}
-                            selected={selectedLocation}
+                            selected={selectedLocation || 'اختر الموقع'}
                             onSelect={setSelectedLocation}
                             className='w-full md:w-3/6 lg:w-[560px]'
                         />

@@ -10,7 +10,7 @@ import Loading from '../Loading';
 import SubmissionAddPost from '../SubmissionAddPost';
 
 const AddPostParty = () => {
-    const [selectedLocation, setSelectedLocation] = useState('اختر عنوان الاعلان');
+    const [selectedLocation, setSelectedLocation] = useState('');
     const [selectedBrand, setSelectedBrand] = useState('');
     const [status, setStatus] = useState('used');
     const [title, setTitle] = useState('');
@@ -99,7 +99,7 @@ const AddPostParty = () => {
                         <Dropdown
                             label='الموقع :'
                             options={location}
-                            selected={selectedLocation}
+                            selected={selectedLocation || 'اختر الموقع'}
                             onSelect={setSelectedLocation}
                             className='w-full md:w-3/6 lg:w-[560px]'
                         />
@@ -160,9 +160,9 @@ const AddPostParty = () => {
 
                     <div className='flex flex-col md:flex-row gap-5 w-full'>
                         <Dropdown
-                            label=' نوع الخدمة : '
+                            label=' نوع الوظيفة : '
                             options={data[10].brands.map((brand) => brand)}
-                            selected='اختر الخدمة'
+                            selected={selectedBrand || 'اختر نوع الوظيفة'}
                             placeholder
                             onSelect={setSelectedBrand}
                             className='w-full lg:w-[532px] xl:w-[668px] 2xl:w-[867px]'

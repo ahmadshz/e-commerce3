@@ -12,7 +12,7 @@ import SubmissionAddPost from '../SubmissionAddPost';
 
 
 const AddPostJobs = () => {
-    const [selectedLocation, setSelectedLocation] = useState('اختر عنوان الاعلان');
+    const [selectedLocation, setSelectedLocation] = useState('');
     const [selectedJobType, setSelectedJobType] = useState('اختر نوع الوظيفة');
     const [status, setStatus] = useState('new');
     const [title, setTitle] = useState('');
@@ -104,7 +104,7 @@ const AddPostJobs = () => {
                         <Dropdown
                             label='الموقع :'
                             options={location}
-                            selected={selectedLocation}
+                            selected={selectedLocation || 'اختر الموقع'}
                             onSelect={setSelectedLocation}
                             className='w-full md:w-3/6 lg:w-[560px]'
                         />

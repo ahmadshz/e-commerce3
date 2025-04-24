@@ -10,8 +10,8 @@ import Loading from '../Loading';
 import SubmissionAddPost from '../SubmissionAddPost';
 
 const AddPostServices = () => {
-    const [selectedLocation, setSelectedLocation] = useState('اختر عنوان الاعلان');
-    const [selectedBrand, setSelectedBrand] = useState('بناء وصيانة (ترميم، كهرباء) ');
+    const [selectedLocation, setSelectedLocation] = useState('');
+    const [selectedBrand, setSelectedBrand] = useState('');
     const [status, setStatus] = useState('used');
     const [title, setTitle] = useState('');
     const [images, setImages] = useState([]);
@@ -100,7 +100,7 @@ const AddPostServices = () => {
                         <Dropdown
                             label='الموقع :'
                             options={location}
-                            selected={selectedLocation}
+                            selected={selectedLocation || 'اختر الموقع'}
                             onSelect={setSelectedLocation}
                             className='w-full md:w-3/6 lg:w-[560px]'
                         />
@@ -164,7 +164,7 @@ const AddPostServices = () => {
                         <Dropdown
                             label='نوع الخدمة : '
                             options={data[7].brands.map((brand) => brand)}
-                            selected='بناء وصيانة (ترميم، كهرباء) '
+                            selected={selectedBrand || 'اختر نوع الخدمة'}
                             placeholder
                             onSelect={setSelectedBrand}
                             className='w-full lg:w-[532px] xl:w-[668px] 2xl:w-[867px]'

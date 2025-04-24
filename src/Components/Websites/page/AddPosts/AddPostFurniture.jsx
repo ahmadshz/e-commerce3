@@ -10,10 +10,9 @@ import Loading from '../Loading';
 import SubmissionAddPost from '../SubmissionAddPost';
 
 
-
 const AddPostFurniture = () => {
-    const [selectedLocation, setSelectedLocation] = useState('اختر عنوان الاعلان');
-    const [selectedBrand, setSelectedBrand] = useState('نوع الاثاث : ');
+    const [selectedLocation, setSelectedLocation] = useState('');
+    const [selectedBrand, setSelectedBrand] = useState('');
     const [status, setStatus] = useState('used');
     const [title, setTitle] = useState('');
     const [images, setImages] = useState([]);
@@ -103,7 +102,7 @@ const AddPostFurniture = () => {
                         <Dropdown
                             label='الموقع :'
                             options={location}
-                            selected={selectedLocation}
+                            selected={selectedLocation || 'اختر الموقع'}
                             onSelect={setSelectedLocation}
                             className='w-full md:w-3/6 lg:w-[560px]'
                         />
@@ -167,7 +166,7 @@ const AddPostFurniture = () => {
                         <Dropdown
                             label='نوع الاثاث :'
                             options={data[4].brands.map((brand) => brand)}
-                            selected={selectedBrand}
+                            selected={selectedBrand || 'اختر نوع الاثاث'}
                             placeholder='نوع الاثاث'
                             onSelect={setSelectedBrand}
                             className='w-full lg:w-[532px] xl:w-[668px] 2xl:w-[867px]'

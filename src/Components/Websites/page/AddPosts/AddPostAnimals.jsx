@@ -12,7 +12,7 @@ import SubmissionAddPost from '../SubmissionAddPost';
 
 
 const AddPostAnimals = () => {
-    const [selectedLocation, setSelectedLocation] = useState('اختر عنوان الاعلان');
+    const [selectedLocation, setSelectedLocation] = useState('');
     const [selectedBrand, setSelectedBrand] = useState('');
     const [status, setStatus] = useState('used');
     const [title, setTitle] = useState('');
@@ -105,7 +105,7 @@ const AddPostAnimals = () => {
                         <Dropdown
                             label='الموقع :'
                             options={location}
-                            selected={selectedLocation}
+                            selected={selectedLocation || 'اختر الموقع'}
                             onSelect={setSelectedLocation}
                             className='w-full md:w-3/6 lg:w-[560px]'
                         />
@@ -169,7 +169,7 @@ const AddPostAnimals = () => {
                         <Dropdown
                             label='نوع الحيوان :  '
                             options={data[5].brands.map((brand) => brand)}
-                            selected={selectedBrand}
+                            selected={selectedBrand || 'اختر نوع الحيوان'}
                             placeholder='اختر الحيوان'
                             onSelect={setSelectedBrand}
                             className='w-full lg:w-[532px] xl:w-[668px] 2xl:w-[867px]'

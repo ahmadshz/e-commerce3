@@ -106,7 +106,7 @@ const AddPostEducation = () => {
                         <Dropdown
                             label='الموقع :'
                             options={location}
-                            selected={selectedLocation}
+                            selected={selectedLocation || 'اختر الموقع'}
                             onSelect={setSelectedLocation}
                             className='w-full md:w-3/6 lg:w-[560px]'
                         />
@@ -171,7 +171,7 @@ const AddPostEducation = () => {
                         <Dropdown
                             label='نوع الوظيفة :'
                             options={data[9].brands.map((brand) => brand)}
-                            selected={selectedBrand}
+                            selected={selectedBrand || 'اختر نوع الوظيفة'}
                             onSelect={setSelectedBrand}
                             className='w-full lg:w-[532px] xl:w-[668px] 2xl:w-[867px]'
                         />
