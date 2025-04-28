@@ -56,7 +56,7 @@ const Login = () => {
                     <form className='flex flex-col gap-2 sm:gap-[20px] lg:py-4 px-6' onSubmit={handleSubmit}>
                         {/* Email Input */}
                         <div className='flex flex-col xl:flex-row justify-between xl:items-center md:gap-2 lg:gap-4 xl:gap-2'>
-                            <label className='text-[14px] md:text-[16px] lg:text-[20px] font-semibold w-[230px]'>اسم المستخدم</label>
+                            <label className='text-[14px] md:text-[16px] lg:text-[20px] font-semibold w-[230px]'>ايميل</label>
                             <input
                                 type="text"
                                 placeholder='ادخل البريد الإلكتروني هنا'

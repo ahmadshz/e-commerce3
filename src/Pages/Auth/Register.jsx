@@ -167,7 +167,7 @@ const Register = () => {
 
                     {/* Phone Number */}
                     <div className='flex flex-col lg:flex-row   md:gap-4'>
-                        <label htmlFor="phone" className='  text-[14px] md:text-[16px] lg:text-[20px] font-semibold  md:w-[239px] flex items-center'>رقم الهاتف</label>
+                        <label htmlFor="phone" className='  text-[14px] md:text-[16px] lg:text-[20px] font-semibold  md:w-[239px] flex items-center '>رقم الجوال</label>
                         <input
                             id='phone'
                             type='tel'
@@ -181,7 +181,8 @@ const Register = () => {
 
                     {/* Email */}
                     <div className='flex flex-col lg:flex-row   md:gap-4 col-span-1 sm:col-span-2'>
-                        <label htmlFor="email" className='  text-[14px] md:text-[16px] lg:text-[20px] font-semibold  xl:w-[239px] flex items-center'>البريد الإلكتروني</label>
+                        <label htmlFor="email" className='  text-[14px] md:text-[16px] lg:text-[20px] font-semibold  xl:w-[239px] flex items-center'>ايميل
+                        </label>
                         <input
                             id='email'
                             type='email'
@@ -195,7 +196,7 @@ const Register = () => {
 
                     {/* Password */}
                     <div className='flex flex-col lg:flex-row   md:gap-4 col-span-1 sm:col-span-2'>
-                        <label htmlFor="password" className='  text-[14px] md:text-[16px] lg:text-[20px] font-semibold  lg:w-[142px] xl:w-[186px] 2xl:w-[239px] flex items-center'>كلمة المرور</label>
+                        <label htmlFor="password" className='  text-[14px] md:text-[16px] lg:text-[20px] font-semibold  lg:w-[142px] xl:w-[186px] 2xl:w-[239px] flex items-center'>كلمة السر</label>
                         <div className="relative w-full md:w-[350px] xl:w-[477px]">
                             <input
                                 id='password'
@@ -221,7 +222,8 @@ const Register = () => {
 
                     {/* Confirm Password */}
                     <div className='flex flex-col lg:flex-row   md:gap-4 col-span-1 sm:col-span-2'>
-                        <label htmlFor="confirmPassword" className='  text-[14px] md:text-[16px] lg:text-[20px] font-semibold  lg:w-[142px] xl:w-[186px] 2xl:w-[239px] flex items-center'>تأكيد كلمة المرور</label>
+                        <label htmlFor="confirmPassword" className='  text-[14px] md:text-[16px] lg:text-[20px] font-semibold  lg:w-[142px] xl:w-[186px] 2xl:w-[239px] flex items-center'>كلمة السر 
+                        <span className='text-primary px-2'>*</span></label>
                         <div className="relative w-full md:w-[350px] xl:w-[477px]">
                             <input
                                 id='confirmPassword'
