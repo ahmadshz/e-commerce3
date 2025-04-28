@@ -366,16 +366,8 @@ const SinglePost = () => {
                             backgroundSize: 'contain', // Adjust the image size
                         }}
                     >
-                        {/* Display sponsor image */}
-                        {sponsorImages && (
-                            <div className="w-full h-[200px] mb-4">
-                                <img
-                                    src={sponsorImages.imageUrl} // Use the imageUrl from the object
-                                    alt="Sponsor"
-                                    className="w-full h-full  rounded-lg"
-                                />
-                            </div>
-                        )}
+                      
+                      
                     </motion.div>
                 </div>
             ) : (
