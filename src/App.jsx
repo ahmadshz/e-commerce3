@@ -73,7 +73,7 @@ function App() {
         </Route>
 
         {/* Get Single Post */}
-        <Route path="/singlePost/:id" element={<SinglePost />} />
+        <Route path="/:id" element={<SinglePost />} />
 
 
 

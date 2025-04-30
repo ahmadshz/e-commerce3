@@ -21,7 +21,7 @@ const Register = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [showPassword, setShowPassword] = useState(false);
-    const [showConfirmPassword, setShowConfirmPassword] = useState(false); 
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
     const navigate = useNavigate();
 
@@ -32,7 +32,7 @@ const Register = () => {
         const { id, value } = e.target;
 
         if (id === "phone") {
-            let cleanedValue = value.replace(/\D/g, ""); 
+            let cleanedValue = value.replace(/\D/g, "");
 
             // Ensure it always starts with "+963 9"
             if (!cleanedValue.startsWith("9639")) {
@@ -46,7 +46,7 @@ const Register = () => {
 
             setFormData({
                 ...formData,
-                phone: "+" + cleanedValue, 
+                phone: "+" + cleanedValue,
             });
         } else {
             setFormData({
@@ -175,6 +175,7 @@ const Register = () => {
                             onChange={handleChange}
                             className="text-placeholder  text-[12px] md:text-[14px] lg:text-[17px] border md:border-2 border-border w-full lg:w-[433px] h-[50px] md:h-[60px] lg:h-[76px] flex items-center rounded-10px font-medium  p-3 outline-none focus:border-primary"
                             placeholder='+963 9.. ... ...'
+                            min={12}
                             required
                         />
                     </div>
@@ -222,8 +223,8 @@ const Register = () => {
 
                     {/* Confirm Password */}
                     <div className='flex flex-col lg:flex-row   md:gap-4 col-span-1 sm:col-span-2'>
-                        <label htmlFor="confirmPassword" className='  text-[14px] md:text-[16px] lg:text-[20px] font-semibold  lg:w-[142px] xl:w-[186px] 2xl:w-[239px] flex items-center'>كلمة السر 
-                        <span className='text-primary px-2'>*</span></label>
+                        <label htmlFor="confirmPassword" className='  text-[14px] md:text-[16px] lg:text-[20px] font-semibold  lg:w-[142px] xl:w-[186px] 2xl:w-[239px] flex items-center'>كلمة السر
+                            <span className='text-primary px-2'>*</span></label>
                         <div className="relative w-full md:w-[350px] xl:w-[477px]">
                             <input
                                 id='confirmPassword'

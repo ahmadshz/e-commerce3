@@ -12,6 +12,9 @@ import { motion } from 'framer-motion';
 import { HiOutlineArrowRight } from 'react-icons/hi';
 import logo from '../../../assets/Logo/Logowhite.png';
 import { FavoriteContext } from '../../../Context/FavoriteContext';
+import CommentBox from '../UI/CommentBox';
+import wtp from '../../../assets/iconCallWtp/wtp.svg'
+import call from '../../../assets/iconCallWtp/calll.svg'
 
 const SinglePost = () => {
     const [ad, setAd] = useState({});
@@ -118,7 +121,7 @@ const SinglePost = () => {
             </motion.div>
             {/* Check if ad has data before rendering */}
             {Object.keys(ad).length > 0 ? (
-                <div className="min-h-screen relative container flex flex-col md:flex-row gap-5 mb-[50px] md:mb-0">
+                <div className="min-h-screen relative container flex flex-col md:flex-row gap-5 ">
                     <div className="w-full md:w-[1138px]">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
@@ -128,7 +131,27 @@ const SinglePost = () => {
                         >
                             <div className='h-full flex flex-col justify-between'>
                                 <div className='text-[12px] lg:text-[20px] font-semibold'>{ad.title}</div>
-                                <p className='text-[10px] lg:text-[14px] font-normal text-placeholder'>{ad.location} <span className='mx-1'>({ad.user.phoneNumber}+)</span></p>
+                                <p className='text-[10px] lg:text-[14px] font-normal text-placeholder flex items-center gap-2'>{ad.location}
+                                    <span className='mx-1 flex items-center gap-2'>
+                                        <a
+                                            href={`tel:${ad.user.phoneNumber}`}
+                                            className="w-fit px-2 py-1 lg:py-[6px] bg-primary text-white flex items-center gap-2 rounded-10px"
+                                        >
+                                            اتصال
+                                            <img className='w-5 lg:w-6' src={call} alt='' />
+                                        </a>
+                                        <a
+                                            href={`https://wa.me/${ad.user.phoneNumber}`}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="w-fit px-2 py-1 lg:py-[6px] bg-primary text-white flex items-center gap-1 rounded-10px"
+                                        >
+                                            واتساب
+                                            <img className='w-5 lg:w-6' src={wtp} alt='' />
+                                        </a>
+
+                                    </span>
+                                </p>
                             </div>
                             <div className='flex justify-evenly gap-4 lg:px-4 text-placeholder'>
                                 {ad.category === 'car' && (
@@ -152,7 +175,7 @@ const SinglePost = () => {
                                         <p className='text-[10px] lg:text-[14px] font-normal text-placeholder '>النوع: {ad.propertyType}</p>
                                         <p className='text-[10px] lg:text-[14px] font-normal text-placeholder'>نوع الطابو: {ad.deedType}</p>
                                         <p className='text-[10px] lg:text-[14px] font-normal text-placeholder'>مشروع سكني جديد: {ad.newHousingProject ? 'نعم' : 'لا'}</p>
-                                        
+
                                     </div>
                                 )}
                                 {ad.category === 'electronics' && (
@@ -162,20 +185,17 @@ const SinglePost = () => {
                                         <div />
                                     </div>
                                 )}
-                                
+
                                 {ad.category === 'pets' && (
                                     <div className='hidden  lg:flex flex-col '>
                                         <p className='text-[10px] lg:text-[14px] font-normal text-placeholder '>النوع: {ad.adType}</p>
                                         <div />
                                         <div />
-
                                     </div>
                                 )}
                                 {ad.category === 'education' && (
                                     <div className='hidden  lg:flex flex-col '>
                                         <p className='text-[10px] lg:text-[14px] font-normal text-placeholder '>النوع: {ad.adType}</p>
-
-
                                     </div>
                                 )}
                                 {ad.category === 'jobs' && (
@@ -183,14 +203,12 @@ const SinglePost = () => {
                                         <p className='text-[10px] lg:text-[14px] font-normal text-placeholder '>النوع: {ad.adType}</p>
                                         <div />
                                         <div />
-
                                     </div>
                                 )}
                                 {ad.category === 'others' && (
                                     <div className='hidden  lg:flex flex-col '>
                                         <p className='text-[10px] lg:text-[14px] font-normal text-placeholder'>الحالة: {ad.condition === 'new' ? 'جديد' : 'مستعمل'}</p>
                                         <div />
-
                                     </div>
                                 )}
                                 {ad.category === 'parties' && (
@@ -198,7 +216,6 @@ const SinglePost = () => {
                                         <p className='text-[10px] lg:text-[14px] font-normal text-placeholder '>النوع: {ad.adType}</p>
                                         <div />
                                         <div />
-
                                     </div>
                                 )}
                                 {ad.category === 'services' && (
@@ -354,6 +371,8 @@ const SinglePost = () => {
                                 ))
                             )}
                         </div>
+                        <CommentBox adId={ad._id} />
+
                     </div>
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -366,15 +385,14 @@ const SinglePost = () => {
                             backgroundSize: 'contain', // Adjust the image size
                         }}
                     >
-                      
-                      
                     </motion.div>
                 </div>
             ) : (
-                <div className='h-[70vh] text-[12px] lg:text-[20px] flex justify-center items-center'>{error &&
-                    (<div>
-                        هذا الاعلان غير متوفر
-                    </div>)}
+                <div className='h-[70vh] text-[12px] lg:text-[20px] flex justify-center items-center'>
+                    {error &&
+                        (<div>
+                            هذا الاعلان غير متوفر
+                        </div>)}
                 </div>
             )
             }

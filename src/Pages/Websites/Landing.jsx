@@ -12,44 +12,39 @@ const Landing = () => {
     const [selectedCategory, setSelectedCategory] = useState('');
     const [selectedBrand, setSelectedBrand] = useState('');
     const [selectedLocation, setSelectedLocation] = useState('');
-    const [visibleCount, setVisibleCount] = useState(10); // Start with 10 visible posts
-    const [sponsorImages, setSponsorImages] = useState(null); // State for sponsor image (object)
+    const [visibleCount, setVisibleCount] = useState(10);
+    const [sponsorImages, setSponsorImages] = useState(null);
 
-    // Fetch ads
     const fetchAds = async (query = '', location = 'جميع المناطق') => {
         try {
             const response = await axios.get(`${baseUrl}/ad`, {
                 params: {
                     search: query,
-                    category: selectedCategory === "used" ? undefined : selectedCategory, // Don't send "used" as category
+                    category: selectedCategory === "used" ? undefined : selectedCategory,
                     location: location !== 'جميع المناطق' ? location : undefined,
                 },
                 withCredentials: true,
             });
             setAds(response.data.ads);
-            setVisibleCount(10); // Reset visible count when filters change
+            setVisibleCount(10);
         } catch (err) {
             console.error('Error fetching ads:', err);
         }
     };
 
-    // Fetch sponsor image
     const fetchSponsorImages = async () => {
         try {
             const response = await axios.get(`${baseUrl}/img/sponsor-image`);
-            // Ensure the data is an object with imageUrl
             if (response.data && response.data.imageUrl) {
                 setSponsorImages(response.data);
             } else {
-                console.error('Expected an object with imageUrl but got:', response.data);
-                setSponsorImages(null); // Set to null if data is invalid
+                setSponsorImages(null);
             }
         } catch (err) {
             console.error('Error fetching sponsor images:', err);
         }
     };
 
-    // Fetch ads and sponsor images on component mount
     useEffect(() => {
         fetchAds(searchQuery, selectedLocation);
         fetchSponsorImages();
@@ -57,34 +52,19 @@ const Landing = () => {
 
     const handleSearch = (query) => setSearchQuery(query);
     const handleLocationChange = (loc) => setSelectedLocation(loc);
-
     const handleCategoryChange = (category) => {
         setSelectedCategory(category);
-        setSelectedBrand(''); // Reset selected brand when category changes
+        setSelectedBrand('');
     };
-
     const handleBrandChange = (brand) => {
         setSelectedBrand(brand);
     };
-
     const handleShowMore = () => {
-        setVisibleCount((prev) => prev + 10); // Increase by 10
-    };
-
-    const renderSponsorAfterEvery5Posts = (adsArray) => {
-        const adsWithSponsor = [];
-        for (let i = 0; i < adsArray.length; i++) {
-            adsWithSponsor.push(adsArray[i]);
-            // Insert sponsor image after every 5 posts for large screens
-            if ((i + 1) % 5 === 0 && i + 1 < adsArray.length) {
-                adsWithSponsor.push('sponsor'); // Mark the spot for the sponsor image
-            }
-        }
-        return adsWithSponsor;
+        setVisibleCount((prev) => prev + 10);
     };
 
     return (
-        <div className='min-h-screen flex flex-col gap-[10px] md:gap-5 xl:gap-7 pb-[80px] md:pb-0'>
+        <div className='min-h-screen flex flex-col gap-[10px] md:gap-5 xl:gap-7 pb-[20px] md:pb-0'>
             <SubNavbar onSearch={handleSearch} onLocationChange={handleLocationChange} />
             <CategoryNavbar onCategoryChange={handleCategoryChange} onBrandChange={handleBrandChange} />
             <div className="min-h-[100vh] container flex gap-[10px] md:gap-5 xl:gap-7">
@@ -93,11 +73,10 @@ const Landing = () => {
                         selectedCategory={selectedCategory}
                         selectedBrand={selectedBrand}
                         visibleCount={visibleCount}
-                        ads={renderSponsorAfterEvery5Posts(ads)}
+                        ads={ads}
                         sponsorImages={sponsorImages}
                     />
                 </div>
-                {/* Sponsor Image */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -105,14 +84,12 @@ const Landing = () => {
                     className="hidden lg:block bg-bgsecondary w-[455px] overflow-y-auto"
                     style={{
                         backgroundImage: sponsorImages ? `url(${sponsorImages.imageUrl})` : 'none',
-                        backgroundRepeat: 'repeat-y', // Repeat vertically only
-                        backgroundSize: 'contain', // Adjust the image size
+                        backgroundRepeat: 'repeat-y',
+                        backgroundSize: 'contain',
                     }}
-                >
-                </motion.div>
+                />
             </div>
 
-            {/* Show More Button */}
             {visibleCount < ads.length && (
                 <div className="text-center mb-[5px] md:mb-[10px] lg:mb-[2px] mt-[15px] md:mt-[30px] w-full">
                     <div
