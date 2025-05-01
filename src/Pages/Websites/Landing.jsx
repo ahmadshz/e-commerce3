@@ -5,6 +5,7 @@ import SubNavbar from '../../Components/Websites/Header/SubNavbar';
 import axios from 'axios';
 import { baseUrl } from '../../Api/Api';
 import { motion } from 'framer-motion';
+import MainHeader from '../../Components/Websites/Header/MainHeader';
 
 const Landing = () => {
     const [ads, setAds] = useState([]);
@@ -14,8 +15,10 @@ const Landing = () => {
     const [selectedLocation, setSelectedLocation] = useState('');
     const [visibleCount, setVisibleCount] = useState(10);
     const [sponsorImages, setSponsorImages] = useState(null);
+    const [loading, setLoading] = useState(false)
 
     const fetchAds = async (query = '', location = 'جميع المناطق') => {
+        setLoading(true)
         try {
             const response = await axios.get(`${baseUrl}/ad`, {
                 params: {
@@ -29,6 +32,9 @@ const Landing = () => {
             setVisibleCount(10);
         } catch (err) {
             console.error('Error fetching ads:', err);
+        }
+        finally {
+            setLoading(false)
         }
     };
 
@@ -65,6 +71,10 @@ const Landing = () => {
 
     return (
         <div className='min-h-screen flex flex-col gap-[10px] md:gap-5 xl:gap-7 pb-[20px] md:pb-0'>
+            <MainHeader
+                onSearch={handleSearch}
+               
+            />
             <SubNavbar onSearch={handleSearch} onLocationChange={handleLocationChange} />
             <CategoryNavbar onCategoryChange={handleCategoryChange} onBrandChange={handleBrandChange} />
             <div className="min-h-[100vh] container flex gap-[10px] md:gap-5 xl:gap-7">
@@ -75,6 +85,7 @@ const Landing = () => {
                         visibleCount={visibleCount}
                         ads={ads}
                         sponsorImages={sponsorImages}
+                        loading={loading}
                     />
                 </div>
                 <motion.div

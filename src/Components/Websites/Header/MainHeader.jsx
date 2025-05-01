@@ -1,24 +1,61 @@
 // src/components/MainHeader.js
-import React, { useContext, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Logo from '../../../assets/Logo/Logowhite.png';
 import user from '../../../assets/LoginRegister/1.svg';
+import userMobile from '../../../assets/IconMobile/2.svg';
+import Menu from '../../../assets/IconMobile/1.svg';
 import logout from '../../../assets/LoginRegister/3.svg';
 import login from '../../../assets/LoginRegister/2.svg'
 import Sidebar from '../UI/SideBar';  // Import Sidebar component
 import Cookies from 'universal-cookie';
 import { jwtDecode } from 'jwt-decode';
 import { motion } from 'framer-motion';
-import { SlMenu } from 'react-icons/sl';
 import { FavoriteContext } from '../../../Context/FavoriteContext';
 import Favorite from '../UI/Favorite';
-import { FaUser } from 'react-icons/fa';
+import SearchBox from '../UI/SearchBox';
 
 
-const MainHeader = () => {
+const MainHeader = ({ onSearch }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [searchHistory, setSearchHistory] = useState([]);
+  const [showHistory, setShowHistory] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+
+
   const cookies = new Cookies();
   const navigate = useNavigate();
+
+
+
+  useEffect(() => {
+    const storedHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
+    setSearchHistory(storedHistory);
+  }, []);
+  const handleSearch = () => {
+    if (searchQuery.trim() === '') {
+      onSearch('');
+    } else {
+      onSearch(searchQuery);
+
+      setSearchHistory((prevHistory) => {
+        const newHistory = [searchQuery, ...prevHistory.filter(item => item !== searchQuery)].slice(0, 5);
+
+        localStorage.setItem('searchHistory', JSON.stringify(newHistory));
+
+        return newHistory;
+      });
+    }
+    setShowHistory(false);
+  };
+
+
+  const handleDeleteSearch = (itemToDelete) => {
+    const updatedHistory = searchHistory.filter(item => item !== itemToDelete);
+    setSearchHistory(updatedHistory);
+    localStorage.setItem('searchHistory', JSON.stringify(updatedHistory));
+  };
+
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -53,7 +90,9 @@ const MainHeader = () => {
     }
   };
 
+  const loacation = useLocation()
 
+  
   return (
     <motion.div
       initial={{ opacity: 0, y: -20 }}
@@ -62,15 +101,32 @@ const MainHeader = () => {
       className='bg-primary flex h-[60px] md:h-[70px] lg:h-[80px] items-center'>
       <div className='container flex justify-between items-center'>
         <Link to={'/'}> <img className='w-12 md:w-12 lg:w-16 xl:w-20' src={Logo} alt='' /></Link>
+        {loacation.pathname === '/' &&
+          <div className='block lg:hidden'>
+            <SearchBox
+              searchQuery={searchQuery}
+              setSearchQuery={setSearchQuery}
+              searchHistory={searchHistory}
+              showHistory={showHistory}
+              setShowHistory={setShowHistory}
+              onSearch={handleSearch}
+              onDeleteHistoryItem={handleDeleteSearch}
+              classNameBox='h-[35px] md:h-[45px] xl:h-[53px]   relative rounded -ml-[2px] '
+              className='h-full  font-normal w-[230px] max-[400px]:w-[200px] text-[9px] md:text-[14px] lg:text-[17px] rounded-md pr-2 md:pr-[10px] xl:pr-[20px] focus:outline-none'
+              classNameIcon='h-[34px] md:h-[43px] xl:h-[52px] w-[40px] lg:w-[54px] absolute -left-[1px] -top-[1.5px] p-1 md:p-2  cursor-pointer'
+              iconSearch
+            />
+          </div>
+        }
         <div className='text-white flex'>
-          <div className='flex gap-2 mx-2 items-center'>
+          <div className='flex gap-2  lg:mx-2 items-center'>
             <button onClick={toggleFavorite} className='border-2 hidden lg:flex items-center justify-center border-white rounded-10px 
              px-8 md:h-[45px] xl:h-[50px] lg:text-[17px]'>المفضلة</button>
             <Link to={'/myaccount'}>
-              <FaUser className=' lg:hidden ' size={20} />
+              <img className='w-7 lg:hidden' src={userMobile} alt='' />
             </Link>
             <button className='lg:hidden' onClick={toggleSidebar}>
-              <SlMenu size={25} />
+              <img className='w-7 lg:hidden' src={Menu} alt='' />
             </button>
           </div>
           {toggleFavorite ? <Favorite /> : ""}

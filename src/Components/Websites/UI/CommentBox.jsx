@@ -75,7 +75,7 @@ const CommentBox = ({ adId }) => {
     };
 
     return (
-        <div className="w-full mx-auto p-4">
+        <div className="w-full mx-auto ">
         <div className="mt-6">
             <h3 className="text-base md:text-lg font-semibold mb-2">التعليقات:</h3>
     

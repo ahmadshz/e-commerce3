@@ -129,7 +129,7 @@ const SinglePost = () => {
                             transition={{ duration: 0.5, delay: 0.5 }}
                             className='bg-background px-4 py-2 h-[120px] md:h-[140px] lg:h-[160px] flex justify-between'
                         >
-                            <div className='h-full flex flex-col justify-between'>
+                            <div className='h-full flex flex-col justify-between w-4/6 lg:w-3/6'>
                                 <div className='text-[12px] lg:text-[20px] font-semibold'>{ad.title}</div>
                                 <p className='text-[10px] lg:text-[14px] font-normal text-placeholder flex items-center gap-2'>{ad.location}
                                     <span className='mx-1 flex items-center gap-2'>
@@ -155,10 +155,10 @@ const SinglePost = () => {
                             </div>
                             <div className='flex justify-evenly gap-4 lg:px-4 text-placeholder'>
                                 {ad.category === 'car' && (
-                                    <div className='hidden  lg:flex flex-col justify-around'>
+                                    <div className='hidden  lg:flex flex-col justify-around '>
                                         <p className='text-[10px] lg:text-[14px] font-normal text-placeholder '>النوع: {ad.vehicleType}</p>
                                         <p className='text-[10px] lg:text-[14px] font-normal text-placeholder'>الحالة: {ad.condition === 'new' ? 'جديد' : 'مستعمل'}</p>
-                                        <p className='text-[10px] lg:text-[14px] font-normal text-placeholder'>القير: {ad.transmission}</p>
+                                        <p className='text-[10px] lg:text-[14px] font-normal text-placeholder text-nowrap'>القير: {ad.transmission === "automatic" ? "أوتوماتيك" : "عادي"}</p>
                                         <p className='text-[10px] lg:text-[14px] font-normal text-placeholder'>الممشى: {ad.mileage}</p>
                                     </div>
                                 )}
@@ -175,11 +175,10 @@ const SinglePost = () => {
                                         <p className='text-[10px] lg:text-[14px] font-normal text-placeholder '>النوع: {ad.propertyType}</p>
                                         <p className='text-[10px] lg:text-[14px] font-normal text-placeholder'>نوع الطابو: {ad.deedType}</p>
                                         <p className='text-[10px] lg:text-[14px] font-normal text-placeholder'>مشروع سكني جديد: {ad.newHousingProject ? 'نعم' : 'لا'}</p>
-
                                     </div>
                                 )}
                                 {ad.category === 'electronics' && (
-                                    <div className='hidden  lg:flex flex-col '>
+                                    <div className='hidden  lg:flex flex-col justify-around'>
                                         <p className='text-[10px] lg:text-[14px] font-normal text-placeholder '>النوع: {ad.deviceType}</p>
                                         <p className='text-[10px] lg:text-[14px] font-normal text-placeholder'>الحالة: {ad.condition === 'new' ? 'جديد' : 'مستعمل'}</p>
                                         <div />
@@ -228,22 +227,22 @@ const SinglePost = () => {
                                 )}
 
                                 {/* Add other categories similarly */}
-                                <div className='flex flex-col justify-around'>
+                                <div className='flex flex-col justify-around lg:w-3/6'>
                                     <div className='flex items-center gap-1'>
                                         <img className='w-4 md:w-5' src={price} alt='' />
-                                        <span className='text-[10px] lg:text-[14px] font-normal text-placeholder'>{ad.priceUSD}</span>
+                                        <span className='text-[10px] lg:text-[14px] font-normal text-placeholder whitespace-nowrap max-w-[80px] overflow-hidden lg:overflow-visible text-ellipsis'>{ad.priceUSD}</span>
                                     </div>
                                     <div className='flex items-center gap-1'>
                                         <img className='w-4 md:w-5' src={pricesy} alt='' />
-                                        <span className='text-[10px] lg:text-[14px] font-normal text-placeholder'>{ad.priceSYP}</span>
+                                        <span className='text-[10px] lg:text-[14px] font-normal text-placeholder whitespace-nowrap max-w-[80px] overflow-hidden lg:overflow-visible text-ellipsis'>{ad.priceSYP}</span>
                                     </div>
                                     <div className='flex items-center gap-1'>
                                         <img className='w-4 md:w-5' src={clock} alt='' />
-                                        <span className='text-[10px] lg:text-[14px] font-normal text-placeholder'>{timeAgo(ad.createdAt)}</span>
+                                        <span className='text-[10px] lg:text-[14px] font-normal text-placeholder whitespace-nowrap max-w-[80px] overflow-hidden lg:overflow-visible text-ellipsis'>{timeAgo(ad.createdAt)}</span>
                                     </div>
                                     <div className='flex items-center gap-1'>
                                         <img className='w-4 md:w-5' src={person} alt='' />
-                                        <span className='text-[10px] lg:text-[14px] font-normal text-placeholder'>{ad.user?.username}</span>
+                                        <span className='text-[10px] lg:text-[14px] font-normal text-placeholder whitespace-nowrap max-w-[80px] overflow-hidden lg:overflow-visible text-ellipsis'>{ad.user?.username}</span>
                                     </div>
                                 </div>
                             </div>
@@ -263,8 +262,6 @@ const SinglePost = () => {
                                     <p className='text-[12px] lg:text-[20px] font-normal '>الحالة :
                                         {ad.condition === 'furnished' ? 'مفروش' : 'unfurnished' ? " غير مفروش" : "على عظم"} </p>
                                     <p className='text-[12px] lg:text-[20px] font-normal '>{ad.description}</p>
-
-
                                 </div>
                             )}
                             {ad.category === 'car' && (

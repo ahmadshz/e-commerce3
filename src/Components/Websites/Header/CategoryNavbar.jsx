@@ -37,7 +37,8 @@ const CategoryNavbar = ({ onCategoryChange, onBrandChange }) => {
                     <div
                         key={index}
                         onClick={() => handleCategoryClick(index)}
-                        className={`flex flex-col items-center justify-center md:px-4 py-0 lg:py-2 xl:py-4 cursor-pointer transition-transform transform ${selectedCategory === index ? 'bg-border rounded-10px duration-300' : ''
+                        className={`flex flex-col items-center justify-center w-[90px]   md:px-4 py-0 lg:py-2 xl:py-4 cursor-pointer 
+                            transition-transform transform ${selectedCategory === index ? 'lg:bg-border rounded-10px duration-300' : ''
                             }`}
                     >
                         <img
@@ -77,7 +78,8 @@ const CategoryNavbar = ({ onCategoryChange, onBrandChange }) => {
                                 } ${selectedCategory === index ? 'block' : 'hidden'}`}
                         />
                         <div
-                            className={`text-center w-[100px] md:w-[110px] lg:w-[123px] xl:w-[140px] text-[12px] md:text-[14px] lg:text-[17px] font-semibold ${selectedCategory === index ? 'text-primary' : 'text-placeholder'
+                            className={`text-center w-[100px] md:w-[110px] lg:w-[123px] xl:w-[140px] text-[12px] md:text-[14px] lg:text-[17px]
+                                        font-semibold ${selectedCategory === index ? 'text-primary' : 'text-placeholder'
                                 }`}
                         >
                             {category.title}
@@ -93,15 +95,16 @@ const CategoryNavbar = ({ onCategoryChange, onBrandChange }) => {
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.3 }}
                     className="mt-[5px] md:mt-[20px]">
-                    <div className="flex overflow-x-auto pb-[5px] md:pb-[10px] gap-2 md:gap-4 custom-scrollbar">
+                    <div className="flex overflow-x-auto pb-[5px] md:pb-[10px] gap-1 lg:gap-2 md:gap-4 custom-scrollbar">
                         {data[selectedCategory].brands.map((brand, index) => (
                             <div
                                 key={index}
                                 onClick={() => handleBrandClick(index)}
-                                className={`border rounded-10px px-2 py-1 md:p-2 w-fit bg-white text-center cursor-pointer ${selectedBrand === index ? 'text-primary' : 'text-placeholder'
+                                className={`border rounded-md lg:rounded-10px px-3 py-[6px] leading-3 md:p-2 w-fit bg-white text-center cursor-pointer 
+                                                 ${selectedBrand === index ? 'text-primary' : 'text-placeholder'
                                     }`}
                             >
-                                <p className="text-[12px] lg:text-[16px] font-semibold truncate">
+                                <p className="text-[9px] lg:text-[16px]  truncate">
                                     {brand.arabic ? brand.arabic : brand}
                                 </p>
                             </div>

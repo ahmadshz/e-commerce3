@@ -6,7 +6,7 @@ import clock from '../../../assets/iconpost/6.svg';
 import person from '../../../assets/iconpost/7.svg';
 import { motion } from 'framer-motion';
 
-const Posts = ({ ads, selectedCategory, selectedBrand, visibleCount, sponsorImages }) => {
+const Posts = ({ ads, selectedCategory, selectedBrand, visibleCount, sponsorImages, loading }) => {
     const [totalDisplayedAds, setTotalDisplayedAds] = useState(0);
     const [isSponsorClicked, setIsSponsorClicked] = useState(false);
     const navigate = useNavigate();
@@ -66,78 +66,90 @@ const Posts = ({ ads, selectedCategory, selectedBrand, visibleCount, sponsorImag
 
     return (
         <div className='flex flex-col gap-5'>
-            {displayedAds.length > 0 ? (
-                displayedAds.map((item, index) =>
-                    item === 'sponsor' ? (
-                        <motion.div
-                            key="sponsor"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5 }}
-                            className="w-full h-[150px] md:h-[200px] bg-bgsecondary flex justify-center items-center lg:hidden cursor-pointer"
-                            onClick={handleSponsorClick}
-                        >
-                            <img
-                                src={sponsorImages?.imageUrl}
-                                alt="Sponsor"
-                                className="w-full h-full object-cover"
-                            />
-                        </motion.div>
-                    ) : (
-                        <motion.div
-                            onClick={() => goToSinglePost(item._id)}
-                            key={item._id}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: (totalDisplayedAds - visibleCount + index) * 0.2 }}
-                            className='bg-[#FAFAFA] w-full h-[120px] md:h-[140px] lg:h-[160px] flex justify-between cursor-pointer'
-                        >
-                            <div className='w-4/6 lg:w-4/5 px-3 md:p-3 h-full flex flex-col justify-between'>
-                                <div className='text-[12px] lg:text-[20px] font-semibold truncate'>{item.title}</div>
-                                <div className='flex gap-4 lg:gap-10'>
-                                    <div>
-                                        <div className='flex gap-1'>
-                                            <img className='w-4 md:w-5' src={clock} alt="" />
-                                            <h1 className='text-[10px] lg:text-[14px] text-placeholder w-[50px] truncate'>{timeAgo(item.createdAt)}</h1>
-                                        </div>
-                                        <div className='flex gap-1'>
-                                            <img className='w-4 md:w-5' src={person} alt="" />
-                                            <h1 className='text-[10px] lg:text-[14px] text-placeholder w-[50px] truncate'>{item.user.username}</h1>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div className='flex gap-1'>
-                                            <img className='w-4 md:w-5' src={price} alt="" />
-                                            <h1 className='text-[10px] lg:text-[14px] text-placeholder w-[50px] truncate'>{item.priceUSD}</h1>
-                                        </div>
-                                        <div className='flex gap-1'>
-                                            <img className='w-4 md:w-5' src={pricesy} alt="" />
-                                            <h1 className='text-[10px] lg:text-[14px] text-placeholder w-[50px] truncate'>{item.priceSYP}</h1>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className='text-[10px] lg:text-[14px] text-placeholder'>{item.location}</div>
-                            </div>
-                            <div className='w-2/6 lg:w-1/5'>
-                                <img
-                                    className='h-full w-full object-cover'
-                                    src={Array.isArray(item.images) ? item.images[0] : item.images}
-                                    alt=''
-                                />
-                            </div>
-                        </motion.div>
-                    )
+            {loading ?
+
+                (
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.5 }}
+                        className="text-center text-[13px] lg:text-[20px] font-semibold py-10"
+                    >
+                        جاري تحميل الإعلانات...
+                    </motion.div>
                 )
-            ) : (
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.5 }}
-                    className="text-center text-[13px] lg:text-[20px] font-semibold py-10"
-                >
-                    لا يوجد اعلانات يرجى زيارة الموقع لاحقًا
-                </motion.div>
-            )}
+                : displayedAds.length > 0 ? (
+                    displayedAds.map((item, index) =>
+                        item === 'sponsor' ? (
+                            <motion.div
+                                key="sponsor"
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.5 }}
+                                className="w-full h-[150px] md:h-[200px] bg-bgsecondary flex justify-center items-center lg:hidden cursor-pointer"
+                                onClick={handleSponsorClick}
+                            >
+                                <img
+                                    src={sponsorImages?.imageUrl}
+                                    alt="Sponsor"
+                                    className="w-full h-full object-cover"
+                                />
+                            </motion.div>
+                        ) : (
+                            <motion.div
+                                onClick={() => goToSinglePost(item._id)}
+                                key={item._id}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.5, delay: (totalDisplayedAds - visibleCount + index) * 0.2 }}
+                                className='bg-[#FAFAFA] w-full h-[120px] md:h-[140px] lg:h-[160px] flex justify-between cursor-pointer'
+                            >
+                                <div className='w-4/6 lg:w-4/5 px-3 md:p-3 h-full flex flex-col justify-between'>
+                                    <div className='text-[12px] lg:text-[20px] font-semibold truncate'>{item.title}</div>
+                                    <div className='flex gap-4 lg:gap-10'>
+                                        <div>
+                                            <div className='flex gap-1'>
+                                                <img className='w-4 md:w-5' src={clock} alt="" />
+                                                <h1 className='text-[10px] lg:text-[14px] text-placeholder w-[50px] truncate'>{timeAgo(item.createdAt)}</h1>
+                                            </div>
+                                            <div className='flex gap-1'>
+                                                <img className='w-4 md:w-5' src={person} alt="" />
+                                                <h1 className='text-[10px] lg:text-[14px] text-placeholder w-[50px] truncate'>{item.user.username}</h1>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div className='flex gap-1'>
+                                                <img className='w-4 md:w-5' src={price} alt="" />
+                                                <h1 className='text-[10px] lg:text-[14px] text-placeholder w-[50px] truncate'>{item.priceUSD}</h1>
+                                            </div>
+                                            <div className='flex gap-1'>
+                                                <img className='w-4 md:w-5' src={pricesy} alt="" />
+                                                <h1 className='text-[10px] lg:text-[14px] text-placeholder w-[50px] truncate'>{item.priceSYP}</h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className='text-[10px] lg:text-[14px] text-placeholder'>{item.location}</div>
+                                </div>
+                                <div className='w-2/6 lg:w-1/5'>
+                                    <img
+                                        className='h-full w-full object-cover'
+                                        src={Array.isArray(item.images) ? item.images[0] : item.images}
+                                        alt=''
+                                    />
+                                </div>
+                            </motion.div>
+                        )
+                    )
+                ) : (
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.5 }}
+                        className="text-center text-[13px] lg:text-[20px] font-semibold py-10"
+                    >
+                        لا يوجد اعلانات يرجى زيارة الموقع لاحقًا
+                    </motion.div>
+                )}
 
             {isSponsorClicked && (
                 <motion.div
