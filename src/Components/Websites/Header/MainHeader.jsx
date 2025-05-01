@@ -112,7 +112,7 @@ const MainHeader = ({ onSearch }) => {
               onSearch={handleSearch}
               onDeleteHistoryItem={handleDeleteSearch}
               classNameBox='h-[35px] md:h-[45px] xl:h-[53px]   relative rounded -ml-[2px] '
-              className='h-full font-normal w-[230px] max-[400px]:w-[205px] p-1 text-[9px] md:text-[14px] lg:text-[17px] !rounded-md pr-2 md:pr-[10px] xl:pr-[20px] focus:outline-none'
+              className='h-full font-normal w-[230px] max-[400px]:w-[205px] p-1 px-2 text-[9px] md:text-[14px] lg:text-[17px] !rounded-md pr-2 md:pr-[10px] xl:pr-[20px] focus:outline-none'
 
               classNameIcon='h-[34px] md:h-[43px] xl:h-[52px] w-[40px] lg:w-[54px] absolute -left-[1px] -top-[1.5px] p-1 md:p-2  cursor-pointer'
               iconSearch
