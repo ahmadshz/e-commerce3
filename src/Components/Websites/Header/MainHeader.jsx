@@ -99,7 +99,7 @@ const MainHeader = ({ onSearch }) => {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.3 }}
-      className='bg-primary flex h-[60px] md:h-[70px] lg:h-[80px] items-center'>
+      className='bg-primary flex h-[60px] md:h-[70px] lg:h-[80px] items-center fixed w-full z-50'>
       <div className='container flex justify-between items-center'>
         <Link to={'/'}> <img className='w-12 md:w-12 lg:w-16 xl:w-20' src={Logo} alt='' /></Link>
         {loacation.pathname === '/' &&
@@ -112,8 +112,8 @@ const MainHeader = ({ onSearch }) => {
               setShowHistory={setShowHistory}
               onSearch={handleSearch}
               onDeleteHistoryItem={handleDeleteSearch}
-              classNameBox='h-[35px] md:h-[45px] xl:h-[53px]   relative rounded -ml-[2px] bg-white  border border-white'
-              className='h-full font-normal bg-white w-[230px] max-[400px]:w-[205px] p-1 text-[9px] md:text-[14px] lg:text-[17px] !rounded-md pr-2 md:pr-[10px] xl:pr-[20px] focus:outline-none'
+              classNameBox='h-[35px] md:h-[45px] xl:h-[53px]   relative rounded -ml-[2px] bg-white  border border-white bg-white'
+              className='h-full font-normal bg-white w-[230px] max-[400px]:w-[205px] min-[768px]:w-[300px] p-1 text-[9px] md:text-[12px] lg:text-[17px] !rounded-md pr-2 md:pr-[10px] xl:pr-[20px] focus:outline-none'
               classNameIcon='h-[34px] md:h-[43px] xl:h-[52px] w-[40px] lg:w-[54px] absolute -left-[1px] -top-[1.5px] p-1 md:p-2 bg-white  cursor-pointer'
               iconSearch
             />

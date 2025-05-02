@@ -116,7 +116,7 @@ const SinglePost = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.5 }}
-                className='container '>
+                className='container mt-[85px] md:mt-[95px] lg:mt-[105px]'>
                 <HiOutlineArrowRight onClick={goBack} className=' text-[30px] h-[30px] lg:h-[50px] lg:text-[45px]  ' />
             </motion.div>
             {/* Check if ad has data before rendering */}

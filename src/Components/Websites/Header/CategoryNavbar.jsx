@@ -29,15 +29,15 @@ const CategoryNavbar = ({ onCategoryChange, onBrandChange }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.7 }}
-            className="container">
+            className="container pb-2 xl:pb-4">
             
             {/* Category Section */}
-            <div className="flex justify-between overflow-x-auto overflow-y-hidden scroll-smooth custom-scrollbar pb-[5px] md:pb-[10px]">
+            <div className="flex justify-between overflow-x-auto overflow-y-hidden scroll-smooth custom-scrollbar pb-[5px] md:pb-[10px]  ">
                 {data.map((category, index) => (
                     <div
                         key={index}
                         onClick={() => handleCategoryClick(index)}
-                        className={`flex flex-col items-center justify-center w-[90px]   md:px-4 py-0 lg:py-2 xl:py-4 cursor-pointer 
+                        className={`flex flex-col items-center justify-center w-[90px] md:w-[105px] lg:w-auto   md:px-4 py-0 lg:py-2 xl:py-4 cursor-pointer 
                             transition-transform transform ${selectedCategory === index ? 'lg:bg-border rounded-10px duration-300' : ''
                             }`}
                     >
@@ -100,11 +100,11 @@ const CategoryNavbar = ({ onCategoryChange, onBrandChange }) => {
                             <div
                                 key={index}
                                 onClick={() => handleBrandClick(index)}
-                                className={`border rounded-md lg:rounded-10px px-3 py-[6px] leading-3 md:p-2 w-fit bg-white text-center cursor-pointer 
+                                className={`border rounded-md lg:rounded-10px px-3 py-[6px] leading-3 md:p-2 lg:p-4 w-fit bg-white text-center cursor-pointer 
                                                  ${selectedBrand === index ? 'text-primary' : 'text-placeholder'
                                     }`}
                             >
-                                <p className="text-[9px] lg:text-[16px]  truncate">
+                                <p className="text-[9px] lg:text-[16px]  text-nowrap">
                                     {brand.arabic ? brand.arabic : brand}
                                 </p>
                             </div>

@@ -74,42 +74,44 @@ const Landing = () => {
             <MainHeader
                 onSearch={handleSearch}
             />
-            <SubNavbar onSearch={handleSearch} onLocationChange={handleLocationChange} />
-            <CategoryNavbar onCategoryChange={handleCategoryChange} onBrandChange={handleBrandChange} />
-            <div className="min-h-[100vh] container flex gap-[10px] md:gap-5 xl:gap-7">
-                <div className="w-full md:w-[1138px]">
-                    <Posts
-                        selectedCategory={selectedCategory}
-                        selectedBrand={selectedBrand}
-                        visibleCount={visibleCount}
-                        ads={ads}
-                        sponsorImages={sponsorImages}
-                        loading={loading}
+            <div className='mt-[70px] md:mt-[80px] lg:mt-[100px]'>
+                <SubNavbar onSearch={handleSearch} onLocationChange={handleLocationChange} />
+                <CategoryNavbar onCategoryChange={handleCategoryChange} onBrandChange={handleBrandChange} />
+                <div className="min-h-[100vh] container flex gap-[10px] md:gap-5 xl:gap-7">
+                    <div className="w-full md:w-[1138px]">
+                        <Posts
+                            selectedCategory={selectedCategory}
+                            selectedBrand={selectedBrand}
+                            visibleCount={visibleCount}
+                            ads={ads}
+                            sponsorImages={sponsorImages}
+                            loading={loading}
+                        />
+                    </div>
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.5 }}
+                        className="hidden lg:block bg-bgsecondary w-[455px] overflow-y-auto"
+                        style={{
+                            backgroundImage: sponsorImages ? `url(${sponsorImages.imageUrl})` : 'none',
+                            backgroundRepeat: 'repeat-y',
+                            backgroundSize: 'contain',
+                        }}
                     />
                 </div>
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.5 }}
-                    className="hidden lg:block bg-bgsecondary w-[455px] overflow-y-auto"
-                    style={{
-                        backgroundImage: sponsorImages ? `url(${sponsorImages.imageUrl})` : 'none',
-                        backgroundRepeat: 'repeat-y',
-                        backgroundSize: 'contain',
-                    }}
-                />
-            </div>
 
-            {visibleCount < ads.length && (
-                <div className="text-center mb-[5px] md:mb-[10px] lg:mb-[2px] mt-[15px] md:mt-[30px] w-full">
-                    <div
-                        onClick={handleShowMore}
-                        className="border md:border-2 border-border text-[10px] md:text-[13px] lg:text-[17px] mx-auto h-[40px] md:h-[60px] lg:h-[76px] w-[110px] md:w-[150px] lg:w-[250px] rounded-10px flex justify-center items-center font-semibold text-placeholder cursor-pointer"
-                    >
-                        مشاهدة المزيد ...
+                {visibleCount < ads.length && (
+                    <div className="text-center mb-[5px] md:mb-[10px] lg:mb-[2px] mt-[15px] md:mt-[30px] w-full">
+                        <div
+                            onClick={handleShowMore}
+                            className="border md:border-2 border-border text-[10px] md:text-[13px] lg:text-[17px] mx-auto h-[40px] md:h-[60px] lg:h-[76px] w-[110px] md:w-[150px] lg:w-[250px] rounded-10px flex justify-center items-center font-semibold text-placeholder cursor-pointer"
+                        >
+                            مشاهدة المزيد ...
+                        </div>
                     </div>
-                </div>
-            )}
+                )}
+            </div>
         </div>
     );
 };

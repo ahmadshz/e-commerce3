@@ -55,7 +55,7 @@ const SubNavbar = ({ onSearch, onLocationChange }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className='container flex flex-wrap lg:flex-nowrap justify-between items-center gap-2'>
+            className='container flex flex-wrap lg:flex-nowrap justify-between items-center gap-2 my-2'>
             {/* Search Box */}
 
             <SearchBox
@@ -72,7 +72,7 @@ const SubNavbar = ({ onSearch, onLocationChange }) => {
 
             />
             {/* Location Dropdown */}
-            <div className='flex justify-between items-center gap-4 w-full lg:w-3/5'>
+            <div className='flex justify-between items-center gap-2 md:gap-4 w-full lg:w-3/5 mb-[6px] lg:mb-0'>
                 <div className="w-3/4 lg:w-[160px] 2xl:w-[195px] border md:border-2 border-border rounded-md lg:rounded-10px relative text-placeholder">
                     <button
                         onClick={toggleDropdown}

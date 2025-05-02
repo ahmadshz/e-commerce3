@@ -96,7 +96,7 @@ const Register = () => {
             // Save email in localStorage
             localStorage.setItem('email', formData.email);
 
-            navigate('/verification');
+            navigate('/login');
         } catch (err) {
             console.error('Server Error:', err.response?.data || err.message);
             setError(err.response?.data?.message || 'فشل في إنشاء الحساب، يرجى المحاولة مرة أخرى');

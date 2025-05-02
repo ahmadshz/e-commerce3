@@ -48,7 +48,7 @@ const SearchBox = ({
             <button onClick={handleSearch}>
                 {iconSearch ?
                     (
-                        <IoSearchOutline className='bg-white text-primary h-[25px]  w-[30px] lg:hidden absolute left-[1px] top-[4px] py-1 md:p-2  cursor-pointer' />
+                        <IoSearchOutline className='bg-white text-primary h-[25px] md:h-[35px]  w-[30px] md:w-[35px] lg:hidden absolute left-[1px] top-[4px] py-1 md:p-2  cursor-pointer' />
 
                     )
                     : (
