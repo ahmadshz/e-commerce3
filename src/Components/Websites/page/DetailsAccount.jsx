@@ -43,7 +43,7 @@ const DetailsAccount = () => {
     <div className="min-h-screen">
       <MainHeader />
       <div className="min-h-screen   ">
-        <div className="py-6 bg-white container">
+        <div className="py-6 bg-white container pt-[80px] md:pt-[90px] lg:pt-[100px]">
           {/* Details Account*/}
           <h2 className="text-[16px] md:text-[20px] lg:text-[25px] w-full text-primary font-bold my-4 md:my-10 lg:my-14 ">
             معلومات الحساب
