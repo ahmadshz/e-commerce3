@@ -102,7 +102,7 @@ const AddPostEstate = () => {
                                 className='w-full h-[50px] md:h-[60px] lg:h-[76px] text-placeholder block
                                  border md:border-2 border-border rounded-10px 
                                 text-[12px] md:text-[14px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none focus:border-primary duration-200'
-                                placeholder='مثال : متور كاوازاكي slv 227'
+                                placeholder='مثال : شقة للإيجار في حي الزبيدي بسعر مغري جداً'
                                 value={title}
                                 onChange={(e) => setTitle(e.target.value)}
                             />
