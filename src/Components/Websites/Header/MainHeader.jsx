@@ -14,6 +14,7 @@ import { motion } from 'framer-motion';
 import { FavoriteContext } from '../../../Context/FavoriteContext';
 import Favorite from '../UI/Favorite';
 import SearchBox from '../UI/SearchBox';
+import { CgMenu } from 'react-icons/cg';
 
 
 const MainHeader = ({ onSearch }) => {
@@ -111,23 +112,22 @@ const MainHeader = ({ onSearch }) => {
               setShowHistory={setShowHistory}
               onSearch={handleSearch}
               onDeleteHistoryItem={handleDeleteSearch}
-              classNameBox='h-[35px] md:h-[45px] xl:h-[53px]   relative rounded -ml-[2px] '
-              className='h-full font-normal w-[230px] max-[400px]:w-[205px] p-1 text-[9px] md:text-[14px] lg:text-[17px] !rounded-md pr-2 md:pr-[10px] xl:pr-[20px] focus:outline-none'
-
-              classNameIcon='h-[34px] md:h-[43px] xl:h-[52px] w-[40px] lg:w-[54px] absolute -left-[1px] -top-[1.5px] p-1 md:p-2  cursor-pointer'
+              classNameBox='h-[35px] md:h-[45px] xl:h-[53px]   relative rounded -ml-[2px] bg-white  border border-white'
+              className='h-full font-normal bg-white w-[230px] max-[400px]:w-[205px] p-1 text-[9px] md:text-[14px] lg:text-[17px] !rounded-md pr-2 md:pr-[10px] xl:pr-[20px] focus:outline-none'
+              classNameIcon='h-[34px] md:h-[43px] xl:h-[52px] w-[40px] lg:w-[54px] absolute -left-[1px] -top-[1.5px] p-1 md:p-2 bg-white  cursor-pointer'
               iconSearch
             />
           </div>
         }
         <div className='text-white flex'>
-          <div className='flex gap-2  lg:mx-2 items-center'>
+          <div className='flex gap-1  lg:mx-2 items-center'>
             <button onClick={toggleFavorite} className='border-2 hidden lg:flex items-center justify-center border-white rounded-10px 
              px-8 md:h-[45px] xl:h-[50px] lg:text-[17px]'>المفضلة</button>
             <Link to={'/myaccount'}>
               <img className='w-7 lg:hidden' src={userMobile} alt='' />
             </Link>
             <button className='lg:hidden' onClick={toggleSidebar}>
-              <img className='w-7 lg:hidden' src={Menu} alt='' />
+              <CgMenu size={30} />
             </button>
           </div>
           {toggleFavorite ? <Favorite /> : ""}

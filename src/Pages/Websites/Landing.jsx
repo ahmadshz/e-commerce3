@@ -73,7 +73,6 @@ const Landing = () => {
         <div className='min-h-screen flex flex-col gap-[10px] md:gap-5 xl:gap-7 pb-[20px] md:pb-0'>
             <MainHeader
                 onSearch={handleSearch}
-               
             />
             <SubNavbar onSearch={handleSearch} onLocationChange={handleLocationChange} />
             <CategoryNavbar onCategoryChange={handleCategoryChange} onBrandChange={handleBrandChange} />

@@ -107,24 +107,24 @@ const Posts = ({ ads, selectedCategory, selectedBrand, visibleCount, sponsorImag
                                 <div className='w-4/6 lg:w-4/5 px-3 md:p-3 h-full flex flex-col justify-between'>
                                     <div className='text-[12px] lg:text-[20px] font-semibold truncate'>{item.title}</div>
                                     <div className='flex gap-4 lg:gap-10'>
-                                        <div>
+                                        <div className='w-1/2 lg:w-auto max-w-[250px]  truncate'>
                                             <div className='flex gap-1'>
                                                 <img className='w-4 md:w-5' src={clock} alt="" />
-                                                <h1 className='text-[10px] lg:text-[14px] text-placeholder w-[50px] truncate'>{timeAgo(item.createdAt)}</h1>
+                                                <h1 className='text-[10px] lg:text-[14px] text-placeholder  '>{timeAgo(item.createdAt)}</h1>
                                             </div>
                                             <div className='flex gap-1'>
                                                 <img className='w-4 md:w-5' src={person} alt="" />
-                                                <h1 className='text-[10px] lg:text-[14px] text-placeholder w-[50px] truncate'>{item.user.username}</h1>
+                                                <h1 className='text-[10px] lg:text-[14px] text-placeholder  '>{item.user.username}</h1>
                                             </div>
                                         </div>
-                                        <div>
+                                        <div className='w-1/2 lg:w-auto truncate'>
                                             <div className='flex gap-1'>
                                                 <img className='w-4 md:w-5' src={price} alt="" />
-                                                <h1 className='text-[10px] lg:text-[14px] text-placeholder w-[50px] truncate'>{item.priceUSD}</h1>
+                                                <h1 className='text-[10px] lg:text-[14px] text-placeholder  '>{item.priceUSD}</h1>
                                             </div>
                                             <div className='flex gap-1'>
                                                 <img className='w-4 md:w-5' src={pricesy} alt="" />
-                                                <h1 className='text-[10px] lg:text-[14px] text-placeholder w-[50px] truncate'>{item.priceSYP}</h1>
+                                                <h1 className='text-[10px] lg:text-[14px] text-placeholder '>{item.priceSYP}</h1>
                                             </div>
                                         </div>
                                     </div>
