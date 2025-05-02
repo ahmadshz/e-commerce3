@@ -6,6 +6,7 @@ import axios from 'axios';
 import { baseUrl } from '../../Api/Api';
 import { motion } from 'framer-motion';
 import MainHeader from '../../Components/Websites/Header/MainHeader';
+import ButtonAddMobile from '../../Components/Websites/UI/ButtonAddMobile';
 
 const Landing = () => {
     const [ads, setAds] = useState([]);
@@ -74,7 +75,7 @@ const Landing = () => {
             <MainHeader
                 onSearch={handleSearch}
             />
-            <div className='mt-[70px] md:mt-[80px] lg:mt-[100px]'>
+            <div className='mt-[70px] md:mt-[80px] lg:mt-[100px] mb-[38px] md:mb-0'>
                 <SubNavbar onSearch={handleSearch} onLocationChange={handleLocationChange} />
                 <CategoryNavbar onCategoryChange={handleCategoryChange} onBrandChange={handleBrandChange} />
                 <div className="min-h-[100vh] container flex gap-[10px] md:gap-5 xl:gap-7">
@@ -102,7 +103,7 @@ const Landing = () => {
                 </div>
 
                 {visibleCount < ads.length && (
-                    <div className="text-center mb-[5px] md:mb-[10px] lg:mb-[2px] mt-[15px] md:mt-[30px] w-full">
+                    <div className="text-center  md:mb-[10px] lg:mb-[2px] mt-[15px] md:mt-[30px] w-full">
                         <div
                             onClick={handleShowMore}
                             className="border md:border-2 border-border text-[10px] md:text-[13px] lg:text-[17px] mx-auto h-[40px] md:h-[60px] lg:h-[76px] w-[110px] md:w-[150px] lg:w-[250px] rounded-10px flex justify-center items-center font-semibold text-placeholder cursor-pointer"
@@ -112,6 +113,7 @@ const Landing = () => {
                     </div>
                 )}
             </div>
+            <ButtonAddMobile />
         </div>
     );
 };
