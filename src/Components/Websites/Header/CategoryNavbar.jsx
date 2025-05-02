@@ -104,7 +104,7 @@ const CategoryNavbar = ({ onCategoryChange, onBrandChange }) => {
                                                  ${selectedBrand === index ? 'text-primary' : 'text-placeholder'
                                     }`}
                             >
-                                <p className="text-[9px] lg:text-[16px]  text-nowrap">
+                                <p className="text-[9px] lg:text-[16px]  !text-nowrap">
                                     {brand.arabic ? brand.arabic : brand}
                                 </p>
                             </div>
