@@ -100,11 +100,11 @@ const CategoryNavbar = ({ onCategoryChange, onBrandChange }) => {
                             <div
                                 key={index}
                                 onClick={() => handleBrandClick(index)}
-                                className={`border rounded-md lg:rounded-10px px-3 py-[6px] leading-3 md:p-2 lg:p-4 w-fit bg-white text-center cursor-pointer 
-                                                 ${selectedBrand === index ? 'text-primary' : 'text-placeholder'
+                                className={`border rounded-md lg:rounded-10px px-3 py-[6px] leading-3 md:p-2 lg:p-4 w-auto bg-white text-center 
+                                    cursor-pointer  ${selectedBrand === index ? 'text-primary' : 'text-placeholder'
                                     }`}
                             >
-                                <p className="text-[9px] lg:text-[16px]  !text-nowrap">
+                                <p className="text-[9px] lg:text-[16px]  text-nowrap flex">
                                     {brand.arabic ? brand.arabic : brand}
                                 </p>
                             </div>
