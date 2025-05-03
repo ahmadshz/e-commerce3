@@ -64,7 +64,7 @@ const PostAdmin = () => {
     // Handle delete post
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`${baseUrl}/ad/${id}`, {
+            await axios.delete(`${baseUrl}/ad/delete-ad/${id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },

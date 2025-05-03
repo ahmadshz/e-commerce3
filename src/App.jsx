@@ -44,12 +44,12 @@ function App() {
     <div dir="rtl" className="font-medium text-lg ">
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/registration" element={<RegistrationMembership/>} />
-        <Route path="/memberDocumentation" element={<MembreDocumentation/>} />
-        <Route path="/faq" element={<FrequentlyAsked/>} />
-        <Route path="/prohibitedAds" element={<ProhibitedAds/>} />
-        <Route path="/privacyPolicy" element={<PrivacyPolicy/>} />
-        <Route path="/securityCenter" element={<SecurityCenter/>} />
+        <Route path="/registration" element={<RegistrationMembership />} />
+        <Route path="/memberDocumentation" element={<MembreDocumentation />} />
+        <Route path="/faq" element={<FrequentlyAsked />} />
+        <Route path="/prohibitedAds" element={<ProhibitedAds />} />
+        <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
+        <Route path="/securityCenter" element={<SecurityCenter />} />
         {/*Auth */}
         <Route element={<RequireBack />} >
           <Route path="/login" element={<Login />} />
@@ -63,7 +63,7 @@ function App() {
         {/*Dashboard */}
         <Route element={<RequiredDashboard />} >
           <Route path="/dashboard" element={<Dashboard />}>
-          <Route path="welcomeDashboard" element={<WelcomeDashboard />} />
+            <Route path="welcomeDashboard" element={<WelcomeDashboard />} />
             <Route path="users" element={<User />} />
             <Route path="users/:id" element={<ShowUser />} />
             <Route path="posts" element={<PostAdmin />} />

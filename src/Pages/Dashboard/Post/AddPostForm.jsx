@@ -13,8 +13,6 @@ const AddPostForm = () => {
     const token = cookies.get('auth_token');
 
 
-
-
     // Handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault(); 
