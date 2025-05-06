@@ -6,6 +6,7 @@ import Cookies from 'universal-cookie'; // Import universal-cookie
 import Navbar from '../../Components/Websites/Header/Navbar';
 import { FaRegEyeSlash } from 'react-icons/fa';
 import { BiShow } from 'react-icons/bi';
+import { IoCloseSharp } from "react-icons/io5";
 
 const Register = () => {
     // State
@@ -34,15 +35,13 @@ const Register = () => {
         if (id === "phone") {
             let cleanedValue = value.replace(/\D/g, "");
 
-            // Ensure it always starts with "+963 9"
+            // يجب أن يبدأ بـ 9639
             if (!cleanedValue.startsWith("9639")) {
                 cleanedValue = "9639";
             }
 
-            // Limit the total length to "+963 9" followed by 8 digits
-            if (cleanedValue.length > 12) {
-                cleanedValue = cleanedValue.slice(0, 12);
-            }
+            // اجعل الطول فقط 12 رقم كحد أقصى (9639 + 8 أرقام = 12)
+            cleanedValue = cleanedValue.slice(0, 12);
 
             setFormData({
                 ...formData,
@@ -62,13 +61,21 @@ const Register = () => {
         e.preventDefault();
         setLoading(true);
         setError(null);
-
-        // Validate phone number format
+        // Check if the phone number starts with +963
         if (!formData.phone.startsWith('+963')) {
             setError('رقم الهاتف يجب أن يبدأ ب +963');
             setLoading(false);
             return;
         }
+
+        // Remove all non-digit characters and check the length
+        // It must be exactly 12 digits: 963 + 9 + 8 more digits
+        if (formData.phone.replace(/\D/g, '').length !== 12) {
+            setError('رقم الهاتف يجب أن يتكون من 12 رقماً');
+            setLoading(false);
+            return;
+        }
+
 
         // Ensure password and confirm password match
         if (formData.password !== formData.confirmPassword) {
@@ -166,7 +173,7 @@ const Register = () => {
                     </div>
 
                     {/* Phone Number */}
-                    <div className='flex flex-col lg:flex-row   md:gap-4'>
+                    <div className='flex flex-col lg:flex-row   md:gap-4 relative'>
                         <label htmlFor="phone" className='  text-[14px] md:text-[16px] lg:text-[20px] font-semibold  md:w-[239px] flex items-center '>رقم الجوال</label>
                         <input
                             id='phone'
@@ -175,9 +182,11 @@ const Register = () => {
                             onChange={handleChange}
                             className="text-placeholder  text-[12px] md:text-[14px] lg:text-[17px] border md:border-2 border-border w-full lg:w-[433px] h-[50px] md:h-[60px] lg:h-[76px] flex items-center rounded-10px font-medium  p-3 outline-none focus:border-primary"
                             placeholder='+963 9.. ... ...'
-                            min={12}
+
                             required
                         />
+                      
+
                     </div>
 
                     {/* Email */}

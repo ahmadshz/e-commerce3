@@ -40,8 +40,14 @@ const AddPostEducation = () => {
         e.preventDefault();
 
         // Validate required fields
-        if (!title || !selectedLocation || !selectedBrand || images.length === 0) {
-            setError('الرجاء تعبئة جميع الحقول المطلوبة (العنوان، الموقع، الصور، النوع...).');
+        if (!title || !selectedLocation || !status || !selectedBrand || !priceSYP || !priceUSD || !description || images.length === 0) {
+            setError('يرجى ملء جميع الحقول المطلوبة');
+            return;
+        }
+
+        // تأكد أن السعر أرقام فقط (وأنه لا يحتوي على رموز أو حروف)
+        if (!/^\d+$/.test(priceSYP) || !/^\d+$/.test(priceUSD)) {
+            setError('السعر يجب أن يتكون من أرقام فقط.');
             return;
         }
 

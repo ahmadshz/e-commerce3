@@ -4,7 +4,6 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Logo from '../../../assets/Logo/Logowhite.png';
 import user from '../../../assets/LoginRegister/1.svg';
 import userMobile from '../../../assets/IconMobile/2.svg';
-import Menu from '../../../assets/IconMobile/1.svg';
 import logout from '../../../assets/LoginRegister/3.svg';
 import login from '../../../assets/LoginRegister/2.svg'
 import Sidebar from '../UI/SideBar';  // Import Sidebar component

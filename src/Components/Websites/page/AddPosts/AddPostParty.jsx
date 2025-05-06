@@ -41,6 +41,12 @@ const AddPostParty = () => {
             setError('يرجى ملء جميع الحقول المطلوبة');
             return;
         }
+        
+          // تأكد أن السعر أرقام فقط (وأنه لا يحتوي على رموز أو حروف)
+          if (!/^\d+$/.test(syrianPounds) || !/^\d+$/.test(usDollars)) {
+            setError('السعر يجب أن يتكون من أرقام فقط.');
+            return;
+        }
         setLoading(true)
 
         const formData = new FormData();

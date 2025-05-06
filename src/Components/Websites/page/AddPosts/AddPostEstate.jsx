@@ -43,8 +43,15 @@ const AddPostEstate = () => {
 
         e.preventDefault();
         // Validate required fields
-        if (!title || !selectedLocation || images.length === 0) {
-            setError('الرجاء تعبئة جميع الحقول المطلوبة (العنوان، الموقع، الصور...');
+        // Validate required fields
+        if (!title || !selectedLocation || !status || !type || !isNewProject || !selectedBrand || !priceSYP || !priceUSD || !description || images.length === 0) {
+            setError('يرجى ملء جميع الحقول المطلوبة');
+            return;
+        }
+
+        // تأكد أن السعر أرقام فقط (وأنه لا يحتوي على رموز أو حروف)
+        if (!/^\d+$/.test(priceSYP) || !/^\d+$/.test(priceUSD)) {
+            setError('السعر يجب أن يتكون من أرقام فقط.');
             return;
         }
         setLoading(true)

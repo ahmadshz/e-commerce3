@@ -26,7 +26,7 @@ const AddPostAnimals = () => {
 
     const cookies = new Cookies();
     const token = cookies.get('auth_token');
-    
+
     const handleFileChange = (e) => {
         const files = Array.from(e.target.files);
         if (files.length > 5) {
@@ -38,12 +38,19 @@ const AddPostAnimals = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
+
         // Validate required fields
-        if (!title || !selectedLocation || !selectedBrand || !priceSYP || !priceUSD || !description || images.length === 0) {
+        if (!title || !selectedLocation || !selectedBrand || !status || !priceSYP || !priceUSD || !description || images.length === 0) {
             setError('يرجى ملء جميع الحقول المطلوبة');
             return;
         }
+
+        // تأكد أن السعر أرقام فقط (وأنه لا يحتوي على رموز أو حروف)
+        if (!/^\d+$/.test(priceSYP) || !/^\d+$/.test(priceUSD)) {
+            setError('السعر يجب أن يتكون من أرقام فقط.');
+            return;
+        }
+
         setLoading(true)
 
         // Create FormData to send files & data
@@ -189,7 +196,7 @@ const AddPostAnimals = () => {
                                 {/* Syrian Pounds Input */}
                                 <div className='relative w-full md:w-1/2'>
                                     <input
-                                        type='number'
+                                        type='text'
                                         value={priceSYP}
                                         onChange={(e) => setPriceSYP(e.target.value)}
                                         placeholder='2000000'
@@ -204,7 +211,7 @@ const AddPostAnimals = () => {
                                 {/* US Dollars Input */}
                                 <div className='relative w-full md:w-1/2'>
                                     <input
-                                        type='number'
+                                        type='text'
                                         value={priceUSD}
                                         onChange={(e) => setPriceUSD(e.target.value)}
                                         placeholder='500'

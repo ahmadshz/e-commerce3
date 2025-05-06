@@ -37,10 +37,15 @@ const AddPostFurniture = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        // التحقق من الحقول المطلوبة
-        if (!title || !selectedLocation || !selectedBrand || !priceSYP || !priceUSD || !description || images.length === 0) {
+        // Validate required fields
+        if (!title || !selectedLocation || !status || !selectedBrand || !priceSYP || !priceUSD || !description || images.length === 0) {
             setError('يرجى ملء جميع الحقول المطلوبة');
+            return;
+        }
+
+        // تأكد أن السعر أرقام فقط (وأنه لا يحتوي على رموز أو حروف)
+        if (!/^\d+$/.test(priceSYP) || !/^\d+$/.test(priceUSD)) {
+            setError('السعر يجب أن يتكون من أرقام فقط.');
             return;
         }
         setLoading(true)

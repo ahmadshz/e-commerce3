@@ -41,26 +41,33 @@ const AddPostCar = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-         // Validate required fields
-         if (!title || !selectedLocation || images.length === 0) {
-            setError('الرجاء تعبئة جميع الحقول المطلوبة (العنوان، الموقع، الصور...');
+
+        // Validate required fields
+        if (!title || !selectedLocation || !selectedBrand || !condition || !transmission || !mileage  || !priceSYP || !priceUSD || !description || images.length === 0) {
+            setError('يرجى ملء جميع الحقول المطلوبة');
+            return;
+        }
+
+        // تأكد أن السعر أرقام فقط (وأنه لا يحتوي على رموز أو حروف)
+        if (!/^\d+$/.test(priceSYP) || !/^\d+$/.test(priceUSD)) {
+            setError('السعر يجب أن يتكون من أرقام فقط.');
             return;
         }
         setLoading(true)
         // Create FormData to send files & data
         const formData = new FormData();
-        formData.append('title', title || '');
-        formData.append('location', selectedLocation || '');
-        formData.append('condition', condition || '');
-        formData.append('priceSYP', priceSYP || '0');
-        formData.append('priceUSD', priceUSD || '0');
-        formData.append('description', description || '');
-        formData.append('category', category || '');
+        formData.append('title', title );
+        formData.append('location', selectedLocation );
+        formData.append('condition', condition );
+        formData.append('priceSYP', priceSYP );
+        formData.append('priceUSD', priceUSD );
+        formData.append('description', description );
+        formData.append('category', category );
 
         // Append additional fields separately
-        formData.append('transmission', transmission || '');
-        formData.append('vehicleType', selectedBrand || '');
-        formData.append('mileage', mileage || '');
+        formData.append('transmission', transmission );
+        formData.append('vehicleType', selectedBrand );
+        formData.append('mileage', mileage );
 
         // Append images correctly
         images.forEach((image) => {

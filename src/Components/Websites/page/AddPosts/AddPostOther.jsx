@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {  location } from '../../../../utils/data';
+import { location } from '../../../../utils/data';
 import { IoIosCamera } from 'react-icons/io';
 import Dropdown from '../../UI/Dropdowns';
 import RadioButton from '../../UI/RadioButton';
@@ -36,11 +36,16 @@ const AddPostOther = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!title || !selectedLocation ||  !status || !syrianPounds || !usDollars || !description || images.length === 0) {
+        if (!title || !selectedLocation || !status || !syrianPounds || !usDollars || !description || images.length === 0) {
             setError('يرجى ملء جميع الحقول المطلوبة');
             return;
         }
 
+        // تأكد أن السعر أرقام فقط (وأنه لا يحتوي على رموز أو حروف)
+        if (!/^\d+$/.test(syrianPounds) || !/^\d+$/.test(usDollars)) {
+            setError('السعر يجب أن يتكون من أرقام فقط.');
+            return;
+        }
         setLoading(true);
 
         const formData = new FormData();
@@ -207,10 +212,10 @@ const AddPostOther = () => {
                         اعلان
                     </button>
                     <div className='text-primary font-semibold text-[14px] md:text-[16px] lg:text-[20px] '> {error}</div>
-                    </form>
-                </div>
+                </form>
             </div>
-        );
-    };
-    
-    export default AddPostOther;
+        </div>
+    );
+};
+
+export default AddPostOther;
