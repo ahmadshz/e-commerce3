@@ -17,7 +17,7 @@ module.exports = {
       borderRadius: {
         '10px': '10px', // Adding 10px rounded class
       },
-     container: {
+      container: {
         center: true,
         padding: {
           DEFAULT: "1rem",
@@ -28,11 +28,18 @@ module.exports = {
           "2xl": "1rem",
         },
       },
-     
+
       fontFamily: {
         cairo: ['Cairo', 'sans-serif'],
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+      addUtilities({
+        '.dir-ltr': { direction: 'ltr' },
+        '.dir-rtl': { direction: 'rtl' },
+      });
+    },
+  ],
 }
