@@ -186,7 +186,8 @@ const Register = () => {
                             placeholder="+963 9.. ... ..."
                             className="phone-input-custom w-full lg:w-[383px] 2xl:w-[433px] h-[50px] md:h-[60px] lg:h-[76px] text-[14px] 
                             md:text-[16px] lg:text-[17px] border lg:border-2 border-border rounded-10px p-3 "
-                          
+                            style={{ direction: 'ltr' }}  
+
                         />
 
                     </div>
