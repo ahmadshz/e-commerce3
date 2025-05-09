@@ -6,7 +6,10 @@ import Cookies from 'universal-cookie'; // Import universal-cookie
 import Navbar from '../../Components/Websites/Header/Navbar';
 import { FaRegEyeSlash } from 'react-icons/fa';
 import { BiShow } from 'react-icons/bi';
-import { IoCloseSharp } from "react-icons/io5";
+import PhoneInput from 'react-phone-number-input';
+import 'react-phone-number-input/style.css';
+import '../../index.css';
+
 
 const Register = () => {
     // State
@@ -28,20 +31,14 @@ const Register = () => {
 
     const cookies = new Cookies();
 
+
+
     // Handle Change Form Data
     const handleChange = (e) => {
         const { id, value } = e.target;
 
         if (id === "phone") {
             let cleanedValue = value.replace(/\D/g, "");
-
-            // يجب أن يبدأ بـ 9639
-            if (!cleanedValue.startsWith("9639")) {
-                cleanedValue = "9639";
-            }
-
-            // اجعل الطول فقط 12 رقم كحد أقصى (9639 + 8 أرقام = 12)
-            cleanedValue = cleanedValue.slice(0, 12);
 
             setFormData({
                 ...formData,
@@ -129,7 +126,9 @@ const Register = () => {
                             type='text'
                             value={formData.firstName}
                             onChange={handleChange}
-                            className='text-placeholder  text-[12px] md:text-[14px] lg:text-[17px] border md:border-2 border-border w-full lg:w-[433px] h-[50px] md:h-[60px] lg:h-[76px] flex items-center rounded-10px font-medium  p-3 outline-none focus:border-primary'
+                            className='text-placeholder  text-[12px] md:text-[14px] lg:text-[17px] border md:border-2 border-border w-full 
+                                    xl:w-[345px]  2xl:w-[433px] h-[50px] md:h-[60px] lg:h-[76px] flex items-center rounded-10px font-medium  p-3
+                             outline-none focus:border-primary'
                             placeholder='اكتب اسمك باللغة العربية'
                             required
                         />
@@ -162,7 +161,8 @@ const Register = () => {
                                 type='text'
                                 value={formData.username}
                                 onChange={handleChange}
-                                className="text-placeholder  text-[12px] md:text-[14px] px-3 lg:text-[17px] border md:border-2 border-border w-full h-[50px] md:h-[60px] lg:h-[76px] flex items-center rounded-10px font-medium  outline-none focus:border-primary"
+                                className="text-placeholder  text-[12px] md:text-[14px] px-3 lg:text-[17px] border md:border-2 border-border 
+                                w-full h-[50px] md:h-[60px] lg:h-[76px] flex items-center rounded-10px font-medium  outline-none focus:border-primary"
                                 placeholder='اكتب اسم المستخدم باللغة الانجليزية'
                                 required
                             />
@@ -172,33 +172,36 @@ const Register = () => {
                         </div>
                     </div>
 
-                    {/* Phone Number */}
-                    <div className='flex flex-col lg:flex-row   md:gap-4 relative'>
-                        <label htmlFor="phone" className='  text-[14px] md:text-[16px] lg:text-[20px] font-semibold  md:w-[239px] flex items-center '>رقم الجوال</label>
-                        <input
-                            id='phone'
-                            type='tel'
-                            value={formData.phone}
-                            onChange={handleChange}
-                            className="text-placeholder  text-[12px] md:text-[14px] lg:text-[17px] border md:border-2 border-border w-full lg:w-[433px] h-[50px] md:h-[60px] lg:h-[76px] flex items-center rounded-10px font-medium  p-3 outline-none focus:border-primary"
-                            placeholder='+963 9.. ... ...'
+                    <div className='flex flex-col lg:flex-row md:gap-4 relative'>
+                        <label htmlFor="phone" className='text-[14px] md:text-[16px] lg:text-[20px] font-semibold md:w-[239px] flex items-center'>
+                            رقم الجوال
+                        </label>
 
-                            required
+                        <PhoneInput
+                            id="phone"
+                            international
+                            defaultCountry="SY"
+                            value={formData.phone}
+                            onChange={(value) => setFormData({ ...formData, phone: value })}
+                            placeholder="+963 9.. ... ..."
+                            className="phone-input-custom w-full lg:w-[383px] 2xl:w-[433px] h-[50px] md:h-[60px] lg:h-[76px] text-[14px] 
+                            md:text-[16px] lg:text-[17px] border lg:border-2 border-border rounded-10px p-3 "
+                          
                         />
-                      
 
                     </div>
 
                     {/* Email */}
                     <div className='flex flex-col lg:flex-row   md:gap-4 col-span-1 sm:col-span-2'>
-                        <label htmlFor="email" className='  text-[14px] md:text-[16px] lg:text-[20px] font-semibold  xl:w-[239px] flex items-center'>ايميل
+                        <label htmlFor="email" className='  text-[14px] md:text-[16px] lg:text-[20px] font-semibold lg:w-[220px]  xl:w-[239px] flex items-center'>ايميل
                         </label>
                         <input
                             id='email'
                             type='email'
                             value={formData.email}
                             onChange={handleChange}
-                            className='text-placeholder text-left border md:border-2 border-border w-full lg:w-[800px] xl:w-[1183px] 2xl:w-[1202px] h-[50px] md:h-[60px] lg:h-[76px] rounded-10px  text-[12px] md:text-[14px] lg:text-[17px] font-medium  p-3 flex items-center outline-none focus:border-primary'
+                            className='text-placeholder text-left border md:border-2 border-border w-full lg:w-[1150px] 
+                            xl:w-[1183px] 2xl:w-[1202px] h-[50px] md:h-[60px] lg:h-[76px] rounded-10px  text-[12px] md:text-[14px] lg:text-[17px] font-medium  p-3 flex items-center outline-none focus:border-primary'
                             placeholder='@'
                             required
                         />

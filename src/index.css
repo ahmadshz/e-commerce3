@@ -16,39 +16,99 @@ body {
 
 /* Custom Scrollbar Styles */
 .custom-scrollbar::-webkit-scrollbar {
-  height: 10px; 
-  width: 6px; 
+  height: 10px;
+  width: 6px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-  background: #f1f1f1; 
-  border-radius: 10px; 
+  background: #f1f1f1;
+  border-radius: 10px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
   background: #d3d3d3 !important;
-  border-radius: 10px; 
+  border-radius: 10px;
 }
 
 
 .custom-scroll::-webkit-scrollbar {
-  height: 10px; 
-  width: 8px; 
+  height: 10px;
+  width: 8px;
 }
 
 .custom-scroll::-webkit-scrollbar-track {
-  background: #f1f1f1; 
-  border-radius: 10px; 
+  background: #f1f1f1;
+  border-radius: 10px;
 }
 
 .custom-scroll::-webkit-scrollbar-thumb {
-  background: #d3d3d3 !important; 
-  border-radius: 10px; 
+  background: #d3d3d3 !important;
+  border-radius: 10px;
 }
 
 
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+
+/* إزالة الـ outline من العنصر الكامل */
+.PhoneInput:focus-within {
+  outline: none;
+  box-shadow: none;
+}
+
+/* إزالة الـ outline من حقل الإدخال */
+.PhoneInputInput:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: #ff402c; /* أو أي لون تريد عند التركيز */
+}
+
+.PhoneInput:focus-within {
+  outline: none;
+  box-shadow: none;
+  border-color: #ff402c !important; /* الحد الكامل للحاوية */
+}
+.PhoneInputCountrySelect {
+  width: 100% !important;
+  height: 300px;
+}
+
+/* ضبط العنصر الأب لكي لا يضغط الحقل */
+.PhoneInputCountry {
+  width: auto !important;
+}
+
+
+.PhoneInput optgroup {
+  width: 100%;
+}
+
+/* جعل حقل اختيار الدولة بدون تصميم افتراضي */
+.PhoneInputCountrySelect {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: none;
+  border: none;
+  padding-right: 0;
+  position: relative;
+  cursor: pointer;
+}
+
+/* إظهار العلم والسهم جنبًا إلى جنب */
+.PhoneInputCountry {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+}
+.PhoneInputCountrySelectArrow {
+  width: 10px !important;
+  height: 10px !important;
+  margin-bottom: 5px;
+  border-color: #ff402c !important; /* السهم باللون الأسود افتراضيًا */
 }
 

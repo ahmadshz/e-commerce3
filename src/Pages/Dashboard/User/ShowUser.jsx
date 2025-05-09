@@ -143,7 +143,7 @@ const ShowUser = () => {
                         {postId.slice(0, visiblePosts).map((item, index) => (
                             <div className='bg-[#FAFAFA] w-full h-[110px] md:h-[140px] lg:h-[160px] flex justify-between' key={index}>
                                 <div className='w-2/6 md:w-1/2 xl:w-3/5 flex flex-col justify-between md:py-2 pr-2 md:pr-[10px] xl:pr-[20px]'>
-                                    <Link to={`/singlePost/${item._id}`} className='w-[90%] text-[14px] md:text-[19px] lg:text-[24px] font-semibold'>
+                                    <Link to={`/${item._id}`} className='w-[90%] text-[14px] md:text-[19px] lg:text-[24px] font-semibold'>
                                         {item.title}
                                     </Link>
                                     <h1 className='py-0 text-[13px] md:text-[15px] font-normal text-placeholder'>{item.location}</h1>

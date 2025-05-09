@@ -158,7 +158,7 @@ const MyPost = () => {
                                 >
                                     {/* Title and Location */}
                                     <div className='w-2/6 md:w-3/5 mt-2 lg:w-2/6 flex flex-col justify-between lg:h-full md:py-2 pr-2 md:pr-[10px] xl:pr-[20px]'>
-                                        <Link to={`/singlePost/${item._id}`} className='text-[12px] lg:text-[20px] font-semibold'>{item.title}</Link>
+                                        <Link to={`/${item._id}`} className='text-[12px] lg:text-[20px] font-semibold'>{item.title}</Link>
                                         <span className='text-[10px] lg:text-[14px] font-normal text-placeholder'>{item.location}</span>
                                     </div>
 

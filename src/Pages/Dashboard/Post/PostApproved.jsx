@@ -207,7 +207,7 @@ const PostApproved = () => {
                                         {new Date(ad.createdAt).toLocaleDateString()}
                                     </td>
                                     <td className="px-3 py-6 h-full flex justify-end items-center gap-2">
-                                        <Link to={`/singlePost/${ad._id}`}>
+                                        <Link to={`/${ad._id}`}>
                                             <IoReaderOutline size={20} className="text-blue-500" />
                                         </Link>
                                         <button onClick={() => approveAd(ad._id)} className="text-blue-500 hover:text-blue-700"><FaCheck /></button>

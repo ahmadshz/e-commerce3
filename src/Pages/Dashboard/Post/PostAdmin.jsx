@@ -217,7 +217,7 @@ const PostAdmin = () => {
                                     {new Date(post.createdAt).toLocaleDateString()}
                                 </td>
                                 <td className="px-3 py-6 h-full flex justify-end items-center gap-2">
-                                    <Link to={`/singlePost/${post._id}`}>
+                                    <Link to={`/${post._id}`}>
                                         <IoReaderOutline size={20} className="text-blue-500" />
                                     </Link>
                                     <MdDelete
