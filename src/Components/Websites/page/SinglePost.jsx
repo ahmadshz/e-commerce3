@@ -341,10 +341,15 @@ const SinglePost = () => {
                                     <p className='text-[12px] lg:text-[20px] font-normal'>الحالة: {ad.condition === 'new' ? 'جديد' : 'مستعمل'}</p>
                                 </div>
                             )}
-                            <button className={` px-4 text-white rounded-10px h-[50px] md:h-[60px]   text-[12px] md:text-[14px] lg:text-[17px]
+                            <div className='flex items-center gap-2'>
+                                <div className='bg-placeholder text-white px-4  rounded-10px h-[50px] md:h-[60px] flex items-center justify-center
+                                                 text-[12px] md:text-[14px] lg:text-[17px]'>#{ad.adNumber}</div>
+                                <button className={`  px-4 text-white rounded-10px h-[50px] md:h-[60px]   text-[12px] md:text-[14px] lg:text-[17px]
                              ${isFavorite ? "bg-primary" : "bg-placeholder"}`} onClick={handleFavorite}>
-                                {isFavorite ? "حذف من المفضلة" : "اضافة الى المفضلة"}
-                            </button>
+                                    {isFavorite ? "حذف من المفضلة" : "اضافة الى المفضلة"}
+                                </button>
+
+                            </div>
                         </motion.div>
 
                         <div className='w-full custom-scroll overflow-x-auto  flex flex-wrap  gap-10  py-4' st>
