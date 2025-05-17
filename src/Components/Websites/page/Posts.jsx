@@ -42,10 +42,11 @@ const Posts = ({ ads, selectedCategory, selectedBrand, visibleCount, sponsorImag
 
     const reversedAds = [...filteredAds].reverse();
 
+    // Modified this part to add sponsor after every 5 ads
     const adsWithSponsor = [];
     reversedAds.forEach((ad, index) => {
         adsWithSponsor.push(ad);
-        if (index === 4) {
+        if ((index + 1) % 5 === 0) {
             adsWithSponsor.push('sponsor');
         }
     });
@@ -66,90 +67,87 @@ const Posts = ({ ads, selectedCategory, selectedBrand, visibleCount, sponsorImag
 
     return (
         <div className='flex flex-col gap-5'>
-            {loading ?
-
-                (
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.5 }}
-                        className="text-center text-[13px] lg:text-[20px] font-semibold py-10"
-                    >
-                        جاري تحميل الإعلانات...
-                    </motion.div>
-                )
-                : displayedAds.length > 0 ? (
-                    displayedAds.map((item, index) =>
-                        item === 'sponsor' ? (
-                            <motion.div
-                                key="sponsor"
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.5 }}
-                                className="w-full h-[150px] md:h-[200px] bg-bgsecondary flex justify-center items-center lg:hidden cursor-pointer"
-                                onClick={handleSponsorClick}
-                            >
-                                <img
-                                    src={sponsorImages?.imageUrl}
-                                    alt="Sponsor"
-                                    className="w-full h-full object-cover"
-                                />
-                            </motion.div>
-                        ) : (
-                            <motion.div
-                                onClick={() => goToSinglePost(item._id)}
-                                key={item._id}
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.5, delay: (index % 10) * 0.3 }}
-                                className='bg-[#FAFAFA] w-full h-[120px] md:h-[140px] lg:h-[160px] flex justify-between cursor-pointer'
-                            >
-                                <div className='w-4/6 lg:w-4/5 px-3 md:p-3 h-full flex flex-col justify-between'>
-                                    <div className='text-[12px] lg:text-[20px] font-semibold truncate'>{item.title}</div>
-                                    <div className='flex gap-4 lg:gap-10'>
-                                        <div className='w-1/2 lg:w-auto max-w-[250px]  truncate'>
-                                            <div className='flex gap-1'>
-                                                <img className='w-4 md:w-5' src={clock} alt="" />
-                                                <h1 className='text-[10px] lg:text-[14px] text-placeholder  '>{timeAgo(item.createdAt)}</h1>
-                                            </div>
-                                            <div className='flex gap-1'>
-                                                <img className='w-4 md:w-5' src={person} alt="" />
-                                                <h1 className='text-[10px] lg:text-[14px] text-placeholder  '>{item.user.username}</h1>
-                                            </div>
+            {loading ? (
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.5 }}
+                    className="text-center text-[13px] lg:text-[20px] font-semibold py-10"
+                >
+                    جاري تحميل الإعلانات...
+                </motion.div>
+            ) : displayedAds.length > 0 ? (
+                displayedAds.map((item, index) =>
+                    item === 'sponsor' ? (
+                        <motion.div
+                            key={`sponsor-${index}`} // Added index to key to avoid duplicate keys
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5 }}
+                            className="w-full h-[150px] md:h-[200px] bg-bgsecondary flex justify-center items-center lg:hidden cursor-pointer"
+                            onClick={handleSponsorClick}
+                        >
+                            <img
+                                src={sponsorImages?.imageUrl}
+                                alt="Sponsor"
+                                className="w-full h-full object-cover"
+                            />
+                        </motion.div>
+                    ) : (
+                        <motion.div
+                            onClick={() => goToSinglePost(item._id)}
+                            key={item._id}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: (index % 10) * 0.3 }}
+                            className='bg-[#FAFAFA] w-full h-[120px] md:h-[140px] lg:h-[160px] flex justify-between cursor-pointer'
+                        >
+                            <div className='w-4/6 lg:w-4/5 px-3 md:p-3 h-full flex flex-col justify-between'>
+                                <div className='text-[12px] lg:text-[20px] font-semibold truncate'>{item.title}</div>
+                                <div className='flex gap-4 lg:gap-10'>
+                                    <div className='w-1/2 lg:w-auto max-w-[250px]  truncate'>
+                                        <div className='flex gap-1'>
+                                            <img className='w-4 md:w-5' src={clock} alt="" />
+                                            <h1 className='text-[10px] lg:text-[14px] text-placeholder  '>{timeAgo(item.createdAt)}</h1>
                                         </div>
-                                        <div className='w-1/2 lg:w-auto truncate'>
-                                            <div className='flex gap-1'>
-                                                <img className='w-4 md:w-5' src={price} alt="" />
-                                                <h1 className='text-[10px] lg:text-[14px] text-placeholder  '>{item.priceUSD}</h1>
-                                            </div>
-                                            <div className='flex gap-1'>
-                                                <img className='w-4 md:w-5' src={pricesy} alt="" />
-                                                <h1 className='text-[10px] lg:text-[14px] text-placeholder '>{item.priceSYP}</h1>
-                                            </div>
+                                        <div className='flex gap-1'>
+                                            <img className='w-4 md:w-5' src={person} alt="" />
+                                            <h1 className='text-[10px] lg:text-[14px] text-placeholder  '>{item.user.username}</h1>
                                         </div>
                                     </div>
-                                    <div className='text-[10px] lg:text-[14px] text-placeholder'>{item.location}</div>
+                                    <div className='w-1/2 lg:w-auto truncate'>
+                                        <div className='flex gap-1'>
+                                            <img className='w-4 md:w-5' src={price} alt="" />
+                                            <h1 className='text-[10px] lg:text-[14px] text-placeholder  '>{item.priceUSD}</h1>
+                                        </div>
+                                        <div className='flex gap-1'>
+                                            <img className='w-4 md:w-5' src={pricesy} alt="" />
+                                            <h1 className='text-[10px] lg:text-[14px] text-placeholder '>{item.priceSYP}</h1>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className='w-2/6 lg:w-1/5'>
-                                    <img
-                                        className='h-full w-full object-cover'
-                                        src={Array.isArray(item.images) ? item.images[0] : item.images}
-                                        alt=''
-                                    />
-                                </div>
-                            </motion.div>
-                        )
+                                <div className='text-[10px] lg:text-[14px] text-placeholder'>{item.location}</div>
+                            </div>
+                            <div className='w-2/6 lg:w-1/5'>
+                                <img
+                                    className='h-full w-full object-cover'
+                                    src={Array.isArray(item.images) ? item.images[0] : item.images}
+                                    alt=''
+                                />
+                            </div>
+                        </motion.div>
                     )
-                ) : (
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.5 }}
-                        className="text-center text-[13px] lg:text-[20px] font-semibold py-10"
-                    >
-                        لا يوجد اعلانات يرجى زيارة الموقع لاحقًا
-                    </motion.div>
-                )}
+                )
+            ) : (
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.5 }}
+                    className="text-center text-[13px] lg:text-[20px] font-semibold py-10"
+                >
+                    لا يوجد اعلانات يرجى زيارة الموقع لاحقًا
+                </motion.div>
+            )}
 
             {isSponsorClicked && (
                 <motion.div
