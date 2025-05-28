@@ -1,5 +1,5 @@
-import React, { useContext, useEffect } from 'react'; // Import useEffect
-import { Link } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react'; // Import useEffect
+import { Link, useNavigate } from 'react-router-dom';
 import { FaTiktok } from 'react-icons/fa';
 import { GrFacebookOption } from 'react-icons/gr';
 import Cookies from 'universal-cookie';
@@ -7,8 +7,13 @@ import { IoClose, IoPersonSharp } from 'react-icons/io5';
 import { FaCircleArrowLeft } from 'react-icons/fa6';
 import { BiLogoInstagramAlt, BiSolidPlusCircle } from 'react-icons/bi';
 import { FavoriteContext } from '../../../Context/FavoriteContext';
+import { CgClose } from 'react-icons/cg';
 
 const SideBar = ({ isSidebarOpen, toggleSidebar }) => {
+  const [showOption, setShowOption] = useState(false);
+
+  const navigate = useNavigate();
+
   const cookies = new Cookies();
   const token = cookies.get('auth_token');
 
@@ -36,10 +41,40 @@ const SideBar = ({ isSidebarOpen, toggleSidebar }) => {
     toggleFavorite()
   }
 
+  const IfHasAccountPage = () => {
+    token ? navigate('/myaccount') : setShowOption(!showOption) && toggleSidebar();
+  };
+
   return (
     <div >
       {isSidebarOpen && (
         <div className='fixed inset-0  z-[70] lg:hidden ' onClick={toggleSidebar}></div>
+      )}
+
+      {showOption && (
+        <div className='absolute inset-0  bg-white/30 backdrop-blur-sm text-black w-full h-screen flex justify-center items-center z-[99999]'>
+          <div className="flex flex-col gap-4 px-6 py-8 md:py-10 shadow-2xl rounded-lg border-2 border-primary relative w-[80%] md:w-[50%] bg-white">
+            <button onClick={() => setShowOption(false)}>
+              <CgClose className='absolute left-4 top-4 text-[20px]' />
+            </button>
+            <div className='flex flex-col gap-1'>
+              <p className="text-start text-[16px]">هل لديك حساب؟</p>
+              <Link to="/login">
+                <button className="bg-primary text-white px-6 py-2 rounded-xl hover:opacity-90 transition w-full">
+                  تسجيل الدخول
+                </button>
+              </Link>
+            </div>
+            <div className='flex flex-col gap-1'>
+              <p className="text-start text-[16px]">ليس لديك حساب؟</p>
+              <Link to="/register">
+                <button className="bg-primary text-white px-6 py-2 rounded-xl hover:opacity-90 transition w-full">
+                  إنشاء حساب جديد
+                </button>
+              </Link>
+            </div>
+          </div>
+        </div>
       )}
 
       <div
@@ -54,13 +89,17 @@ const SideBar = ({ isSidebarOpen, toggleSidebar }) => {
 
           <div className='flex flex-col  mb-4 px-4'>
             <div className='flex justify-between items-center  '>
-              <Link to={'/login'} className='flex items-center gap-1 py-3'>
-                {token ? (
-                  <div onClick={logout} className='text-[14px] text-primary'>تسجيل الخروج</div>
+
+
+              {
+                token ? (
+                  <Link to={'/login'} className='flex items-center gap-1 py-3'>
+                    <div onClick={logout} className='text-[14px] text-primary'>تسجيل الخروج</div>
+                  </Link>
                 ) : (
-                  <div className='text-[14px]'>تسجيل الدخول او انشاء حساب</div>
-                )}
-              </Link>
+                  <div onClick={IfHasAccountPage} className='text-[14px]'>تسجيل الدخول او انشاء حساب</div>
+                )
+              }
               <FaCircleArrowLeft className='text-primary' size={20} />
             </div>
             <Link to={'/addpost'} className='flex justify-between items-center  '>
@@ -128,7 +167,7 @@ const SideBar = ({ isSidebarOpen, toggleSidebar }) => {
               <GrFacebookOption onClick={() => window.open('https://www.facebook.com/share/166Mdr3wPu/?mibextid=wwXIfr')} size={35} className='text-primary' />
               <BiLogoInstagramAlt onClick={() => window.open('https://www.instagram.com/dallal_sy?igsh=MTRyaTlhOTJqYzZ2YQ%3D%3D&utm_source=qr')} size={35} className='text-primary' />
               <svg
-              onClick={() => window.open('https://x.com/dallal_sy?s=21&t=jWVmcT1Db2z-NTL_kJjevw')}
+                onClick={() => window.open('https://x.com/dallal_sy?s=21&t=jWVmcT1Db2z-NTL_kJjevw')}
                 className='text-primary fill-current font-bold'
                 xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="35" height="35" viewBox="0 0 48 48">
                 <polygon points="41,6 9.929,42 6.215,42 37.287,6"></polygon><polygon fill="#fff" points="31.143,41 7.82,7 16.777,7 40.1,41" ></polygon><path d="M15.724,9l20.578,30h-4.106L11.618,9H15.724 M17.304,6H5.922l24.694,36h11.382L17.304,6L17.304,6z"></path>
@@ -146,7 +185,7 @@ const SideBar = ({ isSidebarOpen, toggleSidebar }) => {
 
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 
