@@ -14,8 +14,6 @@ const MyPost = () => {
     const [showDelete, setShowDelete] = useState(false);
     const [selectedAdId, setSelectedAdId] = useState(null);
     const [visiblePosts, setVisiblePosts] = useState(5);
-    const [message, setMessage] = useState('');
-    const [messageType, setMessageType] = useState('');
     const [isDeleting, setIsDeleting] = useState(false);
 
     const cookies = new Cookies();
@@ -91,28 +89,28 @@ const MyPost = () => {
         }
     };
 
-    // Update Status Post
-    const updatePost = async (id) => {
-        try {
-            const response = await axios.post(`${baseUrl}/ad/${id}/refresh`, {}, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-            if (response.status === 200) {
-                setMessage('تم تحديث الإعلان بنجاح!');
-                setMessageType('success');
-                fetchData();
-            } else {
-                setMessage('فشل تحديث الإعلان. يرجى المحاولة مرة أخرى.');
-                setMessageType('error');
-            }
-        } catch (err) {
-            console.error('Error updating ad:', err);
-            setMessage('حدث خطأ أثناء تحديث الإعلان.');
-            setMessageType('error');
-        }
-    };
+    // // Update Status Post
+    // const updatePost = async (id) => {
+    //     try {
+    //         const response = await axios.post(`${baseUrl}/ad/${id}/refresh`, {}, {
+    //             headers: {
+    //                 Authorization: `Bearer ${token}`,
+    //             },
+    //         });
+    //         if (response.status === 200) {
+    //             setMessage('تم تحديث الإعلان بنجاح!');
+    //             setMessageType('success');
+    //             fetchData();
+    //         } else {
+    //             setMessage('فشل تحديث الإعلان. يرجى المحاولة مرة أخرى.');
+    //             setMessageType('error');
+    //         }
+    //     } catch (err) {
+    //         console.error('Error updating ad:', err);
+    //         setMessage('حدث خطأ أثناء تحديث الإعلان.');
+    //         setMessageType('error');
+    //     }
+    // };
 
     const handleShowMore = () => {
         setVisiblePosts((prev) => prev + 5);
@@ -124,13 +122,41 @@ const MyPost = () => {
         visible: { opacity: 1, y: 0 },
     };
 
+    const getUpdatePath = (category, id) => {
+        switch (category) {
+            case "car":
+                return `/updatePostCar/${id}`;
+            case "bike":
+                return `/updatePostBike/${id}`;
+            case "stores":
+                return `/updatePostStore/${id}`;
+            case "real_estate":
+                return `/updatePostEstate/${id}`;
+            case "electronics":
+                return `/updatePostDevices/${id}`;
+            case "furniture":
+                return `/updatePostFurniture/${id}`;
+            case "pets":
+                return `/updatePostAnimals/${id}`;
+            case "jobs":
+                return `/updatePostJob/${id}`;
+            case "services":
+                return `/updatePostServices/${id}`;
+            case "education":
+                return `/updatePostEducation/${id}`;
+            case "parties":
+                return `/updatePostParty/${id}`;
+            case "others":
+                return `/updatePostOther/${id}`;
+            default:
+                return `/myaccount`;
+        }
+    };
+
+
+
     return (
         <div className='mt-10 md:mt-16'>
-            {message && (
-                <div className={`text-center font-semibold text-[17px] lg:text-[20px] py-2 ${messageType === 'success' ? 'text-[#009C46]' : 'text-primary'}`}>
-                    {message === "حدث خطأ أثناء تحديث الإعلان." ? "يمكنك فقط تحديث الإعلان في آخر 5 أيام." : message}
-                </div>
-            )}
 
             {showDelete && (
                 <DeletePost
@@ -146,11 +172,11 @@ const MyPost = () => {
                         const relativeIndex = index % 5;
                         return (
                             <motion.div
-                                key={item._id} 
+                                key={item._id}
                                 variants={postVariants}
                                 initial="hidden"
                                 animate="visible"
-                                transition={{ duration: 0.3, delay: relativeIndex * 0.3 }} 
+                                transition={{ duration: 0.3, delay: relativeIndex * 0.3 }}
                             >
                                 <div
                                     className='bg-background mt-[15px] py-0 w-full lg:w-full xl:w-[1130px] 2xl:w-[1455px] h-[160px] flex flex-wrap 
@@ -184,19 +210,20 @@ const MyPost = () => {
                                     </div>
 
                                     {/* Image */}
-                                    <div className='w-2/6 rounded-10px md:w-1/5 lg:h-full mx-auto lg:w-1/6 md:my-0'>
-                                        <img className='h-full object-cover max-lg:w-full max-lg:h-full' src={item.images.length > 1 ? item.images[0] : item.images} alt='' />
+                                    <div className='w-2/6 rounded-10px md:w-1/5 lg:h-full mx-auto lg:w-1/6 md:my-0 h-[130px]'>
+                                        <img className='h-full object-cover w-[150px] max-lg:w-full max-lg:h-full' src={item.images.length > 1 ? item.images[0] : item.images} alt='' />
                                     </div>
 
                                     {/* Buttons */}
                                     <div className='flex lg:w-1/6 mx-auto w-full py-4 lg:py-0 lg:flex-col justify-center lg:h-full gap-4 items-center lg:mx-4 xl:mx-0'>
-                                        <div
-                                            onClick={() => updatePost(item._id)}
-                                            className='bg-primary cursor-pointer text-white 
-                                            w-[140px] lg:w-[150px] xl:w-[160px] 2xl:w-[190px] h-[50px] 
-                                            text-[12px] lg:text-[16px] font-semibold rounded-10px flex items-center justify-center max-lg:h-[40px]'>
-                                            تحديث الاعلان
-                                        </div>
+
+                                        <Link
+                                            to={getUpdatePath(item.category, item._id)}
+                                            className='bg-primary cursor-pointer text-white w-[140px] lg:w-[150px] xl:w-[160px] 2xl:w-[190px] h-[50px] 
+                                                     text-[12px] lg:text-[16px] font-semibold rounded-10px flex items-center justify-center max-lg:h-[40px]'
+                                        >
+                                            تعديل الاعلان
+                                        </Link>
                                         <div
                                             onClick={() => ShowdeletePost(item._id)}
                                             className='bg-primary cursor-pointer text-white w-[140px] lg:w-[150px] xl:w-[160px] 2xl:w-[190px] h-[50px] 

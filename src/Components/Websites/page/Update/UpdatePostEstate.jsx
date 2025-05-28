@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom'; // لجلب id من الرابط
 import { data, location } from '../../../../utils/data';
 import { IoIosCamera } from 'react-icons/io';
 import Dropdown from '../../UI/Dropdowns';
@@ -7,27 +8,62 @@ import axios from 'axios';
 import Cookies from 'universal-cookie';
 import { baseUrl } from '../../../../Api/Api';
 import Loading from '../Loading';
-import SubmissionAddPost from '../SubmissionAddPost';
 
-const AddPostEstate = () => {
+const UpdatePostEstate = () => {
+    const { id } = useParams();
+    const cookies = new Cookies();
+    const token = cookies.get('auth_token');
+
+    const navigate = useNavigate();
+
     const [selectedLocation, setSelectedLocation] = useState('');
     const [selectedBrand, setSelectedBrand] = useState('');
     const [type, setType] = useState('');
     const [status, setStatus] = useState('');
     const [title, setTitle] = useState('');
     const [images, setImages] = useState([]);
+    const [existingImages, setExistingImages] = useState([]);
+
     const [priceSYP, setPriceSYP] = useState('');
     const [priceUSD, setPriceUSD] = useState('');
     const [description, setDescription] = useState('');
     const [isNewProject, setIsNewProject] = useState('');
-    const [submission, setSubmission] = useState(false)
-    const [loading, setLoading] = useState(false)
-    const [error, setError] = useState('')
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
 
-    const cookies = new Cookies();
-    const token = cookies.get('auth_token');
+    // 🔁 get current ad data
+    useEffect(() => {
+        const fetchAd = async () => {
+            try {
+                setLoading(true);
+                const response = await axios.get(`${baseUrl}/ad/${id}`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
 
-    // Handle file selection
+                const ad = response.data;
+                setTitle(ad.title || '');
+                setSelectedLocation(ad.location || '');
+                setStatus(ad.condition || ''); // تأكد أن هذه القيمة 'furnished', 'unfurnished', أو 'shell'
+                setType(ad.propertyType || '');
+                setIsNewProject(ad.newHousingProject ? 'yes' : 'no'); // تحويل من boolean إلى 'yes'/'no'
+                setSelectedBrand(ad.deedType || '');
+                setPriceSYP(ad.priceSYP || '');
+                setPriceUSD(ad.priceUSD || '');
+                setDescription(ad.description || '');
+                setExistingImages(ad.images || []);
+            } catch (err) {
+                setError('فشل في تحميل بيانات الإعلان');
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchAd();
+    }, [id, token]);
+
+    // 📝 handle file input
     const handleFileChange = (e) => {
         const files = Array.from(e.target.files);
         if (files.length > 5) {
@@ -37,12 +73,10 @@ const AddPostEstate = () => {
         setImages(files);
     };
 
-    // Handle form submission
+    // 📨 handle form submit (PUT)
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        e.preventDefault();
-        // Validate required fields
         const validations = [
             { condition: !title, message: 'يرجى إدخال العنوان' },
             { condition: !selectedLocation, message: 'يرجى اختيار الموقع' },
@@ -53,7 +87,6 @@ const AddPostEstate = () => {
             { condition: !priceSYP, message: 'يرجى إدخال السعر بالليرة السورية' },
             { condition: !priceUSD, message: 'يرجى إدخال السعر بالدولار الأمريكي' },
             { condition: !description, message: 'يرجى إدخال الوصف' },
-            { condition: images.length === 0, message: 'يرجى إضافة صورة واحدة على الأقل' },
         ];
 
         for (const rule of validations) {
@@ -63,14 +96,14 @@ const AddPostEstate = () => {
             }
         }
 
-        // تأكد أن السعر أرقام فقط (وأنه لا يحتوي على رموز أو حروف)
         if (!/^\d+$/.test(priceSYP) || !/^\d+$/.test(priceUSD)) {
             setError('السعر يجب أن يتكون من أرقام فقط.');
             return;
         }
-        setLoading(true)
 
-        // Create FormData to send files & data
+        setLoading(true);
+        setError('');
+
         const formData = new FormData();
         formData.append('title', title);
         formData.append('location', selectedLocation);
@@ -81,37 +114,35 @@ const AddPostEstate = () => {
         formData.append('category', 'real_estate');
         formData.append('deedType', selectedBrand);
         formData.append('propertyType', type);
-        formData.append('newHousingProject', isNewProject);
+        formData.append('newHousingProject', isNewProject === 'yes'); // تحويل إلى boolean
 
-        // Append images
-        images.forEach((image) => {
-            formData.append('images', image);
+        // Only append new images if they are File objects
+        images.forEach((img) => {
+            if (img instanceof File) {
+                formData.append('images', img);
+            }
         });
 
         try {
-            // Send request to the API
-            await axios.post(`${baseUrl}/ad`, formData, {
+            await axios.put(`${baseUrl}/ad/${id}`, formData, {
                 headers: {
-                    'Authorization': `Bearer ${token}`,
+                    Authorization: `Bearer ${token}`,
                     'Content-Type': 'multipart/form-data',
                 },
             });
 
+            navigate(`/myaccount`);
 
-            setSubmission(true)
-
-        } catch (error) {
-            setError('حدث خطأ أثناء إضافة الإعلان. الرجاء المحاولة مرة أخرى.');
-        }
-        finally {
-            setLoading(false)
+        } catch (err) {
+            setError('حدث خطأ أثناء تحديث الإعلان. الرجاء المحاولة لاحقاً.');
+        } finally {
+            setLoading(false);
         }
     };
 
     return (
         <div>
             {loading ? <Loading /> : ''}
-            {submission ? <SubmissionAddPost /> : ''}
             <div className='min-h-screen py-[50px] md:py-[100px] container flex items-center relative'>
                 <form className='flex flex-col gap-5 md:gap-7 w-full px-4 md:px-0' onSubmit={handleSubmit}>
                     {/* Title and Location Dropdown */}
@@ -143,14 +174,14 @@ const AddPostEstate = () => {
                     <div className='flex flex-col md:flex-row gap-5 w-full'>
                         {/* Image Upload Section */}
                         <div className='flex flex-col md:gap-2 lg:gap-5 w-full md:w-[395px] lg:w-[532px] xl:w-[668px] 2xl:w-[867px]'>
-                            <label className='text-primary font-bold text-[14px] md:text-[16px] lg:text-[25px]'>الصور :</label>
+                            <label className='text-primary text-[14px] md:text-[16px] lg:text-[25px] font-bold'>الصور :</label>
                             <div className='relative w-full h-[50px] md:h-[60px] lg:h-[76px] text-placeholder block border md:border-2 border-border rounded-10px
-                                         text-[12px] md:text-[14px] lg:text-[20px]  pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none
-                                              focus:border-primary duration-200 pl-10'>
+                                                  text-[16px] lg:text-[25px] pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none
+                                                   focus:border-primary duration-200 pl-10'>
                                 {/* Placeholder */}
-                                <div className='absolute inset-0 pr-2 md:pr-[10px] xl:pr-[20px] flex items-center pl-10 text-placeholder'>
-                                    {images && images.length > 0
-                                        ? <span >{images.length < 2 ? images.length + " صور" : images.length + "صورة"} </span>
+                                <div className='absolute inset-0 pr-2 md:pr-[10px] xl:pr-[20px] text-[12px] md:text-[14px] lg:text-[20px] flex items-center pl-10 text-placeholder'>
+                                    {images.length > 0 || existingImages.length > 0
+                                        ? <span>{images.length + existingImages.length} {images.length + existingImages.length === 1 ? 'صورة' : 'صور'}</span>
                                         : 'انقر هنا لاضافة الصور'}
                                 </div>
 
@@ -158,15 +189,19 @@ const AddPostEstate = () => {
                                 <input
                                     type='file'
                                     multiple
-                                    accept='image/*' // Allow only image files
-                                    max={5} // Limit to 5 files
+                                    accept='image/*'
+                                    max={5}
                                     className='absolute inset-0 w-full h-full opacity-0 cursor-pointer'
                                     onChange={handleFileChange}
+                                    disabled
                                 />
 
                                 {/* Camera Icon */}
                                 <IoIosCamera size={30} className='absolute top-1/2 left-4 transform -translate-y-1/2 text-placeholder' />
                             </div>
+
+                            {/* Display selected images */}
+
                         </div>
 
                         {/* Condition (Used/New/Structure) Section */}
@@ -174,27 +209,36 @@ const AddPostEstate = () => {
                             <label className='text-primary text-[14px] md:text-[16px] lg:text-[25px] font-bold'>الحالة :</label>
                             <div className='flex gap-5'>
                                 <div className='w-full md:w-[325px] lg:w-[345px] xl:w-[432px] 2xl:w-[560px] h-[50px] md:h-[60px] lg:h-[76px] flex gap-2 md:gap-5'>
+
+                                    {/* حالة العقار */}
                                     <RadioButton
                                         label='مفروش'
                                         value='furnished'
                                         name='status'
+                                        checked={status === 'furnished'}
                                         onChange={() => setStatus('furnished')}
                                         className='w-1/3 md:w-1/3'
+
                                     />
                                     <RadioButton
                                         label='غير مفروش'
                                         value='unfurnished'
                                         name='status'
+                                        checked={status === 'unfurnished'}
                                         onChange={() => setStatus('unfurnished')}
                                         className='w-1/3 md:w-1/3'
+
                                     />
                                     <RadioButton
                                         label='على العظم'
                                         value='shell'
                                         name='status'
+                                        checked={status === 'shell'}
                                         onChange={() => setStatus('shell')}
                                         className='w-1/3 md:w-1/3'
+
                                     />
+
                                 </div>
                             </div>
                         </div>
@@ -262,19 +306,24 @@ const AddPostEstate = () => {
                             <label className='text-primary text-[14px] md:text-[16px] lg:text-[25px] font-bold'>هل هو مشروع سكني جديد ؟</label>
                             <div className='flex gap-5'>
                                 <div className='w-full lg:w-[345px] xl:w-[432px] 2xl:w-[560px] h-[50px] md:h-[60px] lg:h-[76px] flex gap-5'>
+
                                     <RadioButton
                                         label='نعم'
                                         value='yes'
                                         name='statusArchitectural'
+                                        checked={isNewProject === 'yes'}
                                         onChange={() => setIsNewProject('yes')}
                                         className='w-1/2 md:w-1/2'
+
                                     />
                                     <RadioButton
                                         label='لا'
                                         value='no'
                                         name='statusArchitectural'
+                                        checked={isNewProject === 'no'}
                                         onChange={() => setIsNewProject('no')}
                                         className='w-1/2 md:w-1/2'
+
                                     />
                                 </div>
                             </div>
@@ -293,6 +342,30 @@ const AddPostEstate = () => {
                             onChange={(e) => setDescription(e.target.value)}
                         />
                     </div>
+                    
+                    {/* show images */}
+                    <div className="flex flex-wrap gap-2 mt-2">
+                        {existingImages.map((image, index) => (
+                            <div key={`existing-${index}`} className="relative">
+                                <img
+                                    src={image}
+                                    alt={`Existing ${index}`}
+                                    className="w-20 h-20 object-cover rounded"
+                                />
+
+                            </div>
+                        ))}
+
+                        {images.map((image, index) => (
+                            <div key={`new-${index}`} className="relative">
+                                <img
+                                    src={URL.createObjectURL(image)}
+                                    alt={`Preview ${index}`}
+                                    className="w-20 h-20 object-cover rounded"
+                                />
+                            </div>
+                        ))}
+                    </div>
 
                     {/* Submit Button */}
                     <button
@@ -310,4 +383,4 @@ const AddPostEstate = () => {
     );
 };
 
-export default AddPostEstate;
+export default UpdatePostEstate;

@@ -58,20 +58,6 @@ const Register = () => {
         e.preventDefault();
         setLoading(true);
         setError(null);
-        // Check if the phone number starts with +963
-        if (!formData.phone.startsWith('+963')) {
-            setError('رقم الهاتف يجب أن يبدأ ب +963');
-            setLoading(false);
-            return;
-        }
-
-        // Remove all non-digit characters and check the length
-        // It must be exactly 12 digits: 963 + 9 + 8 more digits
-        if (formData.phone.replace(/\D/g, '').length !== 12) {
-            setError('رقم الهاتف يجب أن يتكون من 12 رقماً');
-            setLoading(false);
-            return;
-        }
 
 
         // Ensure password and confirm password match
@@ -102,9 +88,17 @@ const Register = () => {
 
             navigate('/login');
         } catch (err) {
-            console.error('Server Error:', err.response?.data || err.message);
-            setError(err.response?.data?.message || 'فشل في إنشاء الحساب، يرجى المحاولة مرة أخرى');
-        } finally {
+            const error = err.response?.data?.error;
+            const message = err.response?.data?.message;
+
+            if (error?.includes('E11000') && error?.includes('phoneNumber')) {
+                setError('الرقم الجوال مسجل بالفعل');
+            } else {
+                setError(message || 'فشل في إنشاء الحساب، يرجى المحاولة مرة أخرى');
+            }
+        }
+
+        finally {
             setLoading(false);
         }
     };

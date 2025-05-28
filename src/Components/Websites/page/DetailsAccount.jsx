@@ -36,7 +36,7 @@ const DetailsAccount = () => {
   }, []);
 
   if (!userDetails) {
-    return <div></div>; 
+    return <div></div>;
   }
 
   return (

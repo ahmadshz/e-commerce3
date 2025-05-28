@@ -40,9 +40,22 @@ const AddPostJobs = () => {
         e.preventDefault();
 
         // Validate required fields
-        if (!title || !selectedLocation || !status || !selectedJobType || !priceSYP || !priceUSD || !description || images.length === 0) {
-            setError('يرجى ملء جميع الحقول المطلوبة');
-            return;
+        const validations = [
+            { condition: !title, message: 'يرجى إدخال العنوان' },
+            { condition: !selectedLocation, message: 'يرجى اختيار الموقع' },
+            { condition: !status, message: 'يرجى تحديد الحالة' },
+            { condition: !selectedJobType, message: 'يرجى اختيار نوع الوظيفة' },
+            { condition: !priceSYP, message: 'يرجى إدخال السعر بالليرة السورية' },
+            { condition: !priceUSD, message: 'يرجى إدخال السعر بالدولار الأمريكي' },
+            { condition: !description, message: 'يرجى إدخال الوصف' },
+            { condition: images.length === 0, message: 'يرجى إضافة صورة واحدة على الأقل' },
+        ];
+
+        for (const item of validations) {
+            if (item.condition) {
+                setError(item.message);
+                return;
+            }
         }
 
         // تأكد أن السعر أرقام فقط (وأنه لا يحتوي على رموز أو حروف)
@@ -172,7 +185,7 @@ const AddPostJobs = () => {
                     <div className='flex flex-col md:flex-row gap-5 w-full'>
                         <Dropdown
                             label='نوع الوظيفة :'
-                            options={data[6].brands.map((brand) => brand)}
+                            options={data[7].brands.map((brand) => brand)}
                             selected={selectedJobType}
                             placeholder='اختر نوع الوظيفة'
                             onSelect={setSelectedJobType}

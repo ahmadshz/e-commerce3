@@ -43,17 +43,33 @@ const AddPostMotor = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-       // Validate required fields
-       if (!title || !selectedLocation || !selectedBrand || !gear || !priceSYP || !priceUSD || !mileage || !status || !description || images.length === 0) {
-        setError('يرجى ملء جميع الحقول المطلوبة');
-        return;
-    }
+        // Validate required fields
+        const validations = [
+            { condition: !title, message: 'يرجى إدخال العنوان' },
+            { condition: !selectedLocation, message: 'يرجى اختيار الموقع' },
+            { condition: !selectedBrand, message: 'يرجى اختيار الماركة' },
+            { condition: !gear, message: 'يرجى تحديد القير' },
+            { condition: !priceSYP, message: 'يرجى إدخال السعر بالليرة السورية' },
+            { condition: !priceUSD, message: 'يرجى إدخال السعر بالدولار الأمريكي' },
+            { condition: !mileage, message: 'يرجى إدخال عدد الكيلومترات' },
+            { condition: !status, message: 'يرجى تحديد الحالة' },
+            { condition: !description, message: 'يرجى إدخال الوصف' },
+            { condition: images.length === 0, message: 'يرجى إضافة صورة واحدة على الأقل' },
+        ];
 
-    // تأكد أن السعر أرقام فقط (وأنه لا يحتوي على رموز أو حروف)
-    if (!/^\d+$/.test(priceSYP) || !/^\d+$/.test(priceUSD)) {
-        setError('السعر يجب أن يتكون من أرقام فقط.');
-        return;
-    }
+        for (const field of validations) {
+            if (field.condition) {
+                setError(field.message);
+                return;
+            }
+        }
+
+
+        // تأكد أن السعر أرقام فقط (وأنه لا يحتوي على رموز أو حروف)
+        if (!/^\d+$/.test(priceSYP) || !/^\d+$/.test(priceUSD)) {
+            setError('السعر يجب أن يتكون من أرقام فقط.');
+            return;
+        }
         setLoading(true)
 
         const formData = new FormData();

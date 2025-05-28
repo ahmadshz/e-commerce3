@@ -40,10 +40,24 @@ const AddPostAnimals = () => {
         e.preventDefault();
 
         // Validate required fields
-        if (!title || !selectedLocation || !selectedBrand || !status || !priceSYP || !priceUSD || !description || images.length === 0) {
-            setError('يرجى ملء جميع الحقول المطلوبة');
-            return;
+        const validations = [
+            { condition: !title, message: 'يرجى إدخال العنوان' },
+            { condition: !selectedLocation, message: 'يرجى اختيار الموقع' },
+            { condition: !selectedBrand, message: 'يرجى اختيار نوع الحيوان' },
+            { condition: !status, message: 'يرجى تحديد الحالة' },
+            { condition: !priceSYP, message: 'يرجى إدخال السعر بالليرة السورية' },
+            { condition: !priceUSD, message: 'يرجى إدخال السعر بالدولار الأمريكي' },
+            { condition: !description, message: 'يرجى إدخال الوصف' },
+            { condition: images.length === 0, message: 'يرجى إضافة صورة واحدة على الأقل' },
+        ];
+
+        for (let rule of validations) {
+            if (rule.condition) {
+                setError(rule.message);
+                return;
+            }
         }
+
 
         // تأكد أن السعر أرقام فقط (وأنه لا يحتوي على رموز أو حروف)
         if (!/^\d+$/.test(priceSYP) || !/^\d+$/.test(priceUSD)) {
@@ -175,7 +189,7 @@ const AddPostAnimals = () => {
                     <div className='flex flex-col md:flex-row gap-5 w-full'>
                         <Dropdown
                             label='نوع الحيوان :  '
-                            options={data[5].brands.map((brand) => brand)}
+                            options={data[6].brands.map((brand) => brand)}
                             selected={selectedBrand || 'اختر نوع الحيوان'}
                             placeholder='اختر الحيوان'
                             onSelect={setSelectedBrand}
@@ -248,7 +262,7 @@ const AddPostAnimals = () => {
                         اعلان
                     </button>
 
-                    <div className='text-primary font-semibold text-[17px] lg:text-[20px] '> {error}</div>
+                    <div className='text-primary font-semibold text-[14px] md:text-[16px] lg:text-[20px] '> {error}</div>
                 </form>
             </div>
         </div>

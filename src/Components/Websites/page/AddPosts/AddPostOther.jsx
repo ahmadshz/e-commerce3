@@ -36,10 +36,23 @@ const AddPostOther = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!title || !selectedLocation || !status || !syrianPounds || !usDollars || !description || images.length === 0) {
-            setError('يرجى ملء جميع الحقول المطلوبة');
-            return;
+        const validations = [
+            { condition: !title, message: 'يرجى إدخال العنوان' },
+            { condition: !selectedLocation, message: 'يرجى اختيار الموقع' },
+            { condition: !status, message: 'يرجى تحديد الحالة' },
+            { condition: !syrianPounds, message: 'يرجى إدخال السعر بالليرة السورية' },
+            { condition: !usDollars, message: 'يرجى إدخال السعر بالدولار الأمريكي' },
+            { condition: !description, message: 'يرجى إدخال الوصف' },
+            { condition: images.length === 0, message: 'يرجى إضافة صورة واحدة على الأقل' },
+        ];
+
+        for (const field of validations) {
+            if (field.condition) {
+                setError(field.message);
+                return;
+            }
         }
+
 
         // تأكد أن السعر أرقام فقط (وأنه لا يحتوي على رموز أو حروف)
         if (!/^\d+$/.test(syrianPounds) || !/^\d+$/.test(usDollars)) {

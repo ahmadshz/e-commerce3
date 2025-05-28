@@ -39,10 +39,24 @@ const AddPostDevices = () => {
         e.preventDefault();
 
         // Validate required fields
-        if (!title || !selectedLocation || !status || !selectedBrand || !priceSYP || !priceUSD || !description || images.length === 0) {
-            setError('يرجى ملء جميع الحقول المطلوبة');
-            return;
+        const validations = [
+            { condition: !title, message: 'يرجى إدخال العنوان' },
+            { condition: !selectedLocation, message: 'يرجى اختيار الموقع' },
+            { condition: !status, message: 'يرجى تحديد الحالة' },
+            { condition: !selectedBrand, message: 'يرجى اختيار نوع الجهاز' },
+            { condition: !priceSYP, message: 'يرجى إدخال السعر بالليرة السورية' },
+            { condition: !priceUSD, message: 'يرجى إدخال السعر بالدولار الأمريكي' },
+            { condition: !description, message: 'يرجى إدخال الوصف' },
+            { condition: images.length === 0, message: 'يرجى إضافة صورة واحدة على الأقل' },
+        ];
+
+        for (let rule of validations) {
+            if (rule.condition) {
+                setError(rule.message);
+                return;
+            }
         }
+
 
         // تأكد أن السعر أرقام فقط (وأنه لا يحتوي على رموز أو حروف)
         if (!/^\d+$/.test(priceSYP) || !/^\d+$/.test(priceUSD)) {
@@ -174,7 +188,7 @@ const AddPostDevices = () => {
                     <div className='flex flex-col md:flex-row gap-5 w-full'>
                         <Dropdown
                             label='نوع الجهاز :'
-                            options={data[3].brands.map((brand) => brand)}
+                            options={data[4].brands.map((brand) => brand)}
                             selected={selectedBrand || 'اختر نوع الجهاز'}
                             onSelect={setSelectedBrand}
                             className='w-full lg:w-[532px] xl:w-[668px] 2xl:w-[867px]'

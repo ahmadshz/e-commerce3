@@ -9,23 +9,22 @@ import { baseUrl } from '../../../../Api/Api';
 import Loading from '../Loading';
 import SubmissionAddPost from '../SubmissionAddPost';
 
-const AddPostEducation = () => {
+const AddPostStore = () => {
     const [selectedLocation, setSelectedLocation] = useState('');
     const [selectedBrand, setSelectedBrand] = useState('');
     const [status, setStatus] = useState('used');
     const [title, setTitle] = useState('');
     const [images, setImages] = useState([]);
-    const [priceSYP, setPriceSYP] = useState('');
-    const [priceUSD, setPriceUSD] = useState('');
+    const [syrianPounds, setSyrianPounds] = useState('');
+    const [usDollars, setUsDollars] = useState('');
     const [description, setDescription] = useState('');
     const [error, setError] = useState('')
     const [submission, setSubmission] = useState(false)
     const [loading, setLoading] = useState(false)
 
-    const cookies = new Cookies();
-    const token = cookies.get('auth_token');
 
-    // Handle file selection
+    const coockies = new Cookies();
+    const token = coockies.get('auth_token');
     const handleFileChange = (e) => {
         const files = Array.from(e.target.files);
         if (files.length > 5) {
@@ -35,18 +34,16 @@ const AddPostEducation = () => {
         setImages(files);
     };
 
-    // Handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Validate required fields
         const validations = [
             { condition: !title, message: 'يرجى إدخال العنوان' },
             { condition: !selectedLocation, message: 'يرجى اختيار الموقع' },
+            { condition: !selectedBrand, message: 'يرجى اختيار نوع المتجر ' },
             { condition: !status, message: 'يرجى تحديد الحالة' },
-            { condition: !selectedBrand, message: 'يرجى اختيار نوع الوظيفة' },
-            { condition: !priceSYP, message: 'يرجى إدخال السعر بالليرة السورية' },
-            { condition: !priceUSD, message: 'يرجى إدخال السعر بالدولار الأمريكي' },
+            { condition: !syrianPounds, message: 'يرجى إدخال السعر بالليرة السورية' },
+            { condition: !usDollars, message: 'يرجى إدخال السعر بالدولار الأمريكي' },
             { condition: !description, message: 'يرجى إدخال الوصف' },
             { condition: images.length === 0, message: 'يرجى إضافة صورة واحدة على الأقل' },
         ];
@@ -57,49 +54,42 @@ const AddPostEducation = () => {
                 return;
             }
         }
-        if (!title || !selectedLocation || !status || !selectedBrand || !priceSYP || !priceUSD || !description || images.length === 0) {
-            setError('يرجى ملء جميع الحقول المطلوبة');
-            return;
-        }
+
 
         // تأكد أن السعر أرقام فقط (وأنه لا يحتوي على رموز أو حروف)
-        if (!/^\d+$/.test(priceSYP) || !/^\d+$/.test(priceUSD)) {
+        if (!/^\d+$/.test(syrianPounds) || !/^\d+$/.test(usDollars)) {
             setError('السعر يجب أن يتكون من أرقام فقط.');
             return;
         }
-
         setLoading(true)
 
-        // Create FormData to send files & data
         const formData = new FormData();
         formData.append('title', title);
         formData.append('location', selectedLocation);
-        formData.append('condition', status);
-        formData.append('priceSYP', priceSYP);
-        formData.append('priceUSD', priceUSD);
-        formData.append('description', description);
-        formData.append('category', 'education');
+        formData.append('category', 'stores');
         formData.append('adType', selectedBrand);
+        formData.append('condition', status);
+        formData.append('priceSYP', syrianPounds);
+        formData.append('priceUSD', usDollars);
+        formData.append('description', description);
 
-        // Append images correctly
         images.forEach((image) => {
             formData.append('images', image);
         });
 
         try {
-            // Send request to the API
             await axios.post(`${baseUrl}/ad`, formData, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'multipart/form-data',
                 },
             });
-
             setSubmission(true)
+
         } catch (error) {
-            setError('حدث خطأ أثناء إضافة الإعلان. الرجاء المحاولة مرة أخرى.');
-        }
-        finally {
+            console.error('Error:', error);
+            setError('فشل في نشر الإعلان');
+        } finally {
             setLoading(false)
         }
     };
@@ -116,10 +106,10 @@ const AddPostEducation = () => {
                             <label className='text-primary text-[14px] md:text-[16px] lg:text-[25px] font-bold'>عنوان الاعلان :</label>
                             <input
                                 type='text'
-                                className='w-full h-[50px] md:h-[60px] lg:h-[76px] text-placeholder block border md:border-2 border-border 
-                                rounded-10px text-[12px] md:text-[14px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] 
-                                outline-none focus:outline-none focus:border-primary duration-200'
-                                placeholder='مثال : مدرس مادة فيزياء'
+                                className='w-full h-[50px] md:h-[60px] lg:h-[76px] text-placeholder block 
+                                border md:border-2 border-border rounded-10px text-[12px] md:text-[14px] lg:text-[20px]
+                                 pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none focus:border-primary duration-200'
+                                placeholder='مثال : شركة الأتاسي لتنظيم الأعراس في دمشق'
                                 value={title}
                                 onChange={(e) => setTitle(e.target.value)}
                             />
@@ -141,8 +131,8 @@ const AddPostEducation = () => {
                         <div className='flex flex-col md:gap-2 lg:gap-5 w-full md:w-[395px] lg:w-[532px] xl:w-[668px] 2xl:w-[867px]'>
                             <label className='text-primary text-[14px] md:text-[16px] lg:text-[25px] font-bold'>الصور :</label>
                             <div className='relative w-full h-[50px] md:h-[60px] lg:h-[76px] text-placeholder block border md:border-2 border-border rounded-10px
-                                             text-[12px] md:text-[14px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none
-                                              focus:border-primary duration-200 pl-10'>
+                                                                                    text-[12px] md:text-[14px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none
+                                                                                     focus:border-primary duration-200 pl-10'>
                                 {/* Placeholder */}
                                 <div className='absolute inset-0 pr-2 md:pr-[10px] xl:pr-[20px] flex items-center pl-10 text-placeholder'>
                                     {images && images.length > 0
@@ -160,13 +150,12 @@ const AddPostEducation = () => {
                                     onChange={handleFileChange}
                                 />
 
-                                {/* Camera Icon */}
                                 <IoIosCamera size={30} className='absolute top-1/2 left-4 transform -translate-y-1/2 text-placeholder' />
                             </div>
                         </div>
 
                         {/* Condition (Used/New) Section */}
-                        <div className='flex flex-col md:gap-2 lg:gap-5 w-full md:w-1/2 lg:w-[340px] xl:w-[432px] 2xl:w-[560px]'>
+                        <div className='flex flex-col md:gap-2 lg:gap-5w-full md:w-1/2 lg:w-[340px] xl:w-[432px] 2xl:w-[560px]'>
                             <label className='text-primary text-[14px] md:text-[16px] lg:text-[25px] font-bold'>الحالة :</label>
                             <div className='flex gap-5'>
                                 <div className='w-full md:w-[560px] h-[50px] md:h-[60px] lg:h-[76px] flex gap-5'>
@@ -189,29 +178,34 @@ const AddPostEducation = () => {
                         </div>
                     </div>
 
-                    {/* Brands Dropdown */}
                     <div className='flex flex-col md:flex-row gap-5 w-full'>
                         <Dropdown
-                            label='نوع الوظيفة :'
-                            options={data[10].brands.map((brand) => brand)}
-                            selected={selectedBrand || 'اختر نوع الوظيفة'}
+                            label=' نوع المتجر  : '
+                            options={data[2].brands.map((brand) => brand)}
+                            selected={selectedBrand || 'اختر نوع المتجر  '}
+                            placeholder
                             onSelect={setSelectedBrand}
                             className='w-full lg:w-[532px] xl:w-[668px] 2xl:w-[867px]'
                         />
+
+                        {/* Empty Div for Alignment */}
+                        <div className='hidden lg:flex flex-col gap-5'>
+                            <div className='w-full md:w-[320px] lg:w-[345px] xl:w-[432px] 2xl:w-[560px]' />
+                        </div>
                     </div>
 
-                    {/* Price Inputs */}
+                    {/* Price and Mileage */}
                     <div className='flex flex-col md:flex-row gap-5 w-full'>
                         <div className='flex flex-col md:gap-2 lg:gap-5 w-full lg:w-[532px] xl:w-[668px] 2xl:w-[867px]'>
                             <label className='text-primary text-[14px] md:text-[16px] lg:text-[25px] font-bold'>السعر :</label>
-                            <div className='flex flex-col md:flex-row gap-2 lg:gap-5 w-full'>
+                            <div className='flex flex-col md:flex-row gap-2 lg:gap-5w-full'>
                                 {/* Syrian Pounds Input */}
                                 <div className='relative w-full md:w-1/2'>
                                     <input
                                         placeholder='2000000'
                                         className='w-full h-[50px] md:h-[60px] lg:h-[76px] text-placeholder border md:border-2 border-border rounded-10px text-[12px] md:text-[14px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none focus:border-primary duration-200 pl-10'
-                                        value={priceSYP}
-                                        onChange={(e) => setPriceSYP(e.target.value)}
+                                        value={syrianPounds}
+                                        onChange={(e) => setSyrianPounds(e.target.value)}
                                     />
                                     <span className='absolute left-2 top-1/2 transform -translate-y-1/2 text-placeholder text-[12px] md:text-[14px] lg:text-[20px]'>
                                         ليرة سورية
@@ -223,8 +217,8 @@ const AddPostEducation = () => {
                                     <input
                                         placeholder='500'
                                         className='w-full h-[50px] md:h-[60px] lg:h-[76px] text-placeholder border md:border-2 border-border rounded-10px text-[12px] md:text-[14px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none focus:border-primary duration-200 pl-10'
-                                        value={priceUSD}
-                                        onChange={(e) => setPriceUSD(e.target.value)}
+                                        value={usDollars}
+                                        onChange={(e) => setUsDollars(e.target.value)}
                                     />
                                     <span className='absolute left-2 top-1/2 transform -translate-y-1/2 text-placeholder text-[12px] md:text-[14px] lg:text-[20px]'>
                                         دولار أمريكي
@@ -232,6 +226,9 @@ const AddPostEducation = () => {
                                 </div>
                             </div>
                         </div>
+
+                        {/* Empty Div for Alignment */}
+                        <div className='hidden lg:flex flex-col gap-5 w-full md:w-1/2 lg:w-[345px] xl:w-[432px] 2xl:w-[560px]' />
                     </div>
 
                     {/* Description */}
@@ -247,18 +244,15 @@ const AddPostEducation = () => {
                     </div>
 
                     {/* Submit Button */}
-                    <button
-                        type='submit'
-                        className='bg-primary h-[50px] md:h-[60px] lg:h-[76px] w-full md:w-[370px] lg:w-[426px]
-                         text-white text-[16px] lg:text-[25px] font-bold rounded-10px'
-                    >
+                    <button type='submit' className='bg-primary h-[50px] md:h-[60px] lg:h-[76px] w-full md:w-[370px] lg:w-[426px]
+                     text-white text-[16px] lg:text-[25px] font-bold rounded-10px'>
                         اعلان
                     </button>
-                    <div className='text-primary font-semibold text-[14px] md:text-[16px] lg:text-[20px] '> {error}</div>
+                    <div className='text-primary font-semibold text-[14px] md:text-[16px] lg:text-[20px]  '> {error}</div>
                 </form>
             </div>
         </div>
     );
 };
 
-export default AddPostEducation;
+export default AddPostStore;

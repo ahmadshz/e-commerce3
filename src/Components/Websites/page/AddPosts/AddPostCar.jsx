@@ -15,7 +15,7 @@ const AddPostCar = () => {
     const [condition, setCondition] = useState('');
     const [transmission, setTransmission] = useState('');
     const [title, setTitle] = useState('');
-    const [images, setImages] = useState([]); 
+    const [images, setImages] = useState([]);
     const [priceSYP, setPriceSYP] = useState('');
     const [priceUSD, setPriceUSD] = useState('');
     const [mileage, setMileage] = useState('');
@@ -27,7 +27,7 @@ const AddPostCar = () => {
     const cookies = new Cookies();
     const token = cookies.get('auth_token');
 
-    const category = 'car'; 
+    const category = 'car';
 
     // Convert FileList to an Array
     const handleFileChange = (e) => {
@@ -43,10 +43,26 @@ const AddPostCar = () => {
         e.preventDefault();
 
         // Validate required fields
-        if (!title || !selectedLocation || !selectedBrand || !condition || !transmission || !mileage  || !priceSYP || !priceUSD || !description || images.length === 0) {
-            setError('يرجى ملء جميع الحقول المطلوبة');
-            return;
+        const validations = [
+            { condition: !title, message: 'يرجى إدخال العنوان' },
+            { condition: !selectedLocation, message: 'يرجى اختيار الموقع' },
+            { condition: !selectedBrand, message: 'يرجى اختيار الماركة' },
+            { condition: !condition, message: 'يرجى تحديد الحالة' },
+            { condition: !transmission, message: 'يرجى تحديد القير' },
+            { condition: !mileage, message: 'يرجى إدخال عدد الممشى' },
+            { condition: !priceSYP, message: 'يرجى إدخال السعر بالليرة السورية' },
+            { condition: !priceUSD, message: 'يرجى إدخال السعر بالدولار الأمريكي' },
+            { condition: !description, message: 'يرجى إدخال الوصف' },
+            { condition: images.length === 0, message: 'يرجى إضافة صورة واحدة على الأقل' },
+        ];
+
+        for (let rule of validations) {
+            if (rule.condition) {
+                setError(rule.message);
+                return;
+            }
         }
+
 
         // تأكد أن السعر أرقام فقط (وأنه لا يحتوي على رموز أو حروف)
         if (!/^\d+$/.test(priceSYP) || !/^\d+$/.test(priceUSD)) {
@@ -56,22 +72,22 @@ const AddPostCar = () => {
         setLoading(true)
         // Create FormData to send files & data
         const formData = new FormData();
-        formData.append('title', title );
-        formData.append('location', selectedLocation );
-        formData.append('condition', condition );
-        formData.append('priceSYP', priceSYP );
-        formData.append('priceUSD', priceUSD );
-        formData.append('description', description );
-        formData.append('category', category );
+        formData.append('title', title);
+        formData.append('location', selectedLocation);
+        formData.append('condition', condition);
+        formData.append('priceSYP', priceSYP);
+        formData.append('priceUSD', priceUSD);
+        formData.append('description', description);
+        formData.append('category', category);
 
         // Append additional fields separately
-        formData.append('transmission', transmission );
-        formData.append('vehicleType', selectedBrand );
-        formData.append('mileage', mileage );
+        formData.append('transmission', transmission);
+        formData.append('vehicleType', selectedBrand);
+        formData.append('mileage', mileage);
 
         // Append images correctly
         images.forEach((image) => {
-            formData.append('images', image); 
+            formData.append('images', image);
         });
 
         try {
@@ -87,7 +103,7 @@ const AddPostCar = () => {
         } catch (error) {
             setError('حدث خطأ أثناء إضافة الإعلان. الرجاء المحاولة مرة أخرى.');
         }
-        finally{
+        finally {
             setLoading(false)
         }
     };
@@ -143,7 +159,7 @@ const AddPostCar = () => {
                                     type='file'
                                     multiple
                                     accept='image/*'
-                                    max={5} 
+                                    max={5}
                                     className='absolute inset-0 w-full h-full opacity-0 cursor-pointer'
                                     onChange={handleFileChange}
                                 />

@@ -30,7 +30,7 @@ const CategoryNavbar = ({ onCategoryChange, onBrandChange }) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.7 }}
             className="container pb-2 xl:pb-4">
-            
+
             {/* Category Section */}
             <div className="flex justify-between overflow-x-auto overflow-y-hidden scroll-smooth custom-scrollbar pb-[5px] md:pb-[10px]  ">
                 {data.map((category, index) => (
@@ -45,16 +45,18 @@ const CategoryNavbar = ({ onCategoryChange, onBrandChange }) => {
                             src={category.icon}
                             alt={category.title}
                             className={` object-cover ${index === 0
-                                    ? 'w-[45px] h-[25px] md:w-[60px] md:h-[35px] lg:w-[85px] lg:h-[45px]'
-                                    : index === 1
-                                        ? ' w-[40px] h-[28px] md:w-[50px] md:h-[40px] lg:w-[65px] lg:h-[50px]'
-                                        : index === 4
+                                ? 'w-[45px] h-[25px] md:w-[60px] md:h-[35px] lg:w-[85px] lg:h-[45px]'
+                                : index === 1
+                                    ? ' w-[40px] h-[28px] md:w-[50px] md:h-[40px] lg:w-[65px] lg:h-[50px]'
+                                    : index === 2
+                                        ? ' w-[25px] h-[25px] md:w-[33px] md:h-[33px] lg:w-[45px] lg:h-[45px] mt-1'
+                                        : index === 5
                                             ? 'w-[40px] h-[30px] md:w-[50px] md:h-[45px] lg:w-[65px] lg:h-[55px]'
-                                            : index === 8
+                                            : index === 9
                                                 ? 'w-[40px] h-[30px] md:w-[50px] md:h-[35px] lg:w-[65px] lg:h-[45px]'
-                                                : index === 9
+                                                : index === 10
                                                     ? 'w-[40px] h-[30px] md:w-[50px] md:h-[35px] lg:w-[65px] lg:h-[45px]'
-                                                    : index === 10
+                                                    : index === 11
                                                         ? 'w-[40px] h-[30px] md:w-[50px] md:h-[40px] lg:w-[65px] lg:h-[45px]'
                                                         : 'w-[30px] h-[30px] md:h-auto md:w-[40px] lg:w-[50px]'
                                 } ${selectedCategory === index ? 'hidden' : 'block'}`}
@@ -63,9 +65,11 @@ const CategoryNavbar = ({ onCategoryChange, onBrandChange }) => {
                             src={category.iconcolor}
                             alt={category.title}
                             className={`object-cover ${index === 0
-                                    ? 'w-[45px] h-[25px] md:w-[60px] md:h-[35px] lg:w-[85px] lg:h-[45px]'
-                                    : index === 1
-                                        ? ' w-[40px] h-[28px] md:w-[50px] md:h-[40px] lg:w-[65px] lg:h-[50px]'
+                                ? 'w-[45px] h-[25px] md:w-[60px] md:h-[35px] lg:w-[85px] lg:h-[45px]'
+                                : index === 1
+                                    ? ' w-[40px] h-[28px] md:w-[50px] md:h-[40px] lg:w-[65px] lg:h-[50px]'
+                                    : index === 2
+                                        ? ' w-[25px] h-[25px] md:w-[33px] md:h-[33px] lg:w-[45px] lg:h-[45px] mt-1'
                                         : index === 4
                                             ? 'w-[40px] h-[30px] md:w-[50px] md:h-[45px] lg:w-[65px] lg:h-[55px]'
                                             : index === 8
@@ -79,7 +83,7 @@ const CategoryNavbar = ({ onCategoryChange, onBrandChange }) => {
                         />
                         <div
                             className={`text-center w-[100px] md:w-[110px] lg:w-[123px] xl:w-[140px] text-[12px] md:text-[14px] lg:text-[17px]
-                                        font-semibold ${selectedCategory === index ? 'text-primary' : 'text-placeholder'
+                                        font-semibold mt-1 ${selectedCategory === index ? 'text-primary' : 'text-placeholder'
                                 }`}
                         >
                             {category.title}

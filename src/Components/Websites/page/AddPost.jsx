@@ -21,6 +21,8 @@ const AddPost = () => {
                                     ? 'w-[80px] h-[80px] -ml-1 lg:ml-1 lg:w-[200px] lg:h-[150px]'
                                     : index === 1
                                     ? 'w-[70px] h-[70px] -ml-1 lg:ml-3 lg:w-[180px] lg:h-[140px]'
+                                    : index === 2
+                                    ? 'w-[60px] h-[40px] -ml-1 lg:ml-6 lg:w-[140px] lg:h-[80px]'
                                     : index === 4
                                     ? 'w-[60px] h-[70px] ml-1 lg:ml-8 lg:w-[150px] lg:h-[130px]'
                                     : index === 8

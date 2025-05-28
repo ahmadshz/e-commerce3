@@ -38,10 +38,24 @@ const AddPostFurniture = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         // Validate required fields
-        if (!title || !selectedLocation || !status || !selectedBrand || !priceSYP || !priceUSD || !description || images.length === 0) {
-            setError('يرجى ملء جميع الحقول المطلوبة');
-            return;
+        const validations = [
+            { condition: !title, message: 'يرجى إدخال العنوان' },
+            { condition: !selectedLocation, message: 'يرجى اختيار الموقع' },
+            { condition: !status, message: 'يرجى تحديد الحالة' },
+            { condition: !selectedBrand, message: 'يرجى اختيار نوع الاثاث' },
+            { condition: !priceSYP, message: 'يرجى إدخال السعر بالليرة السورية' },
+            { condition: !priceUSD, message: 'يرجى إدخال السعر بالدولار الأمريكي' },
+            { condition: !description, message: 'يرجى إدخال الوصف' },
+            { condition: images.length === 0, message: 'يرجى إضافة صورة واحدة على الأقل' },
+        ];
+
+        for (const field of validations) {
+            if (field.condition) {
+                setError(field.message);
+                return;
+            }
         }
+
 
         // تأكد أن السعر أرقام فقط (وأنه لا يحتوي على رموز أو حروف)
         if (!/^\d+$/.test(priceSYP) || !/^\d+$/.test(priceUSD)) {
@@ -170,7 +184,7 @@ const AddPostFurniture = () => {
                     <div className='flex flex-col md:flex-row gap-5 w-full'>
                         <Dropdown
                             label='نوع الاثاث :'
-                            options={data[4].brands.map((brand) => brand)}
+                            options={data[5].brands.map((brand) => brand)}
                             selected={selectedBrand || 'اختر نوع الاثاث'}
                             placeholder='نوع الاثاث'
                             onSelect={setSelectedBrand}

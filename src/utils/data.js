@@ -22,6 +22,9 @@ import usecolor from '../assets/Carandothers/other.svg'
 import use from '../assets/Carandothers/others-1.svg'
 import oldcolor from '../assets/Carandothers/used.svg'
 import old from '../assets/Carandothers/used-1.svg'
+import storecolor from '../assets/Carandothers/store-1.svg'
+import store from '../assets/Carandothers/store.svg'
+
 
 
 
@@ -152,6 +155,22 @@ export const data = [
         add: 'أضف إعلانك لبيع أو شراء الدراجات بجميع أنواعها',
         icon: motor,
         iconcolor: motorcolor,
+    },
+    {
+        title: "دلال المتاجر",
+        category: "store",
+        brands : [
+            "أزياء وملابس", "تجميل وعناية", "أثاث ومفروشات", "إلكترونيات وأجهزة", "مواد غذائية وتموينية",
+            "حلويات ومعجنات", "أدوات مطبخ ومائدة", "ألعاب وهدايا", "كتب وقرطاسية", "معدات وصيانة",
+            "سيارات وملحقاتها", "منظفات ومستلزمات منزلية", "زراعة وحدائق", "ديكور وإنارة", "سفر وسياحة",
+            "خدمات مالية وقانونية", "متاجر الجملة", "مستلزمات الأطفال والمواليد", "مستلزمات الحيوانات",
+            "فنون وأعمال يدوية", "تصوير وميديا", "خدمات رقمية وتقنية"
+        ],
+        path: "/addPostStore",
+        add: 'أضف إعلانك لبيع المتاجر',
+        icon: store,
+        iconcolor: storecolor,
+
     },
     {
         title: "دلال للعقار",

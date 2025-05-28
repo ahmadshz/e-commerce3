@@ -37,6 +37,19 @@ import AddPostForm from "./Pages/Dashboard/Post/AddPostForm";
 import WelcomeDashboard from "./Pages/Dashboard/WelcomeDashboard";
 import ForgotPassword from "./Components/Auth/ForgotPassword";
 import ResetPassword from "./Components/Auth/ResetPassword";
+import AddPostStore from "./Components/Websites/page/AddPosts/AddPostStore";
+import UpdatePostCar from "./Components/Websites/page/Update/UpdatePostCar";
+import UpdatePostBike from "./Components/Websites/page/Update/UpdatePostBike";
+import UpdatePostStore from "./Components/Websites/page/Update/UpdatePostStore";
+import UpdatePostEstate from "./Components/Websites/page/Update/UpdatePostEstate";
+import UpdatePostDevices from "./Components/Websites/page/Update/UpdatePostDevices";
+import UpdatePostFurniture from "./Components/Websites/page/Update/UpdatePostFurniture";
+import UpdatePostAnimals from "./Components/Websites/page/Update/UpdatePostAnimals";
+import UpdatePostJob from "./Components/Websites/page/Update/UpdatePostJob";
+import UpdatePostServices from "./Components/Websites/page/Update/UpdatePostServices";
+import UpdatePostEducation from "./Components/Websites/page/Update/UpdatePostEducation";
+import UpdatePostParty from "./Components/Websites/page/Update/UpdatePostParty";
+import UpdatePostOther from "./Components/Websites/page/Update/UpdatePostOther";
 
 
 function App() {
@@ -75,8 +88,6 @@ function App() {
         {/* Get Single Post */}
         <Route path="/:id" element={<SinglePost />} />
 
-
-
         {/*Auth */}
         <Route element={<RequireAuth />}>
           {/*Details Account Login*/}
@@ -85,10 +96,9 @@ function App() {
           {/*Start to Add Post */}
           <Route path="/addpost" element={<AddPost />} />
           <Route path="intermediate" element={<Intermediate />} />
-
-          {/*Add Posts */}
-          <Route path="/addPostCar" element={<AddPostCar />} />
+          {/*Add Posts */}<Route path="/addPostCar" element={<AddPostCar />} />
           <Route path="/addPostMotor" element={<AddPostMotor />} />
+          <Route path="/addPostStore" element={<AddPostStore />} />
           <Route path="/addPostEstate" element={<AddPostEstate />} />
           <Route path="/addPostDevices" element={<AddPostDevices />} />
           <Route path="/addPostFurniture" element={<AddPostFurniture />} />
@@ -98,6 +108,24 @@ function App() {
           <Route path="/addPostForEducation" element={<AddPostEducation />} />
           <Route path="/addPostParty" element={<AddPostParty />} />
           <Route path="/addPostAboutOthers" element={<AddPostOther />} />
+
+          {/*Update Post */}
+          <Route path="/updatePostCar/:id" element={<UpdatePostCar />} />
+          <Route path="/updatePostBike/:id" element={<UpdatePostBike />} />
+          <Route path="/updatePostStore/:id" element={<UpdatePostStore />} /> {/*Store */}
+          <Route path="/updatePostEstate/:id" element={<UpdatePostEstate />} />
+          <Route path="/updatePostDevices/:id" element={<UpdatePostDevices />} />
+          <Route path="/updatePostFurniture/:id" element={<UpdatePostFurniture />} />
+          <Route path="/updatePostAnimals/:id" element={<UpdatePostAnimals />} />
+          <Route path="/updatePostJob/:id" element={<UpdatePostJob />} />
+          <Route path="/updatePostServices/:id" element={<UpdatePostServices />} />
+          <Route path="/updatePostEducation/:id" element={<UpdatePostEducation />} />
+          <Route path="/updatePostParty/:id" element={<UpdatePostParty />} />
+          <Route path="/updatePostOther/:id" element={<UpdatePostOther />} />
+
+
+
+
         </Route>
       </Routes>
     </div>
