@@ -70,12 +70,26 @@ const Landing = () => {
         setVisibleCount((prev) => prev + 10);
     };
 
+    const [isAtBottom, setIsAtBottom] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollPosition = window.innerHeight + window.scrollY;
+            const threshold = document.body.offsetHeight - 50;
+            setIsAtBottom(scrollPosition >= threshold);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+
     return (
-        <div className='min-h-screen flex flex-col gap-[10px] md:gap-5 xl:gap-7 md:pb-0 pb-[30px]'>
+        <div className='min-h-screen flex flex-col gap-[10px] md:gap-5 xl:gap-7 md:pb-0 '>
             <MainHeader
                 onSearch={handleSearch}
             />
-            <div className='mt-[70px] md:mt-[80px] lg:mt-[100px] mb-[38px] md:mb-0'>
+            <div className={`mt-[70px] md:mt-[80px] lg:mt-[100px] ${isAtBottom ? '  ' : 'mb-[38px]' } md:mb-0`}>
                 <SubNavbar onSearch={handleSearch} onLocationChange={handleLocationChange} />
                 <CategoryNavbar onCategoryChange={handleCategoryChange} onBrandChange={handleBrandChange} />
                 <div className="min-h-[100vh] container flex gap-[10px] md:gap-5 xl:gap-7">

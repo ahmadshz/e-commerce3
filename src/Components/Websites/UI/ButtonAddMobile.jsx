@@ -22,7 +22,7 @@ const ButtonAddMobile = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.7 }}
-      className={`${isAtBottom ? 'static' : 'fixed bottom-0'} w-full md:hidden z-50`}
+      className={`${isAtBottom ? '' : 'fixed bottom-0'} w-full md:hidden z-50`}
     >
       <Link
         to="/addpost"
