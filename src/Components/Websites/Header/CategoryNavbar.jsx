@@ -49,7 +49,7 @@ const CategoryNavbar = ({ onCategoryChange, onBrandChange }) => {
                                 : index === 1
                                     ? ' w-[40px] h-[28px] md:w-[50px] md:h-[40px] lg:w-[65px] lg:h-[50px]'
                                     : index === 2
-                                        ? ' w-[25px] h-[25px] md:w-[33px] md:h-[33px] lg:w-[45px] lg:h-[45px] mt-1'
+                                        ? ' w-[24px] h-[24px] md:w-[31px] md:h-[31px] lg:w-[40px] lg:h-[40px] mt-1 md:mt-2'
                                         : index === 5
                                             ? 'w-[40px] h-[30px] md:w-[50px] md:h-[45px] lg:w-[65px] lg:h-[55px]'
                                             : index === 9
@@ -69,7 +69,7 @@ const CategoryNavbar = ({ onCategoryChange, onBrandChange }) => {
                                 : index === 1
                                     ? ' w-[40px] h-[28px] md:w-[50px] md:h-[40px] lg:w-[65px] lg:h-[50px]'
                                     : index === 2
-                                        ? ' w-[25px] h-[25px] md:w-[33px] md:h-[33px] lg:w-[45px] lg:h-[45px] mt-1'
+                                        ? ' w-[24px] h-[24px] md:w-[31px] md:h-[31px] lg:w-[40px] lg:h-[40px] mt-1 md:mt-2'
                                         : index === 5
                                             ? 'w-[40px] h-[30px] md:w-[50px] md:h-[45px] lg:w-[65px] lg:h-[55px]'
                                             : index === 9
