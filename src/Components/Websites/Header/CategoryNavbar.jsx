@@ -64,19 +64,19 @@ const CategoryNavbar = ({ onCategoryChange, onBrandChange }) => {
                         <img
                             src={category.iconcolor}
                             alt={category.title}
-                            className={`object-cover ${index === 0
+                            className={` object-cover ${index === 0
                                 ? 'w-[45px] h-[25px] md:w-[60px] md:h-[35px] lg:w-[85px] lg:h-[45px]'
                                 : index === 1
                                     ? ' w-[40px] h-[28px] md:w-[50px] md:h-[40px] lg:w-[65px] lg:h-[50px]'
                                     : index === 2
                                         ? ' w-[25px] h-[25px] md:w-[33px] md:h-[33px] lg:w-[45px] lg:h-[45px] mt-1'
-                                        : index === 4
+                                        : index === 5
                                             ? 'w-[40px] h-[30px] md:w-[50px] md:h-[45px] lg:w-[65px] lg:h-[55px]'
-                                            : index === 8
+                                            : index === 9
                                                 ? 'w-[40px] h-[30px] md:w-[50px] md:h-[35px] lg:w-[65px] lg:h-[45px]'
-                                                : index === 9
+                                                : index === 10
                                                     ? 'w-[40px] h-[30px] md:w-[50px] md:h-[35px] lg:w-[65px] lg:h-[45px]'
-                                                    : index === 10
+                                                    : index === 11
                                                         ? 'w-[40px] h-[30px] md:w-[50px] md:h-[40px] lg:w-[65px] lg:h-[45px]'
                                                         : 'w-[30px] h-[30px] md:h-auto md:w-[40px] lg:w-[50px]'
                                 } ${selectedCategory === index ? 'block' : 'hidden'}`}
