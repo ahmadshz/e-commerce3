@@ -71,7 +71,7 @@ const Landing = () => {
     };
 
     return (
-        <div className='min-h-screen flex flex-col gap-[10px] md:gap-5 xl:gap-7 pb-[20px] md:pb-0'>
+        <div className='min-h-screen flex flex-col gap-[10px] md:gap-5 xl:gap-7 md:pb-0 pb-[30px]'>
             <MainHeader
                 onSearch={handleSearch}
             />
@@ -103,7 +103,7 @@ const Landing = () => {
                 </div>
 
                 {visibleCount < ads.length && (
-                    <div className="text-center  md:mb-[10px] lg:mb-[2px] mt-[15px] md:mt-[30px] w-full">
+                    <div className="text-center mb-[20px]  md:mb-[10px] lg:mb-[2px] mt-[15px] md:mt-[30px] w-full">
                         <div
                             onClick={handleShowMore}
                             className="border md:border-2 border-border text-[10px] md:text-[13px] lg:text-[17px] mx-auto h-[40px] md:h-[60px] lg:h-[76px] w-[110px] md:w-[150px] lg:w-[250px] rounded-10px flex justify-center items-center font-semibold text-placeholder cursor-pointer"
