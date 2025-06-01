@@ -17,6 +17,8 @@ const Landing = () => {
     const [visibleCount, setVisibleCount] = useState(10);
     const [sponsorImages, setSponsorImages] = useState(null);
     const [loading, setLoading] = useState(false)
+    const [isAtBottom, setIsAtBottom] = useState(false);
+
 
     const fetchAds = async (query = '', location = 'جميع المناطق') => {
         setLoading(true)
@@ -70,7 +72,6 @@ const Landing = () => {
         setVisibleCount((prev) => prev + 10);
     };
 
-    const [isAtBottom, setIsAtBottom] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -89,7 +90,7 @@ const Landing = () => {
             <MainHeader
                 onSearch={handleSearch}
             />
-            <div className={`mt-[70px] md:mt-[80px] lg:mt-[100px] ${isAtBottom ? '  ' : 'mb-[38px]' } md:mb-0`}>
+            <div className={`mt-[70px] md:mt-[80px] lg:mt-[100px] ${isAtBottom ? '  ' : 'mb-[38px]'} md:mb-0`}>
                 <SubNavbar onSearch={handleSearch} onLocationChange={handleLocationChange} />
                 <CategoryNavbar onCategoryChange={handleCategoryChange} onBrandChange={handleBrandChange} />
                 <div className="min-h-[100vh] container flex gap-[10px] md:gap-5 xl:gap-7">
