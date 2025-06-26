@@ -118,6 +118,8 @@ const AddPostDevices = () => {
                                 placeholder='مثال : ايفون 13 برو ماكس بالكرتونة'
                                 value={title}
                                 onChange={(e) => setTitle(e.target.value)}
+                                maxLength={70}
+
                             />
                         </div>
 

@@ -112,6 +112,8 @@ const AddPostServices = () => {
                                 placeholder='مثال : كهربائي ساعات كبيرة يبحث عن عمل '
                                 value={title}
                                 onChange={(e) => setTitle(e.target.value)}
+                                maxLength={70}
+
                             />
                         </div>
 

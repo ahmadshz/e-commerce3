@@ -133,6 +133,7 @@ const Posts = ({ ads, selectedCategory, selectedBrand, visibleCount, sponsorImag
                                     className='h-full w-full object-cover'
                                     src={Array.isArray(item.images) ? item.images[0] : item.images}
                                     alt=''
+                                    loading='lazy'
                                 />
                             </div>
                         </motion.div>

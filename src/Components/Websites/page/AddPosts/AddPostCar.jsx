@@ -126,6 +126,7 @@ const AddPostCar = () => {
                                 placeholder='مثال : سيارة تويوتا يارس موديل 2024 فل كامل'
                                 value={title}
                                 onChange={(e) => setTitle(e.target.value)}
+                                maxLength={70}
                             />
                         </div>
 

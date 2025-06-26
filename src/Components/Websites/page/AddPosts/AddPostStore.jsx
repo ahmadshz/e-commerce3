@@ -112,6 +112,8 @@ const AddPostStore = () => {
                                 placeholder='مثال : شركة الأتاسي لتنظيم الأعراس في دمشق'
                                 value={title}
                                 onChange={(e) => setTitle(e.target.value)}
+                                maxLength={70}
+
                             />
                         </div>
 

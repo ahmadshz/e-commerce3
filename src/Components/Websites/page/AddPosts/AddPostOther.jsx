@@ -107,6 +107,8 @@ const AddPostOther = () => {
                                 placeholder='مثال : مسبح منزلي صغير'
                                 value={title}
                                 onChange={(e) => setTitle(e.target.value)}
+                                maxLength={70}
+
                             />
                         </div>
 

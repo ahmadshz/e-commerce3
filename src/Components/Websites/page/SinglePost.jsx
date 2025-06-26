@@ -130,7 +130,7 @@ const SinglePost = () => {
                             className='bg-background px-4 py-2 h-[120px] md:h-[140px] lg:h-[160px] flex justify-between'
                         >
                             <div className='h-full flex flex-col justify-between w-4/6 lg:w-3/6'>
-                                <div className='text-[12px] lg:text-[20px] font-semibold'>{ad.title}</div>
+                                <div className='text-[12px] lg:text-[20px] font-semibold'>{ad.title.length > 71 ? ad.title.slice(0, 70) + '...' : ad.title}</div>
                                 <p className='text-[10px] lg:text-[14px] font-normal text-placeholder flex items-center gap-2'>{ad.location}
                                     <span className='mx-1 flex items-center gap-2'>
                                         <a

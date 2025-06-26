@@ -126,6 +126,8 @@ const AddPostEstate = () => {
                                 placeholder='مثال : شقة للإيجار في حي الزبيدي بسعر مغري جداً'
                                 value={title}
                                 onChange={(e) => setTitle(e.target.value)}
+                                maxLength={70}
+
                             />
                         </div>
 

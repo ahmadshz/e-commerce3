@@ -119,6 +119,8 @@ const AddPostAnimals = () => {
                                 text-[12px] md:text-[14px] lg:text-[20px] pr-2 md:pr-[10px] xl:pr-[20px] outline-none focus:outline-none focus:border-primary duration-200'
                                 placeholder='مثال : خيل عربي أسود أصيل'
                                 required
+                                maxLength={70}
+
                             />
                         </div>
 

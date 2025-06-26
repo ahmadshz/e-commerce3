@@ -122,6 +122,8 @@ const AddPostEducation = () => {
                                 placeholder='مثال : مدرس مادة فيزياء'
                                 value={title}
                                 onChange={(e) => setTitle(e.target.value)}
+                                maxLength={70}
+
                             />
                         </div>
 
